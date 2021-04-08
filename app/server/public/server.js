@@ -2,44 +2,26 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const cors = require('cors');
-const MongoClient = require('mongodb').MongoClient;
-const bodyParser = require('body-parser');
-let app = express();
-
+const mongoose = require('mongoose');
+const app = require('../src/app');
 const port = process.env.PORT || 8000;
-
-app.use(cors());
-app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../../../build')));
 
-app.get('/', (req, res)=> {
-  res.send('Express server is up and running.');
-})
+//connection to the DB
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('DB collection succesful');
+  });
 
-//GET request to server
-app.get('/api', (req, res)=> {
-  
-});
-
-//POST request to server
-app.post('/api', (req, res)=> {
-
-})
-
-//DELETE request to server
-app.delete('/api', (req, res)=> {
-  
-})
-
-//PUT request to server
-app.put('/api', (req, res)=> {
-  
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../../build', 'index.html'));
-});
-
-app.listen(port, _=> console.log(`The server is listening on port ${port}`));
+app.listen(port, (_) => console.log(`The server is listening on port ${port}`));
