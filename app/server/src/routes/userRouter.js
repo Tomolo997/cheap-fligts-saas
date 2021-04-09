@@ -7,5 +7,6 @@ router.get('/logout', (req, res, next) => {
 
 //not protected routes
 router.post('/signup', authController.singUp);
+router.post('/login', authController.logIn);
 
 module.exports = router;
