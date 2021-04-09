@@ -67,3 +67,12 @@ exports.logIn = async (req, res, next) => {
   //3) if everytingh ok , send token to client
   createSendToken(user, 200, res);
 };
+
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'null', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+
+  res.status(200).json({ status: 'success' });
+};
