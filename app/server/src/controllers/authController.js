@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
 
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -75,4 +76,48 @@ exports.logout = (req, res) => {
   });
 
   res.status(200).json({ status: 'success' });
+};
+
+exports.protect = async (req, res, next) => {
+  //1) Get the token and check if it exists
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+  console.log(token);
+  if (!token) {
+    return next(
+      new Error('You are not logged in, please login to get access', 401)
+    );
+  }
+  //2) Verification token
+  //all this is sa function that we need to call that returns a promise
+
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  //3) Check if user still exists
+  const freshUser = await User.findById(decoded.id);
+  if (!freshUser) {
+    return next(
+      new appError('The user beloning to the user does not exist'),
+      401
+    );
+  }
+  //4) Check if user changed password after token was issued
+
+  if (freshUser.changedPasswordAfter(decoded.iat)) {
+    return new appError(
+      'The user recentiuly changed password, plase login again',
+      401
+    );
+  }
+  //only if the previous 4 are correct then the next will be called and then the user gets the routes
+  req.user = freshUser;
+  res.locals.user = freshUser;
+  next();
 };

@@ -4,6 +4,7 @@ const path = require('path');
 const helmet = require('helmet');
 const cors = require('cors');
 const userRouter = require('../src/routes/userRouter');
+const flightRouter = require('../src/routes/flightRoutes');
 
 //creatin of app.js
 const app = express();
@@ -19,5 +20,6 @@ app.get('/', (req, res) => {
 
 //mounting the routes
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/flights', flightRouter);
 
 module.exports = app;
