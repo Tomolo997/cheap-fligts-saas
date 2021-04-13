@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
-
+const appError = require('../utils/appError');
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -92,7 +92,7 @@ exports.protect = async (req, res, next) => {
   console.log(token);
   if (!token) {
     return next(
-      new Error('You are not logged in, please login to get access', 401)
+      new appError('You are not logged in, please login to get access', 401)
     );
   }
   //2) Verification token
