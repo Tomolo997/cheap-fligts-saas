@@ -105,9 +105,9 @@ const fillTheStates = async (id) => {
         });
       }
     }
-    console.log(flightResultQuotes.length);
+    console.log(flightResultQuotes);
     //enter into database
-    console.log(flights[0]._id);
+    console.log(flights);
 
     await Flights.findByIdAndUpdate(flights[0]._id, {
       $set: {
