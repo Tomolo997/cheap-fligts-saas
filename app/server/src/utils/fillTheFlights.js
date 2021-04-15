@@ -12,12 +12,15 @@ const Flights = require('../models/fligthsModel');
 //connection to the DB
 const DB = process.env.DATABASE;
 mongoose
-  .connect(String(DB), {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    'mongodb+srv://tomaz:tomaz@cheap-flights.bdzqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log('DB collection succesful');
   });
@@ -102,11 +105,14 @@ const fillTheStates = async (id) => {
         });
       }
     }
-    console.log(flightResultQuotes);
+    console.log(flightResultQuotes.length);
     //enter into database
+    console.log(flights[0]._id);
 
-    await Flights.findByIdAndUpdate(flights[0], {
-      flightResults: flightResultQuotes,
+    await Flights.findByIdAndUpdate(flights[0]._id, {
+      $set: {
+        flightsResults: flightResultQuotes,
+      },
     });
     process.exit(1);
   } catch (error) {
