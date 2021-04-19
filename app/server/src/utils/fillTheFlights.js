@@ -77,7 +77,6 @@ const fillTheStates = async () => {
       const data = await axios.get(
         `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
       );
-      console.log(data);
       element.results = data.data;
     }
     console.log(flightsData);
