@@ -4,7 +4,9 @@ const Flights = require('../models/fligthsModel');
 exports.addFlight = async (req, res, next) => {
   try {
     //1) find the user
-    const userID = await User.findById(req.user._id);
+    console.log(req.body.user);
+    const userID = await User.findById(req.body.user);
+
     //add flight to the flights data
     /* flightsData: [
       {
@@ -22,27 +24,26 @@ exports.addFlight = async (req, res, next) => {
     //const createdFlight = await Flights.create(req.body);
     const flight = await Flights.findOne({ user: userID._id });
     if (!flight) {
-      createdFlight = await Flights.create(req.body);
+      const createdFlight = await Flights.create(req.body);
     }
-    console.log(flight);
-    console.log(req.body);
+
     const flightAdded = await Flights.findByIdAndUpdate(
       { _id: flight._id },
       { $push: { flightsData: req.body.flightsData[0] } },
       { upsert: true }
     );
+    console.log(flightAdded);
     res.status(201).json({
       status: 'success',
       data: {
-        flightAdded,
-      },
-      reqBody: {
-        reqBody: req.body.flightsData[0],
+        userID,
       },
     });
 
     //2)Call the
   } catch (error) {
-    console.log(error);
+    res.status(400).json({
+      status: 'error',
+    });
   }
 };
