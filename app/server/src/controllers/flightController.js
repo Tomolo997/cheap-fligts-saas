@@ -18,12 +18,26 @@ exports.addFlight = async (req, res, next) => {
         },
       },
     ], */
-    const createdFlight = await Flights.create(req.body);
-
+    //ce user se nima flighta
+    //const createdFlight = await Flights.create(req.body);
+    const flight = await Flights.findOne({ user: userID._id });
+    if (!flight) {
+      createdFlight = await Flights.create(req.body);
+    }
+    console.log(flight);
+    console.log(req.body);
+    const flightAdded = await Flights.findByIdAndUpdate(
+      { _id: flight._id },
+      { $push: { flightsData: req.body.flightsData[0] } },
+      { upsert: true }
+    );
     res.status(201).json({
       status: 'success',
       data: {
-        createdFlight,
+        flightAdded,
+      },
+      reqBody: {
+        reqBody: req.body.flightsData[0],
       },
     });
 
