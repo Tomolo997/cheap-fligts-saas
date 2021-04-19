@@ -73,12 +73,14 @@ const fillTheStates = async () => {
       const element = flightsData[i];
       const { flightFrom, flightTo, inboundDate, outboundDate } = element;
       console.log(flightFrom, flightTo, inboundDate, outboundDate);
+
       const data = await axios.get(
         `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
       );
+      console.log(data);
       element.results = data.data;
     }
-    console.log(flightsData[0].results.Quotes);
+    console.log(flightsData);
 
     process.exit(1);
   } catch (error) {
