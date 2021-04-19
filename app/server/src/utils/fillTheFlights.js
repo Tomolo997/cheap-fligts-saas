@@ -27,12 +27,11 @@ mongoose
 
 function TranfromDateToSuitableLink(date) {
   const slice = date.slice(2, 10).split('-').join('');
-
   return slice;
 }
 
 //get the current user
-const fillTheStates = async (id) => {
+const fillTheStates = async () => {
   try {
     //fimd the user
     const users = await User.find();
