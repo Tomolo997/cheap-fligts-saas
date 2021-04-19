@@ -18,7 +18,7 @@ const flightSchema = mongoose.Schema(
       },
     ],
     //dobi rezultate, item po item iz flightsData je vsak object
-    flightsResults: [],
+    flightsResults: { type: Array },
     user: {
       type: mongoose.Schema.ObjectId,
       //establish reference
