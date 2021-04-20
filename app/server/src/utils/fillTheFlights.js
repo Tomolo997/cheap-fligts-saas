@@ -100,7 +100,12 @@ const fillTheStates = async () => {
       const element = flightsData[i];
       for (let j = 0; j < element.results.Quotes.length; j++) {
         const elementJ = element.results.Quotes[j];
-        flightsResults.push({ flights: elementJ, user: element.user });
+        flightsResults.push({
+          flights: elementJ,
+          user: element.user,
+          flightFrom: element.flightFrom,
+          flightTo: element.flightTo,
+        });
       }
     }
 
@@ -125,6 +130,9 @@ const fillTheStates = async () => {
         element.flights.InboundLeg.DepartureDate
       );
       flightsForFinal.push({
+        user: element.user,
+        flightFromSTART: element.flightFrom,
+        flightToSTART: element.flightTo,
         fromFlight: fromFlight,
         toFlight: toFlight,
         price: element.flights.MinPrice,
