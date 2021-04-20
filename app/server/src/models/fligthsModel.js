@@ -15,10 +15,10 @@ const flightSchema = mongoose.Schema(
           type: Date,
           default: Date.now,
         },
+        flightsResults: [],
       },
     ],
     //dobi rezultate, item po item iz flightsData je vsak object
-    flightsResults: { type: Array },
     user: {
       type: mongoose.Schema.ObjectId,
       //establish reference
