@@ -73,14 +73,28 @@ const fillTheStates = async () => {
       const element = flightsData[i];
       const { flightFrom, flightTo, inboundDate, outboundDate } = element;
       console.log(flightFrom, flightTo, inboundDate, outboundDate);
-
-      const data = await axios.get(
-        `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
-      );
-      element.results = data.data;
+      try {
+        const data = await axios.get(
+          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
+        );
+        element.results = data.data;
+      } catch (error) {
+        console.log(error);
+      }
     }
-    console.log(flightsData);
-
+    //loop through the places and place them into the array inside IDs
+    let places = [];
+    for (let i = 0; i < flightsData.length; i++) {
+      const flight = flightsData[i].results.Places;
+      for (let j = 0; j < flight.length; j++) {
+        const elementJ = flight[j];
+        places.push({
+          id: elementJ.PlaceId,
+          skyscannerCode: elementJ.SkyscannerCode,
+        });
+      }
+    }
+    console.log(places);
     process.exit(1);
   } catch (error) {
     console.log(error);
