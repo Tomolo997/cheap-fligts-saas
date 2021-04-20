@@ -58,9 +58,12 @@ const fillTheStates = async () => {
     let flightsData = [];
     for (let i = 0; i < allFlights.length; i++) {
       const el = allFlights[i];
+      // console.log(el.flightsData);
+      console.log(el);
       for (let j = 0; j < el.flightsData.length; j++) {
         const jEl = el.flightsData[j];
         flightsData.push({
+          flightID: jEl._id,
           user: el.user,
           flightFrom: jEl.flightFrom,
           flightTo: jEl.flightTo,
@@ -101,6 +104,7 @@ const fillTheStates = async () => {
       for (let j = 0; j < element.results.Quotes.length; j++) {
         const elementJ = element.results.Quotes[j];
         flightsResults.push({
+          flightID: element.flightID,
           flights: elementJ,
           user: element.user,
           flightFrom: element.flightFrom,
@@ -108,9 +112,6 @@ const fillTheStates = async () => {
         });
       }
     }
-
-    console.log(flightsResults.length);
-    console.log(flightsResults);
 
     let flightsForFinal = [];
 
@@ -130,6 +131,7 @@ const fillTheStates = async () => {
         element.flights.InboundLeg.DepartureDate
       );
       flightsForFinal.push({
+        flightID: element.flightID,
         user: element.user,
         flightFromSTART: element.flightFrom,
         flightToSTART: element.flightTo,
@@ -142,7 +144,22 @@ const fillTheStates = async () => {
       });
     }
 
-    console.log(flightsForFinal);
+    //go through every flight and if the user, from ,to matches it then add it to result
+
+    for (let i = 0; i < allFlights.length; i++) {
+      const element = allFlights[i].flightsData[0];
+      console.log(element._id);
+
+      const flightResults2 = await Flights.find({
+        flightsData: { $elemMatch: { $eq: element._id } },
+      });
+
+      flightResults2;
+
+      console.log(flightResults2);
+    }
+    // console.log(flightsForFinal);
+
     // console.log(places);
 
     // console.log(places);
