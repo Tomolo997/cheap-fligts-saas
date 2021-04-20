@@ -94,7 +94,114 @@ const fillTheStates = async () => {
         });
       }
     }
-    console.log(places);
+
+    let flightsResults = [];
+    for (let i = 0; i < flightsData.length; i++) {
+      const element = flightsData[i];
+      for (let j = 0; j < element.results.Quotes.length; j++) {
+        const elementJ = element.results.Quotes[j];
+        flightsResults.push({ flights: elementJ, user: element.user });
+      }
+    }
+
+    console.log(flightsResults.length);
+    console.log(flightsResults);
+
+    let flightsForFinal = [];
+
+    for (let j = 0; j < flightsResults.length; j++) {
+      const element = flightsResults[j];
+      const fromFlight = places.find(
+        (el) => el.id === element.flights.OutboundLeg.OriginId
+      ).skyscannerCode;
+      const toFlight = places.find(
+        (el) => el.id === element.flights.OutboundLeg.DestinationId
+      ).skyscannerCode;
+
+      const fromDate = TranfromDateToSuitableLink(
+        element.flights.OutboundLeg.DepartureDate
+      );
+      const toDate = TranfromDateToSuitableLink(
+        element.flights.InboundLeg.DepartureDate
+      );
+      flightsForFinal.push({
+        fromFlight: fromFlight,
+        toFlight: toFlight,
+        price: element.flights.MinPrice,
+        formDate: element.flights.OutboundLeg.DepartureDate,
+        toDate: element.flights.InboundLeg.DepartureDate,
+        link: `https://www.skyscanner.net/transport/flights/${fromFlight}/${toFlight}/${fromDate}/${toDate}/`,
+      });
+    }
+
+    console.log(flightsForFinal);
+    // console.log(places);
+
+    // console.log(places);
+
+    // console.log(flightResults);
+    //places imamo, imamo resultate flightov
+    //narediti moramo končne array
+    /*
+        user: 607077e6fd1b8f0b18608afd,
+    flightFrom: 'ZAG',
+    flightTo: 'NTE',
+    inboundDate: '2021',
+    outboundDate: '2021',
+    results: {
+      Quotes: [],
+      Carriers: [],
+      Places: [],
+      Currencies: [Array],
+      Routes: []
+    }
+    flightResults:[
+      {
+        from:"IT-sky",
+        to:"GR-sky",
+        InboundDate:"2021",
+        outboundDate:"2021",
+        results:[{
+          fromFlight:"VCE",
+          toFlight:"ATH",
+          inboundDate:210523,
+          outboundDate:210526,
+          price:123,
+          link:"https://www.skyscanner.net/transport/flights/BLQ/ATH/210523/210526/"
+        }]
+      },
+      {
+        from:"ZAG",
+        to:"CFU",
+        InboundDate:"2021",
+        outboundDate:"2021",
+        results:[{
+          fromFlight:"ZAG",
+          toFlight:"CFU",
+          inboundDate:210523,
+          outboundDate:210526,
+          price:21,
+          link:"https://www.skyscanner.net/transport/flights/BLQ/ATH/210523/210526/"
+        }]
+      }
+
+  {
+    user: 607077e6fd1b8f0b18608afd,
+    flightFrom: 'ZAG',
+    flightTo: 'NTE',
+    inboundDate: '2021',
+    outboundDate: '2021',
+    results: {
+      Quotes: [],
+      Carriers: [],
+      Places: [],
+      Currencies: [Array],
+      Routes: []
+    }
+  }
+    ]
+    */
+
     process.exit(1);
   } catch (error) {
     console.log(error);
@@ -185,6 +292,35 @@ fillTheStates();
     //   },
     // });
     // process.exit(1);
+
+    let flightResults = [];
+
+    //
+
+    for (let i = 0; i < flightsData.length; i++) {
+      const el = flightsData[i];
+      flightResults.push({
+        user: el.user,
+        from: el.flightFrom,
+        to: el.flightTo,
+        inboundDate: el.inboundDate,
+        outboundDate: el.outboundDate,
+        results: [],
+      });
+    }
+
+    for (let i = 0; i < flightsData.length; i++) {
+      const element = flightsData[i];
+      const userID = element.user;
+      const from = element.flightFrom;
+      const to = element.flightTo;
+      const flightBasedOnID = flightResults.find(
+        (el) => el.user === userID && el.from === from && el.to === to
+      );
+      
+      console.log(flightBasedOnID);
+      // console.log(element.results.Quotes);
+    }
 
 
 */
