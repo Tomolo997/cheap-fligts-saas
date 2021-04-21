@@ -59,7 +59,6 @@ const fillTheStates = async () => {
     for (let i = 0; i < allFlights.length; i++) {
       const el = allFlights[i];
       // console.log(el.flightsData);
-      console.log(el);
       for (let j = 0; j < el.flightsData.length; j++) {
         const jEl = el.flightsData[j];
         flightsData.push({
@@ -143,27 +142,51 @@ const fillTheStates = async () => {
         link: `https://www.skyscanner.net/transport/flights/${fromFlight}/${toFlight}/${fromDate}/${toDate}/`,
       });
     }
+    const flightsForDB = [];
+    for (let i = 0; i < allFlights.length; i++) {
+      const element = allFlights[i];
+      for (let index = 0; index < element.flightsData.length; index++) {
+        const element2 = element.flightsData[index];
+        flightsForDB.push({ flightID: element2._id, results: [] });
+      }
+    }
 
-    //go through every flight and if the user, from ,to matches it then add it to result
+    for (let i = 0; i < flightsForFinal.length; i++) {
+      const element = flightsForFinal[i];
+      for (let j = 0; j < flightsForDB.length; j++) {
+        const element2 = flightsForDB[j];
+        if (element.flightID === element2.flightID) {
+          element2.results.push(element);
+        }
+      }
+    }
+    console.log(flightsForDB.length);
+    console.log(allFlights.length);
 
     for (let i = 0; i < allFlights.length; i++) {
-      const element = allFlights[i].flightsData[0];
-      console.log(element._id);
-
-      const flightResults2 = await Flights.find({
-        flightsData: { $elemMatch: { $eq: element._id } },
-      });
-
-      flightResults2;
-
-      console.log(flightResults2);
+      const element = allFlights[i];
+      console.log(element.flightsData);
+      for (let index = 0; index < element.flightsData.length; index++) {
+        const element2 = element.flightsData[index];
+        console.log(element2);
+      }
     }
+
+    //{ $set: { flightsResults: element.results } }
+    //go through every flight and if the user, from ,to matches it then add it to result
+
     // console.log(flightsForFinal);
 
     // console.log(places);
 
     // console.log(places);
-
+    // for (let i = 0; i < allFlights.length; i++) {
+    //   const element = allFlights[i];
+    //   for (let j = 0; j < element.flightsData.length; j++) {
+    //     const element2 = element.flightsData[j];
+    //     console.log(element2._id);
+    //   }
+    // }
     // console.log(flightResults);
     //places imamo, imamo resultate flightov
     //narediti moramo končne array
