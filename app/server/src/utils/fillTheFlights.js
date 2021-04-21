@@ -8,6 +8,7 @@ const port = process.env.PORT || 8000;
 require('dotenv').config();
 const User = require('../models/userModel');
 const Flights = require('../models/fligthsModel');
+const FlightResults = require('../models/flightsResult');
 
 //connection to the DB
 const DB = process.env.DATABASE;
@@ -147,7 +148,12 @@ const fillTheStates = async () => {
       const element = allFlights[i];
       for (let index = 0; index < element.flightsData.length; index++) {
         const element2 = element.flightsData[index];
-        flightsForDB.push({ flightID: element2._id, results: [] });
+        console.log(element2);
+        flightsForDB.push({
+          flightID: element2._id,
+          results: [],
+          user: element.user,
+        });
       }
     }
 
@@ -160,16 +166,10 @@ const fillTheStates = async () => {
         }
       }
     }
-    console.log(flightsForDB.length);
-    console.log(allFlights.length);
-
-    for (let i = 0; i < allFlights.length; i++) {
-      const element = allFlights[i];
-      console.log(element.flightsData);
-      for (let index = 0; index < element.flightsData.length; index++) {
-        const element2 = element.flightsData[index];
-        console.log(element2);
-      }
+    await FlightResults.remove({});
+    for (let i = 0; i < flightsForDB.length; i++) {
+      const element = flightsForDB[i];
+      await FlightResults.create(element);
     }
 
     //{ $set: { flightsResults: element.results } }
