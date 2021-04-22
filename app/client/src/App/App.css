@@ -53,7 +53,7 @@ html {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid rgb(151, 38, 38);
 }
 .middle_navbar_div {
   display: flex;
