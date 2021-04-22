@@ -1,5 +1,7 @@
 //server.js
 require('dotenv').config();
+var cron = require('node-cron');
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -51,7 +53,7 @@ const dateFormatForSkyscanner = (date) => {
 };
 
 //get the current user
-const fillTheStates = async () => {
+exports.fillTheStates = async () => {
   try {
     //find the all of the flights, all flights je array
     const allFlights = await Flights.find();
@@ -171,204 +173,12 @@ const fillTheStates = async () => {
       const element = flightsForDB[i];
       await FlightResults.create(element);
     }
-
-    //{ $set: { flightsResults: element.results } }
-    //go through every flight and if the user, from ,to matches it then add it to result
-
-    // console.log(flightsForFinal);
-
-    // console.log(places);
-
-    // console.log(places);
-    // for (let i = 0; i < allFlights.length; i++) {
-    //   const element = allFlights[i];
-    //   for (let j = 0; j < element.flightsData.length; j++) {
-    //     const element2 = element.flightsData[j];
-    //     console.log(element2._id);
-    //   }
-    // }
-    // console.log(flightResults);
-    //places imamo, imamo resultate flightov
-    //narediti moramo končne array
-    /*
-        user: 607077e6fd1b8f0b18608afd,
-    flightFrom: 'ZAG',
-    flightTo: 'NTE',
-    inboundDate: '2021',
-    outboundDate: '2021',
-    results: {
-      Quotes: [],
-      Carriers: [],
-      Places: [],
-      Currencies: [Array],
-      Routes: []
-    }
-    flightResults:[
-      {
-        from:"IT-sky",
-        to:"GR-sky",
-        InboundDate:"2021",
-        outboundDate:"2021",
-        results:[{
-          fromFlight:"VCE",
-          toFlight:"ATH",
-          inboundDate:210523,
-          outboundDate:210526,
-          price:123,
-          link:"https://www.skyscanner.net/transport/flights/BLQ/ATH/210523/210526/"
-        }]
-      },
-      {
-        from:"ZAG",
-        to:"CFU",
-        InboundDate:"2021",
-        outboundDate:"2021",
-        results:[{
-          fromFlight:"ZAG",
-          toFlight:"CFU",
-          inboundDate:210523,
-          outboundDate:210526,
-          price:21,
-          link:"https://www.skyscanner.net/transport/flights/BLQ/ATH/210523/210526/"
-        }]
-      }
-
-  {
-    user: 607077e6fd1b8f0b18608afd,
-    flightFrom: 'ZAG',
-    flightTo: 'NTE',
-    inboundDate: '2021',
-    outboundDate: '2021',
-    results: {
-      Quotes: [],
-      Carriers: [],
-      Places: [],
-      Currencies: [Array],
-      Routes: []
-    }
-  }
-    ]
-    */
-
-    process.exit(1);
   } catch (error) {
     console.log(error);
     process.exit(1);
   }
 };
-fillTheStates();
-
-/*  
-    // //fimd the user
-    // const users = await User.find();
-    // const UserIds = await users.map((el) => el._id);
-    // //find their flight
-    // //find all of the flights
-    // const flights = await Flights.find();
-    // const searchFlights = [];
-    // //search all of the flights
-    // for (let i = 0; i < flights.length; i++) {
-    //   const { flightFrom, flightTo, outboundDate, inboundDate } = flights[
-    //     i
-    //   ].flightsData[0];
-    //   searchFlights.push({
-    //     flightFrom: flightFrom,
-    //     flightTo: flightTo,
-    //     fromDate: outboundDate.getFullYear(),
-    //     toDate: inboundDate.getFullYear(),
-    //   });
-    // }
-
-    // const flightResults = [];
-
-    // for (let index = 0; index < searchFlights.length; index++) {
-    //   const { flightFrom, flightTo, fromDate, toDate } = searchFlights[index];
-    //   const data = await axios.get(
-    //     `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${fromDate.toString()}/${toDate.toString()}?apikey=prtl6749387986743898559646983194`
-    //   );
-    //   await flightResults.push(data.data);
-    // }
-    // const flightResultQuotes = [];
-    // for (let index = 0; index < flightResults.length; index++) {
-    //   const element = flightResults[index].Quotes;
-    //   const places = flightResults[index].Places;
-    //   placesArray = [];
-    //   for (let i = 0; i < places.length; i++) {
-    //     const element = places[i];
-    //     placesArray.push({
-    //       id: element.PlaceId,
-    //       skyscannerCode: element.SkyscannerCode,
-    //     });
-    //   }
-    //   console.log(placesArray);
-    //   for (let index = 0; index < element.length; index++) {
-    //     const element2 = element[index];
-
-    //     const outboundDate = TranfromDateToSuitableLink(
-    //       element2.OutboundLeg.DepartureDate
-    //     );
-    //     const inboundDate = TranfromDateToSuitableLink(
-    //       element2.InboundLeg.DepartureDate
-    //     );
-    //     const fromFlight = placesArray.find(
-    //       (el) => el.id === element2.OutboundLeg.OriginId
-    //     ).skyscannerCode;
-    //     const toFlight = placesArray.find(
-    //       (el) => el.id === element2.OutboundLeg.DestinationId
-    //     ).skyscannerCode;
-    //     flightResultQuotes.push({
-    //       price: element2.MinPrice,
-    //       outboundDate: TranfromDateToSuitableLink(
-    //         element2.OutboundLeg.DepartureDate
-    //       ),
-    //       inboundDate: TranfromDateToSuitableLink(
-    //         element2.InboundLeg.DepartureDate
-    //       ),
-    //       from: fromFlight,
-    //       to: toFlight,
-    //       link: `https://www.skyscanner.net/transport/flights/${fromFlight}/${toFlight}/${outboundDate}/${inboundDate}/`,
-    //     });
-    //   }
-    // }
-    // console.log(flightResultQuotes);
-    // //enter into database
-    // console.log(flights);
-
-    // await Flights.findByIdAndUpdate(flights[0]._id, {
-    //   $set: {
-    //     flightsResults: flightResultQuotes,
-    //   },
-    // });
-    // process.exit(1);
-
-    let flightResults = [];
-
-    //
-
-    for (let i = 0; i < flightsData.length; i++) {
-      const el = flightsData[i];
-      flightResults.push({
-        user: el.user,
-        from: el.flightFrom,
-        to: el.flightTo,
-        inboundDate: el.inboundDate,
-        outboundDate: el.outboundDate,
-        results: [],
-      });
-    }
-
-    for (let i = 0; i < flightsData.length; i++) {
-      const element = flightsData[i];
-      const userID = element.user;
-      const from = element.flightFrom;
-      const to = element.flightTo;
-      const flightBasedOnID = flightResults.find(
-        (el) => el.user === userID && el.from === from && el.to === to
-      );
-      
-      console.log(flightBasedOnID);
-      // console.log(element.results.Quotes);
-    }
-
-
-*/
+cron.schedule('* * * * *', () => {
+  fillTheStates();
+  console.log('Filling the states');
+});

@@ -1,2 +1,12 @@
 npm run client-dev
 npm run server-dev
+
+backend
+    -[ ] search for flights after the job has been added to the database
+    -[ ] add all to the cron jobs
+
+
+frontend
+    -[ ] desing the overal landing page
+    -[ ] design dashboard
+    -[ ] connect the frontEnd to the backend, using API
