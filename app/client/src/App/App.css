@@ -1,7 +1,26 @@
 body {
-  text-align: center;
   font-family: 'Open Sans', sans-serif;
   background-color: white;
+  background-color: #ffd662ff;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: inherit;
+}
+
+#root {
+  display: grid;
+  grid-template-columns: minmax(10rem, 30rem) minmax(60rem, 1fr) minmax(
+      10rem,
+      30rem
+    );
+  background-color: #ffd662ff;
+  height: 400vh;
 }
 
 .main-heading {
@@ -17,4 +36,27 @@ body {
 .paragraph {
   font-size: 14px;
   color: black;
+}
+
+/* Main App */
+.App {
+  background-color: #ffd662ff;
+  border: 2px solid black;
+  grid-column: 2/3;
+  display: grid;
+  grid-template-rows: 10rem 70rem;
+}
+
+/* Navigation bar */
+.NavBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+}
+.middle_navbar_div {
+  display: flex;
+  justify-content: space-around;
+  width: 28rem;
 }
