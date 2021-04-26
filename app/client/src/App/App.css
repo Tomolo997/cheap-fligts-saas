@@ -1,7 +1,6 @@
 body {
-  font-family: 'Open Sans', sans-serif;
   background-color: white;
-  background-color: #ffd662ff;
+  background-color: white;
 }
 * {
   box-sizing: border-box;
@@ -11,15 +10,21 @@ body {
 html {
   font-size: 62.5%;
   box-sizing: inherit;
+  font-family: 'Nunito', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+  font-weight: 600;
 }
 
 #root {
   display: grid;
+  height: 100%;
   grid-template-columns: minmax(10rem, 30rem) minmax(60rem, 1fr) minmax(
       10rem,
       30rem
     );
-  background-color: #ffd662ff;
+  background-color: white;
 }
 
 .main-heading {
@@ -39,11 +44,11 @@ html {
 
 /* Main App */
 .App {
-  background-color: #ffd662ff;
+  background-color: rgba(255, 213, 98, 0.555);
   border: 2px solid black;
   grid-column: 2/3;
   display: grid;
-  grid-template-rows: 10rem repeat(3,55rem) 40rem 14rem;
+  grid-template-rows: 10rem repeat(3, 55rem) 40rem 14rem;
 }
 
 /* Navigation bar */
@@ -54,41 +59,81 @@ html {
   align-items: center;
   border: 1px solid rgb(151, 38, 38);
 }
+
+.nav_button {
+  font-size: 2rem;
+  padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+  background-color: transparent;
+  border: none;
+  color: black;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.nav_button:hover {
+  transform: translateY(-1px);
+  background-color: #ffd662ff;
+}
+
 .middle_navbar_div {
   display: flex;
   justify-content: space-around;
-  width: 28rem;
+  width: 45rem;
+  font-size: 1.4rem;
+}
+.navbar_sign-in {
+  font-size: 1.4rem;
+}
+
+.signUp_link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 2rem;
 }
 
 /*About section*/
-.AboutSection{
+.AboutSection {
   grid-row: 2/3;
   width: 100%;
-  background-color: #ffd662ff;
   border: 1px solid black;
 }
 
 /*Example */
-.Example{
-border: 1px solid black;
-grid-row: 3/4;
+.Example {
+  border: 1px solid black;
+  grid-row: 3/4;
 }
 
 /*Pricing */
-.Pricing{
+.Pricing {
   border: 1px solid black;
   grid-row: 4/5;
 }
 
 /*Contact */
-.Contact{
+.Contact {
   border: 1px solid black;
   grid-row: 5/6;
 }
 
 /*Footer*/
-.Footer{
-grid-row: 6/7;
-border: 1px solid black;
+.Footer {
+  grid-row: 6/7;
+  border: 1px solid black;
 }
 
+/* Sign upp */
+.SignUp {
+  background-color: rgba(255, 213, 98, 0.555);
+  border: 2px solid black;
+  grid-column: 2/3;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 10rem 1fr 14rem;
+}
+.FooterSignUp {
+  border: 2px solid black;
+
+  grid-row: 3/4;
+  height: 20rem;
+}

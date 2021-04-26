@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Navbar from '../Components/NavBar/NavBar';
-import AboutSection from "../Components/AboutSection/AboutSection"
-import Footer from "../Components/Footer/Footer"
-import Example from "../Components/Example/Example"
-import Pricing from "../Components/Pricing/Pricing"
-import Contact from "../Components/Contact/Contact"
+
+import LandingPage from '../Components/LandingPage/LandingPage';
+import SignUp from '../Components/SignUp/SignUp';
 import axios from 'axios';
 import Logo from '../../public/logo.svg';
 import './App.css';
@@ -13,15 +10,12 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <AboutSection /> 
-        <Example/>
-        <Pricing/>
-        <Contact/>
-        <Footer/>
-      </div>
-
+      <Fragment>
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/sign-up" exact component={SignUp} />
+        </Switch>
+      </Fragment>
     );
   }
 }
