@@ -135,5 +135,87 @@ html {
   border: 2px solid black;
 
   grid-row: 3/4;
-  height: 20rem;
+  height: 14rem;
+}
+
+.sign_up-form_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sign_up-form {
+  height: 50rem;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.inputs_div {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.label_input {
+  font-size: 1.6rem;
+  font-weight: 100;
+}
+
+.h1_signup {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+.input_div {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+.input {
+  font-size: 2rem;
+  border: 1px solid rgb(102, 102, 102);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 5px;
+}
+.input:focus {
+  outline: none;
+}
+
+.singup_button {
+  padding: 1rem 1.4rem 1rem 1.4rem;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  border: none;
+  background-color: #ffd662ff;
+  border-radius: 10px;
+  border: 2px solid #ffd662ff;
+  transition: 0.4s all;
+}
+.singup_button:hover {
+  border: 2px solid #ffd662ff;
+  background-color: white;
+}
+.login_paragraph {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.login_button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-bottom: 1px solid black;
+}
+.login_button_changed {
+  margin-top: 5rem;
 }
