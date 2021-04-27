@@ -2,6 +2,15 @@ body {
   background-color: white;
   background-color: white;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,14 +50,28 @@ html {
   font-size: 14px;
   color: black;
 }
+/* Logo  */
 
+.logo_link {
+  text-decoration: none;
+  color: inherit;
+}
+.logo_h1 {
+  margin-left: -10rem;
+  font-size: 2.5rem;
+}
+.logo_h1_singup {
+  margin-right: 1rem;
+}
+.logo_friendly_span {
+  color: #1f53c8;
+}
 /* Main App */
 .App {
   background-color: rgba(255, 213, 98, 0.555);
-  border: 2px solid black;
   grid-column: 2/3;
   display: grid;
-  grid-template-rows: 10rem repeat(3, 55rem) 40rem 14rem;
+  grid-template-rows: 10rem repeat(3, 80rem) 40rem 14rem;
 }
 
 /* Navigation bar */
@@ -57,7 +80,6 @@ html {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid rgb(151, 38, 38);
 }
 
 .nav_button {
@@ -78,7 +100,7 @@ html {
 .middle_navbar_div {
   display: flex;
   justify-content: space-around;
-  width: 45rem;
+  width: 50rem;
   font-size: 1.4rem;
 }
 .navbar_sign-in {
@@ -94,46 +116,39 @@ html {
 /*About section*/
 .AboutSection {
   grid-row: 2/3;
+  grid-column: 1/2;
   width: 100%;
-  border: 1px solid black;
 }
 
 /*Example */
 .Example {
-  border: 1px solid black;
   grid-row: 3/4;
 }
 
 /*Pricing */
 .Pricing {
-  border: 1px solid black;
   grid-row: 4/5;
 }
 
 /*Contact */
 .Contact {
-  border: 1px solid black;
   grid-row: 5/6;
 }
 
 /*Footer*/
 .Footer {
   grid-row: 6/7;
-  border: 1px solid black;
 }
 
 /* Sign upp */
 .SignUp {
   background-color: rgba(255, 213, 98, 0.555);
-  border: 2px solid black;
   grid-column: 2/3;
   display: grid;
   height: 100vh;
   grid-template-rows: 10rem 1fr 14rem;
 }
 .FooterSignUp {
-  border: 2px solid black;
-
   grid-row: 3/4;
   height: 14rem;
 }
@@ -180,7 +195,6 @@ html {
 }
 .input {
   font-size: 2rem;
-  border: 1px solid rgb(102, 102, 102);
   border-radius: 12px;
   padding: 1rem;
   margin-top: 5px;
