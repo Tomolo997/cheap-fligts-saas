@@ -100,11 +100,13 @@ html {
 .middle_navbar_div {
   display: flex;
   justify-content: space-around;
-  width: 50rem;
   font-size: 1.4rem;
+  margin-right: 14rem;
+  width: 45rem;
 }
 .navbar_sign-in {
   font-size: 1.4rem;
+  justify-self: flex-end;
 }
 
 .signUp_link {
@@ -117,7 +119,47 @@ html {
 .AboutSection {
   grid-row: 2/3;
   grid-column: 1/2;
+  background-color: #ffe8a8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+}
+
+.mainText_aboutSection {
+  min-width: 80%;
+  min-height: 80%;
+  display: grid;
+  grid-template-columns: 5rem 1fr 5rem;
+  place-items: center;
+  grid-template-rows: 2rem 1fr 1fr 2rem;
+}
+.logoImage_div {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  place-self: center;
+  margin-left: 5rem;
+}
+.logoImage {
+  width: 90%;
+}
+
+.h1_marketingSection {
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.marketingSection {
+  grid-row: 3/4;
+  grid-column: 2/3;
+  width: 60%;
+  text-align: center;
+  margin-top: -22rem;
+}
+.marketingSection_span {
+  font-weight: 700;
+  color: #1f52c4;
 }
 
 /*Example */
