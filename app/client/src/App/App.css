@@ -19,10 +19,7 @@ body {
 html {
   font-size: 62.5%;
   box-sizing: inherit;
-  font-family: 'Nunito', ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Noto Color Emoji;
+  font-family: nunito, helvetica, Arial, sans-serif;
   font-weight: 600;
 }
 
@@ -68,7 +65,7 @@ html {
 }
 /* Main App */
 .App {
-  background-color: rgba(255, 213, 98, 0.555);
+  background-color: #ffd662ff;
   grid-column: 2/3;
   display: grid;
   grid-template-rows: 10rem repeat(3, 80rem) 40rem 14rem;
@@ -77,6 +74,7 @@ html {
 /* Navigation bar */
 .NavBar {
   width: 100%;
+  background-color: #ffd662ff;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -94,7 +92,7 @@ html {
 }
 .nav_button:hover {
   transform: translateY(-1px);
-  background-color: #ffd662ff;
+  background-color: rgb(255, 255, 255);
 }
 
 .middle_navbar_div {
@@ -118,8 +116,8 @@ html {
 /*About section*/
 .AboutSection {
   grid-row: 2/3;
+  background-color: white;
   grid-column: 1/2;
-  background-color: #ffe8a8;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -175,8 +173,28 @@ html {
 /*Contact */
 .Contact {
   grid-row: 5/6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.contact_form {
+  display: flex;
+  width: 40%;
+  height: 20rem;
+  border: 1px solid black;
+  flex-direction: column;
+}
+.contact_input {
+  font-size: 2rem;
+}
+.contact_textArea {
+  height: 200px;
+}
+.contact_submit {
+  width: 20%;
+  align-self: center;
+  margin-top: 2rem;
+}
 /*Footer*/
 .Footer {
   grid-row: 6/7;
@@ -184,7 +202,6 @@ html {
 
 /* Sign upp */
 .SignUp {
-  background-color: rgba(255, 213, 98, 0.555);
   grid-column: 2/3;
   display: grid;
   height: 100vh;
@@ -192,6 +209,8 @@ html {
 }
 .FooterSignUp {
   grid-row: 3/4;
+  background-color: #ffd662ff;
+
   height: 14rem;
 }
 
@@ -201,6 +220,7 @@ html {
   justify-content: center;
 }
 .sign_up-form {
+  background-color: #ffd662ff !important;
   height: 50rem;
   width: 30%;
   display: flex;
@@ -257,8 +277,8 @@ html {
   transition: 0.4s all;
 }
 .singup_button:hover {
-  border: 2px solid #ffd662ff;
-  background-color: white;
+  border: 2px solid rgba(216, 216, 216, 0.596);
+  background-color: rgba(255, 255, 255, 0.726);
 }
 .login_paragraph {
   margin-top: 1rem;

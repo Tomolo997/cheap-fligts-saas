@@ -8,7 +8,7 @@ const NavbarSignUp = () => {
       {' '}
       <Link to="/" className="logo_link">
         <h1 className="logo_h1 logo_h1_singup">
-          Cheap <span className="logo_friendly_span">friendly</span> flights
+          Cost <span className="logo_friendly_span">friendly</span> flights
         </h1>
       </Link>
       <div className="middle_navbar_div"></div>
