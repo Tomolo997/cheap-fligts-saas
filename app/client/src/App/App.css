@@ -26,9 +26,9 @@ html {
 #root {
   display: grid;
   height: 100%;
-  grid-template-columns: minmax(10rem, 30rem) minmax(60rem, 1fr) minmax(
+  grid-template-columns: minmax(10rem, 20rem) minmax(70rem, 1fr) minmax(
       10rem,
-      30rem
+      20rem
     );
   background-color: white;
 }
@@ -254,8 +254,35 @@ html {
 /*Footer*/
 .Footer {
   grid-row: 6/7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-
+.footer_socialMedia {
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
+}
+.footer_info {
+  display: flex;
+  width: 15rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.footer_support {
+  display: flex;
+  width: 15rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.footer_companyAt {
+  display: flex;
+  width: 15rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
 /* Sign upp */
 .SignUp {
   grid-column: 2/3;
