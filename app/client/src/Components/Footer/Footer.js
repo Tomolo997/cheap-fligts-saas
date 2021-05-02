@@ -1,22 +1,36 @@
 import React from "react";
 import "../../App/App.css";
-import TwitterLogo from "../../../../Images/twitter_logo.svg";
+import LinkedInLogo from "../../../public/Images/LinkedInLogo.png";
+import TwitterLogo from "../../../public/Images/TwitterLogo.png";
 export default function Footer() {
   return (
     <div className="Footer">
       <div className="footer_div">
         <div className="footer_socialMedia">
           <div>
-            <img src={TwitterLogo}></img>
+            <a href="www.linkedIn.com">
+              <img src={LinkedInLogo} />
+            </a>
           </div>
-          <div>Linked in</div>
+
+          <div>
+            <a href="www.twitter.com">
+              <img src={TwitterLogo} />
+            </a>
+          </div>
         </div>
-        <div className="footer_info">
-          <div>info</div>
-        </div>
+
         <div className="footer_support">
-          <div>Support</div>
-          <div>Terms of use</div>
+          <div>
+            <a className="footer_link" href="">
+              Support
+            </a>{" "}
+          </div>
+          <div>
+            <a className="footer_link" href="/">
+              Terms of use
+            </a>{" "}
+          </div>
         </div>
 
         <div className="footer_companyAt">@CostFriendlyFlights</div>

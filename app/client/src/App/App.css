@@ -176,8 +176,36 @@ html {
 /*Example */
 .Example {
   grid-row: 3/4;
+  display: grid;
+  grid-template-rows: 20rem 1fr 20rem;
+  grid-template-columns: 2rem 1fr 1fr 1fr 2rem;
+  gap: 10px 20px;
 }
-
+.example_h1 {
+  grid-column: 2/4;
+  grid-row: 1/2;
+  justify-self: flex-start;
+  align-self: center;
+  margin-left: 3rem;
+  font-size: 5rem;
+  font-weight: 300;
+}
+.example_cube {
+  background-color: white;
+  border-radius: 10px;
+}
+.example_first_cube {
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+.example_second_cube {
+  grid-row: 2/3;
+  grid-column: 3/4;
+}
+.example_third_cube {
+  grid-row: 2/3;
+  grid-column: 4/5;
+}
 /*Pricing */
 .Pricing {
   grid-row: 4/5;
@@ -261,8 +289,9 @@ html {
 }
 .footer_socialMedia {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 15rem;
+  justify-self: center;
 }
 .footer_info {
   display: flex;
@@ -273,10 +302,16 @@ html {
 .footer_support {
   display: flex;
   width: 15rem;
-  justify-content: space-between;
-  margin-top: 1rem;
+  justify-content: space-around;
+  margin-top: 2rem;
+  font-weight: 100;
+}
+.footer_link {
+  text-decoration: none;
+  color: black;
 }
 .footer_companyAt {
+  font-weight: 100;
   display: flex;
   width: 15rem;
   justify-content: center;
