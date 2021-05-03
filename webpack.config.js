@@ -29,17 +29,7 @@ const config = {
         exclude: /node_modules/,
         loader: 'svg-react-loader',
       },
-      {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[hash]-[name].[ext]',
-            },
-          },
-        ],
-      },
+      { test: /\.(png|jpe?g|gif)$/i, loader: 'file-loader' },
     ],
   },
 

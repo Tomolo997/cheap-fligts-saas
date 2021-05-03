@@ -1,7 +1,7 @@
-import React from "react";
-import "../../App/App.css";
-import LinkedInLogo from "../../../public/Images/LinkedInLogo.png";
-import TwitterLogo from "../../../public/Images/TwitterLogo.png";
+import React from 'react';
+import '../../App/App.css';
+import LinkedInLogo from '../../../public/Images/LinkedInLogo.png';
+import TwitterLogo from '../../../public/Images/TwitterLogo.png';
 export default function Footer() {
   return (
     <div className="Footer">
@@ -24,12 +24,12 @@ export default function Footer() {
           <div>
             <a className="footer_link" href="">
               Support
-            </a>{" "}
+            </a>{' '}
           </div>
           <div>
             <a className="footer_link" href="/">
               Terms of use
-            </a>{" "}
+            </a>{' '}
           </div>
         </div>
 

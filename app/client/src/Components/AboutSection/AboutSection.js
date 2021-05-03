@@ -10,7 +10,8 @@ export default function AboutSection() {
         </div>
         <div className="marketingSection">
           <h1 className="h1_marketingSection">
-            Daily cost friendly flights from pre-selected airports. Improve your{' '}
+            Daily cost friendly flights from pre-selected airports or countries.
+            Improve your{' '}
             <span className="marketingSection_span">travel offers</span> and{' '}
             <span className="marketingSection_span"> save time</span> searching
             for cheap flights.
