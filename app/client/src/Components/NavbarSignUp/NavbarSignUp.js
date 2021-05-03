@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../App/App.css';
 import { Link } from 'react-router-dom';
-import logo from '../../../../Images/CheapLogo.png';
 const NavbarSignUp = () => {
   return (
     <div className="NavBar">
