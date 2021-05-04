@@ -1,5 +1,18 @@
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --bp-largest: 75em;
+  /* // breakpoint 1200 px or 1200/16 = 75em */
+  --bp-large: 68.75em; /* //1100 px*/
+
+  --bp-medium: 56.25em; /* //900 px*/
+
+  --bp-small: 37.5em; /* //600 px*/
+
+  --bp-small: 31.25em; /* //500 px*/
+}
+
 body {
-  background-color: white;
   background-color: white;
 }
 body::-webkit-scrollbar {
@@ -20,19 +33,36 @@ html {
   font-size: 62.5%;
   box-sizing: inherit;
   font-family: nunito, helvetica, Arial, sans-serif;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 #root {
   display: grid;
   height: 100%;
-  grid-template-columns: minmax(10rem, 20rem) minmax(70rem, 1fr) minmax(
-      10rem,
-      20rem
-    );
+  grid-template-columns: minmax(10rem, 20rem) 1fr minmax(10rem, 20rem);
   background-color: white;
 }
+@media only screen and (max-width: 1800px) {
+  #root {
+    grid-template-columns: 0rem 1fr 0rem;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  #root {
+    grid-template-columns: 0rem 1fr 0rem;
+  }
+}
+@media only screen and (max-width: 900px) {
+  #root {
+    grid-template-columns: 0rem 1fr 0rem;
+  }
+}
 
+@media only screen and (max-width: 600px) {
+  #root {
+    grid-template-columns: 0rem 1fr 0rem;
+  }
+}
 .main-heading {
   font-size: 40px;
 }
@@ -52,6 +82,7 @@ html {
 .logo_link {
   text-decoration: none;
   color: inherit;
+  text-align: center;
 }
 .logo_h1 {
   margin-left: -10rem;
@@ -126,6 +157,41 @@ html {
   transform: translateY(1px);
   box-shadow: 0px 0px 1px rgba(255, 255, 255, 0);
 }
+@media only screen and (max-width: 1200px) {
+  .logo_link {
+    margin-left: 1rem;
+  }
+  .nav_button {
+    font-size: 4rem;
+    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+    background-color: transparent;
+    border: none;
+    color: black;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+  .navbar_sign-in {
+    font-size: 3rem;
+    justify-self: flex-end;
+  }
+  .logo_h1 {
+    margin-left: 1rem;
+  }
+
+  .signUp_link {
+    color: inherit;
+    font-size: 3rem;
+    transform: all 0.2s;
+    display: inline-block;
+    font-weight: 500;
+  }
+}
+@media only screen and (max-width: 1800px) {
+  .logo_h1 {
+    margin-left: 1rem;
+  }
+}
 /*About section*/
 .AboutSection {
   grid-row: 2/3;
@@ -172,14 +238,39 @@ html {
   font-weight: 700;
   color: #1f52c4;
 }
-
+@media only screen and (max-width: 1200px) {
+  .h1_marketingSection {
+    font-size: 5rem;
+    font-weight: 400;
+  }
+  .marketingSection {
+    margin-top: -10rem;
+  }
+}
+@media only screen and (max-width: 1800px) {
+  .logo_h1 {
+    margin-left: 1rem;
+  }
+}
 /*Example */
 .Example {
   grid-row: 3/4;
   display: grid;
   grid-template-rows: 20rem 1fr 20rem;
-  grid-template-columns: 10rem 1fr 1fr 10rem;
-  gap: 10px 50px;
+  grid-template-columns: 5rem 1fr 1fr 5rem;
+  gap: 10px 10px;
+}
+@media only screen and (max-width: 1800px) {
+  .App {
+    grid-template-rows: 10rem 80rem 100rem 80rem 50rem 14rem;
+  }
+  .Example {
+    grid-row: 3/4;
+    display: grid;
+    grid-template-rows: 10rem 40rem 40rem;
+    grid-template-columns: 10rem 1fr 10rem;
+    gap: 20px;
+  }
 }
 .example_h1 {
   grid-column: 2/4;
@@ -223,6 +314,7 @@ html {
   font-size: 6rem;
   color: #1f52c4;
 }
+
 .example_from_to {
   align-self: center;
   justify-self: center;
@@ -309,7 +401,98 @@ html {
   grid-row: 2/3;
   grid-column: 3/4;
 }
-
+@media only screen and (max-width: 1800px) {
+  .example_add {
+    margin-top: 1rem;
+  }
+  . .example_first_cube {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    height: 100%;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+  }
+  .example_second_cube {
+    grid-row: 3/4;
+    grid-column: 2/3;
+    height: 100%;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+  }
+  .example_add_button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #ffd662ff;
+    margin-bottom: 1rem;
+    border: none;
+    outline: none;
+    font-size: 3rem;
+    color: #1f52c4;
+  }
+  .example_from_to {
+    align-self: center;
+    justify-self: center;
+    border: 1px solid #ffd662ff;
+    border-radius: 20px;
+    background-color: #ffd662ff;
+    width: 60%;
+    margin-top: 3rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .example_add {
+    margin-top: 1rem;
+  }
+  .example_first_cube {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    height: 100%;
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+  }
+  .example_second_cube {
+    grid-row: 3/4;
+    grid-column: 2/3;
+    height: 100%;
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+  }
+  .example_add_button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #ffd662ff;
+    margin-bottom: 1rem;
+    border: none;
+    outline: none;
+    font-size: 3rem;
+    color: #1f52c4;
+  }
+  .example_from_to {
+    align-self: center;
+    justify-self: center;
+    border: 1px solid #ffd662ff;
+    border-radius: 20px;
+    background-color: #ffd662ff;
+    width: 60%;
+    margin-top: 3rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 /*Pricing */
 .Pricing {
   grid-row: 4/5;
@@ -416,6 +599,22 @@ html {
   font-weight: 100;
   margin-top: 1rem;
 }
+@media only screen and (max-width: 1200px) {
+  .Pricing {
+    display: grid;
+    grid-template-rows: 10rem 5rem 1fr 5rem 10rem;
+    grid-template-columns: 5rem repeat(3, 40rem) 5rem;
+    gap: 10px 20px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .Pricing {
+    display: grid;
+    grid-template-rows: 10rem 5rem 1fr 5rem 10rem;
+    grid-template-columns: 5rem repeat(3, 25rem) 5rem;
+    gap: 10px 20px;
+  }
+}
 /*Contact */
 .Contact {
   grid-row: 5/6;
@@ -484,6 +683,17 @@ html {
   margin-left: 1rem;
   margin-top: 1rem;
 }
+@media only screen and (max-width: 120000px) {
+  .contact_form {
+    display: flex;
+    width: 80%;
+    height: 45rem;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #ffd662ff;
+  }
+}
 /*Footer*/
 .Footer {
   grid-row: 6/7;
@@ -544,7 +754,7 @@ html {
 }
 .sign_up-form {
   background-color: #ffd662ff !important;
-  height: 50rem;
+  height: 55rem;
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -563,7 +773,7 @@ html {
   align-items: center;
 }
 .label_input {
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   font-weight: 100;
 }
 
@@ -593,14 +803,13 @@ html {
   font-size: 2rem;
   cursor: pointer;
   margin-top: 2rem;
-  border: none;
+  border: 5px solid rgba(255, 255, 255, 0.726);
   background-color: #ffd662ff;
   border-radius: 10px;
-  border: 2px solid #ffd662ff;
   transition: 0.4s all;
 }
 .singup_button:hover {
-  border: 2px solid rgba(216, 216, 216, 0.596);
+  border: 5px solid rgba(216, 216, 216, 0.596);
   background-color: rgba(255, 255, 255, 0.726);
 }
 .login_paragraph {
@@ -617,4 +826,73 @@ html {
 }
 .login_button_changed {
   margin-top: 5rem;
+}
+@media only screen and (max-width: 1400px) {
+  .sign_up-form {
+    background-color: #ffd662ff !important;
+    height: 60rem;
+    width: 70%;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .SignUp {
+    grid-column: 2/3;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 10rem 1fr 14rem;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .sign_up-form {
+    background-color: #ffd662ff !important;
+    height: 60rem;
+    width: 70%;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .SignUp {
+    grid-column: 2/3;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 10rem 1fr 14rem;
+  }
+  .label_input {
+    font-size: 3rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .sign_up-form {
+    background-color: #ffd662ff !important;
+    height: 80rem;
+    width: 70%;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .SignUp {
+    grid-column: 2/3;
+    display: grid;
+    height: 235vh;
+    grid-template-rows: 10rem 1fr 14rem;
+  }
+  .h1_signup {
+    font-size: 5rem;
+  }
+  .label_input {
+    font-size: 4rem;
+  }
+  .navbar_sign-in {
+    margin-left: 1rem;
+  }
 }
