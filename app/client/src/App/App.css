@@ -405,7 +405,7 @@ html {
   .example_add {
     margin-top: 1rem;
   }
-  . .example_first_cube {
+  .example_first_cube {
     grid-row: 2/3;
     grid-column: 2/3;
     height: 100%;
@@ -890,7 +890,7 @@ html {
     font-size: 5rem;
   }
   .label_input {
-    font-size: 4rem;
+    font-size: 4nprem;
   }
   .navbar_sign-in {
     margin-left: 1rem;

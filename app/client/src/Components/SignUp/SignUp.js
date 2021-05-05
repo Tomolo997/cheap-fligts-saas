@@ -1,14 +1,85 @@
+import 'core-js';
+import 'regenerator-runtime/runtime';
 import React, { Fragment, useState } from 'react';
 import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
 import FooterSignUp from '../FooterSignUp/FooterSignUp';
+import axios from 'axios';
 import '../../App/App.css';
 const SignUp = () => {
   const [login, setLogin] = useState(false);
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [emailSignUp, setEmailSignUp] = useState('');
+  const [passwordSignUp, setPasswordSignUp] = useState('');
+  const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState('');
   const changeLoginPage = (e) => {
     e.preventDefault();
     setLogin(!login);
     console.log(login);
+  };
+  const setEmailFromSignUp = (e) => {
+    setEmailSignUp(e.target.value);
+  };
+  const setusernameFromSignUp = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const setPasswordFromSignUp = (e) => {
+    setPasswordSignUp(e.target.value);
+  };
+  const setPasswordConfrimFromSignUp = (e) => {
+    setPasswordConfirmSignUp(e.target.value);
+  };
+
+  const setEmailFromLogin = (e) => {
+    setEmail(e.target.value);
+  };
+  const setPasswordFromLogin = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios({
+        method: 'POST',
+        url: 'http://localhost:8000/api/v1/users/login',
+        data: {
+          email: email,
+          password: password,
+        },
+      });
+
+      if (res.data.status === 'success') {
+        console.log('success', 'logged in successfully!');
+        window.setTimeout(() => {
+          location.assign('/dashboard');
+        }, 1500);
+      }
+    } catch (error) {
+      console.log('error', error.message);
+    }
+  };
+  const logout = async () => {
+    try {
+      const res = await axios({
+        method: 'GET',
+        url: 'http://localhost:3000/api/v1/users/logout',
+      });
+      if (res.data.status === 'success') {
+        location.reload(true);
+      }
+    } catch (error) {
+      console.log(error.response);
+      showAlert('error', 'error logging out ! try again');
+    }
+  };
+
+  const signUpUser = async (e) => {
+    e.preventDefault();
+    console.log(username, emailSignUp, passwordConfirmSignUp, passwordSignUp);
   };
 
   const loginPage = (
@@ -21,6 +92,7 @@ const SignUp = () => {
               Email
             </label>
             <input
+              onChange={setEmailFromLogin}
               className="input input_email"
               type="text"
               id="email_login"
@@ -32,6 +104,7 @@ const SignUp = () => {
               Password
             </label>
             <input
+              onChange={setPasswordFromLogin}
               className="input input_password"
               type="password"
               id="password"
@@ -39,7 +112,11 @@ const SignUp = () => {
             />
           </div>
 
-          <button className="singup_button login_button_changed" type="submit">
+          <button
+            onClick={loginUser}
+            className="singup_button login_button_changed"
+            type="submit"
+          >
             Log in
           </button>
           <p className="login_paragraph">
@@ -63,6 +140,7 @@ const SignUp = () => {
               Username
             </label>
             <input
+              onChange={setusernameFromSignUp}
               className="input input_username"
               type="text"
               id="username"
@@ -74,6 +152,7 @@ const SignUp = () => {
               Email
             </label>
             <input
+              onChange={setEmailFromSignUp}
               className="input input_email"
               type="text"
               id="email"
@@ -85,6 +164,7 @@ const SignUp = () => {
               Password
             </label>
             <input
+              onChange={setPasswordFromSignUp}
               className="input input_password"
               type="password"
               id="password"
@@ -96,13 +176,14 @@ const SignUp = () => {
               Password Confirm
             </label>
             <input
+              onChange={setPasswordConfrimFromSignUp}
               className="input input_passwordConfirm"
               type="password"
               id="passwordConfirm"
               placeholder="Password confirm"
             />
           </div>
-          <button className="singup_button" type="submit">
+          <button onClick={signUpUser} className="singup_button" type="submit">
             SIGN UP
           </button>
           <p className="login_paragraph">
