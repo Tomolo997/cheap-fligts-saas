@@ -750,6 +750,7 @@ html {
 .sign_up-form_div {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 .sign_up-form {
@@ -895,4 +896,17 @@ html {
   .navbar_sign-in {
     margin-left: 1rem;
   }
+}
+.signUpSuccess {
+  top: 0.5rem;
+  position: absolute;
+  background-color: #1f52c4;
+  width: 55rem;
+  height: 7rem;
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
 }

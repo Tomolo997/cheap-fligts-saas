@@ -42,7 +42,21 @@ exports.singUp = async (req, res) => {
       passwordChangedAt: req.body.passwordChangedAt,
     });
     createSendToken(newUser, 201, res);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        message: 'Created new user',
+        userName: req.body.name,
+        userEmail: req.body.email,
+      },
+    });
   } catch (error) {
+    res.status(400).json({
+      data: {
+        status: 'error',
+        message: 'User with this email already exists',
+      },
+    });
     console.log(error);
   }
 };

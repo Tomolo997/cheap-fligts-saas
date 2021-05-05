@@ -3,11 +3,13 @@ import 'regenerator-runtime/runtime';
 import React, { Fragment, useState } from 'react';
 import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
 import FooterSignUp from '../FooterSignUp/FooterSignUp';
+import SignUpSuccess from '../signUpSuccess/signUpSuccess';
 import axios from 'axios';
 import '../../App/App.css';
 const SignUp = () => {
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState('');
+  const [singUpSuccessfull, setSingUpSuccessfull] = useState(false);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [emailSignUp, setEmailSignUp] = useState('');
@@ -78,8 +80,31 @@ const SignUp = () => {
   };
 
   const signUpUser = async (e) => {
+    //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
     e.preventDefault();
-    console.log(username, emailSignUp, passwordConfirmSignUp, passwordSignUp);
+
+    try {
+      const res = await axios({
+        method: 'POST',
+        url: 'http://localhost:8000/api/v1/users/signup',
+        data: {
+          name: username,
+          email: emailSignUp,
+          password: passwordSignUp,
+          passwordConfirm: passwordConfirmSignUp,
+        },
+      });
+
+      if (res.data.status === 'success') {
+        setSingUpSuccessfull(true);
+        console.log('success', 'logged in successfully!');
+        window.setTimeout(() => {
+          location.assign('/dashboard');
+        }, 1500);
+      }
+    } catch (error) {
+      console.log('error', error.message);
+    }
   };
 
   const loginPage = (
@@ -132,6 +157,8 @@ const SignUp = () => {
 
   const singUpPage = (
     <div className="sign_up-form_div">
+      {singUpSuccessfull ? <SignUpSuccess /> : null}
+
       <form action="" className="sign_up-form">
         <h1 className="h1_signup">Create Your Account</h1>
         <div className="inputs_div">
