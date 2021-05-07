@@ -698,6 +698,7 @@ html {
 .Footer {
   grid-row: 6/7;
   display: flex;
+  background-color: #ffd662ff;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -737,16 +738,19 @@ html {
 .SignUp {
   grid-column: 2/3;
   display: grid;
-  height: 100vh;
+  height: 120vh;
   grid-template-rows: 10rem 1fr 14rem;
 }
+
 .FooterSignUp {
   grid-row: 3/4;
   background-color: #ffd662ff;
-
-  height: 14rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-
 .sign_up-form_div {
   display: flex;
   align-items: center;
@@ -831,7 +835,7 @@ html {
 @media only screen and (max-width: 1400px) {
   .sign_up-form {
     background-color: #ffd662ff !important;
-    height: 60rem;
+    height: 50rem;
     width: 70%;
 
     flex-direction: column;
@@ -843,14 +847,14 @@ html {
   .SignUp {
     grid-column: 2/3;
     display: grid;
-    height: 100vh;
+    height: 140vh;
     grid-template-rows: 10rem 1fr 14rem;
   }
 }
 @media only screen and (max-width: 1200px) {
   .sign_up-form {
     background-color: #ffd662ff !important;
-    height: 60rem;
+    height: 55rem;
     width: 70%;
 
     flex-direction: column;
@@ -862,7 +866,7 @@ html {
   .SignUp {
     grid-column: 2/3;
     display: grid;
-    height: 100vh;
+    height: 145vh;
     grid-template-rows: 10rem 1fr 14rem;
   }
   .label_input {
@@ -891,7 +895,7 @@ html {
     font-size: 5rem;
   }
   .label_input {
-    font-size: 4nprem;
+    font-size: 4rem;
   }
   .navbar_sign-in {
     margin-left: 1rem;

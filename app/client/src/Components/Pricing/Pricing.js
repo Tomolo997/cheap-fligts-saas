@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../App/App.css';
+import React from "react";
+import "../../App/App.css";
 
 export default function Pricing() {
   return (
@@ -9,7 +9,7 @@ export default function Pricing() {
         <div className="pricing_package">Normal</div>
         <div className="pricing_price_div">
           <div className="pricing_perMonth_div">
-            <span className="pricing_currency">€</span>30
+            <span className="pricing_currency">€</span>20
           </div>
           <div className="pricing_perMonth">PER MONTH</div>
         </div>
@@ -24,11 +24,11 @@ export default function Pricing() {
         <button className="pricing_button pricing_button_buy">Join now</button>
       </div>
       <div className="pricing_popular pricing_div">
-        {' '}
+        {" "}
         <div className="pricing_package">Popular</div>
         <div className="pricing_price_div">
           <div className="pricing_perMonth_div">
-            <span className="pricing_currency">€</span>50
+            <span className="pricing_currency">€</span>30
           </div>
           <div className="pricing_perMonth">PER MONTH</div>
         </div>
@@ -40,7 +40,7 @@ export default function Pricing() {
             <li className="pricing_features_item">Email notifications</li>
           </ul>
         </div>
-        <button className="pricing_button pricing_button_buy">Join now</button>{' '}
+        <button className="pricing_button pricing_button_buy">Join now</button>{" "}
       </div>
       <div className="pricing_pro pricing_div">
         <div className="pricing_package">Pro</div>
@@ -56,7 +56,7 @@ export default function Pricing() {
             <li className="pricing_features_item">Unlimited Destinations</li>
             <li className="pricing_features_item">
               Daily destination prices
-            </li>{' '}
+            </li>{" "}
             <li className="pricing_features_item">Online Support</li>
             <li className="pricing_features_item">Email notification</li>
           </ul>
