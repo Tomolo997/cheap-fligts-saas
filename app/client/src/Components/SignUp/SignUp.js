@@ -18,7 +18,6 @@ const SignUp = () => {
   const changeLoginPage = (e) => {
     e.preventDefault();
     setLogin(!login);
-    console.log(login);
   };
   const setEmailFromSignUp = (e) => {
     setEmailSignUp(e.target.value);
@@ -45,24 +44,21 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const res = await axios({
-        method: 'POST',
-        url: 'http://localhost:8000/api/v1/users/login',
-        data: {
-          email: email,
-          password: password,
+      const res = await axios(
+        {
+          method: 'POST',
+          url: 'http://localhost:8000/api/v1/users/login',
+          data: {
+            email: email,
+            password: password,
+          },
         },
-      });
-      console.log(res.data);
+        {
+          withCredentials: true,
+        }
+      );
       if (res.data.status === 'success') {
         console.log('success', 'logged in successfully!');
-        localStorage.setItem(
-          'login',
-          JSON.stringify({
-            login: true,
-            token: res,
-          })
-        );
         // window.setTimeout(() => {
         //   location.assign('/dashboard');
         // }, 1500);

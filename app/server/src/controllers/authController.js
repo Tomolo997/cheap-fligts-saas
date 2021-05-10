@@ -20,6 +20,7 @@ const createSendToken = (user, statusCode, res) => {
   if (process.env.NODE_ENV === 'production') {
     cookieOptions.secure = true;
   }
+
   res.cookie('jwt', token, cookieOptions);
   //remove the password from the outpu
   user.password = undefined;
@@ -30,9 +31,6 @@ const createSendToken = (user, statusCode, res) => {
       user,
     },
   });
-  console.log(user);
-  console.log(res.cookie);
-  console.log(token);
 };
 
 exports.singUp = async (req, res) => {
@@ -67,7 +65,6 @@ exports.singUp = async (req, res) => {
 
 exports.logIn = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email, password);
   //1) check if the email and passwords exists
   if (!email || !password) {
     return next(new appError('Please provide email and password', 400));
@@ -78,12 +75,12 @@ exports.logIn = catchAsync(async (req, res, next) => {
   }).select('+password');
 
   //   const correct = await user.correctPassword(password, user.password);
-
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new appError('incorrect email or password', 401));
   }
 
   //3) if everytingh ok , send token to client
+  console.log(res);
   createSendToken(user, 200, res);
 });
 
@@ -139,7 +136,6 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
   //only if the previous 4 are correct then the next will be called and then the user gets the routes
   req.user = freshUser;
-  res.locals.user = freshUser;
   next();
 });
 exports.isLoggedIn = async (req, res, next) => {

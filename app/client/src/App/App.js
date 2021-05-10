@@ -5,7 +5,7 @@ import SignUp from '../Components/SignUp/SignUp';
 import Dashboard from '../Components/Dashboard/Dashboard';
 import axios from 'axios';
 import './App.css';
-
+axios.defaults.withCredentials = true;
 class App extends Component {
   render() {
     return (

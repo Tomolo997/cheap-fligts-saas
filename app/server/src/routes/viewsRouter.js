@@ -4,5 +4,5 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 //not protected routes
 //not protected routes
-router.get('/dashboard', authController.isLoggedIn, userController.getMe);
+router.get('/dashboard', authController.protect, userController.getMe);
 module.exports = router;
