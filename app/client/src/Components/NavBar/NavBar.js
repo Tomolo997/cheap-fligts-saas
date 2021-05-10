@@ -1,7 +1,9 @@
-import React from "react";
-import "../../App/App.css";
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react';
+import '../../App/App.css';
+import { Link } from 'react-router-dom';
+import AuthContextProvider from '../../context/AuthContext';
 export default function NavBar() {
+  const loggedIn = useContext(AuthContextProvider);
   return (
     <div className="NavBar">
       <h1 className="logo_h1">
@@ -14,9 +16,15 @@ export default function NavBar() {
       </div>
 
       <div className="navbar_sign-in">
-        <Link to="/sign-up" className="signUp_link">
-          Sign in
-        </Link>
+        {!loggedIn.loggedIn ? (
+          <Link to="/sign-up" className="signUp_link">
+            Sign in
+          </Link>
+        ) : (
+          <Link to="/sign-up" className="signUp_link">
+            Sign Out
+          </Link>
+        )}
       </div>
     </div>
   );

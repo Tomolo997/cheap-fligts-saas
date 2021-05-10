@@ -138,11 +138,14 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = freshUser;
   next();
 });
+
 exports.isLoggedIn = async (req, res, next) => {
+  console.log('isloggedin runned');
   if (req.cookies.jwt) {
     //we need the try catch because, we wan t to catch the errors loccaly, so we removed catchAsync
     try {
       token = req.cookies.jwt;
+      console.log(token);
       //verifys the token
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
@@ -163,14 +166,18 @@ exports.isLoggedIn = async (req, res, next) => {
       //if it comes to here, there is a logged in user
 
       //each tmeplate will have access to the res.locals
-      res.locals.user = freshUser;
+      res.user = freshUser;
+      //the frontend checks if the user is logged in
+      res.json(true);
       return next();
     } catch (error) {
       //if there is an error => so no user, we want to go to next middleware,
       //so bassicaly saying there is no logged in user
+      res.json(false);
       return next();
     }
   }
   //if there is no cookie
+  res.json(false);
   next();
 };
