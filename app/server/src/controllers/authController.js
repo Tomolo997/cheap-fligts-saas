@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const appError = require('../utils/appError');
@@ -29,6 +30,9 @@ const createSendToken = (user, statusCode, res) => {
       user,
     },
   });
+  console.log(user);
+  console.log(res.cookie);
+  console.log(token);
 };
 
 exports.singUp = async (req, res) => {
@@ -61,9 +65,9 @@ exports.singUp = async (req, res) => {
   }
 };
 
-exports.logIn = async (req, res, next) => {
+exports.logIn = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-
+  console.log(email, password);
   //1) check if the email and passwords exists
   if (!email || !password) {
     return next(new appError('Please provide email and password', 400));
@@ -81,7 +85,7 @@ exports.logIn = async (req, res, next) => {
 
   //3) if everytingh ok , send token to client
   createSendToken(user, 200, res);
-};
+});
 
 exports.logout = (req, res) => {
   res.cookie('jwt', 'null', {
@@ -92,7 +96,7 @@ exports.logout = (req, res) => {
   res.status(200).json({ status: 'success' });
 };
 
-exports.protect = async (req, res, next) => {
+exports.protect = catchAsync(async (req, res, next) => {
   //1) Get the token and check if it exists
   let token;
   if (
@@ -106,6 +110,7 @@ exports.protect = async (req, res, next) => {
     console.log('cookie');
   }
   console.log(token);
+  console.log('PROTECTED');
   if (!token) {
     return next(
       new appError('You are not logged in, please login to get access', 401)
@@ -135,5 +140,41 @@ exports.protect = async (req, res, next) => {
   //only if the previous 4 are correct then the next will be called and then the user gets the routes
   req.user = freshUser;
   res.locals.user = freshUser;
+  next();
+});
+exports.isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    //we need the try catch because, we wan t to catch the errors loccaly, so we removed catchAsync
+    try {
+      token = req.cookies.jwt;
+      //verifys the token
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
+
+      //3) Check if user still exists
+      const freshUser = await User.findById(decoded.id);
+      if (!freshUser) {
+        next();
+      }
+      //4) Check if user changed password after token was issued
+
+      if (freshUser.changedPasswordAfter(decoded.iat)) {
+        next();
+      }
+
+      //if it comes to here, there is a logged in user
+
+      //each tmeplate will have access to the res.locals
+      res.locals.user = freshUser;
+      return next();
+    } catch (error) {
+      //if there is an error => so no user, we want to go to next middleware,
+      //so bassicaly saying there is no logged in user
+      return next();
+    }
+  }
+  //if there is no cookie
   next();
 };

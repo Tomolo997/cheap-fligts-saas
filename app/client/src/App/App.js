@@ -1,11 +1,10 @@
-import React, { Component, Fragment } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
-import LandingPage from "../Components/LandingPage/LandingPage";
-import SignUp from "../Components/SignUp/SignUp";
-import Dashboard from "../Components/Dashboard/Dashboard";
-import axios from "axios";
-import "./App.css";
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import LandingPage from '../Components/LandingPage/LandingPage';
+import SignUp from '../Components/SignUp/SignUp';
+import Dashboard from '../Components/Dashboard/Dashboard';
+import axios from 'axios';
+import './App.css';
 
 class App extends Component {
   render() {

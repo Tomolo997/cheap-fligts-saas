@@ -53,12 +53,19 @@ const SignUp = () => {
           password: password,
         },
       });
-
+      console.log(res.data);
       if (res.data.status === 'success') {
         console.log('success', 'logged in successfully!');
-        window.setTimeout(() => {
-          location.assign('/dashboard');
-        }, 1500);
+        localStorage.setItem(
+          'login',
+          JSON.stringify({
+            login: true,
+            token: res,
+          })
+        );
+        // window.setTimeout(() => {
+        //   location.assign('/dashboard');
+        // }, 1500);
       }
     } catch (error) {
       console.log('error', error.message);
@@ -94,10 +101,10 @@ const SignUp = () => {
           passwordConfirm: passwordConfirmSignUp,
         },
       });
-
       if (res.data.status === 'success') {
         setSingUpSuccessfull(true);
         console.log('success', 'logged in successfully!');
+
         window.setTimeout(() => {
           location.assign('/dashboard');
         }, 1500);

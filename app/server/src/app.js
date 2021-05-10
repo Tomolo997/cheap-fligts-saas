@@ -1,17 +1,19 @@
 //requires
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 const userRouter = require('../src/routes/userRouter');
 const flightRouter = require('../src/routes/flightRoutes');
-
+const viewsRouter = require('../src/routes/viewsRouter');
 //creatin of app.js
 const app = express();
 //first app uses => security,json and everything else
 app.use(cors());
 app.use(express.json({ limit: '10kb' }));
 app.use(helmet());
+app.use(cookieParser());
 
 //middleware
 app.get('/', (req, res) => {
@@ -19,6 +21,7 @@ app.get('/', (req, res) => {
 });
 
 //mounting the routes
+app.use('/', viewsRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/flights', flightRouter);
 

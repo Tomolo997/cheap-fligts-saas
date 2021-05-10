@@ -1,11 +1,8 @@
 const express = require('express');
-const router = express.Router();
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
+const router = express.Router();
 //not protected routes
-router.post('/signup', authController.singUp);
-router.post('/login', authController.logIn);
-router.get('/logout', authController.logout);
 //not protected routes
-
+router.get('/dashboard', authController.isLoggedIn, userController.getMe);
 module.exports = router;
