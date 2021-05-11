@@ -942,6 +942,14 @@ html {
   width: 100vw;
   display: grid;
   grid-template-columns: 35rem 1fr;
+  transition: 2s all;
+}
+.dashboard_hide {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  transition: 2s all;
+  grid-template-columns: 5rem 1fr;
 }
 .slider {
   display: flex;
@@ -956,9 +964,12 @@ html {
   justify-content: space-around;
   align-items: center;
 }
-.slider_logo {
-}
+
 .slider_mainComponents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 60%;
   width: 100%;
 }
@@ -966,6 +977,57 @@ html {
   width: 100%;
   height: 30%;
 }
+.slider_component_h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  z-index: 10;
+}
+.slider_component {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  position: relative;
+  z-index: 10;
+}
+
+.slider_component:hover {
+  color: white;
+  z-index: 10;
+}
+.slider_component:before {
+  content: "";
+  display: block;
+  background-color: royalblue;
+  position: absolute;
+  width: 0px;
+  top: 0;
+  z-index: 9;
+  left: 0;
+  height: 100%;
+  transition: 0.4s;
+}
+.slider_component:hover::before {
+  width: 100%;
+  color: white;
+}
+.slider_settings {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-end;
+}
+.slider_component_settings {
+  height: 5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 /* Burger navigation */
 .slider_hamburger {
   margin-left: 15rem;
@@ -996,6 +1058,37 @@ html {
 }
 
 .change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+.thin_slider_hamburger {
+}
+.container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar4,
+.bar5,
+.bar6 {
+  width: 20px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.change .bar4 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar5 {
+  opacity: 0;
+}
+
+.change .bar6 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
 }

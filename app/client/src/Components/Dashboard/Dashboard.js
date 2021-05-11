@@ -1,26 +1,85 @@
-import React, { useState } from 'react';
-import '../../App/App.css';
-import BurgerNav from '../BurgerNav/BurgerNav';
-import DashboardLogo from '../DashboardLogo/DashboardLogo';
+import React, { useState, useContext } from "react";
+import "../../App/App.css";
+import BurgerNav from "../BurgerNav/BurgerNav";
+import DashboardLogo from "../DashboardLogo/DashboardLogo";
+import AuthContextProvider from "../../context/AuthContext";
+
 export default function Dashboard() {
-  return (
+  const { slider, setSlider } = useContext(AuthContextProvider);
+  const thinSlider = (
+    <div className="dashboard_hide">
+      <div className="slider">
+        <div className="dashboard_slider_header">
+          <DashboardLogo />
+          <BurgerNav />
+        </div>{" "}
+        <div className="slider_mainComponents" style={{ display: "none" }}>
+          <div className="slider_component slider_component_hover">
+            {" "}
+            <h1 className="slider_component_h1">My flights</h1>
+          </div>
+          <div className="slider_component slider_component_hover">
+            {" "}
+            <h1 className="slider_component_h1">Suggestions</h1>
+          </div>
+          <div className="slider_component slider_component_hover">
+            {" "}
+            <h1 className="slider_component_h1">Add a flight</h1>
+          </div>
+        </div>
+        <div className="slider_settings" style={{ display: "none" }}>
+          <div className="slider_component slider_component_settings">
+            <h1 className="slider_component_h1">Settings</h1>
+          </div>
+          <div className="slider_component slider_component_settings">
+            {" "}
+            <h1 className="slider_component_h1"> Help</h1>
+          </div>
+          <div className="slider_component_settings">
+            {" "}
+            All rights reserved By @TomažOvsenjak
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const fatSlider = (
     <div className="dashboard">
       <div className="slider">
         <div className="dashboard_slider_header">
           <DashboardLogo />
           <BurgerNav />
-        </div>{' '}
+        </div>{" "}
         <div className="slider_mainComponents">
-          <div>my flights</div>
-          <div>Suggestions</div>
-          <div>Add a flight</div>
+          <div className="slider_component slider_component_hover">
+            {" "}
+            <h1 className="slider_component_h1">My flights</h1>
+          </div>
+          <div className="slider_component slider_component_hover">
+            {" "}
+            <h1 className="slider_component_h1">Suggestions</h1>
+          </div>
+          <div className="slider_component slider_component_hover">
+            {" "}
+            <h1 className="slider_component_h1">Add a flight</h1>
+          </div>
         </div>
         <div className="slider_settings">
-          <div>Settings</div>
-          <div>Help</div>
-          <div>Copyright</div>
+          <div className="slider_component slider_component_settings">
+            <h1 className="slider_component_h1">Settings</h1>
+          </div>
+          <div className="slider_component slider_component_settings">
+            {" "}
+            <h1 className="slider_component_h1"> Help</h1>
+          </div>
+          <div className="slider_component_settings">
+            {" "}
+            All rights reserved By @TomažOvsenjak
+          </div>
         </div>
       </div>
     </div>
   );
+  return <>{slider ? fatSlider : thinSlider}</>;
 }
