@@ -1,5 +1,5 @@
-import React from "react";
-
+import React from 'react';
+import '../../App/App.css';
 export default function Dashboard() {
-  return <div>Hello from Dashboard</div>;
+  return <div className="dashboard">Hello from Dashboard</div>;
 }

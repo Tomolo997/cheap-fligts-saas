@@ -1,11 +1,12 @@
 import 'core-js';
 import 'regenerator-runtime/runtime';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
 import FooterSignUp from '../FooterSignUp/FooterSignUp';
 import SignUpSuccess from '../signUpSuccess/signUpSuccess';
 import axios from 'axios';
 import '../../App/App.css';
+import AuthContext from '../../context/AuthContext';
 const SignUp = () => {
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState('');
@@ -15,6 +16,7 @@ const SignUp = () => {
   const [emailSignUp, setEmailSignUp] = useState('');
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState('');
+  const { getLoggedIn } = useContext(AuthContext);
   const changeLoginPage = (e) => {
     e.preventDefault();
     setLogin(!login);
@@ -59,15 +61,15 @@ const SignUp = () => {
       );
       if (res.data.status === 'success') {
         console.log('success', 'logged in successfully!');
-        // window.setTimeout(() => {
-        //   location.assign('/dashboard');
-        // }, 1500);
+        window.setTimeout(() => {
+          location.assign('/dashboard');
+        }, 1500);
       }
     } catch (error) {
       console.log('error', error.message);
     }
   };
-  const logout = async () => {
+  const logoutBtn = async () => {
     try {
       const res = await axios({
         method: 'GET',
@@ -76,6 +78,7 @@ const SignUp = () => {
       if (res.data.status === 'success') {
         location.reload(true);
       }
+      getLoggedIn();
     } catch (error) {
       console.log(error.response);
       showAlert('error', 'error logging out ! try again');
@@ -218,9 +221,7 @@ const SignUp = () => {
           </button>
           <p className="login_paragraph">
             Already have an account ?{' '}
-            <button onClick={changeLoginPage} className="login_button">
-              Login here
-            </button>{' '}
+            <button className="login_button">Login here</button>{' '}
           </p>
         </div>
       </form>
