@@ -220,8 +220,10 @@ const SignUp = () => {
             SIGN UP
           </button>
           <p className="login_paragraph">
-            Already have an account ?{' '}
-            <button className="login_button">Login here</button>{' '}
+            Already have an account?{' '}
+            <button onClick={changeLoginPage} className="login_button">
+              Login here
+            </button>{' '}
           </p>
         </div>
       </form>

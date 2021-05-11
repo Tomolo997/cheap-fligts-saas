@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import '../../App/App.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import AuthContextProvider from '../../context/AuthContext';
 export default function NavBar() {
   const { loggedIn, getLoggedIn } = useContext(AuthContextProvider);
-  const logoutBtn = async () => {
+
+  async function logoutBtn() {
     try {
-      const res = await axios({
-        method: 'GET',
-        url: 'http://localhost:8000/api/v1/users/logout',
-      });
+      const res = await axios.get('http://localhost:8000/api/v1/users/logout');
       console.log(res);
       if (res.data.status === 'success') {
         location.reload(true);
@@ -18,7 +17,7 @@ export default function NavBar() {
     } catch (error) {
       console.log(error.response);
     }
-  };
+  }
   return (
     <div className="NavBar">
       <h1 className="logo_h1">
@@ -37,7 +36,7 @@ export default function NavBar() {
           </Link>
         )}
         {loggedIn === true && (
-          <button onClick={logoutBtn} className="signOut_button">
+          <button onClick={() => logoutBtn()} className="signOut_button">
             Sign Out
           </button>
         )}
