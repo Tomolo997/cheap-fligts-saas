@@ -938,8 +938,64 @@ html {
 
 /*User logged in ! dashboard*/
 .dashboard {
-  background-color: rgb(99, 96, 96);
   height: 100vh;
   width: 100vw;
-  font-size: 12rem;
+  display: grid;
+  grid-template-columns: 35rem 1fr;
+}
+.slider {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+}
+.dashboard_slider_header {
+  height: 10%;
+  justify-self: flex-start;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.slider_logo {
+}
+.slider_mainComponents {
+  height: 60%;
+  width: 100%;
+}
+.slider_settings {
+  width: 100%;
+  height: 30%;
+}
+/* Burger navigation */
+.slider_hamburger {
+  margin-left: 15rem;
+}
+.container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
 }

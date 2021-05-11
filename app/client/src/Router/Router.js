@@ -16,19 +16,13 @@ export default function Router() {
       {loggedIn === false && (
         <>
           <Route path="/sign-up" exact component={SignUp} />
-          <Route path="/dashboard" component={errorAuthPage} />
+          <Route path="/dashboard" exact component={errorAuthPage} />
         </>
       )}
 
       {loggedIn === true && (
         <>
-          <Redirect
-            from="/sign-up"
-            to="/dashboard"
-            exact
-            component={Dashboard}
-          />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" exact component={Dashboard} />
         </>
       )}
     </Switch>
