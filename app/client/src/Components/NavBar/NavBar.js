@@ -36,9 +36,7 @@ export default function NavBar() {
           </Link>
         )}
         {loggedIn === true && (
-          <button onClick={() => logoutBtn()} className="signOut_button">
-            Sign Out
-          </button>
+          <button className="signOut_button">Sign Out</button>
         )}
       </div>
     </div>

@@ -956,6 +956,9 @@ html {
   align-items: center;
   flex-direction: column;
   border: 1px solid black;
+  height: 100vh;
+  width: 35rem;
+  position: fixed;
 }
 .dashboard_slider_header {
   height: 10%;
@@ -964,8 +967,11 @@ html {
   justify-content: space-around;
   align-items: center;
 }
-
+.dashboard_mainInfo {
+  grid-column: 2/3;
+}
 .slider_mainComponents {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -997,7 +1003,7 @@ html {
   z-index: 10;
 }
 .slider_component:before {
-  content: "";
+  content: '';
   display: block;
   background-color: royalblue;
   position: absolute;
@@ -1091,4 +1097,64 @@ html {
 .change .bar6 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/* dashboard my flights */
+.dashboard_myFlights {
+  width: 100%;
+  min-height: 200%;
+  display: grid;
+  grid-template-rows: 8rem repeat(6, 30rem) 8rem;
+  gap: 10px 20px;
+  grid-template-columns: 10rem 1fr 1fr 1fr 10rem;
+}
+
+.myFlights_flight_box {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  background-color: #b6b6b6;
+  border-radius: 10px;
+  display: flex;
+}
+.myFlights_flightData_div {
+  width: 40%;
+  margin: 1rem;
+}
+.myFlights_flightResults_div {
+  width: 60%;
+  background-color: rgb(180, 180, 180);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.flightsData {
+  border: 1px solid black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.flightsData_fromToDateCreatedAt {
+  display: flex;
+  height: 5rem;
+  align-items: center;
+  border: 1px solid black;
+  margin: 0.5rem;
+}
+.flightsData_formToDateCreatedAt_h1 {
+  font-size: 1.8rem;
+  font-weight: 100;
+  margin-left: 1rem;
+}
+.flightsData_formToDateCreatedAt_h1_result {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-left: auto;
+  width: 50%;
+}
+.flightsData_fromToDateCreatedAt_createdAt {
+  margin-top: auto;
+}
+.flightsData_formToDateCreatedAt_h1_createdAt {
+  font-size: 1.2rem;
+  font-weight: 100;
+  margin-left: 1rem;
 }
