@@ -991,6 +991,7 @@ html {
 .dashboard_mainInfo {
   grid-column: 2/3;
   display: flex;
+  flex-wrap: wrap;
 }
 .slider_mainComponents {
   cursor: pointer;
@@ -1129,7 +1130,6 @@ html {
   height: 25rem;
   display: flex;
   background-color: #c3cfff;
-  overflow-y: hidden;
 }
 
 .myFlights_flight_box {
