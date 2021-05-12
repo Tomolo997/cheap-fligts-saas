@@ -990,6 +990,7 @@ html {
 }
 .dashboard_mainInfo {
   grid-column: 2/3;
+  display: flex;
 }
 .slider_mainComponents {
   cursor: pointer;
@@ -1123,13 +1124,12 @@ html {
 /* dashboard my flights */
 .dashboard_myFlights {
   width: 100%;
-  min-height: 200%;
-  display: grid;
-  grid-template-rows: 8rem repeat(6, 30rem) 8rem;
-  gap: 10px 10px;
-  grid-template-columns:
-    1rem minmax(30rem, 1fr) minmax(30rem, 1fr)
-    1rem;
+  margin: 5px;
+  border-radius: 15px;
+  height: 25rem;
+  display: flex;
+  background-color: #c3cfff;
+  overflow-y: hidden;
 }
 
 .myFlights_flight_box {
@@ -1145,10 +1145,10 @@ html {
   margin: 1rem;
 }
 .myFlights_flightResults_div {
-  width: 60%;
+  overflow-y: scroll;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  overflow-y: scroll;
+  height: 25rem;
 }
 .myFlights_flightResults_div::-webkit-scrollbar {
 }
@@ -1198,9 +1198,9 @@ html {
 }
 
 .myFlights_results {
-  width: 90%;
+  width: 100%;
   margin-top: 1rem;
-  margin-left: 2rem;
+  margin-right: 1rem;
   height: 10rem;
   display: flex;
   flex-wrap: wrap;

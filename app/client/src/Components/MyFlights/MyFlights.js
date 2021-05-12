@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../App/App.css';
 export default function MyFlights(props) {
-  const results = props.results.map((el) => (
-    <div className="myFlights_results">
+  const results = props.results.map((el, i) => (
+    <div key={i} className="myFlights_results">
       <div className="myFlights_fromToDateFromTo">
         <h1 className="myFlights_fromToDateFromTo_h1">From</h1>
         <h2 className="myFlights_fromToDateFromTo_h2">{el.fromFlight}</h2>
@@ -64,9 +64,7 @@ export default function MyFlights(props) {
               </h1>
             </div>
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
-              <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
-                Created at:
-              </h1>{' '}
+              <h1 className="flightsData_formToDateCreatedAt_h1_createdAt"></h1>{' '}
             </div>
           </div>
         </div>

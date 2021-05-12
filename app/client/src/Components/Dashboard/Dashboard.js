@@ -44,6 +44,7 @@ export default function Dashboard() {
         fromStart: element.results[0].flightFromSTART,
         toStart: element.results[0].flightToSTART,
         results: element.results,
+        flightId: element.id,
       });
     }
     setFromToStart(fromToArray);
@@ -156,12 +157,19 @@ export default function Dashboard() {
   );
 
   const myFlightDivs = fromToStart.map((el) => (
-    <MyFlights from={el.fromStart} to={el.toStart} results={el.results} />
+    <MyFlights
+      key={el.flightId}
+      from={el.fromStart}
+      to={el.toStart}
+      results={el.results}
+    />
   ));
-
+  const yeA = () => {
+    console.log(myFlightDivs);
+  };
   return (
     <>
-      <div className={slider ? 'dashboard' : 'dashboard_hide'}>
+      <div onClick={yeA} className={slider ? 'dashboard' : 'dashboard_hide'}>
         {slider ? fatSlider : thinSlider}
         <div className="dashboard_mainInfo">
           {myFlightsShow && myFlightDivs}
