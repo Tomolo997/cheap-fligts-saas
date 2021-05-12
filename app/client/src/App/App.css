@@ -40,7 +40,6 @@ html {
   display: grid;
   height: 100%;
   grid-template-columns: minmax(10rem, 20rem) 1fr minmax(10rem, 20rem);
-  background-color: white;
 }
 @media only screen and (max-width: 1800px) {
   #root {
@@ -938,26 +937,48 @@ html {
 
 /*User logged in ! dashboard*/
 .dashboard {
-  height: 100vh;
-  width: 100vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90vh;
+  width: 90vw;
   display: grid;
   grid-template-columns: 35rem 1fr;
+  background: #ecf0ff;
   transition: 2s all;
 }
+
 .dashboard_hide {
-  height: 100vh;
-  width: 100vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90vh;
+  width: 90vw;
   display: grid;
   transition: 2s all;
   grid-template-columns: 5rem 1fr;
+  background: #ecf0ff;
 }
 .slider {
+  background-color: #e4eaff;
   display: flex;
   align-items: center;
   flex-direction: column;
   border: 1px solid black;
-  height: 100vh;
+  height: 90vh;
   width: 35rem;
+  position: fixed;
+}
+.slider_thin {
+  background-color: #e4eaff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  height: 90vh;
+  width: 5rem;
   position: fixed;
 }
 .dashboard_slider_header {
@@ -1105,14 +1126,17 @@ html {
   min-height: 200%;
   display: grid;
   grid-template-rows: 8rem repeat(6, 30rem) 8rem;
-  gap: 10px 20px;
-  grid-template-columns: 10rem 1fr 1fr 1fr 10rem;
+  gap: 10px 10px;
+  grid-template-columns:
+    1rem minmax(30rem, 1fr) minmax(30rem, 1fr)
+    1rem;
 }
 
 .myFlights_flight_box {
   grid-row: 2/3;
   grid-column: 2/3;
-  background-color: #b6b6b6;
+  background-color: #a8bbff9c;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
   border-radius: 10px;
   display: flex;
 }
@@ -1122,12 +1146,19 @@ html {
 }
 .myFlights_flightResults_div {
   width: 60%;
-  background-color: rgb(180, 180, 180);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  overflow-y: scroll;
+}
+.myFlights_flightResults_div::-webkit-scrollbar {
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.myFlights_flightResults_div {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 .flightsData {
-  border: 1px solid black;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1136,7 +1167,8 @@ html {
   display: flex;
   height: 5rem;
   align-items: center;
-  border: 1px solid black;
+  background-color: #e4eaff;
+  border-radius: 10px;
   margin: 0.5rem;
 }
 .flightsData_formToDateCreatedAt_h1 {
@@ -1157,4 +1189,49 @@ html {
   font-size: 1.2rem;
   font-weight: 100;
   margin-left: 1rem;
+}
+.flightsData_formToDateCreatedAt_h1_result_date {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-left: auto;
+  width: 50%;
+}
+
+.myFlights_results {
+  width: 90%;
+  margin-top: 1rem;
+  height: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: #e4eaff;
+  border-radius: 10px;
+}
+.myFlights_fromToDateFromTo {
+}
+.myFlights_fromToDateFromTo_link {
+  flex-basis: 100%;
+  height: 0;
+  text-align: center;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 1px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e4eaff;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #c3cfff;
 }

@@ -29,7 +29,7 @@ export default function Dashboard() {
     setAddAFlightShow(true);
   };
   const thinSlider = (
-    <div className="slider">
+    <div className="slider_thin">
       <div className="dashboard_slider_header">
         <DashboardLogo />
         <BurgerNav />
