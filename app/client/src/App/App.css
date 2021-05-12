@@ -943,11 +943,12 @@ html {
   transform: translate(-50%, -50%);
   height: 90vh;
   width: 90vw;
+  overflow-y: scroll;
   display: grid;
   grid-template-columns: 35rem 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   background: #ecf0ff;
-  transition: 2s all;
+  transition: 1s all;
 }
 
 .dashboard_hide {
@@ -957,18 +958,18 @@ html {
   transform: translate(-50%, -50%);
   height: 90vh;
   width: 90vw;
+  transition: 2s all;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   display: grid;
-  transition: 2s all;
-  grid-template-columns: 5rem 1fr;
+  grid-template-columns: 10rem 1fr;
   background: #ecf0ff;
 }
 .slider {
   background-color: #e4eaff;
   display: flex;
+  transition: 1s all;
   align-items: center;
   flex-direction: column;
-  border: 1px solid black;
   height: 90vh;
   width: 35rem;
   position: fixed;
@@ -976,12 +977,16 @@ html {
 .slider_thin {
   background-color: #e4eaff;
   display: flex;
+  transition: 1s all;
   align-items: center;
   flex-direction: column;
-  border: 1px solid black;
   height: 90vh;
-  width: 5rem;
+  width: 10rem;
   position: fixed;
+}
+.myFlights_fromToDateFromTo_paragraph {
+  font-size: 1.2rem;
+  margin-top: 1rem;
 }
 .dashboard_slider_header {
   height: 10%;
@@ -1127,18 +1132,18 @@ html {
 
 /* dashboard my flights */
 .dashboard_myFlights {
-  width: 42rem;
-  margin: 10px;
+  width: 62rem;
+  margin: 7px;
   border-radius: 15px;
   height: 25rem;
   display: flex;
-  background-color: #c3cfff;
+  background-color: white;
 }
 
 .myFlights_flight_box {
   grid-row: 2/3;
   grid-column: 2/3;
-  background-color: #a8bbff9c;
+  background-color: white;
   box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
   border-radius: 10px;
   display: flex;
@@ -1149,6 +1154,7 @@ html {
 }
 .myFlights_flightResults_div {
   overflow-y: scroll;
+  margin-right: 2rem;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   height: 25rem;
@@ -1171,6 +1177,7 @@ html {
   height: 5rem;
   align-items: center;
   background-color: #e4eaff;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
   border-radius: 10px;
   margin: 0.5rem;
 }
@@ -1180,8 +1187,8 @@ html {
   margin-left: 1rem;
 }
 .flightsData_formToDateCreatedAt_h1_result {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 200;
   margin-left: auto;
   width: 50%;
 }
@@ -1195,7 +1202,7 @@ html {
 }
 .flightsData_formToDateCreatedAt_h1_result_date {
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 200;
   margin-left: auto;
   width: 50%;
 }
@@ -1206,6 +1213,7 @@ html {
   margin-right: 1rem;
   height: 10rem;
   display: flex;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: #e4eaff;
@@ -1224,8 +1232,8 @@ html {
 }
 .myFlights_fromToDateFromTo_link {
   flex-basis: 100%;
-  height: 30px;
-  color: #0770e3;
+  height: 20px;
+  color: #000000;
   text-decoration: none;
   text-align: center;
 }
@@ -1238,12 +1246,13 @@ html {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  margin-left: 1rem;
+  position: fixed;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 1px grey;
   border-radius: 10px;
 }
 

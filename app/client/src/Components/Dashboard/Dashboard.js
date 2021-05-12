@@ -161,6 +161,7 @@ export default function Dashboard() {
       from={el.fromStart}
       to={el.toStart}
       results={el.results}
+      slider={slider}
     />
   ));
   const yeA = () => {

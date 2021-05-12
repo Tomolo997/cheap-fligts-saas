@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../../App/App.css';
 export default function MyFlights(props) {
+  const changeDate = (date) => {
+    const changed1Date = date.slice(0, 10).split('-');
+    return changed1Date[2] + '/' + changed1Date[1];
+  };
+  const textAreaRef = useRef(null);
+  function copyToClipboard(e) {
+    textAreaRef.current.select();
+    document.execCommand('copy');
+    // This is just personal preference.
+    // I prefer to not show the whole text area selected.
+    e.target.focus();
+    setCopySuccess('Copied!');
+  }
+
   const results = props.results.map((el, i) => (
     <div key={i} className="myFlights_results">
       <div className="myFlights_fromToDateFromTo">
@@ -15,13 +29,13 @@ export default function MyFlights(props) {
       <div className="myFlights_fromToDateFromTo">
         <h1 className="myFlights_fromToDateFromTo_h1">Date from</h1>
         <h2 className="myFlights_fromToDateFromTo_h2">
-          {el.formDate.slice(0, 10)}
+          {changeDate(el.formDate)}
         </h2>
       </div>
       <div className="myFlights_fromToDateFromTo">
         <h1 className="myFlights_fromToDateFromTo_h1">Date to</h1>
         <h2 className="myFlights_fromToDateFromTo_h2">
-          {el.toDate.slice(0, 10)}
+          {changeDate(el.toDate)}
         </h2>
       </div>
       <div className="myFlights_fromToDateFromTo">
@@ -29,13 +43,19 @@ export default function MyFlights(props) {
         <h2 className="myFlights_fromToDateFromTo_h2">{el.price}€</h2>
       </div>
       <div className="myFlights_fromToDateFromTo_link_div">
-        <a
-          href={el.link}
-          target="_blank"
+        <p
           className="myFlights_fromToDateFromTo_link"
+          onClick={copyToClipboard}
         >
-          SkyScanner
-        </a>
+          link:
+        </p>
+        <p
+          className="myFlights_fromToDateFromTo_paragraph"
+          value={el.link}
+          ref={textAreaRef}
+        >
+          {el.link}
+        </p>
       </div>
     </div>
   ));
@@ -64,7 +84,9 @@ export default function MyFlights(props) {
               </h1>
             </div>
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
-              <h1 className="flightsData_formToDateCreatedAt_h1_createdAt"></h1>{' '}
+              <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
+                Today found {props.results.length} results
+              </h1>{' '}
             </div>
           </div>
         </div>
