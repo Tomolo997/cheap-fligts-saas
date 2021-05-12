@@ -1098,8 +1098,7 @@ html {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
 }
-.thin_slider_hamburger {
-}
+
 .container {
   display: inline-block;
   cursor: pointer;
@@ -1158,8 +1157,6 @@ html {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   height: 25rem;
-}
-.myFlights_flightResults_div::-webkit-scrollbar {
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
