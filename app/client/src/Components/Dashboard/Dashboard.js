@@ -117,7 +117,6 @@ export default function Dashboard() {
         <BurgerNav />
       </div>{' '}
       <div className="slider_mainComponents">
-        hello {userName}
         <div
           onClick={showMyFlights}
           className="slider_component slider_component_hover"

@@ -945,6 +945,7 @@ html {
   width: 90vw;
   display: grid;
   grid-template-columns: 35rem 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   background: #ecf0ff;
   transition: 2s all;
 }
@@ -956,6 +957,7 @@ html {
   transform: translate(-50%, -50%);
   height: 90vh;
   width: 90vw;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   display: grid;
   transition: 2s all;
   grid-template-columns: 5rem 1fr;
@@ -992,6 +994,7 @@ html {
   grid-column: 2/3;
   display: flex;
   flex-wrap: wrap;
+  margin-left: 5rem;
 }
 .slider_mainComponents {
   cursor: pointer;
@@ -1124,8 +1127,8 @@ html {
 
 /* dashboard my flights */
 .dashboard_myFlights {
-  width: 100%;
-  margin: 5px;
+  width: 42rem;
+  margin: 10px;
   border-radius: 15px;
   height: 25rem;
   display: flex;
