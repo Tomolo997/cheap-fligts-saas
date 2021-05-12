@@ -8,4 +8,7 @@ router.post('/login', authController.logIn);
 router.get('/loggedIn', authController.isLoggedIn);
 router.get('/logout', authController.logout);
 //not protected routes
+
+router.get('/getMe', authController.protect, userController.getMe);
+
 module.exports = router;

@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const Flights = require('../models/fligthsModel');
+const FlightResults = require('../models/flightsResult');
 
 exports.addFlight = async (req, res, next) => {
   try {
@@ -46,4 +47,19 @@ exports.addFlight = async (req, res, next) => {
       status: 'error',
     });
   }
+};
+
+exports.getFlights = async (req, res, next) => {
+  //get user id
+  const userId = req.user._id;
+  const flights = await FlightResults.find({ user: userId });
+  //get user flights
+  const results = flights.map((el) => el.results);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      flights: flights,
+    },
+  });
+  //get user flights results
 };
