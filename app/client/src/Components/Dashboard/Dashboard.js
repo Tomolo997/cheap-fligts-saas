@@ -59,6 +59,18 @@ export default function Dashboard() {
     getUserFlights();
   }, []);
 
+  async function logoutBtn() {
+    try {
+      const res = await axios.get('http://localhost:8000/api/v1/users/logout');
+      console.log(res);
+      if (res.data.status === 'success') {
+        setTimeout(() => location.assign('/'), 750);
+      }
+      getLoggedIn();
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
   const showMyFlights = () => {
     setMyFlightsShow(true);
     setSuggestionsShow(false);
@@ -102,6 +114,7 @@ export default function Dashboard() {
           {' '}
           <h1 className="slider_component_h1"> Help</h1>
         </div>
+
         <div className="slider_component_settings">
           {' '}
           All rights reserved By @TomažOvsenjak
@@ -146,6 +159,15 @@ export default function Dashboard() {
         <div className="slider_component slider_component_settings">
           {' '}
           <h1 className="slider_component_h1"> Help</h1>
+        </div>
+        <div className="logout_component ">
+          {' '}
+          <button
+            onClick={logoutBtn}
+            className="singup_button singup_button_dashboard"
+          >
+            Log out
+          </button>
         </div>
         <div className="slider_component_settings">
           {' '}

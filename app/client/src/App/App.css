@@ -837,6 +837,14 @@ html {
   border: 5px solid rgba(216, 216, 216, 0.596);
   background-color: rgba(255, 255, 255, 0.726);
 }
+.singup_button_dashboard {
+  background-color: white !important;
+}
+.singup_button_dashboard:hover {
+  border: 5px solid #ecf0ff;
+  background-color: rgba(155, 154, 212, 0.726);
+}
+
 .login_paragraph {
   margin-top: 1rem;
   font-size: 1rem;
@@ -992,7 +1000,7 @@ html {
   height: 10%;
   justify-self: flex-start;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 .dashboard_mainInfo {
@@ -1020,6 +1028,16 @@ html {
   z-index: 10;
 }
 .slider_component {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  position: relative;
+  z-index: 10;
+}
+
+.logout_component {
   width: 100%;
   display: flex;
   align-items: center;

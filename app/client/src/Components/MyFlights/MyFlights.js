@@ -85,7 +85,7 @@ export default function MyFlights(props) {
             </div>
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
               <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
-                Today found {props.results.length} results
+                Today found {props.results.length} flights
               </h1>{' '}
             </div>
           </div>
