@@ -7,7 +7,8 @@ export default function AddAFlight(props) {
   const [flightTo, setFlightTo] = useState('');
   const [outboundDate, setOutboundDate] = useState('');
   const [inboundDate, setInboundDate] = useState('');
-
+  const [addAFlightError, setAddAFlightError] = useState(false);
+  const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
   const addFlight = async () => {
     //   "flightsData":[{
     //     "flightFrom": "AU-sky",
@@ -18,18 +19,29 @@ export default function AddAFlight(props) {
     // ],
     // "user":"607077e6fd1b8f0b18608afd"
 
-    const data = {
-      flightsData: [
-        {
-          flightFrom: flightFrom,
-          flightTo: flightTo,
-          outboundDate: outboundDate,
-          inboundDate: inboundDate,
-        },
-      ],
-      user: props.userId,
-    };
-    await axios.post('http://localhost:8000/api/v1/flights/addFlight', data);
+    if (
+      flightFrom.length > 1 &&
+      flightTo.length > 1 &&
+      outboundDate.length > 1 &&
+      inboundDate.length > 1
+    ) {
+      const data = {
+        flightsData: [
+          {
+            flightFrom: flightFrom,
+            flightTo: flightTo,
+            outboundDate: outboundDate,
+            inboundDate: inboundDate,
+          },
+        ],
+        user: props.userId,
+      };
+      await axios.post('http://localhost:8000/api/v1/flights/addFlight', data);
+      setAddAFlightCongrats(true);
+      setAddAFlightError(false);
+    } else {
+      setAddAFlightError(true);
+    }
   };
 
   // const changeDateToBeSuitable = (date) => {
@@ -42,6 +54,9 @@ export default function AddAFlight(props) {
 
   const changeFromFlight = (e) => {
     setFlightFrom(e.target.value);
+    console.log(flightFrom, flightTo, inboundDate, outboundDate);
+
+    console.log();
   };
   const changeToFlight = (e) => {
     setFlightTo(e.target.value);
@@ -57,7 +72,7 @@ export default function AddAFlight(props) {
     <div className=" dasboard_addAflight">
       <div className="addAFlights_div">
         <div className="from_div">
-          <h1></h1>
+          <h1 className="addAFlight_h1">Fly from</h1>
           <select
             name="flightFrom"
             className="input_addAflight"
@@ -68,7 +83,7 @@ export default function AddAFlight(props) {
           </select>
         </div>
         <div className="to_div">
-          <h1></h1>
+          <h1 className="addAFlight_h1">Fly to</h1>
           <select
             onChange={changeToFlight}
             name="flightTo"
@@ -79,16 +94,7 @@ export default function AddAFlight(props) {
           </select>
         </div>
         <div className="dateFrom_div">
-          <h1></h1>
-          <input
-            onChange={changeoutboundDate}
-            type="date"
-            id="outboundDate"
-            name="outboundDate"
-          />
-        </div>
-        <div className="dateTo_div">
-          <h1></h1>
+          <h1 className="addAFlight_h1">Date to </h1>
           <input
             onChange={changeinboundDate}
             type="date"
@@ -96,7 +102,24 @@ export default function AddAFlight(props) {
             name="inboundDate"
           />
         </div>
-        <button onClick={addFlight}>add</button>
+        <div className="dateTo_div">
+          <h1 className="addAFlight_h1">Date from</h1>
+          <input
+            onChange={changeoutboundDate}
+            type="date"
+            id="outboundDate"
+            name="outboundDate"
+          />
+        </div>
+        <button className="addAFlight_addButton" onClick={addFlight}>
+          Add Flight
+        </button>
+        <h1 className="addAFlight_h1_error">
+          {addAFlightError ? 'Please fill out all of the fields' : null}
+          {addAFlightCongrats
+            ? `Congrats your flight from ${flightFrom} to ${flightTo} has been added. 🥳`
+            : null}
+        </h1>
       </div>
     </div>
   );
