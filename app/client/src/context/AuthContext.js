@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [loggedIn, setLoggedIn] = useState(undefined);
+  const [userId, setUserId] = useState('');
   const [slider, setSlider] = useState(true);
   async function getLoggedIn(params) {
     try {
@@ -24,7 +25,9 @@ function AuthContextProvider(props) {
     getLoggedIn();
   }, []);
   return (
-    <AuthContext.Provider value={{ loggedIn, getLoggedIn, slider, setSlider }}>
+    <AuthContext.Provider
+      value={{ loggedIn, getLoggedIn, slider, setSlider, userId, setUserId }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

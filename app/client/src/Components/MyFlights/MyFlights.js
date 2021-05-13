@@ -40,7 +40,7 @@ export default function MyFlights(props) {
       </div>
       <div className="myFlights_fromToDateFromTo">
         <h1 className="myFlights_fromToDateFromTo_h1">Price</h1>
-        <h2 className="myFlights_fromToDateFromTo_h2">{el.price}€</h2>
+        <h2 className="myFlights_fromToDateFromTo_h2_price">{el.price} €</h2>
       </div>
       <div className="myFlights_fromToDateFromTo_link_div">
         <p

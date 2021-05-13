@@ -35,7 +35,6 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.singUp = async (req, res) => {
   try {
-    console.log(req.body);
     const newUser = await User.create({
       name: req.body.name,
       email: req.body.email,
@@ -80,7 +79,6 @@ exports.logIn = catchAsync(async (req, res, next) => {
   }
 
   //3) if everytingh ok , send token to client
-  console.log(res);
   createSendToken(user, 200, res);
 });
 

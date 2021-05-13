@@ -196,7 +196,7 @@ export default function Dashboard() {
         <div className="dashboard_mainInfo">
           {myFlightsShow && myFlightDivs}
           {suggestionsShow && <Suggestions />}
-          {addAFlightShow && <AddAFlight />}
+          {addAFlightShow && <AddAFlight userId={userId} />}
         </div>
       </div>
     </>
