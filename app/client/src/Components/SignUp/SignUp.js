@@ -16,6 +16,7 @@ const SignUp = () => {
   const [emailSignUp, setEmailSignUp] = useState('');
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState('');
+  const [userAlreadyExistError, setUserAlreadyExistError] = useState(false);
   const { getLoggedIn } = useContext(AuthContext);
   const changeLoginPage = (e) => {
     e.preventDefault();
@@ -109,7 +110,7 @@ const SignUp = () => {
         }, 1500);
       }
     } catch (error) {
-      console.log('error', error.message);
+      console.log(error);
     }
   };
 

@@ -52,13 +52,10 @@ exports.singUp = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(400).json({
-      data: {
-        status: 'error',
-        message: 'User with this email already exists',
-      },
-    });
     console.log(error);
+    res.status(400).json({
+      error: error,
+    });
   }
 };
 
