@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
-import '../../App/App.css';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import AuthContextProvider from '../../context/AuthContext';
+import React, { useContext } from "react";
+import "../../App/App.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import AuthContextProvider from "../../context/AuthContext";
 export default function NavBar() {
   const { loggedIn, getLoggedIn } = useContext(AuthContextProvider);
 
   async function logoutBtn() {
     try {
-      const res = await axios.get('http://localhost:8000/api/v1/users/logout');
+      const res = await axios.get("http://localhost:8000/api/v1/users/logout");
       console.log(res);
-      if (res.data.status === 'success') {
+      if (res.data.status === "success") {
         location.reload(true);
       }
       getLoggedIn();
@@ -33,6 +33,11 @@ export default function NavBar() {
         {loggedIn === false && (
           <Link to="/sign-up" className="signUp_link">
             Sign in
+          </Link>
+        )}
+        {loggedIn === true && (
+          <Link to="/dashboard" className="signUp_link">
+            Dashboard
           </Link>
         )}
       </div>

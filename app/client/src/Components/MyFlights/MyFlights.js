@@ -1,19 +1,21 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import '../../App/App.css';
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
+import "../../App/App.css";
 export default function MyFlights(props) {
   const changeDate = (date) => {
-    const changed1Date = date.slice(0, 10).split('-');
-    return changed1Date[2] + '/' + changed1Date[1];
+    const changed1Date = date.slice(0, 10).split("-");
+    return changed1Date[2] + "/" + changed1Date[1];
   };
+
   const textAreaRef = useRef(null);
   function copyToClipboard(e) {
     textAreaRef.current.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     // This is just personal preference.
     // I prefer to not show the whole text area selected.
     e.target.focus();
-    setCopySuccess('Copied!');
+    setCopySuccess("Copied!");
   }
 
   const results = props.results.map((el, i) => (
@@ -86,7 +88,7 @@ export default function MyFlights(props) {
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
               <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
                 Today found {props.results.length} flights
-              </h1>{' '}
+              </h1>{" "}
             </div>
           </div>
         </div>

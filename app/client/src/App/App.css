@@ -972,6 +972,7 @@ html {
   grid-template-columns: 10rem 1fr;
   background: #ecf0ff;
 }
+
 .slider {
   background-color: #e4eaff;
   display: flex;
@@ -1019,10 +1020,7 @@ html {
   height: 60%;
   width: 100%;
 }
-.slider_settings {
-  width: 100%;
-  height: 30%;
-}
+
 .slider_component_h1 {
   font-size: 3rem;
   font-weight: 400;
@@ -1053,7 +1051,7 @@ html {
   z-index: 10;
 }
 .slider_component:before {
-  content: '';
+  content: "";
   display: block;
   background-color: royalblue;
   position: absolute;
@@ -1146,6 +1144,91 @@ html {
 .change .bar6 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
+}
+
+@media only screen and (max-width: 1600px) {
+  .slider_hamburger {
+    display: none;
+  }
+  .dashboard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90vh;
+    width: 90vw;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10rem 1fr 1fr 1fr;
+    background: #ecf0ff;
+    transition: 1s all;
+  }
+  .slider {
+    grid-row: 1/2;
+    height: 10rem;
+    width: 100%;
+    background-color: #e4eaff;
+    display: flex;
+    transition: 1s all;
+    align-items: center;
+    flex-direction: row;
+  }
+  .dashboard_mainInfo {
+    grid-row: 2/5;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 2rem;
+    grid-column: 1;
+  }
+  .slider_mainComponents {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+  }
+  .slider_settings {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    margin-left: auto;
+    align-content: center;
+    justify-content: center;
+  }
+  .slider_component_settings {
+    margin-top: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .slider_component_h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    z-index: 10;
+  }
+  .rights_reserved {
+    display: none;
+  }
+  .slider_component:before {
+    content: "";
+    display: block;
+    background-color: royalblue;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 9;
+    left: 0;
+    height: 0;
+    transition: 0.4s;
+  }
+  .slider_component:hover::before {
+    height: 100%;
+    color: white;
+  }
 }
 
 /* dashboard my flights */
@@ -1330,7 +1413,7 @@ html {
 }
 .input_addAflight {
   width: 100%;
-  height: 50%;
+  height: 7rem;
   outline: none;
   border: 1px solid black;
   font-size: 2rem;
@@ -1370,4 +1453,95 @@ html {
   text-align: center;
   margin-top: 1rem;
   color: red;
+}
+
+@media only screen and (max-width: 1600px) {
+  .addAFlights_div {
+    width: 60%;
+    height: 60vh;
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    box-shadow: 0 7px 30px -10px rgb(150 170 180 / 50%);
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+  .to_div {
+    grid-row: 5/6;
+    grid-column: 1/4;
+  }
+  .dateFrom_div {
+    grid-row: 5/6;
+    grid-column: 5/9;
+  }
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+}
+.loader {
+  color: #bf2b2b;
+  font-size: 11px;
+  text-indent: -99999em;
+  margin: 55px auto;
+  position: relative;
+  width: 10em;
+  height: 10em;
+  box-shadow: inset 0 0 0 1em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  content: "";
+}
+.loader:before {
+  width: 5.2em;
+  height: 10.2em;
+  background: #ecf0ff;
+  border-radius: 10.2em 0 0 10.2em;
+  top: -0.1em;
+  left: -0.1em;
+  -webkit-transform-origin: 5.1em 5.1em;
+  transform-origin: 5.1em 5.1em;
+  -webkit-animation: load2 2s infinite ease 1.5s;
+  animation: load2 2s infinite ease 1.5s;
+}
+.loader:after {
+  width: 5.2em;
+  height: 10.2em;
+  background: #ecf0ff;
+  border-radius: 0 10.2em 10.2em 0;
+  top: -0.1em;
+  left: 4.9em;
+  -webkit-transform-origin: 0.1em 5.1em;
+  transform-origin: 0.1em 5.1em;
+  -webkit-animation: load2 2s infinite ease;
+  animation: load2 2s infinite ease;
+}
+@-webkit-keyframes load2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
