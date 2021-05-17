@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import '../../App/App.css';
 import axios from 'axios';
+import AirportsSelected from '../AirportsSelected/AirportsSelected';
 import CountriesOption from '../CountriesOption/CountriesOption';
 export default function AddAFlight(props) {
   const [flightFrom, setFlightFrom] = useState('');
   const [flightTo, setFlightTo] = useState('');
   const [outboundDate, setOutboundDate] = useState('');
   const [inboundDate, setInboundDate] = useState('');
+  const [countrySelected, setCountrySelected] = useState(true);
   const [addAFlightError, setAddAFlightError] = useState(false);
   const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
   const addFlight = async () => {
@@ -44,6 +46,13 @@ export default function AddAFlight(props) {
     }
   };
 
+  const countrySelectedClick = (e) => {
+    setCountrySelected(true);
+  };
+  const airportSelectedClick = (e) => {
+    setCountrySelected(false);
+  };
+
   // const changeDateToBeSuitable = (date) => {
   //   const firsSplti = date.split('-');
   //   var b = firsSplti[0];
@@ -69,8 +78,29 @@ export default function AddAFlight(props) {
   };
 
   return (
-    <div className=" dasboard_addAflight">
+    <div className="dasboard_addAflight">
       <div className="addAFlights_div">
+        <div
+          onClick={countrySelectedClick}
+          className={
+            countrySelected
+              ? ['addAFlight_Country_div active_selected']
+              : ['addAFlight_Country_div']
+          }
+        >
+          Country
+        </div>
+        <div
+          onClick={airportSelectedClick}
+          className={
+            !countrySelected
+              ? ['addAFlight_Airport_div active_selected']
+              : ['addAFlight_Airport_div']
+          }
+        >
+          Airports
+        </div>
+
         <div className="from_div">
           <h1 className="addAFlight_h1">Fly from</h1>
           <select
@@ -79,7 +109,7 @@ export default function AddAFlight(props) {
             type="text"
             onChange={changeFromFlight}
           >
-            <CountriesOption />
+            {countrySelected ? <CountriesOption /> : <AirportsSelected />}
           </select>
         </div>
         <div className="to_div">
@@ -90,7 +120,7 @@ export default function AddAFlight(props) {
             className="input_addAflight"
             type="text"
           >
-            <CountriesOption />
+            {countrySelected ? <CountriesOption /> : <AirportsSelected />}
           </select>
         </div>
         <div className="dateFrom_div">

@@ -184,4 +184,4 @@ const fillTheStates = async () => {
 fillTheStates();
 console.log('Filling the states');
 
-export default fillTheStates();
+fillTheStates();
