@@ -55,11 +55,132 @@ const dateFormatForSkyscanner = (date) => {
 
 const fillTheFlights = async () => {
   const users = await User.find();
+  let x = 0;
   //loopaj skozi vsakega userja
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
-    const flightByUser = await Flights.find({ user: user.id });
-    console.log(flightByUser);
+  await FlightResults.remove({});
+  while (x < users.length) {
+    await new Promise((r) => setTimeout(r, 3000));
+
+    const currentUserflights = await Flights.find({ user: users[x].id });
+    //loop through all of the flights in the array,
+    let flightsData = [];
+    for (let i = 0; i < currentUserflights.length; i++) {
+      const el = currentUserflights[i];
+      // console.log(el.flightsData);
+      for (let j = 0; j < el.flightsData.length; j++) {
+        const jEl = el.flightsData[j];
+        flightsData.push({
+          flightID: jEl._id,
+          user: el.user,
+          flightFrom: jEl.flightFrom,
+          flightTo: jEl.flightTo,
+          inboundDate: dateFormatForSkyscanner(jEl.inboundDate).toString(),
+          outboundDate: dateFormatForSkyscanner(jEl.outboundDate).toString(),
+        });
+      }
+    }
+    for (let i = 0; i < flightsData.length; i++) {
+      const element = flightsData[i];
+      const { flightFrom, flightTo, inboundDate, outboundDate } = element;
+      console.log(flightFrom, flightTo, inboundDate, outboundDate);
+      try {
+        const data = await axios.get(
+          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
+        );
+        element.results = data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    //loop through the places and place them into the array inside IDs
+    let places = [];
+    for (let i = 0; i < flightsData.length; i++) {
+      const flight = flightsData[i].results.Places;
+      for (let j = 0; j < flight.length; j++) {
+        const elementJ = flight[j];
+        places.push({
+          id: elementJ.PlaceId,
+          skyscannerCode: elementJ.SkyscannerCode,
+        });
+      }
+    }
+
+    let flightsResults = [];
+    for (let i = 0; i < flightsData.length; i++) {
+      const element = flightsData[i];
+      for (let j = 0; j < element.results.Quotes.length; j++) {
+        const elementJ = element.results.Quotes[j];
+        flightsResults.push({
+          flightID: element.flightID,
+          flights: elementJ,
+          user: element.user,
+          flightFrom: element.flightFrom,
+          flightTo: element.flightTo,
+        });
+      }
+    }
+
+    let flightsForFinal = [];
+
+    for (let j = 0; j < flightsResults.length; j++) {
+      const element = flightsResults[j];
+      const fromFlight = places.find(
+        (el) => el.id === element.flights.OutboundLeg.OriginId
+      ).skyscannerCode;
+      const toFlight = places.find(
+        (el) => el.id === element.flights.OutboundLeg.DestinationId
+      ).skyscannerCode;
+
+      const fromDate = TranfromDateToSuitableLink(
+        element.flights.OutboundLeg.DepartureDate
+      );
+      const toDate = TranfromDateToSuitableLink(
+        element.flights.InboundLeg.DepartureDate
+      );
+      flightsForFinal.push({
+        flightID: element.flightID,
+        user: element.user,
+        flightFromSTART: element.flightFrom,
+        flightToSTART: element.flightTo,
+        fromFlight: fromFlight,
+        toFlight: toFlight,
+        price: element.flights.MinPrice,
+        formDate: element.flights.OutboundLeg.DepartureDate,
+        toDate: element.flights.InboundLeg.DepartureDate,
+        link: `https://www.skyscanner.net/transport/flights/${fromFlight}/${toFlight}/${fromDate}/${toDate}/`,
+      });
+    }
+    const flightsForDB = [];
+    for (let i = 0; i < currentUserflights.length; i++) {
+      const element = currentUserflights[i];
+      for (let index = 0; index < element.flightsData.length; index++) {
+        const element2 = element.flightsData[index];
+        console.log(element2);
+        flightsForDB.push({
+          flightID: element2._id,
+          results: [],
+          user: element.user,
+        });
+      }
+    }
+
+    for (let i = 0; i < flightsForFinal.length; i++) {
+      const element = flightsForFinal[i];
+      for (let j = 0; j < flightsForDB.length; j++) {
+        const element2 = flightsForDB[j];
+        if (element.flightID === element2.flightID) {
+          element2.results.push(element);
+        }
+      }
+    }
+
+    for (let i = 0; i < flightsForDB.length; i++) {
+      const element = flightsForDB[i];
+      await FlightResults.create(element);
+    }
+
+    console.log(users[x] + 'Succesfully filled the states');
+    x++;
   }
 
   process.exit(1);

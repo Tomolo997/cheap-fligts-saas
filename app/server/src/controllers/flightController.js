@@ -54,11 +54,26 @@ exports.getFlights = async (req, res, next) => {
   const userId = req.user._id;
   const flights = await FlightResults.find({ user: userId });
   //get user flights
-  const results = flights.map((el) => el.results);
+  const flightsDataInit = await Flights.find({ user: userId });
+  const userFlightsInit = flightsDataInit[0].flightsData;
+
+  console.log(userFlightsInit);
+  const flightsToSend = [];
+  for (let index = 0; index < flights.length; index++) {
+    const element = flights[index];
+
+    if (element.results.length > 0) {
+      flightsToSend.push(element);
+    } else {
+      console.log('ea');
+    }
+  }
+
   res.status(200).json({
     status: 'success',
     data: {
-      flights: flights,
+      flights: flightsToSend,
+      noResults: userFlightsInit,
     },
   });
   //get user flights results
