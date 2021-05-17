@@ -33,14 +33,20 @@ export default function Dashboard() {
       'http://localhost:8000/api/v1/flights/getMyFlights'
     );
     const flightResults = await res.data.data.flights;
-    const noResultsFlights = await res.data.data.noResultsFlights;
+    const noResultsFlights = await res.data.data.noResults;
     setFlightsResults(flightResults);
     // const fromToArray = [];
-    console.log(noResultsFlights);
     const fromToArray = [];
     for (let index = 0; index < flightResults.length; index++) {
       const element = flightResults[index];
-      console.log(element.results);
+
+      const findFlight = noResultsFlights.find(
+        (el) => el._id === element.flightID
+      );
+      console.log(findFlight);
+
+      console.log(element);
+
       fromToArray.push({
         fromStart: element.results[0].flightFromSTART,
         toStart: element.results[0].flightToSTART,
