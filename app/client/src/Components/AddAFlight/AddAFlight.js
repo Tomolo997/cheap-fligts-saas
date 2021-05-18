@@ -98,7 +98,7 @@ export default function AddAFlight(props) {
               : ['addAFlight_Airport_div']
           }
         >
-          Airports
+          Top Cities
         </div>
 
         <div className="from_div">

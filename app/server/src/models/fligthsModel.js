@@ -11,6 +11,8 @@ const flightSchema = mongoose.Schema(
         flightTo: String,
         outboundDate: Date,
         inboundDate: Date,
+        fromFlightCountry: String,
+        toFlightCountry: String,
         createdAt: {
           type: Date,
           default: Date.now,

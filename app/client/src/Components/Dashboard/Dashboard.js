@@ -43,17 +43,17 @@ export default function Dashboard() {
       const findFlight = noResultsFlights.find(
         (el) => el._id === element.flightID
       );
-      console.log(findFlight);
-
-      console.log(element);
 
       fromToArray.push({
         fromStart: element.results[0].flightFromSTART,
         toStart: element.results[0].flightToSTART,
         results: element.results,
         flightId: element.id,
+        dateTo: findFlight.inboundDate,
+        dateFrom: findFlight.outboundDate,
       });
     }
+    console.log(fromToArray);
     // for (let index = 0; index < noDataFlights.length; index++) {
     //   const element = noDataFlights[index];
     //   fromToArray.push({
@@ -197,6 +197,8 @@ export default function Dashboard() {
       to={el.toStart}
       results={el.results}
       slider={slider}
+      dateFrom={el.dateFrom}
+      dateTo={el.dateTo}
     />
   ));
   const yeA = () => {

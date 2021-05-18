@@ -7,6 +7,10 @@ export default function MyFlights(props) {
     const changed1Date = date.slice(0, 10).split('-');
     return changed1Date[2] + '/' + changed1Date[1];
   };
+  const changeDateToDatesFromAndDatesTo = (date) => {
+    const changed1Date = date.slice(0, 10).split('-');
+    return changed1Date[2] + '-' + changed1Date[1] + '-' + changed1Date[0];
+  };
 
   const textAreaRef = useRef(null);
   function copyToClipboard(e) {
@@ -22,10 +26,14 @@ export default function MyFlights(props) {
     <div key={i} className="myFlights_results">
       <div className="myFlights_fromToDateFromTo">
         <h1 className="myFlights_fromToDateFromTo_h1">From</h1>
+        <h2 className="myFlights_fromToDateFromTo_h2">
+          {el.fromFlightCountry}
+        </h2>
         <h2 className="myFlights_fromToDateFromTo_h2">{el.fromFlight}</h2>
       </div>
       <div className="myFlights_fromToDateFromTo">
         <h1 className="myFlights_fromToDateFromTo_h1">To</h1>
+        <h2 className="myFlights_fromToDateFromTo_h2">{el.toFlightCountry}</h2>
         <h2 className="myFlights_fromToDateFromTo_h2">{el.toFlight}</h2>
       </div>
       <div className="myFlights_fromToDateFromTo">
@@ -80,9 +88,18 @@ export default function MyFlights(props) {
               </h1>
             </div>
             <div className="flightsData_fromToDateCreatedAt">
-              <h1 className="flightsData_formToDateCreatedAt_h1">Date:</h1>
+              <h1 className="flightsData_formToDateCreatedAt_h1">Date from:</h1>
               <h1 className="flightsData_formToDateCreatedAt_h1_result_date">
-                2021-2022
+                {changeDateToDatesFromAndDatesTo(props.dateFrom)}
+              </h1>
+            </div>
+            <div className="flightsData_fromToDateCreatedAt">
+              <h1 className="flightsData_formToDateCreatedAt_h1">
+                Date <br />
+                to:
+              </h1>
+              <h1 className="flightsData_formToDateCreatedAt_h1_result_date">
+                {changeDateToDatesFromAndDatesTo(props.dateTo)}
               </h1>
             </div>
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
