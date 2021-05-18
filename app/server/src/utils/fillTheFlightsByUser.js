@@ -100,11 +100,12 @@ const fillTheFlights = async () => {
         const elementJ = flight[j];
         places.push({
           id: elementJ.PlaceId,
+          name: elementJ.CityName,
           skyscannerCode: elementJ.SkyscannerCode,
         });
       }
     }
-
+    console.log(places);
     let flightsResults = [];
     for (let i = 0; i < flightsData.length; i++) {
       const element = flightsData[i];
@@ -131,6 +132,15 @@ const fillTheFlights = async () => {
         (el) => el.id === element.flights.OutboundLeg.DestinationId
       ).skyscannerCode;
 
+      const fromFlightCountryorAirport = places.find(
+        (el) => el.id === element.flights.OutboundLeg.OriginId
+      ).name;
+
+      const toFlightCountryorAirport = places.find(
+        (el) => el.id === element.flights.OutboundLeg.DestinationId
+      ).name;
+      console.log(fromFlightCountryorAirport);
+      console.log(toFlightCountryorAirport);
       const fromDate = TranfromDateToSuitableLink(
         element.flights.OutboundLeg.DepartureDate
       );
@@ -144,9 +154,12 @@ const fillTheFlights = async () => {
         flightToSTART: element.flightTo,
         fromFlight: fromFlight,
         toFlight: toFlight,
+        fromFlightCountry: fromFlightCountryorAirport,
+        toFlightCountry: toFlightCountryorAirport,
         price: element.flights.MinPrice,
         formDate: element.flights.OutboundLeg.DepartureDate,
         toDate: element.flights.InboundLeg.DepartureDate,
+        updated: Date.now(),
         link: `https://www.skyscanner.net/transport/flights/${fromFlight}/${toFlight}/${fromDate}/${toDate}/`,
       });
     }
@@ -179,7 +192,7 @@ const fillTheFlights = async () => {
       await FlightResults.create(element);
     }
 
-    console.log(users[x] + 'Succesfully filled the states');
+    console.log(users[x].email + 'Succesfully filled the states');
     x++;
   }
 

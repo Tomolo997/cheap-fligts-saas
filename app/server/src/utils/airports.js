@@ -22,7 +22,7 @@ async function getCountries(params) {
     const element = countries[yea];
     for (let j = 0; j < element.Cities.length; j++) {
       const element2 = element.Cities[j];
-      ids.push({ name: element2.Name, id: element2.Id });
+      ids.push({ country: element.Name, name: element2.Name, id: element2.Id });
     }
   }
 
