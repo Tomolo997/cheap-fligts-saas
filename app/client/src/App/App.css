@@ -1192,13 +1192,14 @@ html {
     display: flex;
     flex-direction: row;
     width: 30%;
+    cursor: pointer;
+    height: 100%;
     margin-left: auto;
     align-content: center;
     justify-content: center;
   }
   .slider_component_settings {
-    margin-top: 3rem;
-    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -62,7 +62,9 @@ exports.getFlights = async (req, res, next) => {
   for (let index = 0; index < flights.length; index++) {
     const element = flights[index];
 
-    flightsToSend.push(element);
+    if (element.results.length > 0) {
+      flightsToSend.push(element);
+    }
   }
 
   res.status(200).json({
