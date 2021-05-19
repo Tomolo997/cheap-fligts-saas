@@ -1005,6 +1005,8 @@ html {
 }
 .dashboard_mainInfo {
   grid-column: 2/3;
+  grid-row: 1/5;
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   margin-left: 2rem;
@@ -1175,9 +1177,10 @@ html {
     flex-direction: row;
   }
   .dashboard_mainInfo {
-    grid-row: 2;
+    grid-row: 2/4;
     display: flex;
     flex-wrap: wrap;
+    overflow: scroll;
     margin-left: 2rem;
     grid-column: 1;
   }
