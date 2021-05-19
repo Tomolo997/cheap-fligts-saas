@@ -63,9 +63,6 @@ export default function AddAFlight(props) {
 
   const changeFromFlight = (e) => {
     setFlightFrom(e.target.value);
-    console.log(flightFrom, flightTo, inboundDate, outboundDate);
-
-    console.log();
   };
   const changeToFlight = (e) => {
     setFlightTo(e.target.value);

@@ -27,8 +27,6 @@ export default function Dashboard() {
     const fuckingAirports = await axios.get(
       'http://localhost:8000/api/v1/users/airports'
     );
-    console.log(fuckingAirports.data.airports[0].data);
-
     setAirportsFromDB(fuckingAirports.data.airports[0].data);
     setUserId(res.data.id);
     setUserName(res.data.name);
@@ -208,12 +206,10 @@ export default function Dashboard() {
       dateTo={el.dateTo}
     />
   ));
-  const yeA = () => {
-    console.log(myFlightDivs);
-  };
+
   return (
     <>
-      <div onClick={yeA} className={slider ? 'dashboard' : 'dashboard_hide'}>
+      <div className={slider ? 'dashboard' : 'dashboard_hide'}>
         {slider ? fatSlider : thinSlider}
         <div className="dashboard_mainInfo">
           {!loading ? myFlightsShow && myFlightDivs : <Spinner></Spinner>}
