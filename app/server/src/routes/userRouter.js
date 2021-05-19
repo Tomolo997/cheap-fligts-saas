@@ -10,5 +10,6 @@ router.get('/logout', authController.logout);
 //not protected routes
 
 router.get('/getMe', authController.protect, userController.getMe);
+router.get('/airports', authController.protect, userController.getAirports);
 
 module.exports = router;

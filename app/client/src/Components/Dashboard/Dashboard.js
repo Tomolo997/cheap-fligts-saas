@@ -12,6 +12,7 @@ import { async } from 'regenerator-runtime';
 
 export default function Dashboard() {
   const { slider, setSlider } = useContext(AuthContextProvider);
+  const [airportsFromDB, setAirportsFromDB] = useState([]);
   const [myFlightsShow, setMyFlightsShow] = useState(true);
   const [suggestionsShow, setSuggestionsShow] = useState(false);
   const [addAFlightShow, setAddAFlightShow] = useState(false);
@@ -23,6 +24,12 @@ export default function Dashboard() {
   const [userEmail, setUserEmail] = useState('');
   const getMe = async () => {
     const res = await axios.get('http://localhost:8000/api/v1/users/getMe');
+    const fuckingAirports = await axios.get(
+      'http://localhost:8000/api/v1/users/airports'
+    );
+    console.log(fuckingAirports.data.airports[0].data);
+
+    setAirportsFromDB(fuckingAirports.data.airports[0].data);
     setUserId(res.data.id);
     setUserName(res.data.name);
     setUserEmail(res.data.email);
@@ -211,7 +218,10 @@ export default function Dashboard() {
         <div className="dashboard_mainInfo">
           {!loading ? myFlightsShow && myFlightDivs : <Spinner></Spinner>}
           {suggestionsShow && <Suggestions />}
-          {addAFlightShow && <AddAFlight userId={userId} />}
+
+          {addAFlightShow && (
+            <AddAFlight airportsFromDB={airportsFromDB} userId={userId} />
+          )}
         </div>
       </div>
     </>

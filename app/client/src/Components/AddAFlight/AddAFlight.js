@@ -109,7 +109,11 @@ export default function AddAFlight(props) {
             type="text"
             onChange={changeFromFlight}
           >
-            {countrySelected ? <CountriesOption /> : <AirportsSelected />}
+            {countrySelected ? (
+              <CountriesOption />
+            ) : (
+              <AirportsSelected airportsFromDB={props.airportsFromDB} />
+            )}
           </select>
         </div>
         <div className="to_div">
@@ -120,7 +124,11 @@ export default function AddAFlight(props) {
             className="input_addAflight"
             type="text"
           >
-            {countrySelected ? <CountriesOption /> : <AirportsSelected />}
+            {countrySelected ? (
+              <CountriesOption />
+            ) : (
+              <AirportsSelected airportsFromDB={props.airportsFromDB} />
+            )}
           </select>
         </div>
         <div className="dateFrom_div">

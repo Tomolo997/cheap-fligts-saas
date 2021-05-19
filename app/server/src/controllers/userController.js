@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Airports = require('../models/airports');
 const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
@@ -10,5 +11,12 @@ exports.getMe = (req, res, next) => {
     id: req.user.id,
     name: req.user.name,
     email: req.user.email,
+  });
+};
+
+exports.getAirports = async (req, res, next) => {
+  const airports = await Airports.find();
+  res.status(200).json({
+    airports: airports,
   });
 };
