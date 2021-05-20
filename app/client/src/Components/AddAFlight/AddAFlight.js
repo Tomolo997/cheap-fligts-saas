@@ -9,6 +9,7 @@ export default function AddAFlight(props) {
   const [outboundDate, setOutboundDate] = useState('');
   const [inboundDate, setInboundDate] = useState('');
   const [countrySelected, setCountrySelected] = useState(true);
+  const [countrySelectedFrom, setCountrySelectedFrom] = useState(true);
   const [addAFlightError, setAddAFlightError] = useState(false);
   const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
   const addFlight = async () => {
@@ -53,6 +54,12 @@ export default function AddAFlight(props) {
     setCountrySelected(false);
   };
 
+  const countrySelectedClickFrom = (e) => {
+    setCountrySelectedFrom(true);
+  };
+  const airportSelectedClickFrom = (e) => {
+    setCountrySelectedFrom(false);
+  };
   // const changeDateToBeSuitable = (date) => {
   //   const firsSplti = date.split('-');
   //   var b = firsSplti[0];
@@ -78,11 +85,34 @@ export default function AddAFlight(props) {
     <div className="dasboard_addAflight">
       <div className="addAFlights_div">
         <div
+          onClick={countrySelectedClickFrom}
+          className={
+            countrySelectedFrom
+              ? ['addAFlight_Country_div active_selected']
+              : ['addAFlight_Country_div']
+          }
+        >
+          Country
+        </div>
+        <div
+          onClick={airportSelectedClickFrom}
+          className={
+            !countrySelectedFrom
+              ? ['addAFlight_Airport_div active_selected']
+              : ['addAFlight_Airport_div']
+          }
+        >
+          Top Cities
+        </div>
+
+        <div
           onClick={countrySelectedClick}
           className={
             countrySelected
-              ? ['addAFlight_Country_div active_selected']
-              : ['addAFlight_Country_div']
+              ? [
+                  'addAFlight_Country_div addAFlight_Country_div_to  active_selected',
+                ]
+              : ['addAFlight_Country_div addAFlight_Country_div_to']
           }
         >
           Country
@@ -91,8 +121,10 @@ export default function AddAFlight(props) {
           onClick={airportSelectedClick}
           className={
             !countrySelected
-              ? ['addAFlight_Airport_div active_selected']
-              : ['addAFlight_Airport_div']
+              ? [
+                  'addAFlight_Airport_div addAFlight_Airport_div_to active_selected',
+                ]
+              : ['addAFlight_Airport_div addAFlight_Airport_div_to']
           }
         >
           Top Cities
@@ -106,7 +138,7 @@ export default function AddAFlight(props) {
             type="text"
             onChange={changeFromFlight}
           >
-            {countrySelected ? (
+            {countrySelectedFrom ? (
               <CountriesOption />
             ) : (
               <AirportsSelected airportsFromDB={props.airportsFromDB} />

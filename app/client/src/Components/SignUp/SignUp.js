@@ -103,12 +103,18 @@ const SignUp = () => {
     } else if (res.data.status === 'error') {
       if (res.data.error.startsWith('E11000')) {
         setUserAlreadyExistError(true);
+        setShortPasswordError(false);
+        setPasswordsAreNotTheSame(false);
       }
       if (res.data.error.includes('shorter than the minimum allowed length')) {
         setShortPasswordError(true);
+        setUserAlreadyExistError(false);
+        setPasswordsAreNotTheSame(false);
       }
       if (res.data.error.includes('passwordConfirm')) {
         setPasswordsAreNotTheSame(true);
+        setShortPasswordError(false);
+        setUserAlreadyExistError(false);
       }
       console.log(res.data.error);
     }

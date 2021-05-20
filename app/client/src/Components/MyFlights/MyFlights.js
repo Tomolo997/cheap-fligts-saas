@@ -12,16 +12,6 @@ export default function MyFlights(props) {
     return changed1Date[2] + '-' + changed1Date[1] + '-' + changed1Date[0];
   };
 
-  const textAreaRef = useRef(null);
-  function copyToClipboard(e) {
-    textAreaRef.current.select();
-    document.execCommand('copy');
-    // This is just personal preference.
-    // I prefer to not show the whole text area selected.
-    e.target.focus();
-    setCopySuccess('Copied!');
-  }
-
   const results = props.results.map((el, i) => (
     <div key={i} className="myFlights_results">
       <div className="myFlights_fromToDateFromTo">
@@ -53,17 +43,8 @@ export default function MyFlights(props) {
         <h2 className="myFlights_fromToDateFromTo_h2_price">{el.price} €</h2>
       </div>
       <div className="myFlights_fromToDateFromTo_link_div">
-        <p
-          className="myFlights_fromToDateFromTo_link"
-          onClick={copyToClipboard}
-        >
-          link:
-        </p>
-        <p
-          className="myFlights_fromToDateFromTo_paragraph"
-          value={el.link}
-          ref={textAreaRef}
-        >
+        <p className="myFlights_fromToDateFromTo_link">link:</p>
+        <p className="myFlights_fromToDateFromTo_paragraph" value={el.link}>
           {el.link}
         </p>
       </div>

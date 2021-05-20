@@ -105,7 +105,6 @@ const fillTheFlights = async () => {
         });
       }
     }
-    console.log(places);
     let flightsResults = [];
     for (let i = 0; i < flightsData.length; i++) {
       const element = flightsData[i];
