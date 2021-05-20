@@ -52,9 +52,9 @@ exports.singUp = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({
-      error: error,
+    res.json({
+      status: 'error',
+      error: error.message,
     });
   }
 };

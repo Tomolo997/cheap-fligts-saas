@@ -788,7 +788,25 @@ html {
   background-color: white;
   border-radius: 10px;
 }
-
+.user_already_exists_error {
+  font-size: 2rem;
+  color: red;
+  background-color: white;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+.password_too_short_error {
+  font-size: 1.2rem;
+  color: red;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.2rem;
+}
+.unactive_error {
+  display: none;
+}
 .inputs_div {
   width: 80%;
   height: 80%;

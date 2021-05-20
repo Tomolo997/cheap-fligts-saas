@@ -5,6 +5,9 @@ import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
 import FooterSignUp from '../FooterSignUp/FooterSignUp';
 import SignUpSuccess from '../signUpSuccess/signUpSuccess';
 import axios from 'axios';
+import UserAlreadyExists from '../Errors/UserAlreadyExists';
+import ShortPasswordError from '../Errors/ShortPasswordError';
+import PasswordsAreNotTheSame from '../Errors/PasswordsAreNotTheSame';
 import '../../App/App.css';
 import AuthContext from '../../context/AuthContext';
 const SignUp = () => {
@@ -17,6 +20,8 @@ const SignUp = () => {
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState('');
   const [userAlreadyExistError, setUserAlreadyExistError] = useState(false);
+  const [shortPasswordError, setShortPasswordError] = useState(false);
+  const [passwordsAreNotTheSame, setPasswordsAreNotTheSame] = useState(false);
   const { getLoggedIn } = useContext(AuthContext);
   const changeLoginPage = (e) => {
     e.preventDefault();
@@ -70,47 +75,42 @@ const SignUp = () => {
       console.log('error', error.message);
     }
   };
-  const logoutBtn = async () => {
-    try {
-      const res = await axios({
-        method: 'GET',
-        url: 'http://localhost:3000/api/v1/users/logout',
-      });
-      if (res.data.status === 'success') {
-        location.reload(true);
-      }
-      getLoggedIn();
-    } catch (error) {
-      console.log(error.response);
-      showAlert('error', 'error logging out ! try again');
-    }
-  };
 
   const signUpUser = async (e) => {
     //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
     e.preventDefault();
 
-    try {
-      const res = await axios({
-        method: 'POST',
-        url: 'http://localhost:8000/api/v1/users/signup',
-        data: {
-          name: username,
-          email: emailSignUp,
-          password: passwordSignUp,
-          passwordConfirm: passwordConfirmSignUp,
-        },
-      });
-      if (res.data.status === 'success') {
-        setSingUpSuccessfull(true);
-        console.log('success', 'logged in successfully!');
+    const res = await axios({
+      method: 'POST',
+      url: 'http://localhost:8000/api/v1/users/signup',
+      data: {
+        name: username,
+        email: emailSignUp,
+        password: passwordSignUp,
+        passwordConfirm: passwordConfirmSignUp,
+      },
+    });
+    if (res.data.status === 'success') {
+      setSingUpSuccessfull(true);
+      console.log('success', 'logged in successfully!');
 
-        window.setTimeout(() => {
-          location.assign('/dashboard');
-        }, 1500);
+      window.setTimeout(() => {
+        location.assign('/dashboard');
+      }, 1500);
+      setUserAlreadyExistError(false);
+      setShortPasswordError(false);
+      setPasswordsAreNotTheSame(false);
+    } else if (res.data.status === 'error') {
+      if (res.data.error.startsWith('E11000')) {
+        setUserAlreadyExistError(true);
       }
-    } catch (error) {
-      console.log(error);
+      if (res.data.error.includes('shorter than the minimum allowed length')) {
+        setShortPasswordError(true);
+      }
+      if (res.data.error.includes('passwordConfirm')) {
+        setPasswordsAreNotTheSame(true);
+      }
+      console.log(res.data.error);
     }
   };
 
@@ -205,6 +205,18 @@ const SignUp = () => {
               placeholder="Password"
             />
           </div>
+          <div
+            className={
+              shortPasswordError
+                ? 'password_too_short_error'
+                : 'unactive_error password_too_short_error'
+            }
+          >
+            {shortPasswordError ? (
+              <ShortPasswordError></ShortPasswordError>
+            ) : null}
+          </div>
+
           <div className="input_div">
             <label className="label_input" htmlFor="passwordConfirm">
               Password Confirm
@@ -217,6 +229,17 @@ const SignUp = () => {
               placeholder="Password confirm"
             />
           </div>
+          <div
+            className={
+              passwordsAreNotTheSame
+                ? 'password_too_short_error'
+                : 'unactive_error password_too_short_error'
+            }
+          >
+            {passwordsAreNotTheSame ? (
+              <PasswordsAreNotTheSame></PasswordsAreNotTheSame>
+            ) : null}
+          </div>
           <button onClick={signUpUser} className="singup_button" type="submit">
             SIGN UP
           </button>
@@ -226,6 +249,17 @@ const SignUp = () => {
               Login here
             </button>{' '}
           </p>
+          <div
+            className={
+              userAlreadyExistError
+                ? 'user_already_exists_error'
+                : 'unactive_error user_already_exists_error'
+            }
+          >
+            {userAlreadyExistError ? (
+              <UserAlreadyExists></UserAlreadyExists>
+            ) : null}
+          </div>
         </div>
       </form>
     </div>
