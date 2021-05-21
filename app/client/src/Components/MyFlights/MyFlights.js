@@ -1,15 +1,15 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import '../../App/App.css';
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
+import "../../App/App.css";
 export default function MyFlights(props) {
   const changeDate = (date) => {
-    const changed1Date = date.slice(0, 10).split('-');
-    return changed1Date[2] + '/' + changed1Date[1];
+    const changed1Date = date.slice(0, 10).split("-");
+    return changed1Date[2] + "/" + changed1Date[1];
   };
   const changeDateToDatesFromAndDatesTo = (date) => {
-    const changed1Date = date.slice(0, 10).split('-');
-    return changed1Date[2] + '-' + changed1Date[1] + '-' + changed1Date[0];
+    const changed1Date = date.slice(0, 10).split("-");
+    return changed1Date[2] + "-" + changed1Date[1] + "-" + changed1Date[0];
   };
 
   const results = props.results.map((el, i) => (
@@ -86,7 +86,7 @@ export default function MyFlights(props) {
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
               <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
                 Today found {props.results.length} flights
-              </h1>{' '}
+              </h1>{" "}
             </div>
           </div>
         </div>

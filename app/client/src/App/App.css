@@ -1069,7 +1069,7 @@ html {
   z-index: 10;
 }
 .slider_component:before {
-  content: '';
+  content: "";
   display: block;
   background-color: royalblue;
   position: absolute;
@@ -1236,7 +1236,7 @@ html {
     display: none;
   }
   .slider_component:before {
-    content: '';
+    content: "";
     display: block;
     background-color: royalblue;
     position: absolute;
@@ -1255,11 +1255,12 @@ html {
 
 /* dashboard my flights */
 .dashboard_myFlights {
-  width: 62rem;
+  width: 61rem;
   margin: 7px;
   border-radius: 15px;
   height: 25rem;
   display: flex;
+  justify-content: center;
   background-color: white;
 }
 
@@ -1566,7 +1567,7 @@ html {
 .loader:before,
 .loader:after {
   position: absolute;
-  content: '';
+  content: "";
 }
 .loader:before {
   width: 5.2em;
