@@ -1,9 +1,9 @@
 import React from "react";
 import "../../App/App.css";
 
-export default function Pricing() {
+export default function Pricing(props) {
   return (
-    <div className="Pricing">
+    <div className="Pricing" ref={props.myRefToPricing}>
       <h1 className="pricing_title">PRICING</h1>
       <div className="pricing_normal pricing_div">
         <div className="pricing_package">Normal</div>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import '../../App/App.css';
+import React, { useState } from "react";
+import "../../App/App.css";
 
-export default function Contact() {
+export default function Contact(props) {
   const [contacted, setContacted] = useState(false);
   const thankTheCustomer = (
     <h1 className="contact_h1">
@@ -15,7 +15,7 @@ export default function Contact() {
   };
 
   const contactPage = (
-    <form action="" className="contact_form">
+    <form action="" className="contact_form" ref={props.myRefToContact}>
       <h1 className="contact_h1">Get in Touch with us</h1>
       <label className="contact_label" htmlFor="name">
         Full Name
