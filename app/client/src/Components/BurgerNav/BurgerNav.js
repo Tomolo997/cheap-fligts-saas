@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
-import "../../App/App.css";
-import AuthContextProvider from "../../context/AuthContext";
+import React, { useState, useContext } from 'react';
+import '../../App/App.css';
+import AuthContextProvider from '../../context/AuthContext';
 
 export default function BurgerNav() {
   const [burger, setBurger] = useState(false);
-  const [hamburgerClass, setHamburgerClass] = useState(["container"]);
+  const [hamburgerClass, setHamburgerClass] = useState(['container']);
   const { slider, setSlider } = useContext(AuthContextProvider);
 
   function toggleBurger() {
     if (burger) {
-      let container = "container change";
+      let container = 'container change';
       setHamburgerClass((hamburgerClass) => [...hamburgerClass, container]);
     } else {
-      let container = "container";
+      let container = 'container';
       setHamburgerClass((hamburgerClass) => [...hamburgerClass, container]);
     }
 
@@ -38,5 +38,5 @@ export default function BurgerNav() {
       </div>
     </div>
   );
-  return <>{slider ? fatSlider : thinSlider}</>;
+  return <>{slider ? null : null}</>;
 }

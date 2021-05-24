@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../App/App.css';
 import axios from 'axios';
 import AirportsSelected from '../AirportsSelected/AirportsSelected';
@@ -11,6 +11,7 @@ export default function AddAFlight(props) {
   const [countrySelected, setCountrySelected] = useState(true);
   const [countrySelectedFrom, setCountrySelectedFrom] = useState(true);
   const [addAFlightError, setAddAFlightError] = useState(false);
+  const [minMonth, setMinMonth] = useState(1);
   const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
   const addFlight = async () => {
     //   "flightsData":[{
@@ -21,7 +22,6 @@ export default function AddAFlight(props) {
     // }
     // ],
     // "user":"607077e6fd1b8f0b18608afd"
-
     if (
       flightFrom.length > 1 &&
       flightTo.length > 1 &&
@@ -164,8 +164,10 @@ export default function AddAFlight(props) {
           <h1 className="addAFlight_h1">Date to </h1>
           <input
             onChange={changeinboundDate}
-            type="date"
+            type="month"
             id="inboundDate"
+            placeholder="foo"
+            className="input_date"
             name="inboundDate"
           />
         </div>
@@ -173,7 +175,8 @@ export default function AddAFlight(props) {
           <h1 className="addAFlight_h1">Date from</h1>
           <input
             onChange={changeoutboundDate}
-            type="date"
+            type="month"
+            className="input_date"
             id="outboundDate"
             name="outboundDate"
           />

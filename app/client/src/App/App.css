@@ -966,13 +966,13 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 90vh;
-  width: 90vw;
+  height: 100vh;
+  width: 100vw;
   overflow-y: scroll;
   display: grid;
-  grid-template-columns: 35rem 1fr;
+  grid-template-columns: 30rem 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  background: #ecf0ff;
+  background: white;
   transition: 1s all;
 }
 
@@ -981,8 +981,8 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 90vh;
-  width: 90vw;
+  height: 100vh;
+  width: 100vw;
   transition: 2s all;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   display: grid;
@@ -991,22 +991,22 @@ html {
 }
 
 .slider {
-  background-color: #e4eaff;
+  background-color: #ffd662ff;
   display: flex;
   transition: 1s all;
   align-items: center;
   flex-direction: column;
-  height: 90vh;
-  width: 35rem;
+  height: 100vh;
+  width: 30rem;
   position: fixed;
 }
 .slider_thin {
-  background-color: #e4eaff;
+  background-color: #ffd662ff;
   display: flex;
   transition: 1s all;
   align-items: center;
   flex-direction: column;
-  height: 90vh;
+  height: 100vh;
   width: 10rem;
   position: fixed;
 }
@@ -1024,8 +1024,10 @@ html {
 .dashboard_mainInfo {
   grid-column: 2/3;
   grid-row: 1/5;
+  align-items: center;
   overflow-y: auto;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-left: 2rem;
 }
@@ -1040,8 +1042,8 @@ html {
 }
 
 .slider_component_h1 {
-  font-size: 3rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 500;
   z-index: 10;
 }
 .slider_component {
@@ -1065,13 +1067,13 @@ html {
 }
 
 .slider_component:hover {
-  color: white;
+  color: rgb(0, 0, 0);
   z-index: 10;
 }
 .slider_component:before {
   content: '';
   display: block;
-  background-color: royalblue;
+  background-color: rgb(255, 230, 132);
   position: absolute;
   width: 0px;
   top: 0;
@@ -1101,7 +1103,15 @@ html {
   justify-content: center;
   position: relative;
 }
-
+.slider_component_username {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  position: relative;
+  z-index: 10;
+}
 /* Burger navigation */
 .slider_hamburger {
   margin-left: 15rem;
@@ -1181,14 +1191,14 @@ html {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 10rem 1fr 1fr 1fr;
-    background: #ecf0ff;
+    background: white;
     transition: 1s all;
   }
   .slider {
     grid-row: 1/2;
     height: 10rem;
     width: 100%;
-    background-color: #e4eaff;
+    background-color: #ffd662ff;
     display: flex;
     transition: 1s all;
     align-items: center;
@@ -1232,13 +1242,25 @@ html {
     font-weight: 400;
     z-index: 10;
   }
+  .slider_component_username {
+    width: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+    position: relative;
+    z-index: 10;
+    margin-left: 2rem;
+  }
+
   .rights_reserved {
     display: none;
   }
   .slider_component:before {
     content: '';
     display: block;
-    background-color: royalblue;
+    background-color: rgb(255, 230, 132);
     position: absolute;
     width: 100%;
     top: 0;
@@ -1273,22 +1295,31 @@ html {
   display: flex;
 }
 .myFlights_flightData_div {
-  width: 50%;
+  width: 30%;
   margin: 1rem;
 }
 .myFlights_flightResults_div {
   overflow-y: scroll;
-  padding: 1rem;
-  margin-right: 1rem;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   height: 25rem;
+  width: 40rem;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .myFlights_flightResults_div {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.input_date {
+  border: 1px solid black;
+  padding: 1rem;
+  height: 6rem;
+  border-radius: 10px;
+}
+.input_date:focus {
+  outline: none;
 }
 .flightsData {
   height: 100%;
@@ -1299,13 +1330,13 @@ html {
   display: flex;
   height: 5rem;
   align-items: center;
-  background-color: #e4eaff;
+  background-color: white;
   box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
   border-radius: 10px;
   margin: 0.5rem;
 }
 .flightsData_formToDateCreatedAt_h1 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 100;
   margin-left: 0.4rem;
 }
@@ -1341,7 +1372,7 @@ html {
   box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background-color: #e4eaff;
+  background-color: rgba(255, 213, 98, 0.103);
   border-radius: 5px;
 }
 .myFlights_fromToDateFromTo_h1 {
@@ -1391,19 +1422,19 @@ html {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #e4eaff;
+  background: rgba(255, 213, 98, 0.247);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #c3cfff;
+  background: #ffd662ff;
 }
 
 /* dashboard add a flight */
 .dasboard_addAflight {
   width: 100%;
-  margin-top: 10rem;
+  margin-top: 0rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1462,7 +1493,7 @@ html {
 .addAFlight_addButton {
   grid-row: 7/9;
   grid-column: 3/5;
-  background-color: #e4eaff;
+  background-color: rgba(255, 213, 98, 0.397);
   border: none;
   cursor: pointer;
   border-radius: 10px;
@@ -1486,9 +1517,12 @@ html {
   width: 50%;
   background-color: white;
   border-radius: 7px;
+  margin-top: 1rem;
   display: flex;
+  font-size: 1.5rem;
   justify-content: center;
   align-items: center;
+  transition: 0.2s all;
   cursor: pointer;
 }
 .addAFlight_Country_div_to {
@@ -1507,14 +1541,18 @@ html {
   grid-column: 1/4;
   background-color: white;
   border-radius: 7px;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
   margin-left: auto;
   cursor: pointer;
+  transition: 0.2s all;
 }
 .active_selected {
-  background-color: #e4eaff;
+  background-color: rgba(255, 213, 98, 0.397);
+  margin-top: 0rem;
 }
 @media only screen and (max-width: 1600px) {
   .addAFlights_div {
@@ -1612,4 +1650,63 @@ html {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.suggestions {
+  display: flex;
+  width: 60vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 70vh;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+  background-color: rgb(255, 255, 255);
+}
+.suggestions_title {
+  margin-bottom: auto;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.suggestion_title_h1 {
+  font-size: 4rem;
+  font-weight: 100;
+}
+.suggestion_mainInfo {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.suggets_main_h1 {
+  margin-bottom: auto;
+  font-size: 3rem;
+  font-weight: 100;
+}
+
+.suggest_main {
+  width: 40%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+}
+.suggest_main_p {
+  font-size: 1.8rem;
+  width: 60%;
+  text-align: center;
+  margin-bottom: 6rem;
+}
+.suggest_main_p span {
+  font-size: 2.4rem;
 }

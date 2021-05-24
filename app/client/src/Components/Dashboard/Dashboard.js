@@ -136,12 +136,11 @@ export default function Dashboard() {
     <div className="slider_thin">
       <div className="dashboard_slider_header">
         <DashboardLogo />
-        <BurgerNav />
       </div>{' '}
       <div className="slider_mainComponents" style={{ display: 'none' }}>
         <div className="slider_component slider_component_hover">
           {' '}
-          <h1 className="slider_component_h1">My flights</h1>
+          <h1 className="slider_component_h1">Flights</h1>
         </div>
         <div className="slider_component slider_component_hover">
           {' '}
@@ -176,12 +175,16 @@ export default function Dashboard() {
         <BurgerNav />
       </div>{' '}
       <div className="slider_mainComponents">
+        <div className="slider_component_username">
+          {' '}
+          <h1 className="slider_component_h1_username">Hello {userName}</h1>
+        </div>
         <div
           onClick={showMyFlights}
           className="slider_component slider_component_hover"
         >
           {' '}
-          <h1 className="slider_component_h1">My flights</h1>
+          <h1 className="slider_component_h1">Flights</h1>
         </div>
         <div
           onClick={showSuggestions}
