@@ -49,7 +49,7 @@ const dateFormatForSkyscanner = (date) => {
     '11',
     '12',
   ];
-  return date.getFullYear();
+  return date.getFullYear() + '-' + months[date.getMonth()];
   // + '-' + months[date.getMonth()]
 };
 
@@ -82,7 +82,7 @@ const fillTheFlights = async () => {
     for (let i = 0; i < flightsData.length; i++) {
       const element = flightsData[i];
       const { flightFrom, flightTo, inboundDate, outboundDate } = element;
-      console.log(flightFrom, flightTo, inboundDate, outboundDate);
+      console.log(flightFrom, flightTo, outboundDate, inboundDate);
       try {
         const data = await axios.get(
           `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
@@ -90,6 +90,7 @@ const fillTheFlights = async () => {
         element.results = data.data;
       } catch (error) {
         console.log(error);
+        continue;
       }
     }
     //loop through the places and place them into the array inside IDs
@@ -138,8 +139,6 @@ const fillTheFlights = async () => {
       const toFlightCountryorAirport = places.find(
         (el) => el.id === element.flights.OutboundLeg.DestinationId
       ).name;
-      console.log(fromFlightCountryorAirport);
-      console.log(toFlightCountryorAirport);
       const fromDate = TranfromDateToSuitableLink(
         element.flights.OutboundLeg.DepartureDate
       );
@@ -167,7 +166,6 @@ const fillTheFlights = async () => {
       const element = currentUserflights[i];
       for (let index = 0; index < element.flightsData.length; index++) {
         const element2 = element.flightsData[index];
-        console.log(element2);
         flightsForDB.push({
           flightID: element2._id,
           results: [],
