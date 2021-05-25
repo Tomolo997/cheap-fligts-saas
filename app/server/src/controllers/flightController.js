@@ -1,6 +1,6 @@
-const User = require("../models/userModel");
-const Flights = require("../models/fligthsModel");
-const FlightResults = require("../models/flightsResult");
+const User = require('../models/userModel');
+const Flights = require('../models/fligthsModel');
+const FlightResults = require('../models/flightsResult');
 
 exports.addFlight = async (req, res, next) => {
   try {
@@ -35,7 +35,7 @@ exports.addFlight = async (req, res, next) => {
     );
     console.log(flightAdded);
     res.status(201).json({
-      status: "success",
+      status: 'success',
       data: {
         userID,
       },
@@ -44,7 +44,7 @@ exports.addFlight = async (req, res, next) => {
     //2)Call the
   } catch (error) {
     res.status(400).json({
-      status: "error",
+      status: 'error',
     });
   }
 };
@@ -85,7 +85,7 @@ exports.getFlights = async (req, res, next) => {
   }
 
   res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       flights: flightsToSend,
       initData: userFlightsInit,
@@ -93,4 +93,37 @@ exports.getFlights = async (req, res, next) => {
     },
   });
   //get user flights results
+};
+
+exports.deleteFlight = async (req, res, next) => {
+  try {
+    //1) find the user
+    const userID = await User.findById(req.body.user);
+
+    const flightResults = await FlightResults.findOne({ id: userID._id });
+
+    await Flights.updateOne(
+      { user: userID },
+      { $pull: { flightsData: { _id: req.body.flightID } } }
+    );
+
+    await FlightResults.findOneAndRemove(
+      { user: userID },
+      { _id: req.body.flightResultsId }
+    );
+
+    res.status(201).json({
+      status: 'success',
+      data: {
+        message: 'succesfully deleted your flight',
+      },
+    });
+
+    //2)Call the
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      status: 'error',
+    });
+  }
 };

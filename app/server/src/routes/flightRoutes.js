@@ -9,5 +9,10 @@ router.get(
   flightController.getFlights
 );
 router.post('/addFlight', authController.protect, flightController.addFlight);
+router.delete(
+  '/deleteFlight',
+  authController.protect,
+  flightController.deleteFlight
+);
 
 module.exports = router;

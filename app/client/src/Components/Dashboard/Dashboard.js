@@ -23,6 +23,8 @@ export default function Dashboard() {
   const [addAFlightShow, setAddAFlightShow] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flightsResults, setFlightsResults] = useState([]);
+  const [deletedFlightID, setDeletedFlightID] = useState('');
+  const [deletedflightResultsId, setDeletedflightResultsId] = useState('');
   const [userId, setUserId] = useState('');
   const [fromToStart, setFromToStart] = useState([]);
   const [userName, setUserName] = useState('');
@@ -38,6 +40,19 @@ export default function Dashboard() {
     setUserEmail(res.data.email);
   };
 
+  const deleteFlight = async () => {
+    const res = await axios.delete(
+      'http://localhost:8000/api/v1/flights/deleteFlight',
+      {
+        data: {
+          user: userId,
+          flightID: deletedFlightID,
+          flightResultsId: deletedflightResultsId,
+        },
+      }
+    );
+  };
+
   const getUserFlights = async () => {
     const res = await axios.get(
       'http://localhost:8000/api/v1/flights/getMyFlights'
@@ -51,19 +66,20 @@ export default function Dashboard() {
     const fromToArray = [];
     for (let index = 0; index < flightResults.length; index++) {
       const element = flightResults[index];
-
+      console.log(element);
       const findFlight = initData.find((el) => el._id === element.flightID);
-      console.log(findFlight);
       fromToArray.push({
         fromStart: element.results[0].flightFromSTART,
         toStart: element.results[0].flightToSTART,
         results: element.results,
-        flightId: element.id,
+        flightResultsID: element.id,
+        flightId: element.flightID,
         dateTo: findFlight.inboundDate,
         dateFrom: findFlight.outboundDate,
       });
     }
-    console.log(flightResults);
+    console.log('flight results', flightResults);
+    console.log('No results', noResults);
     for (let i = 0; i < noResults.length; i++) {
       const element = noResults[i];
       fromToArray.push({
@@ -100,7 +116,7 @@ export default function Dashboard() {
     //     flightId: 'no results :(',
     //   });
     // }
-    console.log(fromToArray);
+    console.log('from to start', fromToArray);
     setFromToStart(fromToArray);
     setLoading(false);
   };
@@ -238,6 +254,10 @@ export default function Dashboard() {
   const myFlightDivs = fromToStart.map((el) => (
     <MyFlights
       key={el.flightId}
+      flightId={el.flightID}
+      user={userId}
+      id={el._id}
+      deleteFlight={deleteFlight}
       from={el.fromStart}
       to={el.toStart}
       results={el.results}
