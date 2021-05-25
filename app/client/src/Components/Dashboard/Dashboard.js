@@ -9,9 +9,11 @@ import AuthContextProvider from '../../context/AuthContext';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
 import { async } from 'regenerator-runtime';
+import LoginSuccess from '../LoginSuccess/LoginSuccess';
 
 export default function Dashboard() {
   const { slider, setSlider } = useContext(AuthContextProvider);
+  const [loginSuccessfull, setLoginSuccessfull] = useState(false);
   const [airportsFromDB, setAirportsFromDB] = useState([]);
   const [myFlightsShow, setMyFlightsShow] = useState(true);
   const [suggestionsShow, setSuggestionsShow] = useState(false);
@@ -110,6 +112,7 @@ export default function Dashboard() {
       const res = await axios.get('http://localhost:8000/api/v1/users/logout');
       console.log(res);
       if (res.data.status === 'success') {
+        setLoginSuccessfull(true);
         setTimeout(() => location.assign('/'), 750);
       }
       getLoggedIn();
@@ -243,6 +246,13 @@ export default function Dashboard() {
       <div className={slider ? 'dashboard' : 'dashboard_hide'}>
         {slider ? fatSlider : thinSlider}
         <div className="dashboard_mainInfo">
+          {loginSuccessfull ? (
+            <LoginSuccess
+              message={
+                'Log out succesfull, redirecting you to the landing page 😀 '
+              }
+            />
+          ) : null}
           {!loading ? myFlightsShow && myFlightDivs : <Spinner></Spinner>}
           {suggestionsShow && <Suggestions />}
 

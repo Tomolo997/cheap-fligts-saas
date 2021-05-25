@@ -10,10 +10,12 @@ import ShortPasswordError from '../Errors/ShortPasswordError';
 import PasswordsAreNotTheSame from '../Errors/PasswordsAreNotTheSame';
 import '../../App/App.css';
 import AuthContext from '../../context/AuthContext';
+import LoginSuccess from '../LoginSuccess/LoginSuccess';
 const SignUp = () => {
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [singUpSuccessfull, setSingUpSuccessfull] = useState(false);
+  const [loginSuccessfull, setLoginSuccessfull] = useState(false);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [emailSignUp, setEmailSignUp] = useState('');
@@ -67,7 +69,7 @@ const SignUp = () => {
     );
 
     if (res.data.status === 'success') {
-      console.log('success', 'logged in successfully!');
+      setLoginSuccessfull(true);
       window.setTimeout(() => {
         location.assign('/dashboard');
       }, 1500);
@@ -122,6 +124,11 @@ const SignUp = () => {
 
   const loginPage = (
     <div className="sign_up-form_div">
+      {loginSuccessfull ? (
+        <LoginSuccess
+          message={'Logged in succesfully, redirecting to your dashboard 😀'}
+        />
+      ) : null}
       <form action="" className="sign_up-form">
         <h1 className="h1_signup">Log in</h1>
         <div className="inputs_div">
