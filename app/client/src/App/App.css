@@ -1066,7 +1066,8 @@ html {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  background: url(../../public/Images/airplane.svg);
+  justify-content: flex-start;
   height: 10rem;
   position: relative;
   z-index: 10;
@@ -1725,4 +1726,20 @@ html {
 }
 .suggest_main_p span {
   font-size: 2.4rem;
+}
+
+.svg_dashboard {
+  color: black;
+  width: 20px;
+  height: 20px;
+  fill: #000000;
+  z-index: 200;
+  margin-right: 2rem;
+  margin-left: 8rem;
+}
+
+@media only screen and (max-width: 1600px) {
+  .svg_dashboard {
+    margin-left: 3rem;
+  }
 }

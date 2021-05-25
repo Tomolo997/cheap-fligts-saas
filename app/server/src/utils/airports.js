@@ -432,6 +432,7 @@ const fillAirportsData = async () => {
     { country: 'France', name: 'Toulouse', id: 'TOUS' },
     { country: 'France', name: 'Tours', id: 'TOUR' },
     { country: 'Libya', name: 'Tripoli', id: 'TIPA' },
+    { country: 'Italy', name: 'Trieste', id: 'TRS' },
     { country: 'Norway', name: 'Tromso', id: 'TROM' },
     { country: 'Norway', name: 'Trondheim', id: 'TRON' },
     { country: 'Russia', name: 'Tula', id: 'TULA' },
