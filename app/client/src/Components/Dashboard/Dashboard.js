@@ -10,7 +10,9 @@ import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
 import { async } from 'regenerator-runtime';
 import LoginSuccess from '../LoginSuccess/LoginSuccess';
-import AirportLogo from '../../../public/Images/airplane.svg';
+import AirportSVG from '../../../public/Images/airplane.svg';
+import NewMessageSVG from '../../../public/Images/new-message.svg';
+import AddAFlightSVG from '../../../public/Images/circle-with-plus.svg';
 
 export default function Dashboard() {
   const { slider, setSlider } = useContext(AuthContextProvider);
@@ -188,7 +190,7 @@ export default function Dashboard() {
           className="slider_component slider_component_hover"
         >
           {' '}
-          <AirportLogo className="svg_dashboard"></AirportLogo>
+          <AirportSVG className="svg_dashboard"></AirportSVG>
           <h1 className="slider_component_h1">Flights</h1>
         </div>
         <div
@@ -196,7 +198,7 @@ export default function Dashboard() {
           className="slider_component slider_component_hover"
         >
           {' '}
-          <AirportLogo className="svg_dashboard"></AirportLogo>
+          <NewMessageSVG className="svg_dashboard"></NewMessageSVG>
           <h1 className="slider_component_h1">Suggestions</h1>
         </div>
         <div
@@ -204,7 +206,7 @@ export default function Dashboard() {
           className="slider_component slider_component_hover"
         >
           {' '}
-          <AirportLogo className="svg_dashboard"></AirportLogo>
+          <AddAFlightSVG className="svg_dashboard"></AddAFlightSVG>
           <h1 className="slider_component_h1">Add Flight</h1>
         </div>
       </div>

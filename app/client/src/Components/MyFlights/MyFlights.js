@@ -1,15 +1,47 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import Spinner from "../Spinner/Spinner";
-import "../../App/App.css";
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
+import '../../App/App.css';
 export default function MyFlights(props) {
   const changeDate = (date) => {
-    const changed1Date = date.slice(0, 10).split("-");
-    return changed1Date[2] + "/" + changed1Date[1];
+    const changed1Date = date.slice(0, 10).split('-');
+    return changed1Date[2] + '/' + changed1Date[1];
   };
   const changeDateToDatesFromAndDatesTo = (date) => {
-    const changed1Date = date.slice(0, 10).split("-");
-    return changed1Date[2] + "-" + changed1Date[1] + "-" + changed1Date[0];
+    const dateMili = new Date(date);
+    if (dateMili.getDate() == 1 && dateMili.getMonth() == 0) {
+      const changeDate = date.slice(0, 10).split('-');
+      return 'Year of ' + changeDate[0];
+    } else {
+      const changed1Date = date.slice(0, 10).split('-');
+      return changed1Date[2] + '-' + changed1Date[1] + '-' + changed1Date[0];
+    }
+  };
+  const changeDateToDatesFromAndDatesToTOO = (date) => {
+    const dateMili = new Date(date);
+    if (dateMili.getDate() == 1 && dateMili.getMonth() == 0) {
+      const changeDate = date.slice(0, 10).split('-');
+      return 'Year of ' + changeDate[0];
+    } else {
+      const changed1Date = date.slice(0, 10).split('-');
+
+      const month = [
+        '31',
+        '28',
+        '31',
+        '30',
+        '31',
+        '30',
+        '31',
+        '31',
+        '30',
+        '31',
+        '30',
+        '31',
+      ];
+      const StringMonth = month[dateMili.getMonth() + 1];
+      return StringMonth + '-' + changed1Date[1] + '-' + changed1Date[0];
+    }
   };
 
   const results = props.results.map((el, i) => (
@@ -80,13 +112,13 @@ export default function MyFlights(props) {
                 to:
               </h1>
               <h1 className="flightsData_formToDateCreatedAt_h1_result_date">
-                {changeDateToDatesFromAndDatesTo(props.dateTo)}
+                {changeDateToDatesFromAndDatesToTOO(props.dateTo)}
               </h1>
             </div>
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
               <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
                 Today found {props.results.length} flights
-              </h1>{" "}
+              </h1>{' '}
             </div>
           </div>
         </div>

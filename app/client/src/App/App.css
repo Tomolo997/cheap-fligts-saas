@@ -1483,6 +1483,10 @@ html {
 }
 .dateTo_div {
   grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   grid-column: 5/9;
 }
 .input_addAflight {
@@ -1500,6 +1504,9 @@ html {
   font-size: 3rem;
   font-weight: 200;
   margin-top: 1rem;
+}
+.alingText_h1 {
+  text-align: center;
 }
 .dateFrom_div {
   margin-top: 1rem;
@@ -1729,10 +1736,9 @@ html {
 }
 
 .svg_dashboard {
-  color: black;
   width: 20px;
   height: 20px;
-  fill: #000000;
+  fill: #ffffff;
   z-index: 200;
   margin-right: 2rem;
   margin-left: 8rem;
@@ -1742,4 +1748,18 @@ html {
   .svg_dashboard {
     margin-left: 3rem;
   }
+}
+
+.button_thisyear {
+  width: 40%;
+  background-color: rgba(255, 213, 98, 0.397);
+  border: none;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-left: 2rem;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.button_thisyear:hover {
+  transform: translateY(-2px);
 }

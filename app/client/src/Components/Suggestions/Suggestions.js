@@ -14,7 +14,7 @@ export default function Suggestions() {
           <p className="suggest_main_p">
             <span>1.</span> To get the best results of the flights from
             country/airport to country/airport, the duration of search dates
-            should preferably be 1-2 months.
+            should preferably be 1 month.
             <br />
             <br />
             <span>2.</span> the high frequency flying destination may not be

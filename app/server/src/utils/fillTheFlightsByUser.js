@@ -49,7 +49,15 @@ const dateFormatForSkyscanner = (date) => {
     '11',
     '12',
   ];
-  return date.getFullYear() + '-' + months[date.getMonth()];
+  console.log(
+    date.getFullYear() + '-' + months[date.getMonth()] + '-' + date.getDate()
+  );
+  if (date.getDate() == 1 && date.getMonth() == 0) {
+    return date.getFullYear();
+  } else {
+    return date.getFullYear() + '-' + months[date.getMonth()];
+  }
+
   // + '-' + months[date.getMonth()]
 };
 

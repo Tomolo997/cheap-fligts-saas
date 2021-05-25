@@ -6,12 +6,13 @@ import CountriesOption from '../CountriesOption/CountriesOption';
 export default function AddAFlight(props) {
   const [flightFrom, setFlightFrom] = useState('');
   const [flightTo, setFlightTo] = useState('');
-  const [outboundDate, setOutboundDate] = useState('');
-  const [inboundDate, setInboundDate] = useState('');
+  const [outboundDate, setOutboundDate] = useState('2021');
+  const [inboundDate, setInboundDate] = useState('2021');
   const [countrySelected, setCountrySelected] = useState(true);
   const [countrySelectedFrom, setCountrySelectedFrom] = useState(true);
   const [addAFlightError, setAddAFlightError] = useState(false);
   const [minMonth, setMinMonth] = useState(1);
+  const [showMonth, setShowMonth] = useState(false);
   const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
   const addFlight = async () => {
     //   "flightsData":[{
@@ -42,6 +43,7 @@ export default function AddAFlight(props) {
       await axios.post('http://localhost:8000/api/v1/flights/addFlight', data);
       setAddAFlightCongrats(true);
       setAddAFlightError(false);
+      setTimeout(() => setAddAFlightCongrats(false), 1500);
     } else {
       setAddAFlightError(true);
     }
@@ -76,10 +78,33 @@ export default function AddAFlight(props) {
   };
   const changeoutboundDate = (e) => {
     setOutboundDate(e.target.value);
-  };
-  const changeinboundDate = (e) => {
     setInboundDate(e.target.value);
   };
+  const changeToYear = (e) => {
+    const date = new Date();
+    const thisYear = date.getFullYear();
+    setOutboundDate(String(thisYear));
+    setInboundDate(String(thisYear));
+    console.log(outboundDate, inboundDate);
+    setShowMonth(false);
+  };
+  const changeToMonth = () => {
+    setShowMonth(true);
+  };
+
+  const monthDiv = (
+    <>
+      {' '}
+      <h1 className="addAFlight_h1">For whole month</h1>
+      <input
+        onChange={changeoutboundDate}
+        type="month"
+        className="input_date"
+        id="outboundDate"
+        name="outboundDate"
+      />
+    </>
+  );
 
   return (
     <div className="dasboard_addAflight">
@@ -160,26 +185,24 @@ export default function AddAFlight(props) {
             )}
           </select>
         </div>
-        <div className="dateFrom_div">
-          <h1 className="addAFlight_h1">Date to </h1>
-          <input
-            onChange={changeinboundDate}
-            type="month"
-            id="inboundDate"
-            placeholder="foo"
-            className="input_date"
-            name="inboundDate"
-          />
-        </div>
+
         <div className="dateTo_div">
-          <h1 className="addAFlight_h1">Date from</h1>
-          <input
-            onChange={changeoutboundDate}
-            type="month"
-            className="input_date"
-            id="outboundDate"
-            name="outboundDate"
-          />
+          {showMonth ? (
+            monthDiv
+          ) : (
+            <h1 className="addAFlight_h1 alingText_h1">
+              You choose the whole Year of 2021
+            </h1>
+          )}
+        </div>
+        <div className="dateFrom_div">
+          <h1 className="addAFlight_h1"></h1>
+          <button onClick={() => changeToYear()} className="button_thisyear">
+            For whole year
+          </button>
+          <button onClick={() => changeToMonth()} className="button_thisyear">
+            Choose month
+          </button>
         </div>
         <button className="addAFlight_addButton" onClick={addFlight}>
           Add Flight
