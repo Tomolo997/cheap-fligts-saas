@@ -148,7 +148,7 @@ export default function Dashboard() {
         </div>
         <div className="slider_component slider_component_hover">
           {' '}
-          <h1 className="slider_component_h1">Add a flight</h1>
+          <h1 className="slider_component_h1">Add Flight</h1>
         </div>
       </div>
       <div className="slider_settings" style={{ display: 'none' }}>
@@ -198,7 +198,7 @@ export default function Dashboard() {
           className="slider_component slider_component_hover"
         >
           {' '}
-          <h1 className="slider_component_h1">Add a flight</h1>
+          <h1 className="slider_component_h1">Add Flight</h1>
         </div>
       </div>
       <div className="slider_settings">

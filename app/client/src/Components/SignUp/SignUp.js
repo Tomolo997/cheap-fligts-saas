@@ -22,6 +22,7 @@ const SignUp = () => {
   const [userAlreadyExistError, setUserAlreadyExistError] = useState(false);
   const [shortPasswordError, setShortPasswordError] = useState(false);
   const [passwordsAreNotTheSame, setPasswordsAreNotTheSame] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   const { getLoggedIn } = useContext(AuthContext);
   const changeLoginPage = (e) => {
     e.preventDefault();
@@ -51,28 +52,28 @@ const SignUp = () => {
   const loginUser = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await axios(
-        {
-          method: 'POST',
-          url: 'http://localhost:8000/api/v1/users/login',
-          data: {
-            email: email,
-            password: password,
-          },
+    const res = await axios(
+      {
+        method: 'POST',
+        url: 'http://localhost:8000/api/v1/users/login',
+        data: {
+          email: email,
+          password: password,
         },
-        {
-          withCredentials: true,
-        }
-      );
-      if (res.data.status === 'success') {
-        console.log('success', 'logged in successfully!');
-        window.setTimeout(() => {
-          location.assign('/dashboard');
-        }, 1500);
+      },
+      {
+        withCredentials: true,
       }
-    } catch (error) {
-      console.log('error', error.message);
+    );
+
+    if (res.data.status === 'success') {
+      console.log('success', 'logged in successfully!');
+      window.setTimeout(() => {
+        location.assign('/dashboard');
+      }, 1500);
+      setLoginError(false);
+    } else {
+      setLoginError(true);
     }
   };
 
@@ -116,7 +117,6 @@ const SignUp = () => {
         setShortPasswordError(false);
         setUserAlreadyExistError(false);
       }
-      console.log(res.data.error);
     }
   };
 
@@ -157,12 +157,24 @@ const SignUp = () => {
           >
             Log in
           </button>
+
           <p className="login_paragraph">
             Dont have an account ?{' '}
             <button onClick={changeLoginPage} className="login_button">
               Sign up here
             </button>{' '}
           </p>
+        </div>
+        <div
+          className={
+            loginError
+              ? 'password_too_short_error'
+              : 'unactive_error password_too_short_error'
+          }
+        >
+          {loginError ? (
+            <div>Incorrect email or password! please try again</div>
+          ) : null}
         </div>
       </form>
     </div>
