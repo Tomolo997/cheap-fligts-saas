@@ -45,7 +45,7 @@ export default function Dashboard() {
     const flightResults = await res.data.data.flights;
     const initData = await res.data.data.initData;
     const noResults = await res.data.data.noResults;
-    const userID = flightResults[0].user;
+    const userID = userId;
     setFlightsResults(flightResults);
     // const fromToArray = [];
     const fromToArray = [];
