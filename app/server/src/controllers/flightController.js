@@ -99,18 +99,18 @@ exports.deleteFlight = async (req, res, next) => {
   try {
     //1) find the user
     const userID = await User.findById(req.body.user);
-
-    const flightResults = await FlightResults.findOne({ id: userID._id });
-
+    console.log(req.body.user);
+    console.log(req.body.flightID);
+    console.log(req.body.flightResultsId);
     await Flights.updateOne(
       { user: userID },
       { $pull: { flightsData: { _id: req.body.flightID } } }
     );
 
-    await FlightResults.findOneAndRemove(
-      { user: userID },
-      { _id: req.body.flightResultsId }
-    );
+    await FlightResults.findOneAndRemove({
+      user: userID,
+      _id: req.body.flightResultsId,
+    });
 
     res.status(201).json({
       status: 'success',

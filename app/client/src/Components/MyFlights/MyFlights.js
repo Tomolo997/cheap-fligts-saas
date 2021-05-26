@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import '../../App/App.css';
@@ -42,6 +43,21 @@ export default function MyFlights(props) {
       const StringMonth = month[dateMili.getMonth() + 1];
       return StringMonth + '-' + changed1Date[1] + '-' + changed1Date[0];
     }
+  };
+
+  const deleteFlight = async (deletedFlightID, deletedflightResultsId) => {
+    console.log(props.userID, deletedFlightID, deletedflightResultsId);
+    const res = await axios.delete(
+      'http://localhost:8000/api/v1/flights/deleteFlight',
+      {
+        data: {
+          user: String(props.userID),
+          flightID: String(deletedFlightID),
+          flightResultsId: String(deletedflightResultsId),
+        },
+      }
+    );
+    console.log(res);
   };
 
   const results = props.results.map((el, i) => (
@@ -118,7 +134,13 @@ export default function MyFlights(props) {
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
               <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
                 Today found {props.results.length} flights
-                <button onClick={props.deleteFlight}>DELETE FLIGHT</button>
+                <button
+                  onClick={() =>
+                    deleteFlight(props.flightId, props.flightResultsID)
+                  }
+                >
+                  DELETE FLIGHT
+                </button>
               </h1>{' '}
             </div>
           </div>

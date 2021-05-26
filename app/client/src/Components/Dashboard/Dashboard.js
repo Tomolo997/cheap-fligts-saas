@@ -23,8 +23,6 @@ export default function Dashboard() {
   const [addAFlightShow, setAddAFlightShow] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flightsResults, setFlightsResults] = useState([]);
-  const [deletedFlightID, setDeletedFlightID] = useState('');
-  const [deletedflightResultsId, setDeletedflightResultsId] = useState('');
   const [userId, setUserId] = useState('');
   const [fromToStart, setFromToStart] = useState([]);
   const [userName, setUserName] = useState('');
@@ -38,19 +36,6 @@ export default function Dashboard() {
     setUserId(res.data.id);
     setUserName(res.data.name);
     setUserEmail(res.data.email);
-  };
-
-  const deleteFlight = async () => {
-    const res = await axios.delete(
-      'http://localhost:8000/api/v1/flights/deleteFlight',
-      {
-        data: {
-          user: userId,
-          flightID: deletedFlightID,
-          flightResultsId: deletedflightResultsId,
-        },
-      }
-    );
   };
 
   const getUserFlights = async () => {
@@ -254,10 +239,10 @@ export default function Dashboard() {
   const myFlightDivs = fromToStart.map((el) => (
     <MyFlights
       key={el.flightId}
-      flightId={el.flightID}
-      user={userId}
+      flightId={el.flightId}
+      flightResultsID={el.flightResultsID}
+      userID={userId}
       id={el._id}
-      deleteFlight={deleteFlight}
       from={el.fromStart}
       to={el.toStart}
       results={el.results}
