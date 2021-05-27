@@ -227,7 +227,7 @@ export default function Dashboard() {
           onClick={showSettingsClick}
           className="slider_component slider_component_settings"
         >
-          <h1 className="slider_component_h1">Settings</h1>
+          <h1 className="slider_component_h1">My Profile</h1>
         </div>
         <div className="slider_component slider_component_settings">
           {' '}

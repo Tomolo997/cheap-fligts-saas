@@ -16,6 +16,7 @@ export default function Settings(props) {
               type="text"
               className="settings_input"
               placeholder={props.userName}
+              value={props.userName}
             />
           </div>
           <div className="settings_userEmail">
@@ -26,8 +27,12 @@ export default function Settings(props) {
             <input
               type="text"
               className="settings_input"
+              value={props.userEmail}
               placeholder={props.userEmail}
             />
+          </div>
+          <div className="settings_button_div">
+            <button className="settings_button">Save settings</button>
           </div>
         </div>
       </div>
