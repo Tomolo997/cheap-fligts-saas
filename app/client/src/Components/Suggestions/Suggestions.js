@@ -18,7 +18,7 @@ export default function Suggestions() {
             <br />
             <br />
             <span>2.</span> the high frequency flying destination may not be
-            able to show all of the flights but it eill show you the cheapest.
+            able to show all of the flights but it will show you the cheapest.
             <br />
             <br />
             <span>3.</span>Choose the same airport to depart from for different

@@ -40,7 +40,7 @@ export default function MyFlights(props) {
         '30',
         '31',
       ];
-      const StringMonth = month[dateMili.getMonth() + 1];
+      const StringMonth = month[dateMili.getMonth()];
       return StringMonth + '-' + changed1Date[1] + '-' + changed1Date[0];
     }
   };
@@ -57,7 +57,7 @@ export default function MyFlights(props) {
         },
       }
     );
-    console.log(res);
+    location.reload();
   };
 
   const results = props.results.map((el, i) => (
@@ -135,9 +135,10 @@ export default function MyFlights(props) {
               <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
                 Today found {props.results.length} flights
                 <button
-                  onClick={() =>
-                    deleteFlight(props.flightId, props.flightResultsID)
-                  }
+                  className="button_delete"
+                  onClick={() => {
+                    deleteFlight(props.flightId, props.flightResultsID);
+                  }}
                 >
                   DELETE FLIGHT
                 </button>

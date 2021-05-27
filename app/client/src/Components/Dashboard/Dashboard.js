@@ -8,6 +8,7 @@ import DashboardLogo from '../DashboardLogo/DashboardLogo';
 import AuthContextProvider from '../../context/AuthContext';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
+import Settings from '../Settings/Settings';
 import { async } from 'regenerator-runtime';
 import LoginSuccess from '../LoginSuccess/LoginSuccess';
 import AirportSVG from '../../../public/Images/airplane.svg';
@@ -21,6 +22,7 @@ export default function Dashboard() {
   const [myFlightsShow, setMyFlightsShow] = useState(true);
   const [suggestionsShow, setSuggestionsShow] = useState(false);
   const [addAFlightShow, setAddAFlightShow] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flightsResults, setFlightsResults] = useState([]);
   const [userId, setUserId] = useState('');
@@ -128,16 +130,25 @@ export default function Dashboard() {
     setMyFlightsShow(true);
     setSuggestionsShow(false);
     setAddAFlightShow(false);
+    setShowSettings(false);
   };
   const showSuggestions = () => {
     setMyFlightsShow(false);
     setSuggestionsShow(true);
     setAddAFlightShow(false);
+    setShowSettings(false);
   };
   const showAddAFlight = () => {
     setMyFlightsShow(false);
     setSuggestionsShow(false);
     setAddAFlightShow(true);
+    setShowSettings(false);
+  };
+  const showSettingsClick = () => {
+    setMyFlightsShow(false);
+    setSuggestionsShow(false);
+    setAddAFlightShow(false);
+    setShowSettings(true);
   };
   const thinSlider = (
     <div className="slider_thin">
@@ -212,7 +223,10 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="slider_settings">
-        <div className="slider_component slider_component_settings">
+        <div
+          onClick={showSettingsClick}
+          className="slider_component slider_component_settings"
+        >
           <h1 className="slider_component_h1">Settings</h1>
         </div>
         <div className="slider_component slider_component_settings">
@@ -269,6 +283,10 @@ export default function Dashboard() {
 
           {addAFlightShow && (
             <AddAFlight airportsFromDB={airportsFromDB} userId={userId} />
+          )}
+
+          {showSettings && (
+            <Settings userName={userName} userEmail={userEmail} />
           )}
         </div>
       </div>
