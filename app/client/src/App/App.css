@@ -269,7 +269,7 @@ html {
 }
 @media only screen and (max-width: 1800px) {
   .logo_h1 {
-    margin-left: 1rem;
+    margin-left: -8rem;
   }
 }
 /*Example */
