@@ -1,10 +1,10 @@
-const axios = require('axios');
+const axios = require("axios");
 const countries = [];
 const ids = [];
-fs = require('fs');
+fs = require("fs");
 async function getCountries(params) {
   const countries2 = await axios.get(
-    'http://partners.api.skyscanner.net/apiservices/geo/v1.0?apikey=prtl6749387986743898559646983194'
+    "http://partners.api.skyscanner.net/apiservices/geo/v1.0?apikey=prtl6749387986743898559646983194"
   );
   const res = await countries2.data.Continents;
   console.log(res);
@@ -20,7 +20,7 @@ async function getCountries(params) {
 
   for (let yea = 0; yea < countries.length; yea++) {
     const element = countries[yea];
-    ids.push({ id: element.Id + '-sky', name: element.Name });
+    ids.push({ id: element.Id + "-sky", name: element.Name });
   }
 
   ids.sort(function (a, b) {
@@ -34,7 +34,7 @@ async function getCountries(params) {
   });
 
   let data = JSON.stringify(ids);
-  fs.writeFileSync('countriees.json', data);
+  fs.writeFileSync("countriees.json", data);
   console.log(ids);
 }
 getCountries();

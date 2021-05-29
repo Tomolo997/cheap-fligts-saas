@@ -1089,7 +1089,7 @@ html {
   z-index: 10;
 }
 .slider_component:before {
-  content: '';
+  content: "";
   display: block;
   background-color: rgb(255, 230, 132);
   position: absolute;
@@ -1276,7 +1276,7 @@ html {
     display: none;
   }
   .slider_component:before {
-    content: '';
+    content: "";
     display: block;
     background-color: rgb(255, 230, 132);
     position: absolute;
@@ -1529,6 +1529,7 @@ html {
   border-radius: 10px;
   box-shadow: 0 7px 30px -10px rgb(150 170 180 / 50%);
   font-size: 2.5rem;
+  height: 10rem;
   transition: all 0.5s;
 }
 .addAFlight_addButton:hover {
@@ -1587,7 +1588,7 @@ html {
 @media only screen and (max-width: 1600px) {
   .addAFlights_div {
     width: 60%;
-    height: 60vh;
+    height: 70vh;
     border-radius: 15px;
     padding: 2rem;
     display: flex;
@@ -1607,6 +1608,7 @@ html {
   .dateFrom_div {
     grid-row: 4/5;
     grid-column: 5/9;
+    display: flex;
   }
   .dateTo_div {
     grid-row: 2/3;
@@ -1662,14 +1664,14 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  content: '';
+  content: "";
 }
 .loader:after {
   background: #f7f7f7;
   width: 75%;
   height: 75%;
   border-radius: 50%;
-  content: '';
+  content: "";
   margin: auto;
   position: absolute;
   top: 0;
@@ -1899,4 +1901,10 @@ html {
 .settings_button:active {
   box-shadow: 0 0rem 0rem rgb(0 0 0 / 15%);
   transform: translateY(5px);
+}
+@media only screen and (max-width: 1600px) {
+  .settings {
+    width: 50%;
+    height: 80%;
+  }
 }

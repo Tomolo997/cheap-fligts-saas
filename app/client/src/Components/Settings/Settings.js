@@ -1,6 +1,21 @@
-import React from 'react';
-
+import React, { useState } from "react";
+import axios from "axios";
 export default function Settings(props) {
+  const [updateName, setUpdateName] = useState(props.userName);
+  const [updateEmail, setUpdateEmail] = useState(props.userEmail);
+
+  const updateMe = async () => {
+    const res = await axios.put("http://localhost:8000/api/v1/users/updateMe", {
+      name: updateName,
+      email: updateEmail,
+    });
+  };
+  const changeNameOnInput = (e) => {
+    setUpdateName(e.target.value);
+  };
+  const changeEmailOnInput = (e) => {
+    setUpdateEmail(e.target.value);
+  };
   return (
     <div className="settings">
       <div className="settings_account">
@@ -15,8 +30,9 @@ export default function Settings(props) {
             <input
               type="text"
               className="settings_input"
+              onChange={changeNameOnInput}
+              defaultValue={props.userName}
               placeholder={props.userName}
-              value={props.userName}
             />
           </div>
           <div className="settings_userEmail">
@@ -27,12 +43,15 @@ export default function Settings(props) {
             <input
               type="text"
               className="settings_input"
-              value={props.userEmail}
+              onChange={changeEmailOnInput}
+              defaultValue={props.userEmail}
               placeholder={props.userEmail}
             />
           </div>
           <div className="settings_button_div">
-            <button className="settings_button">Save settings</button>
+            <button onClick={updateMe} className="settings_button">
+              Save settings
+            </button>
           </div>
         </div>
       </div>
