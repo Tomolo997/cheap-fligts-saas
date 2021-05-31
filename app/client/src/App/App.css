@@ -1013,7 +1013,7 @@ html {
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  width: 30rem;
+  width: 32rem;
   position: fixed;
 }
 .slider_thin {
@@ -1089,7 +1089,7 @@ html {
   z-index: 10;
 }
 .slider_component:before {
-  content: "";
+  content: '';
   display: block;
   background-color: rgb(255, 230, 132);
   position: absolute;
@@ -1276,7 +1276,7 @@ html {
     display: none;
   }
   .slider_component:before {
-    content: "";
+    content: '';
     display: block;
     background-color: rgb(255, 230, 132);
     position: absolute;
@@ -1463,8 +1463,8 @@ html {
   justify-content: center;
 }
 .addAFlights_div {
-  width: 60%;
-  height: 60vh;
+  width: 70%;
+  height: 70rem;
   border-radius: 15px;
   padding: 5rem;
   display: flex;
@@ -1539,7 +1539,7 @@ html {
   grid-row: 9/10;
   grid-column: 2/6;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 4rem;
   color: red;
 }
 .addAFlight_Country_div {
@@ -1587,8 +1587,8 @@ html {
 }
 @media only screen and (max-width: 1600px) {
   .addAFlights_div {
-    width: 60%;
-    height: 70vh;
+    width: 70%;
+    height: 70rem;
     border-radius: 15px;
     padding: 2rem;
     display: flex;
@@ -1664,14 +1664,14 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  content: "";
+  content: '';
 }
 .loader:after {
   background: #f7f7f7;
   width: 75%;
   height: 75%;
   border-radius: 50%;
-  content: "";
+  content: '';
   margin: auto;
   position: absolute;
   top: 0;

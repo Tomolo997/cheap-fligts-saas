@@ -41,9 +41,13 @@ export default function AddAFlight(props) {
         user: props.userId,
       };
       await axios.post('http://localhost:8000/api/v1/flights/addFlight', data);
+
       setAddAFlightCongrats(true);
       setAddAFlightError(false);
-      setTimeout(() => setAddAFlightCongrats(false), 1500);
+      setTimeout(() => {
+        setAddAFlightCongrats(false);
+        location.reload();
+      }, 1500);
     } else {
       setAddAFlightError(true);
     }

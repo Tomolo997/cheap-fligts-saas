@@ -1,11 +1,10 @@
-const User = require("../models/userModel");
-const Flights = require("../models/fligthsModel");
-const FlightResults = require("../models/flightsResult");
-const addAFlightScript = require("../utils/addAFlightScript");
+const User = require('../models/userModel');
+const Flights = require('../models/fligthsModel');
+const FlightResults = require('../models/flightsResult');
+const addAFlightScript = require('../utils/addAFlightScript');
 exports.addFlight = async (req, res, next) => {
   try {
     //1) find the user
-    console.log(req.body.user);
     const userID = await User.findById(req.body.user);
 
     //add flight to the flights data
@@ -27,12 +26,6 @@ exports.addFlight = async (req, res, next) => {
     const flightTo = req.body.flightsData[0].flightTo;
     const outboundDate = req.body.flightsData[0].outboundDate;
     const inboundDate = req.body.flightsData[0].inboundDate;
-    addAFlightScript.addAFlight(
-      flightFrom,
-      flightTo,
-      outboundDate,
-      inboundDate
-    );
 
     const flight = await Flights.findOne({ user: userID._id });
     if (!flight) {
@@ -45,16 +38,30 @@ exports.addFlight = async (req, res, next) => {
       { upsert: true }
     );
     res.status(201).json({
-      status: "success",
+      status: 'success',
       data: {
         userID,
       },
     });
 
-    //2)Call the
+    const flighFound = await Flights.findOne({ _id: flightAdded._id });
+
+    console.log(
+      'flight found ',
+      flighFound.flightsData[flighFound.flightsData.length - 1]._id
+    );
+    //2)Call thež
+    addAFlightScript.addAFlight(
+      flightFrom,
+      flightTo,
+      outboundDate,
+      inboundDate,
+      userID._id,
+      flighFound.flightsData[flighFound.flightsData.length - 1]._id
+    );
   } catch (error) {
     res.status(400).json({
-      status: "error",
+      status: 'error',
     });
   }
 };
@@ -95,7 +102,7 @@ exports.getFlights = async (req, res, next) => {
   }
 
   res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       flights: flightsToSend,
       initData: userFlightsInit,
@@ -123,9 +130,9 @@ exports.deleteFlight = async (req, res, next) => {
     });
 
     res.status(201).json({
-      status: "success",
+      status: 'success',
       data: {
-        message: "succesfully deleted your flight",
+        message: 'succesfully deleted your flight',
       },
     });
 
@@ -133,7 +140,7 @@ exports.deleteFlight = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(400).json({
-      status: "error",
+      status: 'error',
     });
   }
 };
