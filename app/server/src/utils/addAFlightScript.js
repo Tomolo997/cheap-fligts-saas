@@ -48,10 +48,22 @@ exports.addAFlight = async (
 
   //get the results
   const data = await axios.get(
+    `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${outboundDate}?apikey=ra66933236979928`
+  );
+
+  const data2 = await axios.get(
     `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=ra66933236979928`
   );
 
-  const results = data.data.Quotes;
+  const data3 = await axios.get(
+    `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${inboundDate}/${inboundDate}?apikey=ra66933236979928`
+  );
+  const results = [
+    ...data.data.Quotes,
+    ...data2.data.Quotes,
+    ...data3.data.Quotes,
+  ];
+
   let places = [];
   for (let i = 0; i < data.data.Places.length; i++) {
     const flight = data.data.Places;
@@ -102,6 +114,7 @@ exports.addAFlight = async (
     });
   }
 
+  flightsForFinal.sort((a, b) => a.price - b.price);
   await FlightResults.create({
     user: userID,
     flightID: flightId,

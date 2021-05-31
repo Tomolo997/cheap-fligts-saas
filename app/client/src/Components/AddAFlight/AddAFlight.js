@@ -82,14 +82,28 @@ export default function AddAFlight(props) {
   };
   const changeoutboundDate = (e) => {
     setOutboundDate(e.target.value);
-    setInboundDate(e.target.value);
+    const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const year = Number(e.target.value.split('-')[0]);
+    const initMonth = Number(e.target.value.split('-')[1]);
+    console.log(initMonth);
+    const finalMonth = initMonth + 1;
+    if (finalMonth > 9) {
+      if (initMonth === 11) {
+        return setInboundDate(String(year + '-12'));
+      }
+      if (initMonth === 12) {
+        return setInboundDate(String(year + '-01'));
+      }
+      setInboundDate(String(year + '-' + finalMonth));
+    } else {
+      setInboundDate(String(year + '-0' + finalMonth));
+    }
   };
   const changeToYear = (e) => {
     const date = new Date();
     const thisYear = date.getFullYear();
     setOutboundDate(String(thisYear));
     setInboundDate(String(thisYear));
-    console.log(outboundDate, inboundDate);
     setShowMonth(false);
   };
   const changeToMonth = () => {
@@ -99,7 +113,7 @@ export default function AddAFlight(props) {
   const monthDiv = (
     <>
       {' '}
-      <h1 className="addAFlight_h1">For whole month</h1>
+      <h1 className="addAFlight_h1">Two months</h1>
       <input
         onChange={changeoutboundDate}
         type="month"
@@ -108,6 +122,13 @@ export default function AddAFlight(props) {
         name="outboundDate"
       />
     </>
+  );
+
+  const fromMonth = (
+    <h1 className="addAFlight_h1_twomonth">From start of {outboundDate}</h1>
+  );
+  const toMonth = (
+    <h1 className="addAFlight_h1_twomonth">To end of {inboundDate}</h1>
   );
 
   return (
@@ -133,7 +154,6 @@ export default function AddAFlight(props) {
         >
           Top Cities
         </div>
-
         <div
           onClick={countrySelectedClick}
           className={
@@ -158,7 +178,6 @@ export default function AddAFlight(props) {
         >
           Top Cities
         </div>
-
         <div className="from_div">
           <h1 className="addAFlight_h1">Fly from</h1>
           <select
@@ -189,7 +208,6 @@ export default function AddAFlight(props) {
             )}
           </select>
         </div>
-
         <div className="dateTo_div">
           {showMonth ? (
             monthDiv
@@ -205,12 +223,16 @@ export default function AddAFlight(props) {
             For whole year
           </button>
           <button onClick={() => changeToMonth()} className="button_thisyear">
-            Choose month
+            Choose 2 months
           </button>
         </div>
         <button className="addAFlight_addButton" onClick={addFlight}>
           Add Flight
         </button>
+        <div className="addAFlight_toMonth">
+          <div>{showMonth ? fromMonth : null}</div>
+          <div>{showMonth ? toMonth : null}</div>
+        </div>
         <h1 className="addAFlight_h1_error">
           {addAFlightError ? 'Please fill out all of the fields' : null}
           {addAFlightCongrats

@@ -93,9 +93,20 @@ const fillTheFlights = async () => {
       console.log(flightFrom, flightTo, outboundDate, inboundDate);
       try {
         const data = await axios.get(
+          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${outboundDate}?apikey=prtl6749387986743898559646983194`
+        );
+        const data2 = await axios.get(
           `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
         );
+        const data3 = await axios.get(
+          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${inboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
+        );
         element.results = data.data;
+        element.resultsQuotes = [
+          ...data.data.Quotes,
+          ...data3.data.Quotes,
+          ...data3.data.Quotes,
+        ];
       } catch (error) {
         console.log(error);
         continue;
@@ -117,8 +128,8 @@ const fillTheFlights = async () => {
     let flightsResults = [];
     for (let i = 0; i < flightsData.length; i++) {
       const element = flightsData[i];
-      for (let j = 0; j < element.results.Quotes.length; j++) {
-        const elementJ = element.results.Quotes[j];
+      for (let j = 0; j < element.resultsQuotes.length; j++) {
+        const elementJ = element.resultsQuotes[j];
         flightsResults.push({
           flightID: element.flightID,
           flights: elementJ,
@@ -169,6 +180,9 @@ const fillTheFlights = async () => {
         link: `https://www.skyscanner.net/transport/flights/${fromFlight}/${toFlight}/${fromDate}/${toDate}/`,
       });
     }
+
+    flightsForFinal.sort((a, b) => a.price - b.price);
+
     const flightsForDB = [];
     for (let i = 0; i < currentUserflights.length; i++) {
       const element = currentUserflights[i];
