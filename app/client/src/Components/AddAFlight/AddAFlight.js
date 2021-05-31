@@ -125,10 +125,14 @@ export default function AddAFlight(props) {
   );
 
   const fromMonth = (
-    <h1 className="addAFlight_h1_twomonth">From start of {outboundDate}</h1>
+    <h1 className="addAFlight_h1_twomonth">
+      From start of <br /> {outboundDate}
+    </h1>
   );
   const toMonth = (
-    <h1 className="addAFlight_h1_twomonth">To end of {inboundDate}</h1>
+    <h1 className="addAFlight_h1_twomonth">
+      To end of <br /> {inboundDate}
+    </h1>
   );
 
   return (
@@ -230,8 +234,8 @@ export default function AddAFlight(props) {
           Add Flight
         </button>
         <div className="addAFlight_toMonth">
-          <div>{showMonth ? fromMonth : null}</div>
-          <div>{showMonth ? toMonth : null}</div>
+          {showMonth ? fromMonth : null}
+          {showMonth ? toMonth : null}
         </div>
         <h1 className="addAFlight_h1_error">
           {addAFlightError ? 'Please fill out all of the fields' : null}
