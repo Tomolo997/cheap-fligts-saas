@@ -1949,13 +1949,13 @@ html {
 }
 .contact_form_helpSection {
   width: 40vw;
-  height: 60%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 7px 30px -10px rgb(150 170 180 / 50%);
   background-color: #fffbef;
-  margin-top: 7rem;
+  margin-top: 2rem;
 }
 .contact_input_helpSection {
   width: 80%;
