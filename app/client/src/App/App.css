@@ -1922,3 +1922,51 @@ html {
   margin-top: 0.7rem;
   font-weight: 100;
 }
+
+.contact_dashboard {
+  width: 70%;
+  height: 70rem;
+  border-radius: 15px;
+  padding: 5rem;
+  display: flex;
+  box-shadow: 0 7px 30px -10px rgb(150 170 180 / 50%);
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.help_paragraph {
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+}
+.contact_dashboard_help_div {
+  margin-top: 5rem;
+}
+.contact_dashboard_help_h1 {
+  font-size: 5rem;
+  font-weight: 100;
+}
+.contact_form_helpSection {
+  width: 40vw;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 7px 30px -10px rgb(150 170 180 / 50%);
+  background-color: #fffbef;
+  margin-top: 7rem;
+}
+.contact_input_helpSection {
+  width: 80%;
+}
+.contact_textarea_helpSection {
+  margin-top: 1rem;
+}
+.contact_submit_helpSection {
+  margin-bottom: 1rem;
+}
+.contact_label_helpSection {
+  align-self: flex-start;
+  margin-left: 8rem;
+}
