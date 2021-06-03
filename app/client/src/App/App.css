@@ -1007,7 +1007,7 @@ html {
 }
 
 .slider {
-  background-color: #ffd662ff;
+  background-color: #ffe8a8;
   display: flex;
   transition: 1s all;
   align-items: center;
@@ -1025,6 +1025,11 @@ html {
   height: 100vh;
   width: 10rem;
   position: fixed;
+}
+.slider_logo img {
+  width: 10rem;
+  height: 10rem;
+  margin-top: 7rem;
 }
 .myFlights_fromToDateFromTo_paragraph {
   font-size: 1.2rem;
@@ -1067,7 +1072,7 @@ html {
   width: 100%;
   display: flex;
   align-items: center;
-  background: url(../../public/Images/airplane.svg);
+
   justify-content: flex-start;
   height: 10rem;
   position: relative;
@@ -1254,6 +1259,9 @@ html {
     align-items: center;
     justify-content: center;
     position: relative;
+  }
+  .slider_logo img {
+    display: none;
   }
   .slider_component_h1 {
     font-size: 2rem;

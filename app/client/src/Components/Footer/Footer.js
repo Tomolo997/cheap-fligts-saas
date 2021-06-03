@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App/App.css';
-import LinkedInLogo from '../../../public/Images/LinkedInLogo.png';
-import TwitterLogo from '../../../public/Images/TwitterLogo.png';
+import LinkedInLogo from '../../assets/Images/LinkedInLogo.png';
+import TwitterLogo from '../../assets/Images/TwitterLogo.png';
 export default function Footer() {
   return (
     <div className="Footer">

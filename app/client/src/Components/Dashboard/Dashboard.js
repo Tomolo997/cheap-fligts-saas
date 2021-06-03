@@ -11,9 +11,9 @@ import Spinner from '../Spinner/Spinner';
 import Settings from '../Settings/Settings';
 import { async } from 'regenerator-runtime';
 import LoginSuccess from '../LoginSuccess/LoginSuccess';
-import AirportSVG from '../../../public/Images/airplane.svg';
-import NewMessageSVG from '../../../public/Images/new-message.svg';
-import AddAFlightSVG from '../../../public/Images/circle-with-plus.svg';
+import AirportSVG from '../../assets/Images/airplane.svg';
+import NewMessageSVG from '../../assets/Images/new-message.svg';
+import AddAFlightSVG from '../../assets/Images/circle-with-plus.svg';
 import Help from '../Help/Help';
 
 export default function Dashboard() {

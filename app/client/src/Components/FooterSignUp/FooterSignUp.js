@@ -1,7 +1,7 @@
-import React from "react";
-import "../../App/App.css";
-import LinkedInLogo from "../../../public/Images/LinkedInLogo.png";
-import TwitterLogo from "../../../public/Images/TwitterLogo.png";
+import React from 'react';
+import '../../App/App.css';
+import LinkedInLogo from '../../assets/Images/LinkedInLogo.png';
+import TwitterLogo from '../../assets/Images/TwitterLogo.png';
 
 export default function FooterSignUp() {
   return (
@@ -25,12 +25,12 @@ export default function FooterSignUp() {
           <div>
             <a className="footer_link" href="">
               Support
-            </a>{" "}
+            </a>{' '}
           </div>
           <div>
             <a className="footer_link" href="/">
               Terms of use
-            </a>{" "}
+            </a>{' '}
           </div>
         </div>
 

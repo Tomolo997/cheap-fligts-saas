@@ -21,15 +21,16 @@ const config = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|gif)$/,
-        use: 'file-loader',
-      },
-      {
         test: /\.svg$/,
         exclude: /node_modules/,
         loader: 'svg-react-loader',
       },
-      { test: /\.(png|jpe?g|gif)$/i, loader: 'file-loader' },
+      {
+        test: /\.(jpg|png)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
     ],
   },
 
