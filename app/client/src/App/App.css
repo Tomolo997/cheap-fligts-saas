@@ -1094,7 +1094,7 @@ html {
   z-index: 10;
 }
 .slider_component:before {
-  content: '';
+  content: "";
   display: block;
   background-color: rgb(255, 230, 132);
   position: absolute;
@@ -1284,7 +1284,7 @@ html {
     display: none;
   }
   .slider_component:before {
-    content: '';
+    content: "";
     display: block;
     background-color: rgb(255, 230, 132);
     position: absolute;
@@ -1672,14 +1672,14 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  content: '';
+  content: "";
 }
 .loader:after {
   background: #f7f7f7;
   width: 75%;
   height: 75%;
   border-radius: 50%;
-  content: '';
+  content: "";
   margin: auto;
   position: absolute;
   top: 0;
@@ -1747,8 +1747,9 @@ html {
 
 .suggest_main {
   width: 80%;
-  height: 90%;
+  height: 41rem;
   display: flex;
+  margin-bottom: 4rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
