@@ -1,7 +1,6 @@
 //server.js
 require('dotenv').config();
 var cron = require('node-cron');
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -70,28 +69,29 @@ exports.addAFlight = async (
     for (let j = 0; j < flight.length; j++) {
       const elementJ = flight[j];
       places.push({
-        id: elementJ.PlaceId,
+        id: elementJ.PlaceId || 'none',
         name: elementJ.CityName,
         skyscannerCode: elementJ.SkyscannerCode,
       });
     }
   }
+
   let flightsForFinal = [];
   for (let j = 0; j < results.length; j++) {
     const element = results[j];
     const fromFlight = places.find(
       (el) => el.id === element.OutboundLeg.OriginId
     ).skyscannerCode;
-    const toFlight = places.find(
-      (el) => el.id === element.OutboundLeg.DestinationId
-    ).skyscannerCode;
+    const toFlight = places.find((el) => {
+      return el.id === element.OutboundLeg.DestinationId || true;
+    }).skyscannerCode;
 
     const fromFlightCountryorAirport = places.find(
-      (el) => el.id === element.OutboundLeg.OriginId
+      (el) => el.id === element.OutboundLeg.OriginId || true
     ).name;
 
     const toFlightCountryorAirport = places.find(
-      (el) => el.id === element.OutboundLeg.DestinationId
+      (el) => el.id === element.OutboundLeg.DestinationId || true
     ).name;
     const fromDate = TranfromDateToSuitableLink(
       element.OutboundLeg.DepartureDate

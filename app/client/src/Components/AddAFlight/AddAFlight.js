@@ -44,10 +44,10 @@ export default function AddAFlight(props) {
 
       setAddAFlightCongrats(true);
       setAddAFlightError(false);
-      setTimeout(() => {
-        setAddAFlightCongrats(false);
-        location.reload();
-      }, 1500);
+      // setTimeout(() => {
+      //   setAddAFlightCongrats(false);
+      //   location.reload();
+      // }, 1500);
     } else {
       setAddAFlightError(true);
     }
@@ -83,15 +83,17 @@ export default function AddAFlight(props) {
   const changeoutboundDate = (e) => {
     setOutboundDate(e.target.value);
     const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    const year = Number(e.target.value.split('-')[0]);
+    let year = Number(e.target.value.split('-')[0]);
     const initMonth = Number(e.target.value.split('-')[1]);
-    console.log(initMonth);
     const finalMonth = initMonth + 1;
     if (finalMonth > 9) {
       if (initMonth === 11) {
         return setInboundDate(String(year + '-12'));
       }
       if (initMonth === 12) {
+        console.log(initMonth);
+        year = year + 1;
+        console.log(year);
         return setInboundDate(String(year + '-01'));
       }
       setInboundDate(String(year + '-' + finalMonth));

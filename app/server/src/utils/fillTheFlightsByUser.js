@@ -96,7 +96,7 @@ const fillTheFlights = async () => {
           `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${outboundDate}?apikey=prtl6749387986743898559646983194`
         );
         const data2 = await axios.get(
-          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
+          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=ra66933236979928`
         );
         const data3 = await axios.get(
           `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${inboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
@@ -142,23 +142,21 @@ const fillTheFlights = async () => {
     }
 
     let flightsForFinal = [];
-    console.log(flightsResults[flightsResults.length - 1]);
-
     for (let j = 0; j < flightsResults.length; j++) {
       const element = flightsResults[j];
       const fromFlight = places.find(
-        (el) => el.id === element.flights.OutboundLeg.OriginId
+        (el) => el.id === element.flights.OutboundLeg.OriginId || true
       ).skyscannerCode;
       const toFlight = places.find(
-        (el) => el.id === element.flights.OutboundLeg.DestinationId
+        (el) => el.id === element.flights.OutboundLeg.DestinationId || true
       ).skyscannerCode;
 
       const fromFlightCountryorAirport = places.find(
-        (el) => el.id === element.flights.OutboundLeg.OriginId
+        (el) => el.id === element.flights.OutboundLeg.OriginId || true
       ).name;
 
       const toFlightCountryorAirport = places.find(
-        (el) => el.id === element.flights.OutboundLeg.DestinationId
+        (el) => el.id === element.flights.OutboundLeg.DestinationId || true
       ).name;
       const fromDate = TranfromDateToSuitableLink(
         element.flights.OutboundLeg.DepartureDate
