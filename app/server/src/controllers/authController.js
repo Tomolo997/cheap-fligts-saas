@@ -41,8 +41,9 @@ exports.singUp = async (req, res) => {
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
       passwordChangedAt: req.body.passwordChangedAt,
+      program: req.body.program,
     });
-    createSendToken(newUser, 201, res);
+    //createSendToken(newUser, 201, res);
     res.status(200).json({
       status: 'success',
       data: {
@@ -80,7 +81,14 @@ exports.logIn = catchAsync(async (req, res, next) => {
   }
 
   //3) if everytingh ok , send token to client
-  createSendToken(user, 200, res);
+  if (user.program !== '') {
+    createSendToken(user, 200, res);
+  } else {
+    res.json({
+      status: 'error',
+      message: 'You are ',
+    });
+  }
 });
 
 exports.protect = catchAsync(async (req, res, next) => {

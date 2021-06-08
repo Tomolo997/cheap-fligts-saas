@@ -145,18 +145,18 @@ const fillTheFlights = async () => {
     for (let j = 0; j < flightsResults.length; j++) {
       const element = flightsResults[j];
       const fromFlight = places.find(
-        (el) => el.id === element.flights.OutboundLeg.OriginId || true
+        (el) => el.id === element.flights.OutboundLeg.OriginId
       ).skyscannerCode;
       const toFlight = places.find(
-        (el) => el.id === element.flights.OutboundLeg.DestinationId || true
+        (el) => el.id === element.flights.OutboundLeg.DestinationId
       ).skyscannerCode;
 
       const fromFlightCountryorAirport = places.find(
-        (el) => el.id === element.flights.OutboundLeg.OriginId || true
+        (el) => el.id === element.flights.OutboundLeg.OriginId
       ).name;
 
       const toFlightCountryorAirport = places.find(
-        (el) => el.id === element.flights.OutboundLeg.DestinationId || true
+        (el) => el.id === element.flights.OutboundLeg.DestinationId
       ).name;
       const fromDate = TranfromDateToSuitableLink(
         element.flights.OutboundLeg.DepartureDate

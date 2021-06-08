@@ -11,6 +11,9 @@ import PasswordsAreNotTheSame from '../Errors/PasswordsAreNotTheSame';
 import '../../App/App.css';
 import AuthContext from '../../context/AuthContext';
 import LoginSuccess from '../LoginSuccess/LoginSuccess';
+let stripe = Stripe(
+  'pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt'
+);
 const SignUp = () => {
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState('');
@@ -25,7 +28,22 @@ const SignUp = () => {
   const [shortPasswordError, setShortPasswordError] = useState(false);
   const [passwordsAreNotTheSame, setPasswordsAreNotTheSame] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const { getLoggedIn } = useContext(AuthContext);
+  const { price_id, getLoggedIn } = useContext(AuthContext);
+
+  var createCheckoutSession = function (priceId) {
+    return fetch('http://localhost:8000/api/v1/payment/pay', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        priceId: priceId,
+      }),
+    }).then(function (result) {
+      return result.json();
+    });
+  };
+
   const changeLoginPage = (e) => {
     e.preventDefault();
     setLogin(!login);
@@ -80,9 +98,29 @@ const SignUp = () => {
   };
 
   const signUpUser = async (e) => {
+    let program = '';
     //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
     e.preventDefault();
+    console.log(price_id);
 
+    createCheckoutSession(price_id).then(function (data) {
+      // Call Stripe.js method to redirect to the new Checkout page
+      console.log(data.sessionId);
+      stripe
+        .redirectToCheckout({
+          sessionId: data.sessionId,
+        })
+        .then(handleResult);
+    });
+    if (price_id === 'price_1J084NJkVEDM03SsxUZmPVER') {
+      program = 'pro';
+    }
+    if (price_id === 'price_1J081OJkVEDM03SsnZFRVUiO') {
+      program = 'standard';
+    }
+    if (price_id === 'price_1J06iKJkVEDM03SsRq9iob2R') {
+      program = 'normal';
+    }
     const res = await axios({
       method: 'POST',
       url: 'http://localhost:8000/api/v1/users/signup',
@@ -91,15 +129,16 @@ const SignUp = () => {
         email: emailSignUp,
         password: passwordSignUp,
         passwordConfirm: passwordConfirmSignUp,
+        program: program,
       },
     });
     if (res.data.status === 'success') {
       setSingUpSuccessfull(true);
       console.log('success', 'logged in successfully!');
 
-      window.setTimeout(() => {
-        location.assign('/dashboard');
-      }, 1500);
+      // window.setTimeout(() => {
+      //   location.assign('/dashboard');
+      // }, 1500);
       setUserAlreadyExistError(false);
       setShortPasswordError(false);
       setPasswordsAreNotTheSame(false);

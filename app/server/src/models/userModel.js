@@ -41,6 +41,10 @@ const userSchema = mongoose.Schema({
     default: true,
     select: false,
   },
+  program: {
+    type: String,
+    default: 'none',
+  },
 });
 //pre saving the data we encryp passowd
 userSchema.pre('save', async function (next) {

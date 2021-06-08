@@ -27,11 +27,11 @@ exports.payMe = async (req, res) => {
       // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
       // the actual Session ID is returned in the query parameter when your customer
       // is redirected to the success page.
-      success_url:
-        'https://example.com/success.html?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:4000/sign-up',
-    });
 
+      success_url: 'http://localhost:4000/sign-up',
+      cancel_url: 'http://localhost:4000/',
+    });
+    console.log(session);
     res.send({
       sessionId: session.id,
     });
