@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 const userRouter = require('../src/routes/userRouter');
+const paymentRouter = require('../src/routes/paymentRouter');
 const flightRouter = require('../src/routes/flightRoutes');
 const viewsRouter = require('../src/routes/viewsRouter');
 const axios = require('axios');
@@ -36,5 +37,6 @@ app.get('/', (req, res) => {
 app.use('/', viewsRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/flights', flightRouter);
+app.use('/api/v1/payment', paymentRouter);
 
 module.exports = app;

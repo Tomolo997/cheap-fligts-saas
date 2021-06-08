@@ -44,10 +44,10 @@ export default function AddAFlight(props) {
 
       setAddAFlightCongrats(true);
       setAddAFlightError(false);
-      // setTimeout(() => {
-      //   setAddAFlightCongrats(false);
-      //   location.reload();
-      // }, 1500);
+      setTimeout(() => {
+        setAddAFlightCongrats(false);
+        location.reload();
+      }, 1500);
     } else {
       setAddAFlightError(true);
     }

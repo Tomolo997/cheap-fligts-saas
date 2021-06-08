@@ -848,6 +848,7 @@ html {
   border: 5px solid rgba(255, 255, 255, 0.726);
   background-color: #ffd662ff;
   border-radius: 10px;
+  margin-top: 1rem;
   transition: 0.4s all;
 }
 .singup_button:hover {
@@ -880,7 +881,7 @@ html {
 @media only screen and (max-width: 1400px) {
   .sign_up-form {
     background-color: #ffd662ff !important;
-    height: 50rem;
+    height: 60rem;
     width: 70%;
 
     flex-direction: column;
@@ -1094,7 +1095,7 @@ html {
   z-index: 10;
 }
 .slider_component:before {
-  content: "";
+  content: '';
   display: block;
   background-color: rgb(255, 230, 132);
   position: absolute;
@@ -1284,7 +1285,7 @@ html {
     display: none;
   }
   .slider_component:before {
-    content: "";
+    content: '';
     display: block;
     background-color: rgb(255, 230, 132);
     position: absolute;
@@ -1672,14 +1673,14 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  content: "";
+  content: '';
 }
 .loader:after {
   background: #f7f7f7;
   width: 75%;
   height: 75%;
   border-radius: 50%;
-  content: "";
+  content: '';
   margin: auto;
   position: absolute;
   top: 0;

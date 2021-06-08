@@ -1,26 +1,26 @@
-import "core-js";
-import "regenerator-runtime/runtime";
-import React, { Fragment, useState, useContext } from "react";
-import NavbarSignUp from "../NavbarSignUp/NavbarSignUp";
-import FooterSignUp from "../FooterSignUp/FooterSignUp";
-import SignUpSuccess from "../signUpSuccess/signUpSuccess";
-import axios from "axios";
-import UserAlreadyExists from "../Errors/UserAlreadyExists";
-import ShortPasswordError from "../Errors/ShortPasswordError";
-import PasswordsAreNotTheSame from "../Errors/PasswordsAreNotTheSame";
-import "../../App/App.css";
-import AuthContext from "../../context/AuthContext";
-import LoginSuccess from "../LoginSuccess/LoginSuccess";
+import 'core-js';
+import 'regenerator-runtime/runtime';
+import React, { Fragment, useState, useContext } from 'react';
+import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
+import FooterSignUp from '../FooterSignUp/FooterSignUp';
+import SignUpSuccess from '../signUpSuccess/signUpSuccess';
+import axios from 'axios';
+import UserAlreadyExists from '../Errors/UserAlreadyExists';
+import ShortPasswordError from '../Errors/ShortPasswordError';
+import PasswordsAreNotTheSame from '../Errors/PasswordsAreNotTheSame';
+import '../../App/App.css';
+import AuthContext from '../../context/AuthContext';
+import LoginSuccess from '../LoginSuccess/LoginSuccess';
 const SignUp = () => {
   const [login, setLogin] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [singUpSuccessfull, setSingUpSuccessfull] = useState(false);
   const [loginSuccessfull, setLoginSuccessfull] = useState(false);
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [emailSignUp, setEmailSignUp] = useState("");
-  const [passwordSignUp, setPasswordSignUp] = useState("");
-  const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState("");
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [emailSignUp, setEmailSignUp] = useState('');
+  const [passwordSignUp, setPasswordSignUp] = useState('');
+  const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState('');
   const [userAlreadyExistError, setUserAlreadyExistError] = useState(false);
   const [shortPasswordError, setShortPasswordError] = useState(false);
   const [passwordsAreNotTheSame, setPasswordsAreNotTheSame] = useState(false);
@@ -56,8 +56,8 @@ const SignUp = () => {
 
     const res = await axios(
       {
-        method: "POST",
-        url: "http://localhost:8000/api/v1/users/login",
+        method: 'POST',
+        url: 'http://localhost:8000/api/v1/users/login',
         data: {
           email: email,
           password: password,
@@ -68,10 +68,10 @@ const SignUp = () => {
       }
     );
 
-    if (res.data.status === "success") {
+    if (res.data.status === 'success') {
       setLoginSuccessfull(true);
       window.setTimeout(() => {
-        location.assign("/dashboard");
+        location.assign('/dashboard');
       }, 1500);
       setLoginError(false);
     } else {
@@ -84,8 +84,8 @@ const SignUp = () => {
     e.preventDefault();
 
     const res = await axios({
-      method: "POST",
-      url: "http://localhost:8000/api/v1/users/signup",
+      method: 'POST',
+      url: 'http://localhost:8000/api/v1/users/signup',
       data: {
         name: username,
         email: emailSignUp,
@@ -93,28 +93,28 @@ const SignUp = () => {
         passwordConfirm: passwordConfirmSignUp,
       },
     });
-    if (res.data.status === "success") {
+    if (res.data.status === 'success') {
       setSingUpSuccessfull(true);
-      console.log("success", "logged in successfully!");
+      console.log('success', 'logged in successfully!');
 
       window.setTimeout(() => {
-        location.assign("/dashboard");
+        location.assign('/dashboard');
       }, 1500);
       setUserAlreadyExistError(false);
       setShortPasswordError(false);
       setPasswordsAreNotTheSame(false);
-    } else if (res.data.status === "error") {
-      if (res.data.error.startsWith("E11000")) {
+    } else if (res.data.status === 'error') {
+      if (res.data.error.startsWith('E11000')) {
         setUserAlreadyExistError(true);
         setShortPasswordError(false);
         setPasswordsAreNotTheSame(false);
       }
-      if (res.data.error.includes("shorter than the minimum allowed length")) {
+      if (res.data.error.includes('shorter than the minimum allowed length')) {
         setShortPasswordError(true);
         setUserAlreadyExistError(false);
         setPasswordsAreNotTheSame(false);
       }
-      if (res.data.error.includes("passwordConfirm")) {
+      if (res.data.error.includes('passwordConfirm')) {
         setPasswordsAreNotTheSame(true);
         setShortPasswordError(false);
         setUserAlreadyExistError(false);
@@ -126,7 +126,7 @@ const SignUp = () => {
     <div className="sign_up-form_div">
       {loginSuccessfull ? (
         <LoginSuccess
-          message={"Logged in succesfully, redirecting to your dashboard 😀"}
+          message={'Logged in succesfully, redirecting to your dashboard 😀'}
         />
       ) : null}
       <form action="" className="sign_up-form">
@@ -166,17 +166,17 @@ const SignUp = () => {
           </button>
 
           <p className="login_paragraph">
-            Dont have an account ?{" "}
+            Dont have an account ?{' '}
             <button onClick={changeLoginPage} className="login_button">
               Sign up here
-            </button>{" "}
+            </button>{' '}
           </p>
         </div>
         <div
           className={
             loginError
-              ? "password_too_short_error"
-              : "unactive_error password_too_short_error"
+              ? 'password_too_short_error'
+              : 'unactive_error password_too_short_error'
           }
         >
           {loginError ? (
@@ -233,8 +233,8 @@ const SignUp = () => {
           <div
             className={
               shortPasswordError
-                ? "password_too_short_error"
-                : "unactive_error password_too_short_error"
+                ? 'password_too_short_error'
+                : 'unactive_error password_too_short_error'
             }
           >
             {shortPasswordError ? (
@@ -257,8 +257,8 @@ const SignUp = () => {
           <div
             className={
               passwordsAreNotTheSame
-                ? "password_too_short_error"
-                : "unactive_error password_too_short_error"
+                ? 'password_too_short_error'
+                : 'unactive_error password_too_short_error'
             }
           >
             {passwordsAreNotTheSame ? (
@@ -269,16 +269,16 @@ const SignUp = () => {
             SIGN UP
           </button>
           <p className="login_paragraph">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <button onClick={changeLoginPage} className="login_button">
               Login here
-            </button>{" "}
+            </button>{' '}
           </p>
           <div
             className={
               userAlreadyExistError
-                ? "user_already_exists_error"
-                : "unactive_error user_already_exists_error"
+                ? 'user_already_exists_error'
+                : 'unactive_error user_already_exists_error'
             }
           >
             {userAlreadyExistError ? (
