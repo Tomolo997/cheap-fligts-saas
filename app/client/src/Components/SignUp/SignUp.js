@@ -11,15 +11,12 @@ import PasswordsAreNotTheSame from '../Errors/PasswordsAreNotTheSame';
 import '../../App/App.css';
 import AuthContext from '../../context/AuthContext';
 import LoginSuccess from '../LoginSuccess/LoginSuccess';
+import { Link } from 'react-router-dom';
 let stripe = Stripe(
   'pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt'
 );
 const SignUp = () => {
-  const [login, setLogin] = useState(false);
-  const [email, setEmail] = useState('');
   const [singUpSuccessfull, setSingUpSuccessfull] = useState(false);
-  const [loginSuccessfull, setLoginSuccessfull] = useState(false);
-  const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [emailSignUp, setEmailSignUp] = useState('');
   const [passwordSignUp, setPasswordSignUp] = useState('');
@@ -27,7 +24,6 @@ const SignUp = () => {
   const [userAlreadyExistError, setUserAlreadyExistError] = useState(false);
   const [shortPasswordError, setShortPasswordError] = useState(false);
   const [passwordsAreNotTheSame, setPasswordsAreNotTheSame] = useState(false);
-  const [loginError, setLoginError] = useState(false);
   const { price_id, getLoggedIn } = useContext(AuthContext);
 
   var createCheckoutSession = function (priceId) {
@@ -44,10 +40,6 @@ const SignUp = () => {
     });
   };
 
-  const changeLoginPage = (e) => {
-    e.preventDefault();
-    setLogin(!login);
-  };
   const setEmailFromSignUp = (e) => {
     setEmailSignUp(e.target.value);
   };
@@ -60,41 +52,6 @@ const SignUp = () => {
   };
   const setPasswordConfrimFromSignUp = (e) => {
     setPasswordConfirmSignUp(e.target.value);
-  };
-
-  const setEmailFromLogin = (e) => {
-    setEmail(e.target.value);
-  };
-  const setPasswordFromLogin = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const loginUser = async (e) => {
-    e.preventDefault();
-
-    const res = await axios(
-      {
-        method: 'POST',
-        url: 'http://localhost:8000/api/v1/users/login',
-        data: {
-          email: email,
-          password: password,
-        },
-      },
-      {
-        withCredentials: true,
-      }
-    );
-
-    if (res.data.status === 'success') {
-      setLoginSuccessfull(true);
-      window.setTimeout(() => {
-        location.assign('/dashboard');
-      }, 1500);
-      setLoginError(false);
-    } else {
-      setLoginError(true);
-    }
   };
 
   const signUpUser = async (e) => {
@@ -160,71 +117,6 @@ const SignUp = () => {
       }
     }
   };
-
-  const loginPage = (
-    <div className="sign_up-form_div">
-      {loginSuccessfull ? (
-        <LoginSuccess
-          message={'Logged in succesfully, redirecting to your dashboard 😀'}
-        />
-      ) : null}
-      <form action="" className="sign_up-form">
-        <h1 className="h1_signup">Log in</h1>
-        <div className="inputs_div">
-          <div className="input_div">
-            <label className="label_input" htmlFor="email">
-              Email
-            </label>
-            <input
-              onChange={setEmailFromLogin}
-              className="input input_email"
-              type="text"
-              id="email_login"
-              placeholder="Email"
-            />
-          </div>
-          <div className="input_div">
-            <label className="label_input" htmlFor="Password">
-              Password
-            </label>
-            <input
-              onChange={setPasswordFromLogin}
-              className="input input_password"
-              type="password"
-              id="password"
-              placeholder="Password"
-            />
-          </div>
-
-          <button
-            onClick={loginUser}
-            className="singup_button login_button_changed"
-            type="submit"
-          >
-            Log in
-          </button>
-
-          <p className="login_paragraph">
-            Dont have an account ?{' '}
-            <button onClick={changeLoginPage} className="login_button">
-              Sign up here
-            </button>{' '}
-          </p>
-        </div>
-        <div
-          className={
-            loginError
-              ? 'password_too_short_error'
-              : 'unactive_error password_too_short_error'
-          }
-        >
-          {loginError ? (
-            <div>Incorrect email or password! please try again</div>
-          ) : null}
-        </div>
-      </form>
-    </div>
-  );
 
   const singUpPage = (
     <div className="sign_up-form_div">
@@ -309,9 +201,9 @@ const SignUp = () => {
           </button>
           <p className="login_paragraph">
             Already have an account?{' '}
-            <button onClick={changeLoginPage} className="login_button">
+            <Link to="/login" className="login_button">
               Login here
-            </button>{' '}
+            </Link>{' '}
           </p>
           <div
             className={
@@ -332,7 +224,7 @@ const SignUp = () => {
     <div className="SignUp">
       <NavbarSignUp className="NavBar" />
       {/* Sign up form */}
-      {login ? loginPage : singUpPage}
+      {singUpPage}
       <FooterSignUp className="FooterSignUp" />
     </div>
   );
