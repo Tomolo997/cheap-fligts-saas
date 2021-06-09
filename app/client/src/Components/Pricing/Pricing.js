@@ -39,17 +39,17 @@ export default function Pricing(props) {
     <div className="Pricing" ref={props.myRefToPricing}>
       <h1 className="pricing_title">PRICING</h1>
       <div className="pricing_normal pricing_div">
-        <div className="pricing_package">Normal</div>
-        <div className="pricing_price_div">
+        <div className="pricing_package"></div>
+        <div className="pricing_price_div pricing_currencyFree">
           <div className="pricing_perMonth_div">
-            <span className="pricing_currency">€</span>20
+            <span className=" pricing_currencyFree"></span>Free
           </div>
-          <div className="pricing_perMonth">PER MONTH</div>
+          <div className="pricing_perMonth"></div>
         </div>
 
         <div className="pricing_features">
           <ul className="pricing_features_list">
-            <li className="pricing_features_item">8 Destinations</li>
+            <li className="pricing_features_item">2 Destinations</li>
             <li className="pricing_features_item">Daily destination prices</li>
             <li className="pricing_features_item">Online Support</li>
           </ul>
@@ -57,7 +57,6 @@ export default function Pricing(props) {
         <button
           onClick={() => {
             history.push('/sign-up');
-            return clickMeToPay('price_1J06iKJkVEDM03SsRq9iob2R');
           }}
           className="pricing_button pricing_button_buy"
         >
@@ -102,7 +101,7 @@ export default function Pricing(props) {
 
         <div className="pricing_features">
           <ul className="pricing_features_list">
-            <li className="pricing_features_item">Unlimited Destinations</li>
+            <li className="pricing_features_item">30 Destinations</li>
             <li className="pricing_features_item">
               Daily destination prices
             </li>{' '}

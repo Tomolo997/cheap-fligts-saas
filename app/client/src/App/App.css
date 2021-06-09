@@ -578,6 +578,9 @@ html {
   color: #1f52c4;
   margin-right: 2rem;
 }
+.pricing_currencyFree {
+  font-size: 10rem;
+}
 .pricing_perMonth {
   font-size: 2rem;
   font-weight: 400;

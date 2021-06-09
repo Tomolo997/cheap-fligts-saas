@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../App/App.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import AirportsSelected from '../AirportsSelected/AirportsSelected';
 import CountriesOption from '../CountriesOption/CountriesOption';
 export default function AddAFlight(props) {
@@ -14,6 +15,7 @@ export default function AddAFlight(props) {
   const [minMonth, setMinMonth] = useState(1);
   const [showMonth, setShowMonth] = useState(false);
   const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
+  const [cantaddFlight, setCantaddFlight] = useState(false);
   const addFlight = async () => {
     //   "flightsData":[{
     //     "flightFrom": "AU-sky",
@@ -40,14 +42,26 @@ export default function AddAFlight(props) {
         ],
         user: props.userId,
       };
-      await axios.post('http://localhost:8000/api/v1/flights/addFlight', data);
+      const response = await axios.post(
+        'http://localhost:8000/api/v1/flights/addFlight',
+        data
+      );
 
-      setAddAFlightCongrats(true);
+      console.log(response);
+      if (response.data.status === 'error') {
+        setCantaddFlight(true);
+        return;
+      }
+
+      if (response.data.status === 'success') {
+        setTimeout(() => {
+          setAddAFlightCongrats(true);
+          setCantaddFlight(false);
+          location.reload();
+        }, 1500);
+      }
+
       setAddAFlightError(false);
-      setTimeout(() => {
-        setAddAFlightCongrats(false);
-        location.reload();
-      }, 1500);
     } else {
       setAddAFlightError(true);
     }
@@ -111,7 +125,11 @@ export default function AddAFlight(props) {
   const changeToMonth = () => {
     setShowMonth(true);
   };
-
+  const Upgrade = (
+    <>
+      <Link to="/upgrade">Upgrade</Link>
+    </>
+  );
   const monthDiv = (
     <>
       {' '}
@@ -244,6 +262,12 @@ export default function AddAFlight(props) {
           {addAFlightCongrats
             ? `Congrats your flight from ${flightFrom} to ${flightTo} has been added. 🥳`
             : null}
+          {cantaddFlight ? (
+            <div>
+              `Cant add you flight, because you have exceeded the number of
+              flights you can add :D, you can {Upgrade}{' '}
+            </div>
+          ) : null}
         </h1>
       </div>
     </div>

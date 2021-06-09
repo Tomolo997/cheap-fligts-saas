@@ -49,71 +49,76 @@ export default function Dashboard() {
     setUserEmail(res.data.email);
   };
   const getUserFlights = async () => {
-    const res = await axios.get(
-      'http://localhost:8000/api/v1/flights/getMyFlights'
-    );
-    const flightResults = await res.data.data.flights;
-    const initData = await res.data.data.initData;
-    const noResults = await res.data.data.noResults;
-    const userID = userId;
-    setFlightsResults(flightResults);
-    // const fromToArray = [];
-    const fromToArray = [];
-    for (let index = 0; index < flightResults.length; index++) {
-      const element = flightResults[index];
-      console.log(element);
-      const findFlight = initData.find((el) => el._id === element.flightID);
-      fromToArray.push({
-        fromStart: element.results[0].flightFromSTART,
-        toStart: element.results[0].flightToSTART,
-        results: element.results,
-        flightResultsID: element.id,
-        flightId: element.flightID,
-        dateTo: findFlight.inboundDate,
-        dateFrom: findFlight.outboundDate,
-      });
+    try {
+      const res = await axios.get(
+        'http://localhost:8000/api/v1/flights/getMyFlights'
+      );
+
+      const flightResults = await res.data.data.flights;
+      const initData = await res.data.data.initData;
+      const noResults = await res.data.data.noResults;
+      const userID = userId;
+      setFlightsResults(flightResults);
+      // const fromToArray = [];
+      const fromToArray = [];
+      for (let index = 0; index < flightResults.length; index++) {
+        const element = flightResults[index];
+        console.log(element);
+        const findFlight = initData.find((el) => el._id === element.flightID);
+        fromToArray.push({
+          fromStart: element.results[0].flightFromSTART,
+          toStart: element.results[0].flightToSTART,
+          results: element.results,
+          flightResultsID: element.id,
+          flightId: element.flightID,
+          dateTo: findFlight.inboundDate,
+          dateFrom: findFlight.outboundDate,
+        });
+      }
+      console.log('flight results', flightResults);
+      console.log('No results', noResults);
+      for (let i = 0; i < noResults.length; i++) {
+        const element = noResults[i];
+        fromToArray.push({
+          fromStart: element.flightFrom,
+          toStart: element.flightTo,
+          results: [
+            {
+              flightFromSTART: element.flightFrom,
+              flightID: element._id,
+              flightToSTART: element.flightTo,
+              formDate: '2021-05-22T00:00:00.000',
+              fromFlight: 'No Data',
+              fromFlightCountry: 'No Data',
+              link: 'No Data',
+              price: 'No Data',
+              toDate: '2021-05-22T00:00:00.000Z',
+              toFlight: 'No Data',
+              toFlightCountry: 'No Data',
+              updated: 1621616899340,
+              user: userID,
+            },
+          ],
+          dateTo: element.inboundDate,
+          flightId: element._id,
+          dateFrom: element.outboundDate,
+        });
+      }
+      // for (let index = 0; index < noDataFlights.length; index++) {
+      //   const element = noDataFlights[index];
+      //   fromToArray.push({
+      //     fromStart: 'no results :(',
+      //     toStart: 'no results :(',
+      //     results: 'no results :(',
+      //     flightId: 'no results :(',
+      //   });
+      // }
+      console.log('from to start', fromToArray);
+      setFromToStart(fromToArray);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-    console.log('flight results', flightResults);
-    console.log('No results', noResults);
-    for (let i = 0; i < noResults.length; i++) {
-      const element = noResults[i];
-      fromToArray.push({
-        fromStart: element.flightFrom,
-        toStart: element.flightTo,
-        results: [
-          {
-            flightFromSTART: element.flightFrom,
-            flightID: element._id,
-            flightToSTART: element.flightTo,
-            formDate: '2021-05-22T00:00:00.000',
-            fromFlight: 'No Data',
-            fromFlightCountry: 'No Data',
-            link: 'No Data',
-            price: 'No Data',
-            toDate: '2021-05-22T00:00:00.000Z',
-            toFlight: 'No Data',
-            toFlightCountry: 'No Data',
-            updated: 1621616899340,
-            user: userID,
-          },
-        ],
-        dateTo: element.inboundDate,
-        flightId: element._id,
-        dateFrom: element.outboundDate,
-      });
-    }
-    // for (let index = 0; index < noDataFlights.length; index++) {
-    //   const element = noDataFlights[index];
-    //   fromToArray.push({
-    //     fromStart: 'no results :(',
-    //     toStart: 'no results :(',
-    //     results: 'no results :(',
-    //     flightId: 'no results :(',
-    //   });
-    // }
-    console.log('from to start', fromToArray);
-    setFromToStart(fromToArray);
-    setLoading(false);
   };
 
   useEffect(() => {

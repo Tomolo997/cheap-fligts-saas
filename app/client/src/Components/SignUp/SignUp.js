@@ -55,7 +55,7 @@ const SignUp = () => {
   };
 
   const signUpUser = async (e) => {
-    let program = '';
+    let program = 'free';
     //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
     e.preventDefault();
     console.log(price_id);
@@ -75,9 +75,6 @@ const SignUp = () => {
     if (price_id === 'price_1J081OJkVEDM03SsnZFRVUiO') {
       program = 'standard';
     }
-    if (price_id === 'price_1J06iKJkVEDM03SsRq9iob2R') {
-      program = 'normal';
-    }
     const res = await axios({
       method: 'POST',
       url: 'http://localhost:8000/api/v1/users/signup',
@@ -92,10 +89,12 @@ const SignUp = () => {
     if (res.data.status === 'success') {
       setSingUpSuccessfull(true);
       console.log('success', 'logged in successfully!');
-
-      // window.setTimeout(() => {
-      //   location.assign('/dashboard');
-      // }, 1500);
+      if (program === 'free') {
+        window.setTimeout(() => {
+          location.assign('/login');
+        }, 1500);
+      }
+      //
       setUserAlreadyExistError(false);
       setShortPasswordError(false);
       setPasswordsAreNotTheSame(false);

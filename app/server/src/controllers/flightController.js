@@ -27,7 +27,24 @@ exports.addFlight = async (req, res, next) => {
     const outboundDate = req.body.flightsData[0].outboundDate;
     const inboundDate = req.body.flightsData[0].inboundDate;
 
+    console.log(userID);
+
+    console.log(userID.program);
+
+    //find the program
+
     const flight = await Flights.findOne({ user: userID._id });
+    console.log(flight.flightsData);
+    if (userID.program === 'free' && flight.flightsData.length > 2) {
+      res.status(201).json({
+        status: 'error',
+        data: {
+          userID,
+        },
+      });
+      return;
+    }
+
     if (!flight) {
       const createdFlight = await Flights.create(req.body);
     }
@@ -46,10 +63,6 @@ exports.addFlight = async (req, res, next) => {
 
     const flighFound = await Flights.findOne({ _id: flightAdded._id });
 
-    console.log(
-      'flight found ',
-      flighFound.flightsData[flighFound.flightsData.length - 1]._id
-    );
     //2)Call thež
     addAFlightScript.addAFlight(
       flightFrom,
