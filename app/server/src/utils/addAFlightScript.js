@@ -83,15 +83,15 @@ exports.addAFlight = async (
       (el) => el.id === element.OutboundLeg.OriginId
     ).skyscannerCode;
     const toFlight = places.find((el) => {
-      return el.id === element.OutboundLeg.DestinationId || true;
+      return el.id === element.OutboundLeg.DestinationId;
     }).skyscannerCode;
 
     const fromFlightCountryorAirport = places.find(
-      (el) => el.id === element.OutboundLeg.OriginId || true
+      (el) => el.id === element.OutboundLeg.OriginId
     ).name;
 
     const toFlightCountryorAirport = places.find(
-      (el) => el.id === element.OutboundLeg.DestinationId || true
+      (el) => el.id === element.OutboundLeg.DestinationId
     ).name;
     const fromDate = TranfromDateToSuitableLink(
       element.OutboundLeg.DepartureDate

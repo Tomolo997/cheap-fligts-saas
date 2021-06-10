@@ -43,7 +43,6 @@ exports.singUp = async (req, res) => {
       passwordChangedAt: req.body.passwordChangedAt,
       program: req.body.program,
     });
-    //createSendToken(newUser, 201, res);
     res.status(200).json({
       status: 'success',
       data: {

@@ -94,6 +94,7 @@ const SignUp = () => {
           location.assign('/login');
         }, 1500);
       }
+
       //
       setUserAlreadyExistError(false);
       setShortPasswordError(false);

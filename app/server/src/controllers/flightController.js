@@ -33,20 +33,35 @@ exports.addFlight = async (req, res, next) => {
 
     //find the program
 
+    const flight2 = await Flights.findOne({ user: userID._id });
+
+    if (flight2 === null) {
+      await Flights.create({
+        user: userID._id,
+      });
+    }
+
     const flight = await Flights.findOne({ user: userID._id });
-    console.log(flight.flightsData);
+
     if (userID.program === 'free' && flight.flightsData.length > 2) {
       res.status(201).json({
         status: 'error',
-        data: {
-          userID,
-        },
       });
       return;
     }
 
-    if (!flight) {
-      const createdFlight = await Flights.create(req.body);
+    if (userID.program === 'pro' && flight.flightsData.length > 30) {
+      res.status(201).json({
+        status: 'error',
+      });
+      return;
+    }
+
+    if (userID.program === 'standard' && flight.flightsData.length > 5) {
+      res.status(201).json({
+        status: 'error',
+      });
+      return;
     }
 
     const flightAdded = await Flights.findByIdAndUpdate(

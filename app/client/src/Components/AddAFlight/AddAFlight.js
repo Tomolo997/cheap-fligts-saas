@@ -47,7 +47,7 @@ export default function AddAFlight(props) {
         data
       );
 
-      console.log(response);
+      console.log(response.data);
       if (response.data.status === 'error') {
         setCantaddFlight(true);
         return;
@@ -127,7 +127,9 @@ export default function AddAFlight(props) {
   };
   const Upgrade = (
     <>
-      <Link to="/upgrade">Upgrade</Link>
+      <Link className="addAFlight_upgradeLink" to="/upgrade">
+        UPGRADE
+      </Link>
     </>
   );
   const monthDiv = (
@@ -265,7 +267,8 @@ export default function AddAFlight(props) {
           {cantaddFlight ? (
             <div>
               `Cant add you flight, because you have exceeded the number of
-              flights you can add :D, you can {Upgrade}{' '}
+              flights you can add 😔,but you can still <br /> <br />
+              {Upgrade}{' '}
             </div>
           ) : null}
         </h1>
