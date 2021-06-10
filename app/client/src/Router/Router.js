@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import LandingPage from '../Components/LandingPage/LandingPage';
 import SignUp from '../Components/SignUp/SignUp';
 import Dashboard from '../Components/Dashboard/Dashboard';
+import Upgrade from '../Components/Upgrade/Upgrade';
 import LoginPage from '../Components/LoginPage/LoginPage';
 import errorAuthPage from '../Components/errorAuthPage/errorAuthPage';
 import AuthContextProvider from '../context/AuthContext';

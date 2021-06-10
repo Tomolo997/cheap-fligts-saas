@@ -60,15 +60,6 @@ const SignUp = () => {
     e.preventDefault();
     console.log(price_id);
 
-    createCheckoutSession(price_id).then(function (data) {
-      // Call Stripe.js method to redirect to the new Checkout page
-      console.log(data.sessionId);
-      stripe
-        .redirectToCheckout({
-          sessionId: data.sessionId,
-        })
-        .then(handleResult);
-    });
     if (price_id === 'price_1J084NJkVEDM03SsxUZmPVER') {
       program = 'pro';
     }
@@ -86,6 +77,17 @@ const SignUp = () => {
         program: program,
       },
     });
+
+    createCheckoutSession(price_id).then(function (data) {
+      // Call Stripe.js method to redirect to the new Checkout page
+      console.log(data.sessionId);
+      stripe
+        .redirectToCheckout({
+          sessionId: data.sessionId,
+        })
+        .then(handleResult);
+    });
+
     if (res.data.status === 'success') {
       setSingUpSuccessfull(true);
       console.log('success', 'logged in successfully!');

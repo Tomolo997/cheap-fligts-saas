@@ -15,6 +15,7 @@ import AirportSVG from '../../assets/Images/airplane.svg';
 import NewMessageSVG from '../../assets/Images/new-message.svg';
 import AddAFlightSVG from '../../assets/Images/circle-with-plus.svg';
 import Help from '../Help/Help';
+import Upgrade from '../Upgrade/Upgrade';
 
 export default function Dashboard() {
   const { slider, setSlider } = useContext(AuthContextProvider);

@@ -1548,10 +1548,10 @@ html {
   transform: translateY(-2px);
 }
 .addAFlight_h1_error {
-  grid-row: 9/10;
+  grid-row: 11/12;
   grid-column: 2/6;
   text-align: center;
-  margin-top: 4rem;
+  margin-top: 1rem;
   color: red;
 }
 .addAFlight_Country_div {
@@ -1599,9 +1599,22 @@ html {
 }
 
 .addAFlight_upgradeLink {
+  background-color: rgba(255, 213, 98, 0.397);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 7px 30px -10px rgb(150 170 180 / 50%);
+  font-size: 1.4rem;
+  padding: 1rem;
+  transition: all 0.5s;
+}
+
+.addAFlight_upgradeLink:activce {
   text-decoration: none;
   color: #000000;
   margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 213, 98, 0.397);
 }
 @media only screen and (max-width: 1600px) {
   .addAFlights_div {
@@ -1988,4 +2001,25 @@ html {
 .contact_label_helpSection {
   align-self: flex-start;
   margin-left: 8rem;
+}
+
+.upgradeTime {
+  display: flex;
+  width: 60vw;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  height: 70vh;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 10%);
+  background-color: rgb(255, 255, 255);
+}
+.pricing_divUpgrade {
+  background-color: white;
+  height: 60rem;
+  display: flex;
+  width: 30rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
 }

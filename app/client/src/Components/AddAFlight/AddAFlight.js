@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AirportsSelected from '../AirportsSelected/AirportsSelected';
 import CountriesOption from '../CountriesOption/CountriesOption';
+import Upgradeyea from '../Upgrade/Upgrade';
 export default function AddAFlight(props) {
   const [flightFrom, setFlightFrom] = useState('');
   const [flightTo, setFlightTo] = useState('');
@@ -13,6 +14,7 @@ export default function AddAFlight(props) {
   const [countrySelectedFrom, setCountrySelectedFrom] = useState(true);
   const [addAFlightError, setAddAFlightError] = useState(false);
   const [minMonth, setMinMonth] = useState(1);
+  const [showUpgrade, setShowUpgrade] = useState(true);
   const [showMonth, setShowMonth] = useState(false);
   const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
   const [cantaddFlight, setCantaddFlight] = useState(false);
@@ -125,11 +127,15 @@ export default function AddAFlight(props) {
   const changeToMonth = () => {
     setShowMonth(true);
   };
+
+  const changeToUpgrade = () => {
+    setShowUpgrade(true);
+  };
   const Upgrade = (
     <>
-      <Link className="addAFlight_upgradeLink" to="/upgrade">
+      <button onClick={changeToUpgrade} className="addAFlight_upgradeLink">
         UPGRADE
-      </Link>
+      </button>
     </>
   );
   const monthDiv = (
@@ -157,122 +163,126 @@ export default function AddAFlight(props) {
     </h1>
   );
 
+  const addFLightt = (
+    <div className="addAFlights_div">
+      <div
+        onClick={countrySelectedClickFrom}
+        className={
+          countrySelectedFrom
+            ? ['addAFlight_Country_div active_selected']
+            : ['addAFlight_Country_div']
+        }
+      >
+        Country
+      </div>
+      <div
+        onClick={airportSelectedClickFrom}
+        className={
+          !countrySelectedFrom
+            ? ['addAFlight_Airport_div active_selected']
+            : ['addAFlight_Airport_div']
+        }
+      >
+        Top Cities
+      </div>
+      <div
+        onClick={countrySelectedClick}
+        className={
+          countrySelected
+            ? [
+                'addAFlight_Country_div addAFlight_Country_div_to  active_selected',
+              ]
+            : ['addAFlight_Country_div addAFlight_Country_div_to']
+        }
+      >
+        Country
+      </div>
+      <div
+        onClick={airportSelectedClick}
+        className={
+          !countrySelected
+            ? [
+                'addAFlight_Airport_div addAFlight_Airport_div_to active_selected',
+              ]
+            : ['addAFlight_Airport_div addAFlight_Airport_div_to']
+        }
+      >
+        Top Cities
+      </div>
+      <div className="from_div">
+        <h1 className="addAFlight_h1">Fly from</h1>
+        <select
+          name="flightFrom"
+          className="input_addAflight"
+          type="text"
+          onChange={changeFromFlight}
+        >
+          {countrySelectedFrom ? (
+            <CountriesOption />
+          ) : (
+            <AirportsSelected airportsFromDB={props.airportsFromDB} />
+          )}
+        </select>
+      </div>
+      <div className="to_div">
+        <h1 className="addAFlight_h1">Fly to</h1>
+        <select
+          onChange={changeToFlight}
+          name="flightTo"
+          className="input_addAflight"
+          type="text"
+        >
+          {countrySelected ? (
+            <CountriesOption />
+          ) : (
+            <AirportsSelected airportsFromDB={props.airportsFromDB} />
+          )}
+        </select>
+      </div>
+      <div className="dateTo_div">
+        {showMonth ? (
+          monthDiv
+        ) : (
+          <h1 className="addAFlight_h1 alingText_h1">
+            You choose the whole Year of 2021
+          </h1>
+        )}
+      </div>
+      <div className="dateFrom_div">
+        <h1 className="addAFlight_h1"></h1>
+        <button onClick={() => changeToYear()} className="button_thisyear">
+          For whole year
+        </button>
+        <button onClick={() => changeToMonth()} className="button_thisyear">
+          Choose 2 months
+        </button>
+      </div>
+      <button className="addAFlight_addButton" onClick={addFlight}>
+        Add Flight
+      </button>
+      <div className="addAFlight_toMonth">
+        {showMonth ? fromMonth : null}
+        {showMonth ? toMonth : null}
+      </div>
+      <h1 className="addAFlight_h1_error">
+        {addAFlightError ? 'Please fill out all of the fields' : null}
+        {addAFlightCongrats
+          ? `Congrats your flight from ${flightFrom} to ${flightTo} has been added. 🥳`
+          : null}
+        {cantaddFlight ? (
+          <div>
+            `Cant add you flight, because you have exceeded the number of
+            flights you can add 😔,but you can still <br /> <br />
+            {Upgrade}{' '}
+          </div>
+        ) : null}
+      </h1>
+    </div>
+  );
+
   return (
     <div className="dasboard_addAflight">
-      <div className="addAFlights_div">
-        <div
-          onClick={countrySelectedClickFrom}
-          className={
-            countrySelectedFrom
-              ? ['addAFlight_Country_div active_selected']
-              : ['addAFlight_Country_div']
-          }
-        >
-          Country
-        </div>
-        <div
-          onClick={airportSelectedClickFrom}
-          className={
-            !countrySelectedFrom
-              ? ['addAFlight_Airport_div active_selected']
-              : ['addAFlight_Airport_div']
-          }
-        >
-          Top Cities
-        </div>
-        <div
-          onClick={countrySelectedClick}
-          className={
-            countrySelected
-              ? [
-                  'addAFlight_Country_div addAFlight_Country_div_to  active_selected',
-                ]
-              : ['addAFlight_Country_div addAFlight_Country_div_to']
-          }
-        >
-          Country
-        </div>
-        <div
-          onClick={airportSelectedClick}
-          className={
-            !countrySelected
-              ? [
-                  'addAFlight_Airport_div addAFlight_Airport_div_to active_selected',
-                ]
-              : ['addAFlight_Airport_div addAFlight_Airport_div_to']
-          }
-        >
-          Top Cities
-        </div>
-        <div className="from_div">
-          <h1 className="addAFlight_h1">Fly from</h1>
-          <select
-            name="flightFrom"
-            className="input_addAflight"
-            type="text"
-            onChange={changeFromFlight}
-          >
-            {countrySelectedFrom ? (
-              <CountriesOption />
-            ) : (
-              <AirportsSelected airportsFromDB={props.airportsFromDB} />
-            )}
-          </select>
-        </div>
-        <div className="to_div">
-          <h1 className="addAFlight_h1">Fly to</h1>
-          <select
-            onChange={changeToFlight}
-            name="flightTo"
-            className="input_addAflight"
-            type="text"
-          >
-            {countrySelected ? (
-              <CountriesOption />
-            ) : (
-              <AirportsSelected airportsFromDB={props.airportsFromDB} />
-            )}
-          </select>
-        </div>
-        <div className="dateTo_div">
-          {showMonth ? (
-            monthDiv
-          ) : (
-            <h1 className="addAFlight_h1 alingText_h1">
-              You choose the whole Year of 2021
-            </h1>
-          )}
-        </div>
-        <div className="dateFrom_div">
-          <h1 className="addAFlight_h1"></h1>
-          <button onClick={() => changeToYear()} className="button_thisyear">
-            For whole year
-          </button>
-          <button onClick={() => changeToMonth()} className="button_thisyear">
-            Choose 2 months
-          </button>
-        </div>
-        <button className="addAFlight_addButton" onClick={addFlight}>
-          Add Flight
-        </button>
-        <div className="addAFlight_toMonth">
-          {showMonth ? fromMonth : null}
-          {showMonth ? toMonth : null}
-        </div>
-        <h1 className="addAFlight_h1_error">
-          {addAFlightError ? 'Please fill out all of the fields' : null}
-          {addAFlightCongrats
-            ? `Congrats your flight from ${flightFrom} to ${flightTo} has been added. 🥳`
-            : null}
-          {cantaddFlight ? (
-            <div>
-              `Cant add you flight, because you have exceeded the number of
-              flights you can add 😔,but you can still <br /> <br />
-              {Upgrade}{' '}
-            </div>
-          ) : null}
-        </h1>
-      </div>
+      {showUpgrade ? <Upgradeyea></Upgradeyea> : addFLightt}
     </div>
   );
 }
