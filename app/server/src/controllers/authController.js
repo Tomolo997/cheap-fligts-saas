@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
+const randomstring = require('randomstring');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const appError = require('../utils/appError');
@@ -42,6 +43,7 @@ exports.singUp = async (req, res) => {
       passwordConfirm: req.body.passwordConfirm,
       passwordChangedAt: req.body.passwordChangedAt,
       program: req.body.program,
+      secretToken: randomstring.generate(),
     });
     res.status(200).json({
       status: 'success',
@@ -79,15 +81,15 @@ exports.logIn = catchAsync(async (req, res, next) => {
     return next(new appError('incorrect email or password', 401));
   }
 
-  //3) if everytingh ok , send token to client
-  if (user.program !== '') {
+  //3) if the account has acces, has been verified
+  if (user.canAccess) {
     createSendToken(user, 200, res);
-  } else {
-    res.json({
-      status: 'error',
-      message: 'You are ',
-    });
+    return;
   }
+  if (!user.canAccess) {
+    return next(new appError('Your account is not verified', 401));
+  }
+  createSendToken(user, 200, res);
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -98,7 +100,6 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-    console.log(123);
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
     console.log('cookie');

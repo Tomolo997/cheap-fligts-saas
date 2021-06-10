@@ -28,7 +28,7 @@ exports.payMe = async (req, res) => {
       // the actual Session ID is returned in the query parameter when your customer
       // is redirected to the success page.
 
-      success_url: 'http://localhost:4000/login',
+      success_url: 'http://localhost:4000/subscribe',
       cancel_url: 'http://localhost:4000/',
     });
     console.log(session);

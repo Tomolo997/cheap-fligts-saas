@@ -12,6 +12,8 @@ import '../../App/App.css';
 import AuthContext from '../../context/AuthContext';
 import LoginSuccess from '../LoginSuccess/LoginSuccess';
 import { Link } from 'react-router-dom';
+import ProvideValidEmail from '../Errors/ProvideValidEmail';
+import PleaseEnterName from '../Errors/PleaseEnterName';
 let stripe = Stripe(
   'pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt'
 );
@@ -24,7 +26,9 @@ const SignUp = () => {
   const [userAlreadyExistError, setUserAlreadyExistError] = useState(false);
   const [shortPasswordError, setShortPasswordError] = useState(false);
   const [passwordsAreNotTheSame, setPasswordsAreNotTheSame] = useState(false);
-  const { price_id, getLoggedIn } = useContext(AuthContext);
+  const [provideValidEmail, setProvideValidEmail] = useState(false);
+  const [enterNameError, setEnterNameError] = useState(false);
+  const { price_id, getLoggedIn, setUserEmail } = useContext(AuthContext);
 
   var createCheckoutSession = function (priceId) {
     return fetch('http://localhost:8000/api/v1/payment/pay', {
@@ -58,7 +62,6 @@ const SignUp = () => {
     let program = 'free';
     //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
     e.preventDefault();
-    console.log(price_id);
 
     if (price_id === 'price_1J084NJkVEDM03SsxUZmPVER') {
       program = 'pro';
@@ -75,45 +78,68 @@ const SignUp = () => {
         password: passwordSignUp,
         passwordConfirm: passwordConfirmSignUp,
         program: program,
+        canAccess: false,
       },
-    });
-
-    createCheckoutSession(price_id).then(function (data) {
-      // Call Stripe.js method to redirect to the new Checkout page
-      console.log(data.sessionId);
-      stripe
-        .redirectToCheckout({
-          sessionId: data.sessionId,
-        })
-        .then(handleResult);
     });
 
     if (res.data.status === 'success') {
       setSingUpSuccessfull(true);
+      setUserEmail(emailSignUp);
       console.log('success', 'logged in successfully!');
       if (program === 'free') {
         window.setTimeout(() => {
           location.assign('/login');
         }, 1500);
+        return;
       }
-
+      createCheckoutSession(price_id).then(function (data) {
+        // Call Stripe.js method to redirect to the new Checkout page
+        console.log(data.sessionId);
+        stripe
+          .redirectToCheckout({
+            sessionId: data.sessionId,
+          })
+          .then(handleResult);
+      });
       //
       setUserAlreadyExistError(false);
       setShortPasswordError(false);
       setPasswordsAreNotTheSame(false);
     } else if (res.data.status === 'error') {
+      console.log(res.data.error);
       if (res.data.error.startsWith('E11000')) {
         setUserAlreadyExistError(true);
         setShortPasswordError(false);
+        setProvideValidEmail(false);
+        setEnterNameError(false);
         setPasswordsAreNotTheSame(false);
       }
       if (res.data.error.includes('shorter than the minimum allowed length')) {
         setShortPasswordError(true);
+
         setUserAlreadyExistError(false);
+        setProvideValidEmail(false);
+        setEnterNameError(false);
         setPasswordsAreNotTheSame(false);
       }
-      if (res.data.error.includes('passwordConfirm')) {
-        setPasswordsAreNotTheSame(true);
+      if (res.data.error.includes('Please provide  your email')) {
+        setProvideValidEmail(true);
+        setPasswordsAreNotTheSame(false);
+        setShortPasswordError(false);
+        setEnterNameError(false);
+        setUserAlreadyExistError(false);
+      }
+      if (res.data.error.includes('Please provide a valid email')) {
+        setProvideValidEmail(true);
+        setPasswordsAreNotTheSame(false);
+        setShortPasswordError(false);
+        setUserAlreadyExistError(false);
+        setEnterNameError(false);
+      }
+      if (res.data.error.includes('Please tell us your name')) {
+        setProvideValidEmail(false);
+        setEnterNameError(true);
+        setPasswordsAreNotTheSame(false);
         setShortPasswordError(false);
         setUserAlreadyExistError(false);
       }
@@ -137,6 +163,7 @@ const SignUp = () => {
               type="text"
               id="username"
               placeholder="Username"
+              required
             />
           </div>
           <div className="input_div">
@@ -146,11 +173,13 @@ const SignUp = () => {
             <input
               onChange={setEmailFromSignUp}
               className="input input_email"
-              type="text"
+              type="email"
               id="email"
               placeholder="Email"
+              required
             />
           </div>
+
           <div className="input_div">
             <label className="label_input" htmlFor="Password">
               Password
@@ -217,6 +246,24 @@ const SignUp = () => {
             {userAlreadyExistError ? (
               <UserAlreadyExists></UserAlreadyExists>
             ) : null}
+          </div>
+          <div
+            className={
+              provideValidEmail
+                ? 'user_already_exists_error'
+                : 'unactive_error user_already_exists_error'
+            }
+          >
+            {provideValidEmail ? <ProvideValidEmail></ProvideValidEmail> : null}
+          </div>
+          <div
+            className={
+              enterNameError
+                ? 'user_already_exists_error'
+                : 'unactive_error user_already_exists_error'
+            }
+          >
+            {enterNameError ? <PleaseEnterName></PleaseEnterName> : null}
           </div>
         </div>
       </form>

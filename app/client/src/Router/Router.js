@@ -7,6 +7,8 @@ import Upgrade from '../Components/Upgrade/Upgrade';
 import LoginPage from '../Components/LoginPage/LoginPage';
 import errorAuthPage from '../Components/errorAuthPage/errorAuthPage';
 import AuthContextProvider from '../context/AuthContext';
+import Subscribe from '../Components/Subscribe/Subscribe';
+import VerifyME from '../Components/Verify/Verify';
 
 export default function Router() {
   const { loggedIn } = useContext(AuthContextProvider);
@@ -20,6 +22,8 @@ export default function Router() {
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/dashboard" exact component={errorAuthPage} />
+          <Route path="/subscribe" exact component={Subscribe} />
+          <Route path="/verify" exact component={VerifyME} />
         </>
       )}
 

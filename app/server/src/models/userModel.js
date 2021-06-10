@@ -43,7 +43,16 @@ const userSchema = mongoose.Schema({
   },
   program: {
     type: String,
-    default: 'none',
+    default: String,
+  },
+
+  canAccess: {
+    type: Boolean,
+    defualt: false,
+  },
+  secretToken: {
+    type: String,
+    required: true,
   },
 });
 //pre saving the data we encryp passowd

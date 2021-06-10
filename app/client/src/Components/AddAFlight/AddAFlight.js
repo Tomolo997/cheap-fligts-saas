@@ -14,7 +14,7 @@ export default function AddAFlight(props) {
   const [countrySelectedFrom, setCountrySelectedFrom] = useState(true);
   const [addAFlightError, setAddAFlightError] = useState(false);
   const [minMonth, setMinMonth] = useState(1);
-  const [showUpgrade, setShowUpgrade] = useState(true);
+  const [showUpgrade, setShowUpgrade] = useState(false);
   const [showMonth, setShowMonth] = useState(false);
   const [addAFlightCongrats, setAddAFlightCongrats] = useState(false);
   const [cantaddFlight, setCantaddFlight] = useState(false);

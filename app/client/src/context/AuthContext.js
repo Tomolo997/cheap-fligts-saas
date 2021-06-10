@@ -7,6 +7,7 @@ function AuthContextProvider(props) {
   const [loggedIn, setLoggedIn] = useState(undefined);
   const [price_id, setPriceId] = useState('');
   const [userId, setUserId] = useState('');
+  const [userEmail, setUserEmail] = useState('None');
   const [slider, setSlider] = useState(true);
   async function getLoggedIn(params) {
     try {
@@ -29,6 +30,8 @@ function AuthContextProvider(props) {
     <AuthContext.Provider
       value={{
         price_id,
+        setUserEmail,
+        userEmail,
         setPriceId,
         loggedIn,
         getLoggedIn,
