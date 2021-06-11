@@ -1,9 +1,10 @@
-import 'core-js';
-import 'regenerator-runtime/runtime';
-import React, { useState, useContext } from 'react';
-import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
-import FooterSignUp from '../FooterSignUp/FooterSignUp';
-import '../../App/App.css';
+import "core-js";
+import "regenerator-runtime/runtime";
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import NavbarSignUp from "../NavbarSignUp/NavbarSignUp";
+import FooterSignUp from "../FooterSignUp/FooterSignUp";
+import "../../App/App.css";
 const VerifyME = () => {
   const verify = <div>verifyME</div>;
 

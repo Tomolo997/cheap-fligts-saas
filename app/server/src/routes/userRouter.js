@@ -5,6 +5,7 @@ const userController = require("../controllers/userController");
 //not protected routes
 router.post("/signup", authController.singUp);
 router.post("/login", authController.logIn);
+router.post("/verify", authController.verify);
 router.get("/loggedIn", authController.isLoggedIn);
 router.get("/logout", authController.logout);
 
