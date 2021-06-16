@@ -1,28 +1,28 @@
-import "core-js";
-import "regenerator-runtime/runtime";
-import React, { Fragment, useState, useContext } from "react";
-import NavbarSignUp from "../NavbarSignUp/NavbarSignUp";
-import FooterSignUp from "../FooterSignUp/FooterSignUp";
-import SignUpSuccess from "../signUpSuccess/signUpSuccess";
-import axios from "axios";
-import UserAlreadyExists from "../Errors/UserAlreadyExists";
-import ShortPasswordError from "../Errors/ShortPasswordError";
-import PasswordsAreNotTheSame from "../Errors/PasswordsAreNotTheSame";
-import "../../App/App.css";
-import AuthContext from "../../context/AuthContext";
-import LoginSuccess from "../LoginSuccess/LoginSuccess";
-import { Link } from "react-router-dom";
-import ProvideValidEmail from "../Errors/ProvideValidEmail";
-import PleaseEnterName from "../Errors/PleaseEnterName";
+import 'core-js';
+import 'regenerator-runtime/runtime';
+import React, { Fragment, useState, useContext } from 'react';
+import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
+import FooterSignUp from '../FooterSignUp/FooterSignUp';
+import SignUpSuccess from '../signUpSuccess/signUpSuccess';
+import axios from 'axios';
+import UserAlreadyExists from '../Errors/UserAlreadyExists';
+import ShortPasswordError from '../Errors/ShortPasswordError';
+import PasswordsAreNotTheSame from '../Errors/PasswordsAreNotTheSame';
+import '../../App/App.css';
+import AuthContext from '../../context/AuthContext';
+import LoginSuccess from '../LoginSuccess/LoginSuccess';
+import { Link } from 'react-router-dom';
+import ProvideValidEmail from '../Errors/ProvideValidEmail';
+import PleaseEnterName from '../Errors/PleaseEnterName';
 let stripe = Stripe(
-  "pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt"
+  'pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt'
 );
 const SignUp = () => {
   const [singUpSuccessfull, setSingUpSuccessfull] = useState(false);
-  const [username, setUsername] = useState("");
-  const [emailSignUp, setEmailSignUp] = useState("");
-  const [passwordSignUp, setPasswordSignUp] = useState("");
-  const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState("");
+  const [username, setUsername] = useState('');
+  const [emailSignUp, setEmailSignUp] = useState('');
+  const [passwordSignUp, setPasswordSignUp] = useState('');
+  const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState('');
   const [userAlreadyExistError, setUserAlreadyExistError] = useState(false);
   const [shortPasswordError, setShortPasswordError] = useState(false);
   const [passwordsAreNotTheSame, setPasswordsAreNotTheSame] = useState(false);
@@ -31,10 +31,10 @@ const SignUp = () => {
   const { price_id, getLoggedIn, setUserEmail } = useContext(AuthContext);
 
   var createCheckoutSession = function (priceId) {
-    return fetch("http://localhost:8000/api/v1/payment/pay", {
-      method: "POST",
+    return fetch('http://localhost:8000/api/v1/payment/pay', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         priceId: priceId,
@@ -59,34 +59,34 @@ const SignUp = () => {
   };
 
   const signUpUser = async (e) => {
-    let program = "free";
+    let program = 'free';
     //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
     e.preventDefault();
 
-    if (price_id === "price_1J084NJkVEDM03SsxUZmPVER") {
-      program = "pro";
+    if (price_id === 'price_1J084NJkVEDM03SsxUZmPVER') {
+      program = 'pro';
     }
-    if (price_id === "price_1J081OJkVEDM03SsnZFRVUiO") {
-      program = "standard";
+    if (price_id === 'price_1J081OJkVEDM03SsnZFRVUiO') {
+      program = 'standard';
     }
     const res = await axios({
-      method: "POST",
-      url: "http://localhost:8000/api/v1/users/signup",
+      method: 'POST',
+      url: 'http://localhost:8000/api/v1/users/signup',
       data: {
         name: username,
         email: emailSignUp,
         password: passwordSignUp,
         passwordConfirm: passwordConfirmSignUp,
         program: program,
-        canAccess: false,
+        confirmed: false,
       },
     });
 
-    if (res.data.status === "success") {
+    if (res.data.status === 'success') {
       setSingUpSuccessfull(true);
       setUserEmail(emailSignUp);
-      console.log("YEAAA");
-      console.log("success", "logged in successfully!");
+      console.log('YEAAA');
+      console.log('success', 'logged in successfully!');
       /* if (program === "free") {
         window.setTimeout(() => {
           location.assign("/verify");
@@ -94,13 +94,6 @@ const SignUp = () => {
         return;
       }*/
 
-      await axios({
-        method: "POST",
-        url: "http://localhost:8000/api/v1/users/verify",
-        data: {
-          email: emailSignUp,
-        },
-      });
       //call verify function and post the data here
 
       /*createCheckoutSession(price_id).then(function (data) {
@@ -116,16 +109,16 @@ const SignUp = () => {
       setUserAlreadyExistError(false);
       setShortPasswordError(false);
       setPasswordsAreNotTheSame(false);
-    } else if (res.data.status === "error") {
+    } else if (res.data.status === 'error') {
       console.log(res.data.error);
-      if (res.data.error.startsWith("E11000")) {
+      if (res.data.error.startsWith('E11000')) {
         setUserAlreadyExistError(true);
         setShortPasswordError(false);
         setProvideValidEmail(false);
         setEnterNameError(false);
         setPasswordsAreNotTheSame(false);
       }
-      if (res.data.error.includes("shorter than the minimum allowed length")) {
+      if (res.data.error.includes('shorter than the minimum allowed length')) {
         setShortPasswordError(true);
 
         setUserAlreadyExistError(false);
@@ -133,21 +126,21 @@ const SignUp = () => {
         setEnterNameError(false);
         setPasswordsAreNotTheSame(false);
       }
-      if (res.data.error.includes("Please provide  your email")) {
+      if (res.data.error.includes('Please provide  your email')) {
         setProvideValidEmail(true);
         setPasswordsAreNotTheSame(false);
         setShortPasswordError(false);
         setEnterNameError(false);
         setUserAlreadyExistError(false);
       }
-      if (res.data.error.includes("Please provide a valid email")) {
+      if (res.data.error.includes('Please provide a valid email')) {
         setProvideValidEmail(true);
         setPasswordsAreNotTheSame(false);
         setShortPasswordError(false);
         setUserAlreadyExistError(false);
         setEnterNameError(false);
       }
-      if (res.data.error.includes("Please tell us your name")) {
+      if (res.data.error.includes('Please tell us your name')) {
         setProvideValidEmail(false);
         setEnterNameError(true);
         setPasswordsAreNotTheSame(false);
@@ -206,8 +199,8 @@ const SignUp = () => {
           <div
             className={
               shortPasswordError
-                ? "password_too_short_error"
-                : "unactive_error password_too_short_error"
+                ? 'password_too_short_error'
+                : 'unactive_error password_too_short_error'
             }
           >
             {shortPasswordError ? (
@@ -230,8 +223,8 @@ const SignUp = () => {
           <div
             className={
               passwordsAreNotTheSame
-                ? "password_too_short_error"
-                : "unactive_error password_too_short_error"
+                ? 'password_too_short_error'
+                : 'unactive_error password_too_short_error'
             }
           >
             {passwordsAreNotTheSame ? (
@@ -242,16 +235,16 @@ const SignUp = () => {
             SIGN UP
           </button>
           <p className="login_paragraph">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <Link to="/login" className="login_button">
               Login here
-            </Link>{" "}
+            </Link>{' '}
           </p>
           <div
             className={
               userAlreadyExistError
-                ? "user_already_exists_error"
-                : "unactive_error user_already_exists_error"
+                ? 'user_already_exists_error'
+                : 'unactive_error user_already_exists_error'
             }
           >
             {userAlreadyExistError ? (
@@ -261,8 +254,8 @@ const SignUp = () => {
           <div
             className={
               provideValidEmail
-                ? "user_already_exists_error"
-                : "unactive_error user_already_exists_error"
+                ? 'user_already_exists_error'
+                : 'unactive_error user_already_exists_error'
             }
           >
             {provideValidEmail ? <ProvideValidEmail></ProvideValidEmail> : null}
@@ -270,8 +263,8 @@ const SignUp = () => {
           <div
             className={
               enterNameError
-                ? "user_already_exists_error"
-                : "unactive_error user_already_exists_error"
+                ? 'user_already_exists_error'
+                : 'unactive_error user_already_exists_error'
             }
           >
             {enterNameError ? <PleaseEnterName></PleaseEnterName> : null}

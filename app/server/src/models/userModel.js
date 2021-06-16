@@ -46,7 +46,7 @@ const userSchema = mongoose.Schema({
     default: String,
   },
 
-  canAccess: {
+  confirmed: {
     type: Boolean,
     defualt: false,
   },
