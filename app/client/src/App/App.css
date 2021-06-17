@@ -2023,3 +2023,13 @@ html {
   flex-direction: column;
   border-radius: 10px;
 }
+.verified {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  flex-direction: column;
+}
+.verified_login {
+  margin-top: 2rem;
+}

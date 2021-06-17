@@ -13,6 +13,8 @@ const sendConfirmationEmail = async (user) => {
     process.env.JWT_SECRET
   );
 
+  const url = `http://localhost:4000/verification/${user.secretToken}/${user._id}`;
+
   const DOMAIN = 'mg.costfriendlyflights.com';
   const mg = mailgun({
     apiKey: '1f2226d72b5cdfa2eef834a9cb4bbfa8-24e2ac64-6e2d2326',
@@ -21,10 +23,10 @@ const sendConfirmationEmail = async (user) => {
   });
   console.log(user.email);
   const data = {
-    from: 'Excited User <support@costfriendlyflights.com>',
-    to: `tomazovsenjak7@gmail.com`,
-    subject: 'Hello',
-    text: 'yeaaa',
+    from: 'Your support <support@costfriendlyflights.com>',
+    to: `${user.email}`,
+    subject: 'Verification email',
+    html: `<p>Click on this link to procees <a href="${url}"></a>${url}</p>`,
   };
   mg.messages().send(data, function (error, body) {
     console.log(body);

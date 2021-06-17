@@ -49,6 +49,7 @@ exports.singUp = async (req, res) => {
       passwordConfirm: req.body.passwordConfirm,
       passwordChangedAt: req.body.passwordChangedAt,
       program: req.body.program,
+      confirmed: req.body.confirmed,
       secretToken: randomstring.generate(),
     });
 
@@ -104,6 +105,13 @@ exports.logIn = catchAsync(async (req, res, next) => {
     return;
   }
   if (!user.confirmed) {
+    console.log(user.confirmed);
+    console.log(user);
+    res.json({
+      statusCode: 401,
+      status: 'error',
+      message: 'Your Account is not verified',
+    });
     return next(new appError('Your account is not verified', 401));
   }
 });
@@ -206,10 +214,15 @@ exports.logout = async (req, res) => {
 };
 
 exports.verify = async (req, res) => {
-  const { email } = req.body;
-  console.log(email);
+  const { id, token } = req.body.data;
 
+  const user = await User.findByIdAndUpdate(id, { confirmed: true });
+
+  res.json({
+    data: {
+      confirmed: true,
+    },
+  });
   //With email found the user and secret token
-
   //Send the email to verify to the user
 };

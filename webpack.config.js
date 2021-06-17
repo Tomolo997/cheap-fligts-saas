@@ -7,6 +7,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.bundled.js',
+    publicPath: '/',
   },
 
   module: {

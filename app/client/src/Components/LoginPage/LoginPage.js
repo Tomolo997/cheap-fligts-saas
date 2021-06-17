@@ -11,11 +11,10 @@ import LoginSuccess from '../LoginSuccess/LoginSuccess';
 const LoginPage = () => {
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState('');
-  const [singUpSuccessfull, setSingUpSuccessfull] = useState(false);
   const [loginSuccessfull, setLoginSuccessfull] = useState(false);
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
-  const { price_id, getLoggedIn } = useContext(AuthContext);
+  const [notVerified, setNotVerified] = useState(false);
 
   var createCheckoutSession = function (priceId) {
     return fetch('http://localhost:8000/api/v1/payment/pay', {
@@ -61,7 +60,17 @@ const LoginPage = () => {
         location.assign('/dashboard');
       }, 1500);
       setLoginError(false);
+      setNotVerified(false);
+    } else if (
+      res.data.status === 'error' &&
+      res.data.message.includes('verified')
+    ) {
+      setNotVerified(true);
+      setLoginError(false);
     } else {
+      console.log(res);
+      setNotVerified(false);
+
       setLoginError(true);
     }
   };
@@ -125,6 +134,20 @@ const LoginPage = () => {
         >
           {loginError ? (
             <div>Incorrect email or password! please try again</div>
+          ) : null}
+        </div>
+        <div
+          className={
+            notVerified
+              ? 'password_too_short_error'
+              : 'unactive_error password_too_short_error'
+          }
+        >
+          {notVerified ? (
+            <div>
+              Your account is not verified!, when registering you got an email
+              for verification, please check your mailbox.{' '}
+            </div>
           ) : null}
         </div>
       </form>
