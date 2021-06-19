@@ -46,7 +46,7 @@ export default function Dashboard() {
     setUserId(res.data.id);
     setUserName(res.data.name);
     setUserEmail(res.data.email);
-
+    setTimeout(() => setLoading(false), 2000);
     if (res.data.program === "standard" || res.data.program === "pro") {
       if (res.data.alreadyPaid) {
         return getUserFlights();
