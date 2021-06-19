@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import LandingPage from '../Components/LandingPage/LandingPage';
-import SignUp from '../Components/SignUp/SignUp';
-import Dashboard from '../Components/Dashboard/Dashboard';
-import Upgrade from '../Components/Upgrade/Upgrade';
-import LoginPage from '../Components/LoginPage/LoginPage';
-import errorAuthPage from '../Components/errorAuthPage/errorAuthPage';
-import AuthContextProvider from '../context/AuthContext';
-import Subscribe from '../Components/Subscribe/Subscribe';
-import Verify from '../Components/Verify/Verify';
-
+import React, { useContext } from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import LandingPage from "../Components/LandingPage/LandingPage";
+import SignUp from "../Components/SignUp/SignUp";
+import Dashboard from "../Components/Dashboard/Dashboard";
+import Upgrade from "../Components/Upgrade/Upgrade";
+import LoginPage from "../Components/LoginPage/LoginPage";
+import errorAuthPage from "../Components/errorAuthPage/errorAuthPage";
+import AuthContextProvider from "../context/AuthContext";
+import Subscribe from "../Components/Subscribe/Subscribe";
+import Verify from "../Components/Verify/Verify";
+import SuccessfullPayment from "../Components/SuccessfullPayment/SuccesfullPayment";
 export default function Router() {
   const { loggedIn } = useContext(AuthContextProvider);
   console.log(loggedIn);
@@ -17,6 +17,7 @@ export default function Router() {
     <Switch>
       <Route path="/" exact component={LandingPage} />
       <Route path="/verification/:token/:id" component={Verify} />
+      <Route path="/paid/:token" component={SuccessfullPayment} />
 
       {loggedIn === false && (
         <>

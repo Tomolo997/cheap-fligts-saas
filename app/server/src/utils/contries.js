@@ -32,9 +32,5 @@ async function getCountries(params) {
     }
     return 0;
   });
-
-  let data = JSON.stringify(ids);
-  fs.writeFileSync("countriees.json", data);
-  console.log(ids);
 }
 getCountries();

@@ -1,34 +1,34 @@
-const mongoose = require('mongoose');
-const crypto = require('crypto');
-const validator = require('validator');
-const bycrpt = require('bcryptjs');
+const mongoose = require("mongoose");
+const crypto = require("crypto");
+const validator = require("validator");
+const bycrpt = require("bcryptjs");
 const userSchema = mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please tell us your name'],
+    required: [true, "Please tell us your name"],
   },
   email: {
     type: String,
-    required: [true, 'Please provide  your email '],
+    required: [true, "Please provide  your email "],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, 'Please provide a valid email'],
+    validate: [validator.isEmail, "Please provide a valid email"],
   },
   password: {
     type: String,
-    required: [true, 'Please provide a password'],
+    required: [true, "Please provide a password"],
     minlength: 8,
     select: false,
   },
   passwordConfirm: {
     type: String,
-    required: [true, 'Please confirm your password'],
+    required: [true, "Please confirm your password"],
     validate: {
       //this only works on CREATE and SAVE!!! => update does not work, for updating we must use save.
       validator: function (el) {
         return el === this.password;
       },
-      message: 'Passwords are not the same',
+      message: "Passwords are not the same",
     },
   },
   passwordChangedAt: {
@@ -45,7 +45,17 @@ const userSchema = mongoose.Schema({
     type: String,
     default: String,
   },
-
+  alreadyPaid: {
+    type: Boolean,
+    default: false,
+  },
+  alreadyPaidToken: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    defualt: Date.now(),
+  },
   confirmed: {
     type: Boolean,
     defualt: false,
@@ -56,9 +66,9 @@ const userSchema = mongoose.Schema({
   },
 });
 //pre saving the data we encryp passowd
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function (next) {
   //only run this function if password was modified
-  if (!this.isModified('password')) {
+  if (!this.isModified("password")) {
     return next();
   }
   //hash the password with cost of 12
@@ -73,8 +83,8 @@ userSchema.pre(/^find/, async function (next) {
   next();
 });
 
-userSchema.pre('save', function (next) {
-  if (!this.isModified('password') || this.isNew) return next();
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
 
   this.passwordChangedAt = Date.now() - 1000;
   next();
@@ -101,12 +111,12 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   return false;
 };
 userSchema.methods.createPasswordResetToken = function () {
-  const resetToken = crypto.randomBytes(32).toString('hex');
+  const resetToken = crypto.randomBytes(32).toString("hex");
 
   this.passwordResetToken = crypto
-    .createHash('sha256')
+    .createHash("sha256")
     .update(resetToken)
-    .digest('hex');
+    .digest("hex");
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
   console.log({ resetToken }, this.passwordResetToken);
@@ -114,6 +124,6 @@ userSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

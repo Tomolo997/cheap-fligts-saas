@@ -1,14 +1,14 @@
-const User = require('../models/userModel');
-const catchAsync = require('../utils/catchAsync');
-const randomstring = require('randomstring');
-const nodeMailer = require('nodemailer');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-const { promisify } = require('util');
-const appError = require('../utils/appError');
-const { async } = require('regenerator-runtime');
-const { _ } = require('core-js');
-const { sendConfirmationEmail } = require('../utils/sendConfirmationEmail');
+const User = require("../models/userModel");
+const catchAsync = require("../utils/catchAsync");
+const randomstring = require("randomstring");
+const nodeMailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const { promisify } = require("util");
+const appError = require("../utils/appError");
+const { async } = require("regenerator-runtime");
+const { _ } = require("core-js");
+const { sendConfirmationEmail } = require("../utils/sendConfirmationEmail");
 
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -24,15 +24,15 @@ const createSendToken = (user, statusCode, res) => {
     ),
     httpOnly: true,
   };
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === "production") {
     cookieOptions.secure = true;
   }
 
-  res.cookie('jwt', token, cookieOptions);
+  res.cookie("jwt", token, cookieOptions);
   //remove the password from the outpu
   user.password = undefined;
   res.status(statusCode).json({
-    status: 'success',
+    status: "success",
     token,
     data: {
       user,
@@ -51,6 +51,7 @@ exports.singUp = async (req, res) => {
       program: req.body.program,
       confirmed: req.body.confirmed,
       secretToken: randomstring.generate(),
+      alreadyPaidToken: req.body.alreadyPaidToken,
     });
 
     //the user is registered
@@ -64,16 +65,17 @@ exports.singUp = async (req, res) => {
     );
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: {
-        message: 'Created new user',
+        message: "Created new user",
         userName: req.body.name,
         userEmail: req.body.email,
+        alreadyPaidToken: req.body.alreadyPaidToken,
       },
     });
   } catch (error) {
     res.json({
-      status: 'error',
+      status: "error",
       error: error.message,
     });
   }
@@ -83,20 +85,20 @@ exports.logIn = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   //1) check if the email and passwords exists
   if (!email || !password) {
-    return next(new appError('Please provide email and password', 400));
+    return next(new appError("Please provide email and password", 400));
   }
   //2) check if user exists and password is correct
   const user = await User.findOne({
     email: email,
-  }).select('+password');
+  }).select("+password");
 
   //   const correct = await user.correctPassword(password, user.password);
   if (!user || !(await user.correctPassword(password, user.password))) {
     res.json({
-      status: 'error',
-      message: 'incorrect email or password',
+      status: "error",
+      message: "incorrect email or password",
     });
-    return next(new appError('incorrect email or password', 401));
+    return next(new appError("incorrect email or password", 401));
   }
 
   //3) if the account has acces, has been verified
@@ -109,10 +111,10 @@ exports.logIn = catchAsync(async (req, res, next) => {
     console.log(user);
     res.json({
       statusCode: 401,
-      status: 'error',
-      message: 'Your Account is not verified',
+      status: "error",
+      message: "Your Account is not verified",
     });
-    return next(new appError('Your account is not verified', 401));
+    return next(new appError("Your account is not verified", 401));
   }
 });
 
@@ -121,18 +123,17 @@ exports.protect = catchAsync(async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
+    req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(' ')[1];
+    token = req.headers.authorization.split(" ")[1];
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
-    console.log('cookie');
+    console.log("cookie");
   }
   console.log(token);
-  console.log('PROTECTED');
   if (!token) {
     return next(
-      new appError('You are not logged in, please login to get access', 401)
+      new appError("You are not logged in, please login to get access", 401)
     );
   }
   //2) Verification token
@@ -144,7 +145,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   const freshUser = await User.findById(decoded.id);
   if (!freshUser) {
     return next(
-      new appError('The user beloning to the user does not exist'),
+      new appError("The user beloning to the user does not exist"),
       401
     );
   }
@@ -152,7 +153,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (freshUser.changedPasswordAfter(decoded.iat)) {
     return new appError(
-      'The user recentiuly changed password, plase login again',
+      "The user recentiuly changed password, plase login again",
       401
     );
   }
@@ -162,7 +163,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = async (req, res, next) => {
-  console.log('isloggedin runned');
+  console.log("isloggedin runned");
   if (req.cookies.jwt) {
     //we need the try catch because, we wan t to catch the errors loccaly, so we removed catchAsync
     try {
@@ -205,12 +206,12 @@ exports.isLoggedIn = async (req, res, next) => {
 };
 
 exports.logout = async (req, res) => {
-  res.cookie('jwt', 'null', {
+  res.cookie("jwt", "null", {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   });
 
-  res.status(200).json({ status: 'success' });
+  res.status(200).json({ status: "success" });
 };
 
 exports.verify = async (req, res) => {

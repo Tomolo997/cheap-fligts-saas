@@ -12,6 +12,8 @@ exports.getMe = (req, res, next) => {
     id: req.user.id,
     name: req.user.name,
     email: req.user.email,
+    program: req.user.program,
+    alreadyPaid: req.user.alreadyPaid,
   });
 };
 
