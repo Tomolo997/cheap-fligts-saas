@@ -100,17 +100,20 @@ const SignUp = () => {
 
         
       }*/
-      //call verify function and post the data here
-      createCheckoutSession(price_id, res.data.data.alreadyPaidToken).then(
-        function (data) {
-          // Call Stripe.js method to redirect to the new Checkout page
-          stripe
-            .redirectToCheckout({
-              sessionId: data.sessionId,
-            })
-            .then(handleResult);
-        }
-      );
+      //if the user selects the pro or standard program, then the checkout is applied
+      if (program !== "free") {
+        createCheckoutSession(price_id, res.data.data.alreadyPaidToken).then(
+          function (data) {
+            // Call Stripe.js method to redirect to the new Checkout page
+            stripe
+              .redirectToCheckout({
+                sessionId: data.sessionId,
+              })
+              .then(handleResult);
+          }
+        );
+      }
+
       //
       setUserAlreadyExistError(false);
       setShortPasswordError(false);
