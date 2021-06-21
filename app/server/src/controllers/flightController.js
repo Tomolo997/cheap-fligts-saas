@@ -57,7 +57,7 @@ exports.addFlight = async (req, res, next) => {
       return;
     }
 
-    if (userID.program === 'standard' && flight.flightsData.length > 5) {
+    if (userID.program === 'standard' && flight.flightsData.length > 50) {
       res.status(201).json({
         status: 'error',
       });
@@ -78,8 +78,10 @@ exports.addFlight = async (req, res, next) => {
 
     const flighFound = await Flights.findOne({ _id: flightAdded._id });
 
+    console.log(flightFrom, flightTo, outboundDate, inboundDate);
+
     //2)Call thež
-    addAFlightScript.addAFlight(
+    const yea = addAFlightScript.addAFlight(
       flightFrom,
       flightTo,
       outboundDate,
