@@ -59,6 +59,7 @@ export default function AddAFlight(props) {
         setTimeout(() => {
           setAddAFlightCongrats(true);
           setCantaddFlight(false);
+          location.reload();
         }, 1500);
       }
 
