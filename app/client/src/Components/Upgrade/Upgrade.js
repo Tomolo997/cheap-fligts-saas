@@ -1,17 +1,23 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useContext } from 'react';
 import '../../App/App.css';
+import AuthContextProvider from '../../context/AuthContext';
 let stripe = Stripe(
   'pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt'
 );
 export default function Upgrade() {
-  var createCheckoutSession = function (priceId) {
-    return fetch('http://localhost:8000/api/v1/payment/pay', {
+  const { UserIDforUpgrade } = useContext(AuthContextProvider);
+
+  var createCheckoutSessionForUpgrade = function async(priceId) {
+    return fetch('http://localhost:8000/api/v1/users/upgradeMe', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         priceId: priceId,
+        id: UserIDforUpgrade,
       }),
     }).then(function (result) {
       return result.json();
@@ -19,9 +25,8 @@ export default function Upgrade() {
   };
 
   const upgradeMe = (price_id) => {
-    createCheckoutSession(price_id).then(function (data) {
+    createCheckoutSessionForUpgrade(price_id).then(function (data) {
       // Call Stripe.js method to redirect to the new Checkout page
-      console.log(data.sessionId);
       stripe
         .redirectToCheckout({
           sessionId: data.sessionId,

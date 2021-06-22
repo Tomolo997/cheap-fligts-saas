@@ -12,6 +12,12 @@ router.put('/verification', authController.verify);
 //protected routes
 router.get('/getMe', authController.protect, userController.getMe);
 router.get('/airports', authController.protect, userController.getAirports);
+router.post('/upgradeMe', authController.protect, userController.upgradeMe);
 router.put('/updateMe', authController.protect, userController.updateMe);
+router.post(
+  '/successUpgrade',
+  authController.protect,
+  userController.successUpgrade
+);
 
 module.exports = router;

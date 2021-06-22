@@ -7,6 +7,8 @@ function AuthContextProvider(props) {
   const [loggedIn, setLoggedIn] = useState(undefined);
   const [price_id, setPriceId] = useState('');
   const [userId, setUserId] = useState('');
+  const [UserIDforUpgrade, setUserIDforUpgrade] = useState('');
+
   const [userEmail, setUserEmail] = useState('None');
   const [slider, setSlider] = useState(true);
   async function getLoggedIn(params) {
@@ -39,6 +41,8 @@ function AuthContextProvider(props) {
         setSlider,
         userId,
         setUserId,
+        UserIDforUpgrade,
+        setUserIDforUpgrade,
       }}
     >
       {props.children}

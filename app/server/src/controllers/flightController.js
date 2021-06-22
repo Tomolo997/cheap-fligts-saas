@@ -57,7 +57,7 @@ exports.addFlight = async (req, res, next) => {
       return;
     }
 
-    if (userID.program === 'standard' && flight.flightsData.length > 50) {
+    if (userID.program === 'standard' && flight.flightsData.length > 3) {
       res.status(201).json({
         status: 'error',
       });

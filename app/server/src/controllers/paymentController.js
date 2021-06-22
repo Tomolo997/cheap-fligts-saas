@@ -1,10 +1,10 @@
-const User = require("../models/userModel");
-const catchAsync = require("../utils/catchAsync");
-const jwt = require("jsonwebtoken");
-const { promisify } = require("util");
-const appError = require("../utils/appError");
-const stripe = require("stripe")(
-  "sk_test_51IxxvcJkVEDM03SsoiqQXiipym6kENermQpnqeiqP7zonwOUY57JcRHwzUpZA3DZzNPMz89gkNtvnFdw7q5YOjV1005MutyTyd"
+const User = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
+const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
+const appError = require('../utils/appError');
+const stripe = require('stripe')(
+  'sk_test_51IxxvcJkVEDM03SsoiqQXiipym6kENermQpnqeiqP7zonwOUY57JcRHwzUpZA3DZzNPMz89gkNtvnFdw7q5YOjV1005MutyTyd'
 );
 
 exports.succesfullPayment = async (req, res) => {
@@ -28,8 +28,8 @@ exports.payMe = async (req, res) => {
   // for additional parameters to pass.
   try {
     const session = await stripe.checkout.sessions.create({
-      mode: "subscription",
-      payment_method_types: ["card"],
+      mode: 'subscription',
+      payment_method_types: ['card'],
       line_items: [
         {
           price: priceId,
@@ -42,7 +42,7 @@ exports.payMe = async (req, res) => {
       // is redirected to the success page.
 
       success_url: `http://localhost:4000/paid/${paidToken}`,
-      cancel_url: "http://localhost:4000/",
+      cancel_url: 'http://localhost:4000/',
     });
     res.send({
       sessionId: session.id,
