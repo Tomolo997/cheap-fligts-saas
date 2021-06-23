@@ -1,7 +1,7 @@
-const User = require('../models/userModel');
-const Flights = require('../models/fligthsModel');
-const FlightResults = require('../models/flightsResult');
-const addAFlightScript = require('../utils/addAFlightScript');
+const User = require("../models/userModel");
+const Flights = require("../models/fligthsModel");
+const FlightResults = require("../models/flightsResult");
+const addAFlightScript = require("../utils/addAFlightScript");
 exports.addFlight = async (req, res, next) => {
   try {
     //1) find the user
@@ -43,23 +43,23 @@ exports.addFlight = async (req, res, next) => {
 
     const flight = await Flights.findOne({ user: userID._id });
 
-    if (userID.program === 'free' && flight.flightsData.length > 2) {
+    if (userID.program === "free" && flight.flightsData.length > 2) {
       res.status(201).json({
-        status: 'error',
+        status: "error",
       });
       return;
     }
 
-    if (userID.program === 'pro' && flight.flightsData.length > 30) {
+    if (userID.program === "pro" && flight.flightsData.length > 2) {
       res.status(201).json({
-        status: 'error',
+        status: "error",
       });
       return;
     }
 
-    if (userID.program === 'standard' && flight.flightsData.length > 3) {
+    if (userID.program === "standard" && flight.flightsData.length > 3) {
       res.status(201).json({
-        status: 'error',
+        status: "error",
       });
       return;
     }
@@ -70,7 +70,7 @@ exports.addFlight = async (req, res, next) => {
       { upsert: true }
     );
     res.status(201).json({
-      status: 'success',
+      status: "success",
       data: {
         userID,
       },
@@ -91,7 +91,7 @@ exports.addFlight = async (req, res, next) => {
     );
   } catch (error) {
     res.status(400).json({
-      status: 'error',
+      status: "error",
     });
   }
 };
@@ -132,7 +132,7 @@ exports.getFlights = async (req, res, next) => {
   }
 
   res.status(200).json({
-    status: 'success',
+    status: "success",
     data: {
       flights: flightsToSend,
       initData: userFlightsInit,
@@ -160,9 +160,9 @@ exports.deleteFlight = async (req, res, next) => {
     });
 
     res.status(201).json({
-      status: 'success',
+      status: "success",
       data: {
-        message: 'succesfully deleted your flight',
+        message: "succesfully deleted your flight",
       },
     });
 
@@ -170,7 +170,7 @@ exports.deleteFlight = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(400).json({
-      status: 'error',
+      status: "error",
     });
   }
 };

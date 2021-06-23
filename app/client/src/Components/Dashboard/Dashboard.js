@@ -1,26 +1,27 @@
-import React, { useState, useContext, useEffect } from 'react';
-import '../../App/App.css';
-import BurgerNav from '../BurgerNav/BurgerNav';
-import MyFlights from '../MyFlights/MyFlights';
-import Suggestions from '../Suggestions/Suggestions';
-import AddAFlight from '../AddAFlight/AddAFlight';
-import DashboardLogo from '../DashboardLogo/DashboardLogo';
-import AuthContextProvider from '../../context/AuthContext';
-import axios from 'axios';
-import UpdateProgramError from '../UpdateProgramError/UpdateProgramError';
-import Spinner from '../Spinner/Spinner';
-import Settings from '../Settings/Settings';
-import { async } from 'regenerator-runtime';
-import LoginSuccess from '../LoginSuccess/LoginSuccess';
-import AirportSVG from '../../assets/Images/airplane.svg';
-import NewMessageSVG from '../../assets/Images/new-message.svg';
-import AddAFlightSVG from '../../assets/Images/circle-with-plus.svg';
-import Help from '../Help/Help';
-import Upgrade from '../Upgrade/Upgrade';
+import React, { useState, useContext, useEffect } from "react";
+import "../../App/App.css";
+import BurgerNav from "../BurgerNav/BurgerNav";
+import MyFlights from "../MyFlights/MyFlights";
+import Suggestions from "../Suggestions/Suggestions";
+import AddAFlight from "../AddAFlight/AddAFlight";
+import DashboardLogo from "../DashboardLogo/DashboardLogo";
+import AuthContextProvider from "../../context/AuthContext";
+import axios from "axios";
+import UpdateProgramError from "../UpdateProgramError/UpdateProgramError";
+import Spinner from "../Spinner/Spinner";
+import Settings from "../Settings/Settings";
+import { async } from "regenerator-runtime";
+import LoginSuccess from "../LoginSuccess/LoginSuccess";
+import AirportSVG from "../../assets/Images/airplane.svg";
+import NewMessageSVG from "../../assets/Images/new-message.svg";
+import AddAFlightSVG from "../../assets/Images/circle-with-plus.svg";
+import Help from "../Help/Help";
+import Upgrade from "../Upgrade/Upgrade";
 
 export default function Dashboard() {
-  const { slider, setSlider, setUserIDforUpgrade } =
-    useContext(AuthContextProvider);
+  const { slider, setSlider, setUserIDforUpgrade } = useContext(
+    AuthContextProvider
+  );
   const [loginSuccessfull, setLoginSuccessfull] = useState(false);
   const [airportsFromDB, setAirportsFromDB] = useState([]);
   const [myFlightsShow, setMyFlightsShow] = useState(true);
@@ -30,17 +31,19 @@ export default function Dashboard() {
   const [showSettings, setShowSettings] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flightsResults, setFlightsResults] = useState([]);
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState("");
+  const [proProgram, setProProgram] = useState(false);
+  const [standardProgram, setStandardProgram] = useState(false);
   const [fromToStart, setFromToStart] = useState([]);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const [updateProgramErrorDiv, setUpdateProgramErrorDiv] = useState(false);
-  const [userProgram, setUserProgram] = useState('free');
-  const [userEmail, setUserEmail] = useState('');
+  const [userProgram, setUserProgram] = useState("free");
+  const [userEmail, setUserEmail] = useState("");
 
   const getMe = async () => {
-    const res = await axios.get('http://localhost:8000/api/v1/users/getMe');
+    const res = await axios.get("http://localhost:8000/api/v1/users/getMe");
     const fuckingAirports = await axios.get(
-      'http://localhost:8000/api/v1/users/airports'
+      "http://localhost:8000/api/v1/users/airports"
     );
     setAirportsFromDB(fuckingAirports.data.airports[0].data);
     setUserProgram(res.data.program);
@@ -49,7 +52,15 @@ export default function Dashboard() {
     setUserName(res.data.name);
     setUserEmail(res.data.email);
     setTimeout(() => setLoading(false), 2000);
-    if (res.data.program === 'standard' || res.data.program === 'pro') {
+
+    if (res.data.program === "pro") {
+      setProProgram(true);
+    }
+    if (res.data.program === "standard") {
+      setStandardProgram(true);
+    }
+
+    if (res.data.program === "standard" || res.data.program === "pro") {
       if (res.data.alreadyPaid) {
         return getUserFlights();
       } else {
@@ -61,7 +72,7 @@ export default function Dashboard() {
     }
   };
   const getMeAfterUpdate = async () => {
-    const res = await axios.get('http://localhost:8000/api/v1/users/getMe');
+    const res = await axios.get("http://localhost:8000/api/v1/users/getMe");
     setUserId(res.data.id);
     console.log(res);
     setUserName(res.data.name);
@@ -70,7 +81,7 @@ export default function Dashboard() {
   const getUserFlights = async () => {
     try {
       const res = await axios.get(
-        'http://localhost:8000/api/v1/flights/getMyFlights'
+        "http://localhost:8000/api/v1/flights/getMyFlights"
       );
 
       const flightResults = await res.data.data.flights;
@@ -94,8 +105,8 @@ export default function Dashboard() {
           dateFrom: findFlight.outboundDate,
         });
       }
-      console.log('flight results', flightResults);
-      console.log('No results', noResults);
+      console.log("flight results", flightResults);
+      console.log("No results", noResults);
       for (let i = 0; i < noResults.length; i++) {
         const element = noResults[i];
         fromToArray.push({
@@ -106,14 +117,14 @@ export default function Dashboard() {
               flightFromSTART: element.flightFrom,
               flightID: element._id,
               flightToSTART: element.flightTo,
-              formDate: '2021-05-22T00:00:00.000',
-              fromFlight: 'No Data',
-              fromFlightCountry: 'No Data',
-              link: 'No Data',
-              price: 'No Data',
-              toDate: '2021-05-22T00:00:00.000Z',
-              toFlight: 'No Data',
-              toFlightCountry: 'No Data',
+              formDate: "2021-05-22T00:00:00.000",
+              fromFlight: "No Data",
+              fromFlightCountry: "No Data",
+              link: "No Data",
+              price: "No Data",
+              toDate: "2021-05-22T00:00:00.000Z",
+              toFlight: "No Data",
+              toFlightCountry: "No Data",
               updated: 1621616899340,
               user: userID,
             },
@@ -132,7 +143,7 @@ export default function Dashboard() {
       //     flightId: 'no results :(',
       //   });
       // }
-      console.log('from to start', fromToArray);
+      console.log("from to start", fromToArray);
       setFromToStart(fromToArray);
       setLoading(false);
     } catch (error) {
@@ -146,11 +157,11 @@ export default function Dashboard() {
 
   async function logoutBtn() {
     try {
-      const res = await axios.get('http://localhost:8000/api/v1/users/logout');
+      const res = await axios.get("http://localhost:8000/api/v1/users/logout");
       console.log(res);
-      if (res.data.status === 'success') {
+      if (res.data.status === "success") {
         setLoginSuccessfull(true);
-        setTimeout(() => location.assign('/'), 750);
+        setTimeout(() => location.assign("/"), 750);
       }
       getLoggedIn();
     } catch (error) {
@@ -196,32 +207,32 @@ export default function Dashboard() {
     <div className="slider_thin">
       <div className="dashboard_slider_header">
         <DashboardLogo />
-      </div>{' '}
-      <div className="slider_mainComponents" style={{ display: 'none' }}>
+      </div>{" "}
+      <div className="slider_mainComponents" style={{ display: "none" }}>
         <div className="slider_component slider_component_hover">
-          {' '}
+          {" "}
           <h1 className="slider_component_h1">Flights</h1>
         </div>
         <div className="slider_component slider_component_hover">
-          {' '}
+          {" "}
           <h1 className="slider_component_h1">Suggestions</h1>
         </div>
         <div className="slider_component slider_component_hover">
-          {' '}
+          {" "}
           <h1 className="slider_component_h1">Add Flight</h1>
         </div>
       </div>
-      <div className="slider_settings" style={{ display: 'none' }}>
+      <div className="slider_settings" style={{ display: "none" }}>
         <div className="slider_component slider_component_settings">
           <h1 className="slider_component_h1">Settings</h1>
         </div>
         <div className="slider_component slider_component_settings">
-          {' '}
+          {" "}
           <h1 className="slider_component_h1"> Help</h1>
         </div>
 
         <div className="slider_component_settings">
-          {' '}
+          {" "}
           All rights reserved By @TomažOvsenjak
         </div>
       </div>
@@ -233,17 +244,17 @@ export default function Dashboard() {
       <div className="dashboard_slider_header">
         <DashboardLogo />
         <BurgerNav />
-      </div>{' '}
+      </div>{" "}
       <div className="slider_mainComponents">
         <div className="slider_component_username">
-          {' '}
+          {" "}
           <h1 className="slider_component_h1_username">Hello {userName}</h1>
         </div>
         <div
           onClick={showMyFlights}
           className="slider_component slider_component_hover"
         >
-          {' '}
+          {" "}
           <AirportSVG className="svg_dashboard"></AirportSVG>
           <h1 className="slider_component_h1">Flights</h1>
         </div>
@@ -251,7 +262,7 @@ export default function Dashboard() {
           onClick={showSuggestions}
           className="slider_component slider_component_hover"
         >
-          {' '}
+          {" "}
           <NewMessageSVG className="svg_dashboard"></NewMessageSVG>
           <h1 className="slider_component_h1">Suggestions</h1>
         </div>
@@ -259,7 +270,7 @@ export default function Dashboard() {
           onClick={showAddAFlight}
           className="slider_component slider_component_hover"
         >
-          {' '}
+          {" "}
           <AddAFlightSVG className="svg_dashboard"></AddAFlightSVG>
           <h1 className="slider_component_h1">Add Flight</h1>
         </div>
@@ -276,11 +287,11 @@ export default function Dashboard() {
           onClick={showHelpClick}
           className="slider_component slider_component_settings"
         >
-          {' '}
+          {" "}
           <h1 className="slider_component_h1">Contact</h1>
         </div>
         <div className="logout_component ">
-          {' '}
+          {" "}
           <button
             onClick={logoutBtn}
             className="singup_button singup_button_dashboard"
@@ -289,7 +300,7 @@ export default function Dashboard() {
           </button>
         </div>
         <div className="slider_component_settings rights_reserved">
-          {' '}
+          {" "}
           All rights reserved By @TomažOvsenjak
         </div>
       </div>
@@ -314,13 +325,13 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className={slider ? 'dashboard' : 'dashboard_hide'}>
+      <div className={slider ? "dashboard" : "dashboard_hide"}>
         {slider ? fatSlider : thinSlider}
         <div className="dashboard_mainInfo">
           {loginSuccessfull ? (
             <LoginSuccess
               message={
-                'Log out succesfull, redirecting you to the landing page 😀 '
+                "Log out succesfull, redirecting you to the landing page 😀 "
               }
             />
           ) : null}
@@ -331,7 +342,12 @@ export default function Dashboard() {
           {suggestionsShow && <Suggestions />}
 
           {addAFlightShow && (
-            <AddAFlight airportsFromDB={airportsFromDB} userId={userId} />
+            <AddAFlight
+              proProgram={proProgram}
+              standardProgram={standardProgram}
+              airportsFromDB={airportsFromDB}
+              userId={userId}
+            />
           )}
 
           {showSettings && (

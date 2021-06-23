@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import '../../App/App.css';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import AirportsSelected from '../AirportsSelected/AirportsSelected';
-import CountriesOption from '../CountriesOption/CountriesOption';
-import Upgradeyea from '../Upgrade/Upgrade';
+import React, { useState, useEffect } from "react";
+import "../../App/App.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import AirportsSelected from "../AirportsSelected/AirportsSelected";
+import CountriesOption from "../CountriesOption/CountriesOption";
+import Upgradeyea from "../Upgrade/Upgrade";
 export default function AddAFlight(props) {
-  const [flightFrom, setFlightFrom] = useState('');
-  const [flightTo, setFlightTo] = useState('');
-  const [outboundDate, setOutboundDate] = useState('2021');
-  const [inboundDate, setInboundDate] = useState('2021');
+  const [flightFrom, setFlightFrom] = useState("");
+  const [flightTo, setFlightTo] = useState("");
+  const [outboundDate, setOutboundDate] = useState("2021");
+  const [inboundDate, setInboundDate] = useState("2021");
   const [countrySelected, setCountrySelected] = useState(true);
   const [countrySelectedFrom, setCountrySelectedFrom] = useState(true);
   const [addAFlightError, setAddAFlightError] = useState(false);
@@ -45,17 +45,17 @@ export default function AddAFlight(props) {
         user: props.userId,
       };
       const response = await axios.post(
-        'http://localhost:8000/api/v1/flights/addFlight',
+        "http://localhost:8000/api/v1/flights/addFlight",
         data
       );
 
       console.log(response.data);
-      if (response.data.status === 'error') {
+      if (response.data.status === "error") {
         setCantaddFlight(true);
         return;
       }
 
-      if (response.data.status === 'success') {
+      if (response.data.status === "success") {
         setTimeout(() => {
           setAddAFlightCongrats(true);
           setCantaddFlight(false);
@@ -99,22 +99,22 @@ export default function AddAFlight(props) {
   const changeoutboundDate = (e) => {
     setOutboundDate(e.target.value);
     const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    let year = Number(e.target.value.split('-')[0]);
-    const initMonth = Number(e.target.value.split('-')[1]);
+    let year = Number(e.target.value.split("-")[0]);
+    const initMonth = Number(e.target.value.split("-")[1]);
     const finalMonth = initMonth + 1;
     if (finalMonth > 9) {
       if (initMonth === 11) {
-        return setInboundDate(String(year + '-12'));
+        return setInboundDate(String(year + "-12"));
       }
       if (initMonth === 12) {
         console.log(initMonth);
         year = year + 1;
         console.log(year);
-        return setInboundDate(String(year + '-01'));
+        return setInboundDate(String(year + "-01"));
       }
-      setInboundDate(String(year + '-' + finalMonth));
+      setInboundDate(String(year + "-" + finalMonth));
     } else {
-      setInboundDate(String(year + '-0' + finalMonth));
+      setInboundDate(String(year + "-0" + finalMonth));
     }
   };
   const changeToYear = (e) => {
@@ -140,7 +140,7 @@ export default function AddAFlight(props) {
   );
   const monthDiv = (
     <>
-      {' '}
+      {" "}
       <h1 className="addAFlight_h1">Two months</h1>
       <input
         onChange={changeoutboundDate}
@@ -169,8 +169,8 @@ export default function AddAFlight(props) {
         onClick={countrySelectedClickFrom}
         className={
           countrySelectedFrom
-            ? ['addAFlight_Country_div active_selected']
-            : ['addAFlight_Country_div']
+            ? ["addAFlight_Country_div active_selected"]
+            : ["addAFlight_Country_div"]
         }
       >
         Country
@@ -179,8 +179,8 @@ export default function AddAFlight(props) {
         onClick={airportSelectedClickFrom}
         className={
           !countrySelectedFrom
-            ? ['addAFlight_Airport_div active_selected']
-            : ['addAFlight_Airport_div']
+            ? ["addAFlight_Airport_div active_selected"]
+            : ["addAFlight_Airport_div"]
         }
       >
         Top Cities
@@ -190,9 +190,9 @@ export default function AddAFlight(props) {
         className={
           countrySelected
             ? [
-                'addAFlight_Country_div addAFlight_Country_div_to  active_selected',
+                "addAFlight_Country_div addAFlight_Country_div_to  active_selected",
               ]
-            : ['addAFlight_Country_div addAFlight_Country_div_to']
+            : ["addAFlight_Country_div addAFlight_Country_div_to"]
         }
       >
         Country
@@ -202,9 +202,9 @@ export default function AddAFlight(props) {
         className={
           !countrySelected
             ? [
-                'addAFlight_Airport_div addAFlight_Airport_div_to active_selected',
+                "addAFlight_Airport_div addAFlight_Airport_div_to active_selected",
               ]
-            : ['addAFlight_Airport_div addAFlight_Airport_div_to']
+            : ["addAFlight_Airport_div addAFlight_Airport_div_to"]
         }
       >
         Top Cities
@@ -265,7 +265,7 @@ export default function AddAFlight(props) {
         {showMonth ? toMonth : null}
       </div>
       <h1 className="addAFlight_h1_error">
-        {addAFlightError ? 'Please fill out all of the fields' : null}
+        {addAFlightError ? "Please fill out all of the fields" : null}
         {addAFlightCongrats
           ? `Congrats your flight from ${flightFrom} to ${flightTo} has been added. 🥳`
           : null}
@@ -273,7 +273,7 @@ export default function AddAFlight(props) {
           <div>
             `Cant add you flight, because you have exceeded the number of
             flights you can add 😔,but you can still <br /> <br />
-            {Upgrade}{' '}
+            {Upgrade}{" "}
           </div>
         ) : null}
       </h1>
@@ -282,7 +282,14 @@ export default function AddAFlight(props) {
 
   return (
     <div className="dasboard_addAflight">
-      {showUpgrade ? <Upgradeyea></Upgradeyea> : addFLightt}
+      {showUpgrade ? (
+        <Upgradeyea
+          standardProgram={props.standardProgram}
+          proProgram={props.proProgram}
+        ></Upgradeyea>
+      ) : (
+        addFLightt
+      )}
     </div>
   );
 }
