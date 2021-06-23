@@ -51,7 +51,7 @@ export default function Upgrade(props) {
             <li className="pricing_features_item">15 Destinations</li>
             <li className="pricing_features_item">Daily destination prices</li>
             <li className="pricing_features_item">Online Support</li>
-            <li className="pricing_features_item">Email notifications</li>
+            <li className="pricing_features_item">Email notification</li>
           </ul>
         </div>
         <button
