@@ -119,6 +119,10 @@ export default function Pricing(props) {
           Join now
         </button>
       </div>
+
+      <div className="pricing_refundable">
+        <h1 className="pricing_refundable_h1">All prices refundable</h1>{" "}
+      </div>
     </div>
   );
 }

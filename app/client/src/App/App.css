@@ -629,6 +629,16 @@ html {
   font-weight: 100;
   margin-top: 1rem;
 }
+
+.pricing_refundable {
+  grid-row: 5/6;
+  grid-column: 3/4;
+  text-align: center;
+}
+.pricing_refundable_h1 {
+  font-size: 3rem;
+  color: #1f52c4;
+}
 @media only screen and (max-width: 1200px) {
   .Pricing {
     display: grid;
