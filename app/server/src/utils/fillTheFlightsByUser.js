@@ -1,23 +1,23 @@
 //server.js
-require('dotenv').config();
-var cron = require('node-cron');
+require("dotenv").config();
+var cron = require("node-cron");
 
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const axios = require('axios');
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const axios = require("axios");
 const port = process.env.PORT || 8000;
-require('dotenv').config();
-const User = require('../models/userModel');
-const Flights = require('../models/fligthsModel');
-const FlightResults = require('../models/flightsResult');
-const { async } = require('regenerator-runtime');
+require("dotenv").config();
+const User = require("../models/userModel");
+const Flights = require("../models/fligthsModel");
+const FlightResults = require("../models/flightsResult");
+const { async } = require("regenerator-runtime");
 
 //connection to the DB
 const DB = process.env.DATABASE;
 mongoose
   .connect(
-    'mongodb+srv://tomaz:tomaz@cheap-flights.bdzqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    "mongodb+srv://tomaz:tomaz@cheap-flights.bdzqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useCreateIndex: true,
@@ -26,36 +26,34 @@ mongoose
     }
   )
   .then(() => {
-    console.log('DB collection succesful');
+    console.log("DB collection succesful");
   });
 
 function TranfromDateToSuitableLink(date) {
-  const slice = date.slice(2, 10).split('-').join('');
+  const slice = date.slice(2, 10).split("-").join("");
   return slice;
 }
 
 const dateFormatForSkyscanner = (date) => {
   const months = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
   ];
-  console.log(
-    date.getFullYear() + '-' + months[date.getMonth()] + '-' + date.getDate()
-  );
+
   if (date.getDate() == 1 && date.getMonth() == 0) {
     return date.getFullYear();
   } else {
-    return date.getFullYear() + '-' + months[date.getMonth()];
+    return date.getFullYear() + "-" + months[date.getMonth()];
   }
 
   // + '-' + months[date.getMonth()]
@@ -67,7 +65,7 @@ const fillTheFlights = async () => {
   //loopaj skozi vsakega userja
   await FlightResults.remove({});
   while (x < users.length) {
-    await new Promise((r) => setTimeout(r, 3000));
+    await new Promise((r) => setTimeout(r, 60000));
 
     const currentUserflights = await Flights.find({ user: users[x].id });
     //loop through all of the flights in the array,
@@ -93,7 +91,7 @@ const fillTheFlights = async () => {
       console.log(flightFrom, flightTo, outboundDate, inboundDate);
       try {
         const data = await axios.get(
-          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${outboundDate}?apikey=prtl6749387986743898559646983194`
+          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${outboundDate}?apikey=ra66933236979928`
         );
         const data2 = await axios.get(
           `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=ra66933236979928`
@@ -104,7 +102,7 @@ const fillTheFlights = async () => {
         element.results = data.data;
         element.resultsQuotes = [
           ...data.data.Quotes,
-          ...data3.data.Quotes,
+          ...data2.data.Quotes,
           ...data3.data.Quotes,
         ];
       } catch (error) {
@@ -125,7 +123,6 @@ const fillTheFlights = async () => {
         });
       }
     }
-    console.log(places);
     let flightsResults = [];
     for (let i = 0; i < flightsData.length; i++) {
       const element = flightsData[i];
@@ -144,20 +141,47 @@ const fillTheFlights = async () => {
     let flightsForFinal = [];
     for (let j = 0; j < flightsResults.length; j++) {
       const element = flightsResults[j];
-      const fromFlight = places.find(
-        (el) => el.id === element.flights.OutboundLeg.OriginId
-      ).skyscannerCode;
-      const toFlight = places.find(
-        (el) => el.id === element.flights.OutboundLeg.DestinationId
-      ).skyscannerCode;
 
-      const fromFlightCountryorAirport = places.find(
-        (el) => el.id === element.flights.OutboundLeg.OriginId
-      ).name;
+      let fromFlight = places.find((el) => {
+        return el.id === element.flights.OutboundLeg.OriginId;
+      });
 
-      const toFlightCountryorAirport = places.find(
+      if (fromFlight !== undefined) {
+        fromFlight = fromFlight.skyscannerCode;
+      } else {
+        fromFlight = "No Data";
+      }
+
+      let toFlight = places.find((el) => {
+        return el.id === element.flights.OutboundLeg.DestinationId;
+      });
+
+      if (toFlight !== undefined) {
+        toFlight = toFlight.skyscannerCode;
+      } else {
+        toFlight = "No Data";
+      }
+
+      let fromFlightCountryorAirport = places.find(
+        (el) => el.id === element.flights.OutboundLeg.OriginId
+      );
+
+      if (fromFlightCountryorAirport !== undefined) {
+        fromFlightCountryorAirport = fromFlightCountryorAirport.skyscannerCode;
+      } else {
+        fromFlightCountryorAirport = "No Data";
+      }
+
+      let toFlightCountryorAirport = places.find(
         (el) => el.id === element.flights.OutboundLeg.DestinationId
-      ).name;
+      );
+
+      if (toFlightCountryorAirport !== undefined) {
+        toFlightCountryorAirport = toFlightCountryorAirport.name;
+      } else {
+        toFlight = "No Data";
+      }
+
       const fromDate = TranfromDateToSuitableLink(
         element.flights.OutboundLeg.DepartureDate
       );
@@ -213,7 +237,7 @@ const fillTheFlights = async () => {
       await FlightResults.create(element);
     }
 
-    console.log(users[x].email + 'Succesfully filled the states');
+    console.log(users[x].email + "Succesfully filled the states");
     x++;
   }
 
