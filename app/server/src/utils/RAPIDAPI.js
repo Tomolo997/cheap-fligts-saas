@@ -58,6 +58,8 @@ const dateFormatForSkyscanner = (date) => {
 
   // + '-' + months[date.getMonth()]
 };
+let counterforseconds = 0;
+setInterval(() => counterforseconds++, 1000);
 
 const fillTheFlights = async () => {
   const users = await User.find();
@@ -65,7 +67,7 @@ const fillTheFlights = async () => {
   //loopaj skozi vsakega userja
   await FlightResults.remove({});
   while (x < users.length) {
-    await new Promise((r) => setTimeout(r, 60000));
+    if (x > 0) await new Promise((r) => setTimeout(r, 30000));
 
     const currentUserflights = await Flights.find({ user: users[x].id });
     //loop through all of the flights in the array,
@@ -90,15 +92,43 @@ const fillTheFlights = async () => {
       const { flightFrom, flightTo, inboundDate, outboundDate } = element;
       console.log(flightFrom, flightTo, outboundDate, inboundDate);
       try {
-        const data = await axios.get(
-          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${outboundDate}?apikey=ra66933236979928`
-        );
-        const data2 = await axios.get(
-          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}?apikey=ra66933236979928`
-        );
-        const data3 = await axios.get(
-          `https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${inboundDate}/${inboundDate}?apikey=prtl6749387986743898559646983194`
-        );
+        const options1 = {
+          method: "GET",
+          url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${outboundDate}`,
+          headers: {
+            "x-rapidapi-key":
+              "cb87a1d8e3msh720b35361aef2c4p108c3bjsn6a7e31b76186",
+            "x-rapidapi-host":
+              "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+          },
+        };
+
+        const options2 = {
+          method: "GET",
+          url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${outboundDate}/${inboundDate}`,
+          headers: {
+            "x-rapidapi-key":
+              "cb87a1d8e3msh720b35361aef2c4p108c3bjsn6a7e31b76186",
+            "x-rapidapi-host":
+              "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+          },
+        };
+
+        const options3 = {
+          method: "GET",
+          url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/SL/eur/en-US/${flightFrom}/${flightTo}/${inboundDate}/${inboundDate}`,
+          headers: {
+            "x-rapidapi-key":
+              "797156d71amsha64ebeeaae0918bp104d3djsne503a25decff",
+            "x-rapidapi-host":
+              "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+          },
+        };
+
+        const data = await axios.request(options1);
+        const data2 = await axios.request(options2);
+        const data3 = await axios.request(options3);
+
         element.results = data.data;
         element.resultsQuotes = [
           ...data.data.Quotes,
@@ -237,7 +267,9 @@ const fillTheFlights = async () => {
       await FlightResults.create(element);
     }
 
-    console.log(users[x].email + "Succesfully filled the states");
+    console.log(
+      users[x].email + "Succesfully filled the states" + counterforseconds
+    );
     x++;
   }
 

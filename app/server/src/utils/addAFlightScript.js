@@ -1,23 +1,23 @@
 //server.js
-require('dotenv').config();
-var cron = require('node-cron');
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const axios = require('axios');
+require("dotenv").config();
+var cron = require("node-cron");
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const axios = require("axios");
 const port = process.env.PORT || 8000;
-require('dotenv').config();
-const User = require('../models/userModel');
-const Flights = require('../models/fligthsModel');
-const FlightResults = require('../models/flightsResult');
-const { async } = require('regenerator-runtime');
-const { pathToFileURL } = require('url');
+require("dotenv").config();
+const User = require("../models/userModel");
+const Flights = require("../models/fligthsModel");
+const FlightResults = require("../models/flightsResult");
+const { async } = require("regenerator-runtime");
+const { pathToFileURL } = require("url");
 
 //connection to the DB
 const DB = process.env.DATABASE;
 mongoose
   .connect(
-    'mongodb+srv://tomaz:tomaz@cheap-flights.bdzqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    "mongodb+srv://tomaz:tomaz@cheap-flights.bdzqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useCreateIndex: true,
@@ -26,7 +26,7 @@ mongoose
     }
   )
   .then(() => {
-    console.log('DB collection succesfull');
+    console.log("DB collection succesfull");
   });
 
 exports.addAFlight = async (
@@ -72,7 +72,7 @@ exports.addAFlight = async (
       for (let j = 0; j < flight.length; j++) {
         const elementJ = flight[j];
         places.push({
-          id: elementJ.PlaceId || 'none',
+          id: elementJ.PlaceId || "none",
           name: elementJ.CityName,
           skyscannerCode: elementJ.SkyscannerCode,
         });
@@ -90,7 +90,7 @@ exports.addAFlight = async (
       if (fromFlight !== undefined) {
         fromFlight = fromFlight.skyscannerCode;
       } else {
-        fromFlight = 'No Data';
+        fromFlight = "No Data";
       }
 
       let toFlight = places.find((el) => {
@@ -100,7 +100,7 @@ exports.addAFlight = async (
       if (toFlight !== undefined) {
         toFlight = toFlight.skyscannerCode;
       } else {
-        toFlight = 'No Data';
+        toFlight = "No Data";
       }
 
       let fromFlightCountryorAirport = places.find(
@@ -108,9 +108,9 @@ exports.addAFlight = async (
       );
 
       if (fromFlightCountryorAirport !== undefined) {
-        fromFlightCountryorAirport = fromFlightCountryorAirport.skyscannerCode;
+        fromFlightCountryorAirport = fromFlightCountryorAirport.name;
       } else {
-        fromFlightCountryorAirport = 'No Data';
+        fromFlightCountryorAirport = "No Data";
       }
 
       let toFlightCountryorAirport = places.find(
@@ -120,7 +120,7 @@ exports.addAFlight = async (
       if (toFlightCountryorAirport !== undefined) {
         toFlightCountryorAirport = toFlightCountryorAirport.name;
       } else {
-        toFlight = 'No Data';
+        toFlight = "No Data";
       }
       const fromDate = TranfromDateToSuitableLink(
         element.OutboundLeg.DepartureDate
@@ -153,35 +153,35 @@ exports.addAFlight = async (
       results: flightsForFinal,
     });
   } catch (error) {
-    console.log('ERRRORRR', error);
-    return 'There has been an error';
+    console.log("ERRRORRR", error);
+    return "There has been an error";
   }
 };
 
 function TranfromDateToSuitableLink(date) {
-  const slice = date.slice(2, 10).split('-').join('');
+  const slice = date.slice(2, 10).split("-").join("");
   return slice;
 }
 
 const dateFormatForSkyscanner = (date) => {
   const months = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
   ];
 
   if (date.getDate() == 1 && date.getMonth() == 0) {
     return date.getFullYear();
   } else {
-    return date.getFullYear() + '-' + months[date.getMonth()];
+    return date.getFullYear() + "-" + months[date.getMonth()];
   }
 };

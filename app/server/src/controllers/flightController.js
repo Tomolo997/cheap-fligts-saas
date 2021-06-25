@@ -50,14 +50,14 @@ exports.addFlight = async (req, res, next) => {
       return;
     }
 
-    if (userID.program === "pro" && flight.flightsData.length > 30) {
+    if (userID.program === "pro" && flight.flightsData.length > 24) {
       res.status(201).json({
         status: "error",
       });
       return;
     }
 
-    if (userID.program === "standard" && flight.flightsData.length > 15) {
+    if (userID.program === "standard" && flight.flightsData.length > 10) {
       res.status(201).json({
         status: "error",
       });
@@ -114,8 +114,6 @@ exports.getFlights = async (req, res, next) => {
     const element = userFlightsInit[index];
     for (let j = 0; j < flightsWithNoResult.length; j++) {
       const element2 = flightsWithNoResult[j];
-      console.log(element._id == element2.flightID);
-
       if (String(element._id) == String(element2.flightID)) {
         NoDataFlights.push(element);
       }

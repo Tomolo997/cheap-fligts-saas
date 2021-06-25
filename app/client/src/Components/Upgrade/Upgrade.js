@@ -48,7 +48,7 @@ export default function Upgrade(props) {
         </div>
         <div className="pricing_features">
           <ul className="pricing_features_list">
-            <li className="pricing_features_item">15 Destinations</li>
+            <li className="pricing_features_item">10 Destinations</li>
             <li className="pricing_features_item">Daily destination prices</li>
             <li className="pricing_features_item">Online Support</li>
             <li className="pricing_features_item">Email notification</li>
@@ -74,7 +74,7 @@ export default function Upgrade(props) {
 
         <div className="pricing_features">
           <ul className="pricing_features_list">
-            <li className="pricing_features_item">30 Destinations</li>
+            <li className="pricing_features_item">10 Destinations</li>
             <li className="pricing_features_item">
               Daily destination prices
             </li>{" "}
@@ -106,7 +106,7 @@ export default function Upgrade(props) {
 
       <div className="pricing_features">
         <ul className="pricing_features_list">
-          <li className="pricing_features_item">30 Destinations</li>
+          <li className="pricing_features_item">10 Destinations</li>
           <li className="pricing_features_item">
             Daily destination prices
           </li>{" "}
