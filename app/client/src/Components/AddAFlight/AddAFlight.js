@@ -271,7 +271,7 @@ export default function AddAFlight(props) {
           : null}
         {cantaddFlight ? (
           <div>
-            `Cant add you flight, because you have exceeded the number of
+            Can't add your flight, because you have exceeded the number of
             flights you can add 😔,but you can still <br /> <br />
             {Upgrade}{" "}
           </div>

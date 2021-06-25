@@ -67,7 +67,7 @@ export default function Upgrade(props) {
         <div className="pricing_package">Pro</div>
         <div className="pricing_price_div">
           <div className="pricing_perMonth_div">
-            <span className="pricing_currency">€</span>26
+            <span className="pricing_currency">€</span>25
           </div>
           <div className="pricing_perMonth">PER MONTH</div>
         </div>

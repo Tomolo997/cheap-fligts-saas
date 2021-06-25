@@ -88,5 +88,8 @@ exports.successUpgrade = async (req, res, next) => {
     program = "standard";
   }
 
-  const user = await User.findByIdAndUpdate(id, { program: program });
+  const user = await User.findByIdAndUpdate(id, {
+    program: program,
+    alreadyPaid: true,
+  });
 };
