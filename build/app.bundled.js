@@ -26210,7 +26210,7 @@ function Upgrade(props) {
     className: "pricing_features_list"
   }, /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "15 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
+  }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Daily destination prices"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
@@ -26231,7 +26231,7 @@ function Upgrade(props) {
     className: "pricing_perMonth_div"
   }, /*#__PURE__*/_react["default"].createElement("span", {
     className: "pricing_currency"
-  }, "\u20AC"), "26"), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "\u20AC"), "25"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_perMonth"
   }, "PER MONTH")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_features"
@@ -26239,7 +26239,7 @@ function Upgrade(props) {
     className: "pricing_features_list"
   }, /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "30 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
+  }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
@@ -26270,7 +26270,7 @@ function Upgrade(props) {
     className: "pricing_features_list"
   }, /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "30 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
+  }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
@@ -49530,7 +49530,7 @@ var SignUp = function SignUp() {
                     location.assign("/verify");
                   }, 1500);
                   return;
-                   
+                    
                 }*/
                 //if the user selects the pro or standard program, then the checkout is applied
 
@@ -68051,7 +68051,7 @@ module.exports.makeKey = makeKey
 /* 792 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["elliptic@6.5.4","/Users/tomazovsenjak/Desktop/Projects/02_saas/cheap-fligts-saas"]],"_from":"elliptic@6.5.4","_id":"elliptic@6.5.4","_inBundle":false,"_integrity":"sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.5.4","name":"elliptic","escapedName":"elliptic","rawSpec":"6.5.4","saveSpec":null,"fetchSpec":"6.5.4"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.5.4.tgz","_spec":"6.5.4","_where":"/Users/tomazovsenjak/Desktop/Projects/02_saas/cheap-fligts-saas","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.11.9","brorand":"^1.1.0","hash.js":"^1.0.0","hmac-drbg":"^1.0.1","inherits":"^2.0.4","minimalistic-assert":"^1.0.1","minimalistic-crypto-utils":"^1.0.1"},"description":"EC cryptography","devDependencies":{"brfs":"^2.0.2","coveralls":"^3.1.0","eslint":"^7.6.0","grunt":"^1.2.1","grunt-browserify":"^5.3.0","grunt-cli":"^1.3.2","grunt-contrib-connect":"^3.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^5.0.0","grunt-mocha-istanbul":"^5.0.2","grunt-saucelabs":"^9.0.1","istanbul":"^0.4.5","mocha":"^8.0.1"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"lint":"eslint lib test","lint:fix":"npm run lint -- --fix","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.5.4"}
+module.exports = {"_args":[["elliptic@6.5.4","C:\\Users\\Tomolo\\Desktop\\cheap_tickets\\cheap-fligts-saas"]],"_from":"elliptic@6.5.4","_id":"elliptic@6.5.4","_inBundle":false,"_integrity":"sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.5.4","name":"elliptic","escapedName":"elliptic","rawSpec":"6.5.4","saveSpec":null,"fetchSpec":"6.5.4"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.5.4.tgz","_spec":"6.5.4","_where":"C:\\Users\\Tomolo\\Desktop\\cheap_tickets\\cheap-fligts-saas","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.11.9","brorand":"^1.1.0","hash.js":"^1.0.0","hmac-drbg":"^1.0.1","inherits":"^2.0.4","minimalistic-assert":"^1.0.1","minimalistic-crypto-utils":"^1.0.1"},"description":"EC cryptography","devDependencies":{"brfs":"^2.0.2","coveralls":"^3.1.0","eslint":"^7.6.0","grunt":"^1.2.1","grunt-browserify":"^5.3.0","grunt-cli":"^1.3.2","grunt-contrib-connect":"^3.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^5.0.0","grunt-mocha-istanbul":"^5.0.2","grunt-saucelabs":"^9.0.1","istanbul":"^0.4.5","mocha":"^8.0.1"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"lint":"eslint lib test","lint:fix":"npm run lint -- --fix","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.5.4"}
 
 /***/ }),
 /* 793 */
@@ -77808,7 +77808,7 @@ function AddAFlight(props) {
     className: "addAFlight_toMonth"
   }, showMonth ? fromMonth : null, showMonth ? toMonth : null), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "addAFlight_h1_error"
-  }, addAFlightError ? "Please fill out all of the fields" : null, addAFlightCongrats ? "Congrats your flight from ".concat(flightFrom, " to ").concat(flightTo, " has been added. \uD83E\uDD73") : null, cantaddFlight ? /*#__PURE__*/_react["default"].createElement("div", null, "`Cant add you flight, because you have exceeded the number of flights you can add \uD83D\uDE14,but you can still ", /*#__PURE__*/_react["default"].createElement("br", null), " ", /*#__PURE__*/_react["default"].createElement("br", null), Upgrade, " ") : null));
+  }, addAFlightError ? "Please fill out all of the fields" : null, addAFlightCongrats ? "Congrats your flight from ".concat(flightFrom, " to ").concat(flightTo, " has been added. \uD83E\uDD73") : null, cantaddFlight ? /*#__PURE__*/_react["default"].createElement("div", null, "Can't add your flight, because you have exceeded the number of flights you can add \uD83D\uDE14,but you can still ", /*#__PURE__*/_react["default"].createElement("br", null), " ", /*#__PURE__*/_react["default"].createElement("br", null), Upgrade, " ") : null));
 
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "dasboard_addAflight"
@@ -79059,7 +79059,7 @@ function SuccessfullyUpgraded() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].post('http://localhost:8000/api/v1/users/successUpgrade', {
+              return _axios["default"].post("http://localhost:8000/api/v1/users/successUpgrade", {
                 id: id,
                 priceId: priceId
               });
