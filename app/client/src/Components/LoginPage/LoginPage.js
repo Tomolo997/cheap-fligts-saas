@@ -17,7 +17,7 @@ const LoginPage = () => {
   const [notVerified, setNotVerified] = useState(false);
 
   var createCheckoutSession = function (priceId) {
-    return fetch('http://localhost:8000/api/v1/payment/pay', {
+    return fetch('/api/v1/payment/pay', {
       method: 'POST',
       credentials: 'same-origin',
       headers: {
@@ -44,7 +44,7 @@ const LoginPage = () => {
     const res = await axios(
       {
         method: 'POST',
-        url: 'http://localhost:8000/api/v1/users/login',
+        url: '/api/v1/users/login',
         data: {
           email: email,
           password: password,

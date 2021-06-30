@@ -15,7 +15,7 @@ function AuthContextProvider(props) {
     try {
       const res = await axios({
         method: 'GET',
-        url: 'http://localhost:8000/api/v1/users/loggedIn',
+        url: '/api/v1/users/loggedIn',
       });
 
       //this wil return true or false

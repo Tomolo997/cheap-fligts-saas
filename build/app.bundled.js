@@ -3824,7 +3824,7 @@ function AuthContextProvider(props) {
               _context.next = 3;
               return (0, _axios["default"])({
                 method: 'GET',
-                url: 'http://localhost:8000/api/v1/users/loggedIn'
+                url: '/api/v1/users/loggedIn'
               });
 
             case 3:
@@ -26159,18 +26159,18 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var stripe = Stripe("pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt");
+var stripe = Stripe('pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt');
 
 function Upgrade(props) {
   var _useContext = (0, _react.useContext)(_AuthContext["default"]),
       UserIDforUpgrade = _useContext.UserIDforUpgrade;
 
   var createCheckoutSessionForUpgrade = function async(priceId) {
-    return fetch("http://localhost:8000/api/v1/users/upgradeMe", {
-      method: "POST",
-      credentials: "include",
+    return fetch('/api/v1/users/upgradeMe', {
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         priceId: priceId,
@@ -26194,7 +26194,7 @@ function Upgrade(props) {
     className: "upgradeTime"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_divUpgrade"
-  }, " ", /*#__PURE__*/_react["default"].createElement("div", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
   }, "Popular"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_price_div"
@@ -26218,10 +26218,10 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe("price_1J081OJkVEDM03SsnZFRVUiO");
+      upgradeMe('price_1J081OJkVEDM03SsnZFRVUiO');
     },
     className: "pricing_button pricing_button_buy"
-  }, "Join now"), " "), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "Join now"), ' '), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_divUpgrade"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
@@ -26241,13 +26241,13 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
+  }, "Daily destination prices"), ' ', /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Online Support"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
+      upgradeMe('price_1J084NJkVEDM03SsxUZmPVER');
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")));
@@ -26272,18 +26272,18 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
+  }, "Daily destination prices"), ' ', /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Online Support"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
+      upgradeMe('price_1J084NJkVEDM03SsxUZmPVER');
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now"));
 
-  var showMaximumUpdated = /*#__PURE__*/_react["default"].createElement("h1", null, "This is the maximum program, please contact our support, if you want a program specified for you :D", " ");
+  var showMaximumUpdated = /*#__PURE__*/_react["default"].createElement("h1", null, "This is the maximum program, please contact our support, if you want a program specified for you :D", ' ');
 
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, props.standardProgram && !props.proProgram ? /*#__PURE__*/_react["default"].createElement("div", {
     className: "upgradeTime"
@@ -47961,7 +47961,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var stripe = Stripe("pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt");
+var stripe = Stripe('pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt');
 
 function Pricing(props) {
   var history = (0, _reactRouterDom.useHistory)();
@@ -47970,10 +47970,10 @@ function Pricing(props) {
       setPriceId = _useContext.setPriceId;
 
   var createCheckoutSession = function createCheckoutSession(priceId) {
-    return fetch("http://localhost:8000/api/v1/payment/pay", {
-      method: "POST",
+    return fetch('/api/v1/payment/pay', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         priceId: priceId
@@ -48023,12 +48023,12 @@ function Pricing(props) {
     className: "pricing_features_item"
   }, "Online Support"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      history.push("/sign-up");
+      history.push('/sign-up');
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_popular pricing_div"
-  }, " ", /*#__PURE__*/_react["default"].createElement("div", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
   }, "Popular"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_price_div"
@@ -48052,11 +48052,11 @@ function Pricing(props) {
     className: "pricing_features_item"
   }, "Email notifications"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      history.push("/sign-up");
-      clickMeToPay("price_1J081OJkVEDM03SsnZFRVUiO");
+      history.push('/sign-up');
+      clickMeToPay('price_1J081OJkVEDM03SsnZFRVUiO');
     },
     className: "pricing_button pricing_button_buy"
-  }, "Join now"), " "), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "Join now"), ' '), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_pro pricing_div"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
@@ -48076,21 +48076,21 @@ function Pricing(props) {
     className: "pricing_features_item"
   }, "30 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
+  }, "Daily destination prices"), ' ', /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Online Support"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      history.push("/sign-up");
-      clickMeToPay("price_1J084NJkVEDM03SsxUZmPVER");
+      history.push('/sign-up');
+      clickMeToPay('price_1J084NJkVEDM03SsxUZmPVER');
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_refundable"
   }, /*#__PURE__*/_react["default"].createElement("h1", {
     className: "pricing_refundable_h1"
-  }, "All prices refundable"), " "));
+  }, "All prices refundable"), ' '));
 }
 
 /***/ }),
@@ -49393,7 +49393,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var stripe = Stripe("pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt");
+var stripe = Stripe('pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt');
 
 var SignUp = function SignUp() {
   var _useState = (0, _react.useState)(false),
@@ -49401,22 +49401,22 @@ var SignUp = function SignUp() {
       singUpSuccessfull = _useState2[0],
       setSingUpSuccessfull = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(""),
+  var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       username = _useState4[0],
       setUsername = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(""),
+  var _useState5 = (0, _react.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       emailSignUp = _useState6[0],
       setEmailSignUp = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(""),
+  var _useState7 = (0, _react.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
       passwordSignUp = _useState8[0],
       setPasswordSignUp = _useState8[1];
 
-  var _useState9 = (0, _react.useState)(""),
+  var _useState9 = (0, _react.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
       passwordConfirmSignUp = _useState10[0],
       setPasswordConfirmSignUp = _useState10[1];
@@ -49453,10 +49453,10 @@ var SignUp = function SignUp() {
 
   var createCheckoutSession = function createCheckoutSession(priceId, paidToken) {
     console.log(priceId);
-    return fetch("http://localhost:8000/api/v1/payment/pay", {
-      method: "POST",
+    return fetch('/api/v1/payment/pay', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         priceId: priceId,
@@ -49490,22 +49490,22 @@ var SignUp = function SignUp() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              program = "free"; //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
+              program = 'free'; //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
 
               e.preventDefault();
 
-              if (price_id === "price_1J084NJkVEDM03SsxUZmPVER") {
-                program = "pro";
+              if (price_id === 'price_1J084NJkVEDM03SsxUZmPVER') {
+                program = 'pro';
               }
 
-              if (price_id === "price_1J081OJkVEDM03SsnZFRVUiO") {
-                program = "standard";
+              if (price_id === 'price_1J081OJkVEDM03SsnZFRVUiO') {
+                program = 'standard';
               }
 
               _context.next = 6;
               return (0, _axios["default"])({
-                method: "POST",
-                url: "http://localhost:8000/api/v1/users/signup",
+                method: 'POST',
+                url: '/api/v1/users/signup',
                 data: {
                   name: username,
                   email: emailSignUp,
@@ -49522,7 +49522,7 @@ var SignUp = function SignUp() {
             case 6:
               res = _context.sent;
 
-              if (res.data.status === "success") {
+              if (res.data.status === 'success') {
                 setSingUpSuccessfull(true);
                 setUserEmail(emailSignUp);
                 /* if (program === "free") {
@@ -49534,7 +49534,7 @@ var SignUp = function SignUp() {
                 }*/
                 //if the user selects the pro or standard program, then the checkout is applied
 
-                if (program !== "free") {
+                if (program !== 'free') {
                   createCheckoutSession(price_id, res.data.data.alreadyPaidToken).then(function (data) {
                     // Call Stripe.js method to redirect to the new Checkout page
                     stripe.redirectToCheckout({
@@ -49547,10 +49547,10 @@ var SignUp = function SignUp() {
                 setUserAlreadyExistError(false);
                 setShortPasswordError(false);
                 setPasswordsAreNotTheSame(false);
-              } else if (res.data.status === "error") {
+              } else if (res.data.status === 'error') {
                 console.log(res.data.error);
 
-                if (res.data.error.startsWith("E11000")) {
+                if (res.data.error.startsWith('E11000')) {
                   setUserAlreadyExistError(true);
                   setShortPasswordError(false);
                   setProvideValidEmail(false);
@@ -49558,7 +49558,7 @@ var SignUp = function SignUp() {
                   setPasswordsAreNotTheSame(false);
                 }
 
-                if (res.data.error.includes("shorter than the minimum allowed length")) {
+                if (res.data.error.includes('shorter than the minimum allowed length')) {
                   setShortPasswordError(true);
                   setUserAlreadyExistError(false);
                   setProvideValidEmail(false);
@@ -49566,7 +49566,7 @@ var SignUp = function SignUp() {
                   setPasswordsAreNotTheSame(false);
                 }
 
-                if (res.data.error.includes("Please provide  your email")) {
+                if (res.data.error.includes('Please provide  your email')) {
                   setProvideValidEmail(true);
                   setPasswordsAreNotTheSame(false);
                   setShortPasswordError(false);
@@ -49574,7 +49574,7 @@ var SignUp = function SignUp() {
                   setUserAlreadyExistError(false);
                 }
 
-                if (res.data.error.includes("Please provide a valid email")) {
+                if (res.data.error.includes('Please provide a valid email')) {
                   setProvideValidEmail(true);
                   setPasswordsAreNotTheSame(false);
                   setShortPasswordError(false);
@@ -49582,7 +49582,7 @@ var SignUp = function SignUp() {
                   setEnterNameError(false);
                 }
 
-                if (res.data.error.includes("Please tell us your name")) {
+                if (res.data.error.includes('Please tell us your name')) {
                   setProvideValidEmail(false);
                   setEnterNameError(true);
                   setPasswordsAreNotTheSame(false);
@@ -49649,7 +49649,7 @@ var SignUp = function SignUp() {
     id: "password",
     placeholder: "Password"
   })), /*#__PURE__*/_react["default"].createElement("div", {
-    className: shortPasswordError ? "password_too_short_error" : "unactive_error password_too_short_error"
+    className: shortPasswordError ? 'password_too_short_error' : 'unactive_error password_too_short_error'
   }, shortPasswordError ? /*#__PURE__*/_react["default"].createElement(_ShortPasswordError["default"], null) : null), /*#__PURE__*/_react["default"].createElement("div", {
     className: "input_div"
   }, /*#__PURE__*/_react["default"].createElement("label", {
@@ -49662,22 +49662,22 @@ var SignUp = function SignUp() {
     id: "passwordConfirm",
     placeholder: "Password confirm"
   })), /*#__PURE__*/_react["default"].createElement("div", {
-    className: passwordsAreNotTheSame ? "password_too_short_error" : "unactive_error password_too_short_error"
+    className: passwordsAreNotTheSame ? 'password_too_short_error' : 'unactive_error password_too_short_error'
   }, passwordsAreNotTheSame ? /*#__PURE__*/_react["default"].createElement(_PasswordsAreNotTheSame["default"], null) : null), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: signUpUser,
     className: "singup_button",
     type: "submit"
   }, "SIGN UP"), /*#__PURE__*/_react["default"].createElement("p", {
     className: "login_paragraph"
-  }, "Already have an account?", " ", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+  }, "Already have an account?", ' ', /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
     to: "/login",
     className: "login_button"
-  }, "Login here"), " "), /*#__PURE__*/_react["default"].createElement("div", {
-    className: userAlreadyExistError ? "user_already_exists_error" : "unactive_error user_already_exists_error"
+  }, "Login here"), ' '), /*#__PURE__*/_react["default"].createElement("div", {
+    className: userAlreadyExistError ? 'user_already_exists_error' : 'unactive_error user_already_exists_error'
   }, userAlreadyExistError ? /*#__PURE__*/_react["default"].createElement(_UserAlreadyExists["default"], null) : null), /*#__PURE__*/_react["default"].createElement("div", {
-    className: provideValidEmail ? "user_already_exists_error" : "unactive_error user_already_exists_error"
+    className: provideValidEmail ? 'user_already_exists_error' : 'unactive_error user_already_exists_error'
   }, provideValidEmail ? /*#__PURE__*/_react["default"].createElement(_ProvideValidEmail["default"], null) : null), /*#__PURE__*/_react["default"].createElement("div", {
-    className: enterNameError ? "user_already_exists_error" : "unactive_error user_already_exists_error"
+    className: enterNameError ? 'user_already_exists_error' : 'unactive_error user_already_exists_error'
   }, enterNameError ? /*#__PURE__*/_react["default"].createElement(_PleaseEnterName["default"], null) : null))));
 
   return /*#__PURE__*/_react["default"].createElement("div", {
@@ -76665,7 +76665,7 @@ function Dashboard() {
       flightsResults = _useState18[0],
       setFlightsResults = _useState18[1];
 
-  var _useState19 = (0, _react.useState)(""),
+  var _useState19 = (0, _react.useState)(''),
       _useState20 = _slicedToArray(_useState19, 2),
       userId = _useState20[0],
       setUserId = _useState20[1];
@@ -76685,7 +76685,7 @@ function Dashboard() {
       fromToStart = _useState26[0],
       setFromToStart = _useState26[1];
 
-  var _useState27 = (0, _react.useState)(""),
+  var _useState27 = (0, _react.useState)(''),
       _useState28 = _slicedToArray(_useState27, 2),
       userName = _useState28[0],
       setUserName = _useState28[1];
@@ -76695,12 +76695,12 @@ function Dashboard() {
       updateProgramErrorDiv = _useState30[0],
       setUpdateProgramErrorDiv = _useState30[1];
 
-  var _useState31 = (0, _react.useState)("free"),
+  var _useState31 = (0, _react.useState)('free'),
       _useState32 = _slicedToArray(_useState31, 2),
       userProgram = _useState32[0],
       setUserProgram = _useState32[1];
 
-  var _useState33 = (0, _react.useState)(""),
+  var _useState33 = (0, _react.useState)(''),
       _useState34 = _slicedToArray(_useState33, 2),
       userEmail = _useState34[0],
       setUserEmail = _useState34[1];
@@ -76713,12 +76713,12 @@ function Dashboard() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].get("http://localhost:8000/api/v1/users/getMe");
+              return _axios["default"].get('/api/v1/users/getMe');
 
             case 2:
               res = _context.sent;
               _context.next = 5;
-              return _axios["default"].get("http://localhost:8000/api/v1/users/airports");
+              return _axios["default"].get('/api/v1/users/airports');
 
             case 5:
               fuckingAirports = _context.sent;
@@ -76732,15 +76732,15 @@ function Dashboard() {
                 return setLoading(false);
               }, 2000);
 
-              if (res.data.program === "pro") {
+              if (res.data.program === 'pro') {
                 setProProgram(true);
               }
 
-              if (res.data.program === "standard") {
+              if (res.data.program === 'standard') {
                 setStandardProgram(true);
               }
 
-              if (!(res.data.program === "standard" || res.data.program === "pro")) {
+              if (!(res.data.program === 'standard' || res.data.program === 'pro')) {
                 _context.next = 24;
                 break;
               }
@@ -76784,7 +76784,7 @@ function Dashboard() {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _axios["default"].get("http://localhost:8000/api/v1/users/getMe");
+              return _axios["default"].get('/api/v1/users/getMe');
 
             case 2:
               res = _context2.sent;
@@ -76816,7 +76816,7 @@ function Dashboard() {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return _axios["default"].get("http://localhost:8000/api/v1/flights/getMyFlights");
+              return _axios["default"].get('/api/v1/flights/getMyFlights');
 
             case 3:
               res = _context3.sent;
@@ -76861,8 +76861,8 @@ function Dashboard() {
                 _loop(index);
               }
 
-              console.log("flight results", flightResults);
-              console.log("No results", noResults);
+              console.log('flight results', flightResults);
+              console.log('No results', noResults);
 
               for (i = 0; i < noResults.length; i++) {
                 element = noResults[i];
@@ -76873,14 +76873,14 @@ function Dashboard() {
                     flightFromSTART: element.flightFrom,
                     flightID: element._id,
                     flightToSTART: element.flightTo,
-                    formDate: "2021-05-22T00:00:00.000",
-                    fromFlight: "No Data",
-                    fromFlightCountry: "No Data",
-                    link: "No Data",
-                    price: "No Data",
-                    toDate: "2021-05-22T00:00:00.000Z",
-                    toFlight: "No Data",
-                    toFlightCountry: "No Data",
+                    formDate: '2021-05-22T00:00:00.000',
+                    fromFlight: 'No Data',
+                    fromFlightCountry: 'No Data',
+                    link: 'No Data',
+                    price: 'No Data',
+                    toDate: '2021-05-22T00:00:00.000Z',
+                    toFlight: 'No Data',
+                    toFlightCountry: 'No Data',
                     updated: 1621616899340,
                     user: userID
                   }],
@@ -76899,7 +76899,7 @@ function Dashboard() {
               // }
 
 
-              console.log("from to start", fromToArray);
+              console.log('from to start', fromToArray);
               setFromToStart(fromToArray);
               setLoading(false);
               _context3.next = 29;
@@ -76940,16 +76940,16 @@ function Dashboard() {
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return _axios["default"].get("http://localhost:8000/api/v1/users/logout");
+              return _axios["default"].get('/api/v1/users/logout');
 
             case 3:
               res = _context4.sent;
               console.log(res);
 
-              if (res.data.status === "success") {
+              if (res.data.status === 'success') {
                 setLoginSuccessfull(true);
                 setTimeout(function () {
-                  return location.assign("/");
+                  return location.assign('/');
                 }, 750);
               }
 
@@ -77016,27 +77016,27 @@ function Dashboard() {
     className: "slider_thin"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "dashboard_slider_header"
-  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null)), " ", /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null)), ' ', /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_mainComponents",
     style: {
-      display: "none"
+      display: 'none'
     }
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_hover"
-  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Flights")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_hover"
-  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Suggestions")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_hover"
-  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Add Flight"))), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_settings",
     style: {
-      display: "none"
+      display: 'none'
     }
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_settings"
@@ -77044,40 +77044,40 @@ function Dashboard() {
     className: "slider_component_h1"
   }, "Settings")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_settings"
-  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, " Help")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component_settings"
-  }, " ", "All rights reserved By @Toma\u017EOvsenjak")));
+  }, ' ', "All rights reserved By @Toma\u017EOvsenjak")));
 
   var fatSlider = /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "dashboard_slider_header"
-  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null), /*#__PURE__*/_react["default"].createElement(_BurgerNav["default"], null)), " ", /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null), /*#__PURE__*/_react["default"].createElement(_BurgerNav["default"], null)), ' ', /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_mainComponents"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component_username"
-  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1_username"
   }, "Hello ", userName)), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showMyFlights,
     className: "slider_component slider_component_hover"
-  }, " ", /*#__PURE__*/_react["default"].createElement(_airplane["default"], {
+  }, ' ', /*#__PURE__*/_react["default"].createElement(_airplane["default"], {
     className: "svg_dashboard"
   }), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Flights")), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showSuggestions,
     className: "slider_component slider_component_hover"
-  }, " ", /*#__PURE__*/_react["default"].createElement(_newMessage["default"], {
+  }, ' ', /*#__PURE__*/_react["default"].createElement(_newMessage["default"], {
     className: "svg_dashboard"
   }), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Suggestions")), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showAddAFlight,
     className: "slider_component slider_component_hover"
-  }, " ", /*#__PURE__*/_react["default"].createElement(_circleWithPlus["default"], {
+  }, ' ', /*#__PURE__*/_react["default"].createElement(_circleWithPlus["default"], {
     className: "svg_dashboard"
   }), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
@@ -77091,16 +77091,16 @@ function Dashboard() {
   }, "My Profile")), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showHelpClick,
     className: "slider_component slider_component_settings"
-  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Contact")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "logout_component "
-  }, " ", /*#__PURE__*/_react["default"].createElement("button", {
+  }, ' ', /*#__PURE__*/_react["default"].createElement("button", {
     onClick: logoutBtn,
     className: "singup_button singup_button_dashboard"
   }, "Log out")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component_settings rights_reserved"
-  }, " ", "All rights reserved By @Toma\u017EOvsenjak")));
+  }, ' ', "All rights reserved By @Toma\u017EOvsenjak")));
 
   var myFlightDivs = fromToStart.map(function (el) {
     return /*#__PURE__*/_react["default"].createElement(_MyFlights["default"], {
@@ -77118,11 +77118,11 @@ function Dashboard() {
     });
   });
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
-    className: slider ? "dashboard" : "dashboard_hide"
+    className: slider ? 'dashboard' : 'dashboard_hide'
   }, slider ? fatSlider : thinSlider, /*#__PURE__*/_react["default"].createElement("div", {
     className: "dashboard_mainInfo"
   }, loginSuccessfull ? /*#__PURE__*/_react["default"].createElement(_LoginSuccess["default"], {
-    message: "Log out succesfull, redirecting you to the landing page 😀 "
+    message: 'Log out succesfull, redirecting you to the landing page 😀 '
   }) : null, !loading ? myFlightsShow && myFlightDivs : /*#__PURE__*/_react["default"].createElement(_Spinner["default"], null), updateProgramErrorDiv ? /*#__PURE__*/_react["default"].createElement(_UpdateProgramError["default"], null) : null, suggestionsShow && /*#__PURE__*/_react["default"].createElement(_Suggestions["default"], null), addAFlightShow && /*#__PURE__*/_react["default"].createElement(_AddAFlight["default"], {
     proProgram: proProgram,
     standardProgram: standardProgram,
@@ -77325,7 +77325,7 @@ function MyFlights(props) {
                 location.reload();
               }, 500);
               _context.next = 3;
-              return _axios["default"]["delete"]('http://localhost:8000/api/v1/flights/deleteFlight', {
+              return _axios["default"]["delete"]('/api/v1/flights/deleteFlight', {
                 data: {
                   user: String(props.userID),
                   flightID: String(deletedFlightID),
@@ -77527,22 +77527,22 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function AddAFlight(props) {
-  var _useState = (0, _react.useState)(""),
+  var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       flightFrom = _useState2[0],
       setFlightFrom = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(""),
+  var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       flightTo = _useState4[0],
       setFlightTo = _useState4[1];
 
-  var _useState5 = (0, _react.useState)("2021"),
+  var _useState5 = (0, _react.useState)('2021'),
       _useState6 = _slicedToArray(_useState5, 2),
       outboundDate = _useState6[0],
       setOutboundDate = _useState6[1];
 
-  var _useState7 = (0, _react.useState)("2021"),
+  var _useState7 = (0, _react.useState)('2021'),
       _useState8 = _slicedToArray(_useState7, 2),
       inboundDate = _useState8[0],
       setInboundDate = _useState8[1];
@@ -77609,13 +77609,13 @@ function AddAFlight(props) {
                 user: props.userId
               };
               _context.next = 4;
-              return _axios["default"].post("http://localhost:8000/api/v1/flights/addFlight", data);
+              return _axios["default"].post('/api/v1/flights/addFlight', data);
 
             case 4:
               response = _context.sent;
               console.log(response.data);
 
-              if (!(response.data.status === "error")) {
+              if (!(response.data.status === 'error')) {
                 _context.next = 9;
                 break;
               }
@@ -77624,7 +77624,7 @@ function AddAFlight(props) {
               return _context.abrupt("return");
 
             case 9:
-              if (response.data.status === "success") {
+              if (response.data.status === 'success') {
                 setTimeout(function () {
                   setAddAFlightCongrats(true);
                   setCantaddFlight(false);
@@ -77686,25 +77686,25 @@ function AddAFlight(props) {
   var changeoutboundDate = function changeoutboundDate(e) {
     setOutboundDate(e.target.value);
     var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    var year = Number(e.target.value.split("-")[0]);
-    var initMonth = Number(e.target.value.split("-")[1]);
+    var year = Number(e.target.value.split('-')[0]);
+    var initMonth = Number(e.target.value.split('-')[1]);
     var finalMonth = initMonth + 1;
 
     if (finalMonth > 9) {
       if (initMonth === 11) {
-        return setInboundDate(String(year + "-12"));
+        return setInboundDate(String(year + '-12'));
       }
 
       if (initMonth === 12) {
         console.log(initMonth);
         year = year + 1;
         console.log(year);
-        return setInboundDate(String(year + "-01"));
+        return setInboundDate(String(year + '-01'));
       }
 
-      setInboundDate(String(year + "-" + finalMonth));
+      setInboundDate(String(year + '-' + finalMonth));
     } else {
-      setInboundDate(String(year + "-0" + finalMonth));
+      setInboundDate(String(year + '-0' + finalMonth));
     }
   };
 
@@ -77729,7 +77729,7 @@ function AddAFlight(props) {
     className: "addAFlight_upgradeLink"
   }, "UPGRADE"));
 
-  var monthDiv = /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, " ", /*#__PURE__*/_react["default"].createElement("h1", {
+  var monthDiv = /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
     className: "addAFlight_h1"
   }, "Two months"), /*#__PURE__*/_react["default"].createElement("input", {
     onChange: changeoutboundDate,
@@ -77751,16 +77751,16 @@ function AddAFlight(props) {
     className: "addAFlights_div"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     onClick: countrySelectedClickFrom,
-    className: countrySelectedFrom ? ["addAFlight_Country_div active_selected"] : ["addAFlight_Country_div"]
+    className: countrySelectedFrom ? ['addAFlight_Country_div active_selected'] : ['addAFlight_Country_div']
   }, "Country"), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: airportSelectedClickFrom,
-    className: !countrySelectedFrom ? ["addAFlight_Airport_div active_selected"] : ["addAFlight_Airport_div"]
+    className: !countrySelectedFrom ? ['addAFlight_Airport_div active_selected'] : ['addAFlight_Airport_div']
   }, "Top Cities"), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: countrySelectedClick,
-    className: countrySelected ? ["addAFlight_Country_div addAFlight_Country_div_to  active_selected"] : ["addAFlight_Country_div addAFlight_Country_div_to"]
+    className: countrySelected ? ['addAFlight_Country_div addAFlight_Country_div_to  active_selected'] : ['addAFlight_Country_div addAFlight_Country_div_to']
   }, "Country"), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: airportSelectedClick,
-    className: !countrySelected ? ["addAFlight_Airport_div addAFlight_Airport_div_to active_selected"] : ["addAFlight_Airport_div addAFlight_Airport_div_to"]
+    className: !countrySelected ? ['addAFlight_Airport_div addAFlight_Airport_div_to active_selected'] : ['addAFlight_Airport_div addAFlight_Airport_div_to']
   }, "Top Cities"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "from_div"
   }, /*#__PURE__*/_react["default"].createElement("h1", {
@@ -77808,7 +77808,7 @@ function AddAFlight(props) {
     className: "addAFlight_toMonth"
   }, showMonth ? fromMonth : null, showMonth ? toMonth : null), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "addAFlight_h1_error"
-  }, addAFlightError ? "Please fill out all of the fields" : null, addAFlightCongrats ? "Congrats your flight from ".concat(flightFrom, " to ").concat(flightTo, " has been added. \uD83E\uDD73") : null, cantaddFlight ? /*#__PURE__*/_react["default"].createElement("div", null, "Can't add your flight, because you have exceeded the number of flights you can add \uD83D\uDE14,but you can still ", /*#__PURE__*/_react["default"].createElement("br", null), " ", /*#__PURE__*/_react["default"].createElement("br", null), Upgrade, " ") : null));
+  }, addAFlightError ? 'Please fill out all of the fields' : null, addAFlightCongrats ? "Congrats your flight from ".concat(flightFrom, " to ").concat(flightTo, " has been added. \uD83E\uDD73") : null, cantaddFlight ? /*#__PURE__*/_react["default"].createElement("div", null, "Can't add your flight, because you have exceeded the number of flights you can add \uD83D\uDE14,but you can still ", /*#__PURE__*/_react["default"].createElement("br", null), " ", /*#__PURE__*/_react["default"].createElement("br", null), Upgrade, ' ') : null));
 
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "dasboard_addAflight"
@@ -78753,7 +78753,7 @@ function Settings(props) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].put("http://localhost:8000/api/v1/users/updateMe", {
+              return _axios["default"].put('/api/v1/users/updateMe', {
                 name: updateName,
                 email: updateEmail
               });
@@ -79059,7 +79059,7 @@ function SuccessfullyUpgraded() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].post("http://localhost:8000/api/v1/users/successUpgrade", {
+              return _axios["default"].post('/api/v1/users/successUpgrade', {
                 id: id,
                 priceId: priceId
               });
@@ -79172,7 +79172,7 @@ var LoginPage = function LoginPage() {
       setNotVerified = _useState12[1];
 
   var createCheckoutSession = function createCheckoutSession(priceId) {
-    return fetch('http://localhost:8000/api/v1/payment/pay', {
+    return fetch('/api/v1/payment/pay', {
       method: 'POST',
       credentials: 'same-origin',
       headers: {
@@ -79205,7 +79205,7 @@ var LoginPage = function LoginPage() {
               _context.next = 3;
               return (0, _axios["default"])({
                 method: 'POST',
-                url: 'http://localhost:8000/api/v1/users/login',
+                url: '/api/v1/users/login',
                 data: {
                   email: email,
                   password: password
@@ -79437,7 +79437,7 @@ var VerifyME = function VerifyME(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].put('http://localhost:8000/api/v1/users/verification', {
+              return _axios["default"].put('/api/v1/users/verification', {
                 data: {
                   id: id,
                   token: token
@@ -79519,9 +79519,9 @@ var SuccessfullPayment = function SuccessfullPayment(_ref) {
 
   var verify = /*#__PURE__*/_react["default"].createElement("div", {
     className: "verified"
-  }, /*#__PURE__*/_react["default"].createElement("h1", null, "You have succefully paid for the App"), /*#__PURE__*/_react["default"].createElement("div", null, " ", /*#__PURE__*/_react["default"].createElement("a", {
+  }, /*#__PURE__*/_react["default"].createElement("h1", null, "You have succefully paid for the App"), /*#__PURE__*/_react["default"].createElement("div", null, ' ', /*#__PURE__*/_react["default"].createElement("a", {
     href: "/login"
-  }, "Login here"), " "));
+  }, "Login here"), ' '));
 
   var _useParams = (0, _reactRouter.useParams)(),
       token = _useParams.token;
@@ -79532,7 +79532,7 @@ var SuccessfullPayment = function SuccessfullPayment(_ref) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _axios["default"].post("http://localhost:8000/api/v1/payment/successPayment", {
+            return _axios["default"].post('/api/v1/payment/successPayment', {
               token: token
             });
 

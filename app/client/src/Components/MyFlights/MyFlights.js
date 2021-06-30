@@ -49,16 +49,13 @@ export default function MyFlights(props) {
     setTimeout(() => {
       location.reload();
     }, 500);
-    const res = await axios.delete(
-      'http://localhost:8000/api/v1/flights/deleteFlight',
-      {
-        data: {
-          user: String(props.userID),
-          flightID: String(deletedFlightID),
-          flightResultsId: String(deletedflightResultsId),
-        },
-      }
-    );
+    const res = await axios.delete('/api/v1/flights/deleteFlight', {
+      data: {
+        user: String(props.userID),
+        flightID: String(deletedFlightID),
+        flightResultsId: String(deletedflightResultsId),
+      },
+    });
   };
 
   const results = props.results.map((el, i) => (

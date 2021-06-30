@@ -20,15 +20,12 @@ const VerifyME = ({ match }) => {
     verifyyyyyye();
   }, []);
   const verifyyyyyye = async () => {
-    const res = await axios.put(
-      'http://localhost:8000/api/v1/users/verification',
-      {
-        data: {
-          id: id,
-          token: token,
-        },
-      }
-    );
+    const res = await axios.put('/api/v1/users/verification', {
+      data: {
+        id: id,
+        token: token,
+      },
+    });
   };
 
   return (
