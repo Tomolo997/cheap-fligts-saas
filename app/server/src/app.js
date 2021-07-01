@@ -26,14 +26,15 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use(cors({ origin: ['http://localhost:5000'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:4000'], credentials: true }));
 app.use(helmet());
 //middleware
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Express server is up and running.');
 });
 
 //mounting the routes
+app.use('/', viewsRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/flights', flightRouter);
 app.use('/api/v1/payment', paymentRouter);

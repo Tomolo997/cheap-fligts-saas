@@ -4,7 +4,7 @@
   "description": "That's my cheap-flights-saas project.",
   "main": "index.js",
   "scripts": {
-    "client-dev": "webpack-dev-server --port 4000 --hot --inline --watch --progress",
+    "client-dev": "webpack-dev-server --port 5000 --hot --inline --watch --progress",
     "server-dev": "opn http://localhost:8000 && nodemon ./app/server/public/server.js localhost 8000",
     "build": "webpack -p",
     "deploy": "mern-scripts deploy"
