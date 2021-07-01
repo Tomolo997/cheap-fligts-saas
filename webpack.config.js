@@ -40,6 +40,12 @@ const config = {
       template: './app/client/public/index.html',
       favicon: './app/client/public/favicon.ico',
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true, // enable source maps to map errors (stack traces) to modules
+      output: {
+        comments: false, // remove all comments
+      },
+    }),
   ],
   devServer: {
     publicPath: '/',

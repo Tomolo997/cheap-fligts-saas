@@ -58,7 +58,7 @@ const LoginPage = () => {
     if (res.data.status === 'success') {
       setLoginSuccessfull(true);
       window.setTimeout(() => {
-        location.assign('/dashboard');
+        location.assign('/');
       }, 1500);
       setLoginError(false);
       setNotVerified(false);

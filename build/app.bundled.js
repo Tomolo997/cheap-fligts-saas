@@ -79220,7 +79220,7 @@ var LoginPage = function LoginPage() {
               if (res.data.status === 'success') {
                 setLoginSuccessfull(true);
                 window.setTimeout(function () {
-                  location.assign('/dashboard');
+                  location.assign('/');
                 }, 1500);
                 setLoginError(false);
                 setNotVerified(false);
