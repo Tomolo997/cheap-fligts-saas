@@ -13,7 +13,7 @@ const sendConfirmationEmail = async (user) => {
     process.env.JWT_SECRET
   );
 
-  const url = `http://localhost:4000/verification/${user.secretToken}/${user._id}`;
+  const url = `https://costfriendlyflights.com/verification/${user.secretToken}/${user._id}`;
 
   const DOMAIN = 'mg.costfriendlyflights.com';
   const mg = mailgun({

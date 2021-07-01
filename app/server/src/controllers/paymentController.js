@@ -41,8 +41,8 @@ exports.payMe = async (req, res) => {
       // the actual Session ID is returned in the query parameter when your customer
       // is redirected to the success page.
 
-      success_url: `http://localhost:4000/paid/${paidToken}`,
-      cancel_url: 'http://localhost:4000/',
+      success_url: `https://costfriendlyflights.com/paid/${paidToken}`,
+      cancel_url: 'https://costfriendlyflights.com/',
     });
     res.send({
       sessionId: session.id,

@@ -47,7 +47,7 @@ export default function MyFlights(props) {
 
   const deleteFlight = async (deletedFlightID, deletedflightResultsId) => {
     setTimeout(() => {
-      location.reload();
+      location.assign('/');
     }, 500);
     const res = await axios.delete('/api/v1/flights/deleteFlight', {
       data: {
