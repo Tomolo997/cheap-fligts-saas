@@ -49,7 +49,7 @@ const config = {
     overlay: true,
     port: 4000,
     inline: true,
-    open: 'http://localhost:4000',
+    open: 'http://localhost:5000',
   },
 };
 
