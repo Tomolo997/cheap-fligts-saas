@@ -55,7 +55,7 @@ exports.upgradeMe = async (req, res, next) => {
       // the actual Session ID is returned in the query parameter when your customer
       // is redirected to the success page.
 
-      success_url: `https://costfriendlyflights.com/upgrade/success/${id}/${priceId}`,
+      success_url: `https://costfriendlyflights.com/dashboard/upgrade/success/${id}/${priceId}`,
       cancel_url: "https://costfriendlyflights.com/upgrade/error",
     });
 

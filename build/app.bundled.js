@@ -79065,6 +79065,7 @@ function SuccessfullyUpgraded() {
       priceId = _useParams.priceId;
 
   (0, _react.useEffect)(function () {
+    console.log(id, priceId);
     upgareMe();
   }, []);
 

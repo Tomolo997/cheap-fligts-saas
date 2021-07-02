@@ -9,6 +9,7 @@ export default function SuccessfullyUpgraded() {
 
   const { id, priceId } = useParams();
   useEffect(() => {
+    console.log(id, priceId);
     upgareMe();
   }, []);
 
