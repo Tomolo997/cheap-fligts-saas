@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 export default function Settings(props) {
   const [updateName, setUpdateName] = useState(props.userName);
   const [updateEmail, setUpdateEmail] = useState(props.userEmail);
+  const API_CALL =
+    process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
   const updateMe = async () => {
-    const res = await axios.put('/api/v1/users/updateMe', {
+    const res = await axios.put(API_CALL + "/api/v1/users/updateMe", {
       name: updateName,
       email: updateEmail,
     });

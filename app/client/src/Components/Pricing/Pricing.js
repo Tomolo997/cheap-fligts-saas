@@ -1,19 +1,22 @@
-import React, { useContext } from 'react';
-import '../../App/App.css';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import AuthContext from '../../context/AuthContext';
+import React, { useContext } from "react";
+import "../../App/App.css";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import AuthContext from "../../context/AuthContext";
 let stripe = Stripe(
-  'pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt'
+  "pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt"
 );
 export default function Pricing(props) {
+  const API_CALL =
+    process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
+
   const history = useHistory();
   const { setPriceId } = useContext(AuthContext);
   var createCheckoutSession = function (priceId) {
-    return fetch('/api/v1/payment/pay', {
-      method: 'POST',
+    return fetch(API_CALL + "/api/v1/payment/pay", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         priceId: priceId,
@@ -56,7 +59,7 @@ export default function Pricing(props) {
         </div>
         <button
           onClick={() => {
-            history.push('/sign-up');
+            history.push("/sign-up");
           }}
           className="pricing_button pricing_button_buy"
         >
@@ -64,7 +67,7 @@ export default function Pricing(props) {
         </button>
       </div>
       <div className="pricing_popular pricing_div">
-        {' '}
+        {" "}
         <div className="pricing_package">Popular</div>
         <div className="pricing_price_div">
           <div className="pricing_perMonth_div">
@@ -82,13 +85,13 @@ export default function Pricing(props) {
         </div>
         <button
           onClick={() => {
-            history.push('/sign-up');
-            clickMeToPay('price_1J081OJkVEDM03SsnZFRVUiO');
+            history.push("/sign-up");
+            clickMeToPay("price_1J081OJkVEDM03SsnZFRVUiO");
           }}
           className="pricing_button pricing_button_buy"
         >
           Join now
-        </button>{' '}
+        </button>{" "}
       </div>
       <div className="pricing_pro pricing_div">
         <div className="pricing_package">Pro</div>
@@ -104,15 +107,15 @@ export default function Pricing(props) {
             <li className="pricing_features_item">30 Destinations</li>
             <li className="pricing_features_item">
               Daily destination prices
-            </li>{' '}
+            </li>{" "}
             <li className="pricing_features_item">Online Support</li>
             <li className="pricing_features_item">Email notification</li>
           </ul>
         </div>
         <button
           onClick={() => {
-            history.push('/sign-up');
-            clickMeToPay('price_1J084NJkVEDM03SsxUZmPVER');
+            history.push("/sign-up");
+            clickMeToPay("price_1J084NJkVEDM03SsxUZmPVER");
           }}
           className="pricing_button pricing_button_buy"
         >
@@ -121,7 +124,7 @@ export default function Pricing(props) {
       </div>
 
       <div className="pricing_refundable">
-        <h1 className="pricing_refundable_h1">All prices refundable</h1>{' '}
+        <h1 className="pricing_refundable_h1">All prices refundable</h1>{" "}
       </div>
     </div>
   );

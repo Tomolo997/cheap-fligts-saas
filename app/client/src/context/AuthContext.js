@@ -1,27 +1,29 @@
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const AuthContext = createContext();
 
 function AuthContextProvider(props) {
-  const [loggedIn, setLoggedIn] = useState(undefined);
-  const [price_id, setPriceId] = useState('');
-  const [userId, setUserId] = useState('');
-  const [UserIDforUpgrade, setUserIDforUpgrade] = useState('');
+  const API_CALL =
+    process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
-  const [userEmail, setUserEmail] = useState('None');
+  const [loggedIn, setLoggedIn] = useState(undefined);
+  const [price_id, setPriceId] = useState("");
+  const [userId, setUserId] = useState("");
+  const [UserIDforUpgrade, setUserIDforUpgrade] = useState("");
+  const [userEmail, setUserEmail] = useState("None");
   const [slider, setSlider] = useState(true);
   async function getLoggedIn(params) {
     try {
       const res = await axios({
-        method: 'GET',
-        url: '/api/v1/users/loggedIn',
+        method: "GET",
+        url: API_CALL + "/api/v1/users/loggedIn",
       });
 
       //this wil return true or false
       setLoggedIn(res.data);
     } catch (error) {
-      console.log('error', error.message);
+      console.log("error", error.message);
     }
   }
 

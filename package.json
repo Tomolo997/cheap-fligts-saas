@@ -4,7 +4,7 @@
   "description": "That's my cheap-flights-saas project.",
   "main": "index.js",
   "scripts": {
-    "client-dev": "webpack-dev-server --port 5000 --hot --inline --watch --progress",
+    "client-dev": "webpack-dev-server --port 4000 --hot --inline --watch --progress",
     "server-dev": "opn http://localhost:8000 && nodemon ./app/server/public/server.js localhost 8000",
     "build": "webpack -p",
     "deploy": "mern-scripts deploy"
@@ -12,9 +12,9 @@
   "engines": {
     "node": "^8.5.0"
   },
-  "proxy":{
-    "/api/v1":{
-      "target" : "http://localhost:8000"
+  "proxy": {
+    "/api/v1": {
+      "target": "http://localhost:8000"
     }
   },
   "author": "Author of cheap-flights-saas",
@@ -28,6 +28,7 @@
     "core-js": "^3.11.3",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
+    "dotenv-webpack": "^7.0.3",
     "emailjs-com": "^2.6.4",
     "express": "^4.16.2",
     "helmet": "^4.4.1",
@@ -46,6 +47,7 @@
     "regenerator-runtime": "^0.13.7",
     "sendgrid": "^5.2.3",
     "stripe": "^8.154.0",
+    "uglify-js": "^3.13.10",
     "validator": "^13.5.2"
   },
   "devDependencies": {

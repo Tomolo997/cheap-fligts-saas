@@ -1,27 +1,30 @@
-import 'core-js';
-import 'regenerator-runtime/runtime';
-import React, { useState, useContext } from 'react';
-import NavbarSignUp from '../NavbarSignUp/NavbarSignUp';
-import FooterSignUp from '../FooterSignUp/FooterSignUp';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import '../../App/App.css';
-import AuthContext from '../../context/AuthContext';
-import LoginSuccess from '../LoginSuccess/LoginSuccess';
+import "core-js";
+import "regenerator-runtime/runtime";
+import React, { useState, useContext } from "react";
+import NavbarSignUp from "../NavbarSignUp/NavbarSignUp";
+import FooterSignUp from "../FooterSignUp/FooterSignUp";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "../../App/App.css";
+import AuthContext from "../../context/AuthContext";
+import LoginSuccess from "../LoginSuccess/LoginSuccess";
 const LoginPage = () => {
+  const API_CALL =
+    process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
+
   const [login, setLogin] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [loginSuccessfull, setLoginSuccessfull] = useState(false);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [notVerified, setNotVerified] = useState(false);
 
   var createCheckoutSession = function (priceId) {
-    return fetch('/api/v1/payment/pay', {
-      method: 'POST',
-      credentials: 'same-origin',
+    return fetch(API_CALL + "/api/v1/payment/pay", {
+      method: "POST",
+      credentials: "same-origin",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         priceId: priceId,
@@ -43,8 +46,8 @@ const LoginPage = () => {
 
     const res = await axios(
       {
-        method: 'POST',
-        url: '/api/v1/users/login',
+        method: "POST",
+        url: API_CALL + "/api/v1/users/login",
         data: {
           email: email,
           password: password,
@@ -55,16 +58,16 @@ const LoginPage = () => {
       }
     );
 
-    if (res.data.status === 'success') {
+    if (res.data.status === "success") {
       setLoginSuccessfull(true);
       window.setTimeout(() => {
-        location.assign('/');
+        location.assign("/dashboard");
       }, 1500);
       setLoginError(false);
       setNotVerified(false);
     } else if (
-      res.data.status === 'error' &&
-      res.data.message.includes('verified')
+      res.data.status === "error" &&
+      res.data.message.includes("verified")
     ) {
       setNotVerified(true);
       setLoginError(false);
@@ -80,7 +83,7 @@ const LoginPage = () => {
     <div className="sign_up-form_div">
       {loginSuccessfull ? (
         <LoginSuccess
-          message={'Logged in succesfully, redirecting to your dashboard 😀'}
+          message={"Logged in succesfully, redirecting to your dashboard 😀"}
         />
       ) : null}
       <form action="" className="sign_up-form">
@@ -120,17 +123,17 @@ const LoginPage = () => {
           </button>
 
           <p className="login_paragraph">
-            Dont have an account ?{' '}
+            Dont have an account ?{" "}
             <Link to="/sign-up" className="login_button">
               Sign up here
-            </Link>{' '}
+            </Link>{" "}
           </p>
         </div>
         <div
           className={
             loginError
-              ? 'password_too_short_error'
-              : 'unactive_error password_too_short_error'
+              ? "password_too_short_error"
+              : "unactive_error password_too_short_error"
           }
         >
           {loginError ? (
@@ -140,14 +143,14 @@ const LoginPage = () => {
         <div
           className={
             notVerified
-              ? 'password_too_short_error'
-              : 'unactive_error password_too_short_error'
+              ? "password_too_short_error"
+              : "unactive_error password_too_short_error"
           }
         >
           {notVerified ? (
             <div>
               Your account is not verified!, when registering you got an email
-              for verification, please check your mailbox.{' '}
+              for verification, please check your mailbox.{" "}
             </div>
           ) : null}
         </div>

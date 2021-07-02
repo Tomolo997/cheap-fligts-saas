@@ -1,55 +1,58 @@
-import React, { useState, useRef } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import '../../App/App.css';
+import React, { useState, useRef } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
+import "../../App/App.css";
 export default function MyFlights(props) {
+  const API_CALL =
+    process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
+
   const changeDate = (date) => {
-    const changed1Date = date.slice(0, 10).split('-');
-    return changed1Date[2] + '/' + changed1Date[1];
+    const changed1Date = date.slice(0, 10).split("-");
+    return changed1Date[2] + "/" + changed1Date[1];
   };
   const changeDateToDatesFromAndDatesTo = (date) => {
     const dateMili = new Date(date);
     if (dateMili.getDate() == 1 && dateMili.getMonth() == 0) {
-      const changeDate = date.slice(0, 10).split('-');
-      return 'Year of ' + changeDate[0];
+      const changeDate = date.slice(0, 10).split("-");
+      return "Year of " + changeDate[0];
     } else {
-      const changed1Date = date.slice(0, 10).split('-');
-      return changed1Date[2] + '-' + changed1Date[1] + '-' + changed1Date[0];
+      const changed1Date = date.slice(0, 10).split("-");
+      return changed1Date[2] + "-" + changed1Date[1] + "-" + changed1Date[0];
     }
   };
   const changeDateToDatesFromAndDatesToTOO = (date) => {
     const dateMili = new Date(date);
     if (dateMili.getDate() == 1 && dateMili.getMonth() == 0) {
-      const changeDate = date.slice(0, 10).split('-');
-      return 'Year of ' + changeDate[0];
+      const changeDate = date.slice(0, 10).split("-");
+      return "Year of " + changeDate[0];
     } else {
-      const changed1Date = date.slice(0, 10).split('-');
+      const changed1Date = date.slice(0, 10).split("-");
 
       const month = [
-        '31',
-        '28',
-        '31',
-        '30',
-        '31',
-        '30',
-        '31',
-        '31',
-        '30',
-        '31',
-        '30',
-        '31',
+        "31",
+        "28",
+        "31",
+        "30",
+        "31",
+        "30",
+        "31",
+        "31",
+        "30",
+        "31",
+        "30",
+        "31",
       ];
       const StringMonth = month[dateMili.getMonth()];
-      return StringMonth + '-' + changed1Date[1] + '-' + changed1Date[0];
+      return StringMonth + "-" + changed1Date[1] + "-" + changed1Date[0];
     }
   };
 
   const deleteFlight = async (deletedFlightID, deletedflightResultsId) => {
     setTimeout(() => {
-      location.assign('/');
+      location.reload();
     }, 500);
-    const res = await axios.delete('/api/v1/flights/deleteFlight', {
+    const res = await axios.delete(API_CALL + "/api/v1/flights/deleteFlight", {
       data: {
         user: String(props.userID),
         flightID: String(deletedFlightID),
@@ -140,7 +143,7 @@ export default function MyFlights(props) {
                 >
                   DELETE FLIGHT
                 </button>
-              </h1>{' '}
+              </h1>{" "}
             </div>
           </div>
         </div>

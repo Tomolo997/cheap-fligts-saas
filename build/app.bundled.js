@@ -3784,22 +3784,22 @@ function AuthContextProvider(props) {
       loggedIn = _useState2[0],
       setLoggedIn = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       price_id = _useState4[0],
       setPriceId = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(''),
+  var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
       userId = _useState6[0],
       setUserId = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(''),
+  var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
       UserIDforUpgrade = _useState8[0],
       setUserIDforUpgrade = _useState8[1];
 
-  var _useState9 = (0, _react.useState)('None'),
+  var _useState9 = (0, _react.useState)("None"),
       _useState10 = _slicedToArray(_useState9, 2),
       userEmail = _useState10[0],
       setUserEmail = _useState10[1];
@@ -3823,8 +3823,8 @@ function AuthContextProvider(props) {
               _context.prev = 0;
               _context.next = 3;
               return (0, _axios["default"])({
-                method: 'GET',
-                url: '/api/v1/users/loggedIn'
+                method: "GET",
+                url: "http://localhost:8000/api/v1/users/loggedIn"
               });
 
             case 3:
@@ -3837,7 +3837,7 @@ function AuthContextProvider(props) {
             case 7:
               _context.prev = 7;
               _context.t0 = _context["catch"](0);
-              console.log('error', _context.t0.message);
+              console.log("error", _context.t0.message);
 
             case 10:
             case "end":
@@ -26159,18 +26159,18 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var stripe = Stripe('pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt');
+var stripe = Stripe("pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt");
 
 function Upgrade(props) {
   var _useContext = (0, _react.useContext)(_AuthContext["default"]),
       UserIDforUpgrade = _useContext.UserIDforUpgrade;
 
   var createCheckoutSessionForUpgrade = function async(priceId) {
-    return fetch('/api/v1/users/upgradeMe', {
-      method: 'POST',
-      credentials: 'include',
+    return fetch("/api/v1/users/upgradeMe", {
+      method: "POST",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         priceId: priceId,
@@ -26194,7 +26194,7 @@ function Upgrade(props) {
     className: "upgradeTime"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_divUpgrade"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("div", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
   }, "Popular"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_price_div"
@@ -26218,10 +26218,10 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe('price_1J081OJkVEDM03SsnZFRVUiO');
+      upgradeMe("price_1J081OJkVEDM03SsnZFRVUiO");
     },
     className: "pricing_button pricing_button_buy"
-  }, "Join now"), ' '), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "Join now"), " "), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_divUpgrade"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
@@ -26241,13 +26241,13 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "Daily destination prices"), ' ', /*#__PURE__*/_react["default"].createElement("li", {
+  }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Online Support"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe('price_1J084NJkVEDM03SsxUZmPVER');
+      upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")));
@@ -26272,18 +26272,18 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "Daily destination prices"), ' ', /*#__PURE__*/_react["default"].createElement("li", {
+  }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Online Support"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe('price_1J084NJkVEDM03SsxUZmPVER');
+      upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now"));
 
-  var showMaximumUpdated = /*#__PURE__*/_react["default"].createElement("h1", null, "This is the maximum program, please contact our support, if you want a program specified for you :D", ' ');
+  var showMaximumUpdated = /*#__PURE__*/_react["default"].createElement("h1", null, "This is the maximum program, please contact our support, if you want a program specified for you :D", " ");
 
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, props.standardProgram && !props.proProgram ? /*#__PURE__*/_react["default"].createElement("div", {
     className: "upgradeTime"
@@ -49530,7 +49530,7 @@ var SignUp = function SignUp() {
                     location.assign("/verify");
                   }, 1500);
                   return;
-                    
+                   
                 }*/
                 //if the user selects the pro or standard program, then the checkout is applied
 
@@ -68051,7 +68051,7 @@ module.exports.makeKey = makeKey
 /* 792 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["elliptic@6.5.4","C:\\Users\\Tomolo\\Desktop\\cheap_tickets\\cheap-fligts-saas"]],"_from":"elliptic@6.5.4","_id":"elliptic@6.5.4","_inBundle":false,"_integrity":"sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.5.4","name":"elliptic","escapedName":"elliptic","rawSpec":"6.5.4","saveSpec":null,"fetchSpec":"6.5.4"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.5.4.tgz","_spec":"6.5.4","_where":"C:\\Users\\Tomolo\\Desktop\\cheap_tickets\\cheap-fligts-saas","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.11.9","brorand":"^1.1.0","hash.js":"^1.0.0","hmac-drbg":"^1.0.1","inherits":"^2.0.4","minimalistic-assert":"^1.0.1","minimalistic-crypto-utils":"^1.0.1"},"description":"EC cryptography","devDependencies":{"brfs":"^2.0.2","coveralls":"^3.1.0","eslint":"^7.6.0","grunt":"^1.2.1","grunt-browserify":"^5.3.0","grunt-cli":"^1.3.2","grunt-contrib-connect":"^3.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^5.0.0","grunt-mocha-istanbul":"^5.0.2","grunt-saucelabs":"^9.0.1","istanbul":"^0.4.5","mocha":"^8.0.1"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"lint":"eslint lib test","lint:fix":"npm run lint -- --fix","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.5.4"}
+module.exports = {"_args":[["elliptic@6.5.4","/Users/tomazovsenjak/Desktop/Projects/02_saas/cheap-fligts-saas"]],"_from":"elliptic@6.5.4","_id":"elliptic@6.5.4","_inBundle":false,"_integrity":"sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.5.4","name":"elliptic","escapedName":"elliptic","rawSpec":"6.5.4","saveSpec":null,"fetchSpec":"6.5.4"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.5.4.tgz","_spec":"6.5.4","_where":"/Users/tomazovsenjak/Desktop/Projects/02_saas/cheap-fligts-saas","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.11.9","brorand":"^1.1.0","hash.js":"^1.0.0","hmac-drbg":"^1.0.1","inherits":"^2.0.4","minimalistic-assert":"^1.0.1","minimalistic-crypto-utils":"^1.0.1"},"description":"EC cryptography","devDependencies":{"brfs":"^2.0.2","coveralls":"^3.1.0","eslint":"^7.6.0","grunt":"^1.2.1","grunt-browserify":"^5.3.0","grunt-cli":"^1.3.2","grunt-contrib-connect":"^3.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^5.0.0","grunt-mocha-istanbul":"^5.0.2","grunt-saucelabs":"^9.0.1","istanbul":"^0.4.5","mocha":"^8.0.1"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"lint":"eslint lib test","lint:fix":"npm run lint -- --fix","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.5.4"}
 
 /***/ }),
 /* 793 */
@@ -77322,7 +77322,7 @@ function MyFlights(props) {
           switch (_context.prev = _context.next) {
             case 0:
               setTimeout(function () {
-                location.reload();
+                location.assign('/');
               }, 500);
               _context.next = 3;
               return _axios["default"]["delete"]('/api/v1/flights/deleteFlight', {
