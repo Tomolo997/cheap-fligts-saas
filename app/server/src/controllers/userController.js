@@ -1,12 +1,12 @@
-const User = require('../models/userModel');
-const Airports = require('../models/airports');
-const catchAsync = require('../utils/catchAsync');
-const jwt = require('jsonwebtoken');
-const { promisify } = require('util');
-const appError = require('../utils/appError');
-const { async } = require('regenerator-runtime');
-const stripe = require('stripe')(
-  'sk_test_51IxxvcJkVEDM03SsoiqQXiipym6kENermQpnqeiqP7zonwOUY57JcRHwzUpZA3DZzNPMz89gkNtvnFdw7q5YOjV1005MutyTyd'
+const User = require("../models/userModel");
+const Airports = require("../models/airports");
+const catchAsync = require("../utils/catchAsync");
+const jwt = require("jsonwebtoken");
+const { promisify } = require("util");
+const appError = require("../utils/appError");
+const { async } = require("regenerator-runtime");
+const stripe = require("stripe")(
+  "sk_test_51IxxvcJkVEDM03SsoiqQXiipym6kENermQpnqeiqP7zonwOUY57JcRHwzUpZA3DZzNPMz89gkNtvnFdw7q5YOjV1005MutyTyd"
 );
 
 exports.getMe = (req, res, next) => {
@@ -42,8 +42,8 @@ exports.upgradeMe = async (req, res, next) => {
   // for additional parameters to pass.
   try {
     const session = await stripe.checkout.sessions.create({
-      mode: 'subscription',
-      payment_method_types: ['card'],
+      mode: "subscription",
+      payment_method_types: ["card"],
       line_items: [
         {
           price: priceId,
@@ -55,8 +55,8 @@ exports.upgradeMe = async (req, res, next) => {
       // the actual Session ID is returned in the query parameter when your customer
       // is redirected to the success page.
 
-      success_url: `https://costfriendlyflights.com/dashboard/upgrade/success/${id}/${priceId}`,
-      cancel_url: 'https://costfriendlyflights.com/upgrade/error',
+      success_url: `https://costfriendlyflights.com/upgrade/success/${id}/${priceId}`,
+      cancel_url: "https://costfriendlyflights.com/upgrade/error",
     });
 
     console.log(session);
@@ -79,13 +79,13 @@ exports.successUpgrade = async (req, res, next) => {
   const { id } = req.body;
   const { priceId } = req.body;
   console.log(priceId);
-  let program = 'free';
+  let program = "free";
 
-  if (priceId === 'price_1J084NJkVEDM03SsxUZmPVER') {
-    program = 'pro';
+  if (priceId === "price_1J084NJkVEDM03SsxUZmPVER") {
+    program = "pro";
   }
-  if (priceId === 'price_1J081OJkVEDM03SsnZFRVUiO') {
-    program = 'standard';
+  if (priceId === "price_1J081OJkVEDM03SsnZFRVUiO") {
+    program = "standard";
   }
 
   const user = await User.findByIdAndUpdate(id, {

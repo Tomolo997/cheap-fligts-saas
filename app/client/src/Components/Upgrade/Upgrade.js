@@ -137,9 +137,6 @@ export default function Upgrade(props) {
   return (
     <>
       {/* if the program is standard show only pro version */}
-      {props.standardProgram && !props.proProgram ? (
-        <div className="upgradeTime">{showOnlyProProgram}</div>
-      ) : null}
       {!props.standardProgram && !props.proProgram ? showAllPrograms : null}
       {!props.standardProgram && props.proProgram ? showMaximumUpdated : null}
     </>

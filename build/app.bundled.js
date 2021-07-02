@@ -3737,442 +3737,6 @@ module.exports = function (it, Constructor, name) {
 
 /***/ }),
 /* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.AuthContextProvider = AuthContextProvider;
-exports["default"] = void 0;
-
-var _react = _interopRequireWildcard(__webpack_require__(5));
-
-var _axios = _interopRequireDefault(__webpack_require__(35));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var AuthContext = /*#__PURE__*/(0, _react.createContext)();
-
-function AuthContextProvider(props) {
-  var _useState = (0, _react.useState)(undefined),
-      _useState2 = _slicedToArray(_useState, 2),
-      loggedIn = _useState2[0],
-      setLoggedIn = _useState2[1];
-
-  var _useState3 = (0, _react.useState)(""),
-      _useState4 = _slicedToArray(_useState3, 2),
-      price_id = _useState4[0],
-      setPriceId = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(""),
-      _useState6 = _slicedToArray(_useState5, 2),
-      userId = _useState6[0],
-      setUserId = _useState6[1];
-
-  var _useState7 = (0, _react.useState)(""),
-      _useState8 = _slicedToArray(_useState7, 2),
-      UserIDforUpgrade = _useState8[0],
-      setUserIDforUpgrade = _useState8[1];
-
-  var _useState9 = (0, _react.useState)("None"),
-      _useState10 = _slicedToArray(_useState9, 2),
-      userEmail = _useState10[0],
-      setUserEmail = _useState10[1];
-
-  var _useState11 = (0, _react.useState)(true),
-      _useState12 = _slicedToArray(_useState11, 2),
-      slider = _useState12[0],
-      setSlider = _useState12[1];
-
-  function getLoggedIn(_x) {
-    return _getLoggedIn.apply(this, arguments);
-  }
-
-  function _getLoggedIn() {
-    _getLoggedIn = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(params) {
-      var res;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return (0, _axios["default"])({
-                method: "GET",
-                url: "http://localhost:8000/api/v1/users/loggedIn"
-              });
-
-            case 3:
-              res = _context.sent;
-              //this wil return true or false
-              setLoggedIn(res.data);
-              _context.next = 10;
-              break;
-
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](0);
-              console.log("error", _context.t0.message);
-
-            case 10:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 7]]);
-    }));
-    return _getLoggedIn.apply(this, arguments);
-  }
-
-  (0, _react.useEffect)(function () {
-    getLoggedIn();
-  }, []);
-  return /*#__PURE__*/_react["default"].createElement(AuthContext.Provider, {
-    value: {
-      price_id: price_id,
-      setUserEmail: setUserEmail,
-      userEmail: userEmail,
-      setPriceId: setPriceId,
-      loggedIn: loggedIn,
-      getLoggedIn: getLoggedIn,
-      slider: slider,
-      setSlider: setSlider,
-      userId: userId,
-      setUserId: setUserId,
-      UserIDforUpgrade: UserIDforUpgrade,
-      setUserIDforUpgrade: setUserIDforUpgrade
-    }
-  }, props.children);
-}
-
-var _default = AuthContext;
-exports["default"] = _default;
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var IS_PURE = __webpack_require__(3);
-var getIterator = __webpack_require__(108);
-
-module.exports = IS_PURE ? getIterator : function (it) {
-  // eslint-disable-next-line es/no-map -- safe
-  return Map.prototype.entries.call(it);
-};
-
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var assert = __webpack_require__(41);
-var inherits = __webpack_require__(14);
-
-exports.inherits = inherits;
-
-function isSurrogatePair(msg, i) {
-  if ((msg.charCodeAt(i) & 0xFC00) !== 0xD800) {
-    return false;
-  }
-  if (i < 0 || i + 1 >= msg.length) {
-    return false;
-  }
-  return (msg.charCodeAt(i + 1) & 0xFC00) === 0xDC00;
-}
-
-function toArray(msg, enc) {
-  if (Array.isArray(msg))
-    return msg.slice();
-  if (!msg)
-    return [];
-  var res = [];
-  if (typeof msg === 'string') {
-    if (!enc) {
-      // Inspired by stringToUtf8ByteArray() in closure-library by Google
-      // https://github.com/google/closure-library/blob/8598d87242af59aac233270742c8984e2b2bdbe0/closure/goog/crypt/crypt.js#L117-L143
-      // Apache License 2.0
-      // https://github.com/google/closure-library/blob/master/LICENSE
-      var p = 0;
-      for (var i = 0; i < msg.length; i++) {
-        var c = msg.charCodeAt(i);
-        if (c < 128) {
-          res[p++] = c;
-        } else if (c < 2048) {
-          res[p++] = (c >> 6) | 192;
-          res[p++] = (c & 63) | 128;
-        } else if (isSurrogatePair(msg, i)) {
-          c = 0x10000 + ((c & 0x03FF) << 10) + (msg.charCodeAt(++i) & 0x03FF);
-          res[p++] = (c >> 18) | 240;
-          res[p++] = ((c >> 12) & 63) | 128;
-          res[p++] = ((c >> 6) & 63) | 128;
-          res[p++] = (c & 63) | 128;
-        } else {
-          res[p++] = (c >> 12) | 224;
-          res[p++] = ((c >> 6) & 63) | 128;
-          res[p++] = (c & 63) | 128;
-        }
-      }
-    } else if (enc === 'hex') {
-      msg = msg.replace(/[^a-z0-9]+/ig, '');
-      if (msg.length % 2 !== 0)
-        msg = '0' + msg;
-      for (i = 0; i < msg.length; i += 2)
-        res.push(parseInt(msg[i] + msg[i + 1], 16));
-    }
-  } else {
-    for (i = 0; i < msg.length; i++)
-      res[i] = msg[i] | 0;
-  }
-  return res;
-}
-exports.toArray = toArray;
-
-function toHex(msg) {
-  var res = '';
-  for (var i = 0; i < msg.length; i++)
-    res += zero2(msg[i].toString(16));
-  return res;
-}
-exports.toHex = toHex;
-
-function htonl(w) {
-  var res = (w >>> 24) |
-            ((w >>> 8) & 0xff00) |
-            ((w << 8) & 0xff0000) |
-            ((w & 0xff) << 24);
-  return res >>> 0;
-}
-exports.htonl = htonl;
-
-function toHex32(msg, endian) {
-  var res = '';
-  for (var i = 0; i < msg.length; i++) {
-    var w = msg[i];
-    if (endian === 'little')
-      w = htonl(w);
-    res += zero8(w.toString(16));
-  }
-  return res;
-}
-exports.toHex32 = toHex32;
-
-function zero2(word) {
-  if (word.length === 1)
-    return '0' + word;
-  else
-    return word;
-}
-exports.zero2 = zero2;
-
-function zero8(word) {
-  if (word.length === 7)
-    return '0' + word;
-  else if (word.length === 6)
-    return '00' + word;
-  else if (word.length === 5)
-    return '000' + word;
-  else if (word.length === 4)
-    return '0000' + word;
-  else if (word.length === 3)
-    return '00000' + word;
-  else if (word.length === 2)
-    return '000000' + word;
-  else if (word.length === 1)
-    return '0000000' + word;
-  else
-    return word;
-}
-exports.zero8 = zero8;
-
-function join32(msg, start, end, endian) {
-  var len = end - start;
-  assert(len % 4 === 0);
-  var res = new Array(len / 4);
-  for (var i = 0, k = start; i < res.length; i++, k += 4) {
-    var w;
-    if (endian === 'big')
-      w = (msg[k] << 24) | (msg[k + 1] << 16) | (msg[k + 2] << 8) | msg[k + 3];
-    else
-      w = (msg[k + 3] << 24) | (msg[k + 2] << 16) | (msg[k + 1] << 8) | msg[k];
-    res[i] = w >>> 0;
-  }
-  return res;
-}
-exports.join32 = join32;
-
-function split32(msg, endian) {
-  var res = new Array(msg.length * 4);
-  for (var i = 0, k = 0; i < msg.length; i++, k += 4) {
-    var m = msg[i];
-    if (endian === 'big') {
-      res[k] = m >>> 24;
-      res[k + 1] = (m >>> 16) & 0xff;
-      res[k + 2] = (m >>> 8) & 0xff;
-      res[k + 3] = m & 0xff;
-    } else {
-      res[k + 3] = m >>> 24;
-      res[k + 2] = (m >>> 16) & 0xff;
-      res[k + 1] = (m >>> 8) & 0xff;
-      res[k] = m & 0xff;
-    }
-  }
-  return res;
-}
-exports.split32 = split32;
-
-function rotr32(w, b) {
-  return (w >>> b) | (w << (32 - b));
-}
-exports.rotr32 = rotr32;
-
-function rotl32(w, b) {
-  return (w << b) | (w >>> (32 - b));
-}
-exports.rotl32 = rotl32;
-
-function sum32(a, b) {
-  return (a + b) >>> 0;
-}
-exports.sum32 = sum32;
-
-function sum32_3(a, b, c) {
-  return (a + b + c) >>> 0;
-}
-exports.sum32_3 = sum32_3;
-
-function sum32_4(a, b, c, d) {
-  return (a + b + c + d) >>> 0;
-}
-exports.sum32_4 = sum32_4;
-
-function sum32_5(a, b, c, d, e) {
-  return (a + b + c + d + e) >>> 0;
-}
-exports.sum32_5 = sum32_5;
-
-function sum64(buf, pos, ah, al) {
-  var bh = buf[pos];
-  var bl = buf[pos + 1];
-
-  var lo = (al + bl) >>> 0;
-  var hi = (lo < al ? 1 : 0) + ah + bh;
-  buf[pos] = hi >>> 0;
-  buf[pos + 1] = lo;
-}
-exports.sum64 = sum64;
-
-function sum64_hi(ah, al, bh, bl) {
-  var lo = (al + bl) >>> 0;
-  var hi = (lo < al ? 1 : 0) + ah + bh;
-  return hi >>> 0;
-}
-exports.sum64_hi = sum64_hi;
-
-function sum64_lo(ah, al, bh, bl) {
-  var lo = al + bl;
-  return lo >>> 0;
-}
-exports.sum64_lo = sum64_lo;
-
-function sum64_4_hi(ah, al, bh, bl, ch, cl, dh, dl) {
-  var carry = 0;
-  var lo = al;
-  lo = (lo + bl) >>> 0;
-  carry += lo < al ? 1 : 0;
-  lo = (lo + cl) >>> 0;
-  carry += lo < cl ? 1 : 0;
-  lo = (lo + dl) >>> 0;
-  carry += lo < dl ? 1 : 0;
-
-  var hi = ah + bh + ch + dh + carry;
-  return hi >>> 0;
-}
-exports.sum64_4_hi = sum64_4_hi;
-
-function sum64_4_lo(ah, al, bh, bl, ch, cl, dh, dl) {
-  var lo = al + bl + cl + dl;
-  return lo >>> 0;
-}
-exports.sum64_4_lo = sum64_4_lo;
-
-function sum64_5_hi(ah, al, bh, bl, ch, cl, dh, dl, eh, el) {
-  var carry = 0;
-  var lo = al;
-  lo = (lo + bl) >>> 0;
-  carry += lo < al ? 1 : 0;
-  lo = (lo + cl) >>> 0;
-  carry += lo < cl ? 1 : 0;
-  lo = (lo + dl) >>> 0;
-  carry += lo < dl ? 1 : 0;
-  lo = (lo + el) >>> 0;
-  carry += lo < el ? 1 : 0;
-
-  var hi = ah + bh + ch + dh + eh + carry;
-  return hi >>> 0;
-}
-exports.sum64_5_hi = sum64_5_hi;
-
-function sum64_5_lo(ah, al, bh, bl, ch, cl, dh, dl, eh, el) {
-  var lo = al + bl + cl + dl + el;
-
-  return lo >>> 0;
-}
-exports.sum64_5_lo = sum64_5_lo;
-
-function rotr64_hi(ah, al, num) {
-  var r = (al << (32 - num)) | (ah >>> num);
-  return r >>> 0;
-}
-exports.rotr64_hi = rotr64_hi;
-
-function rotr64_lo(ah, al, num) {
-  var r = (ah << (32 - num)) | (al >>> num);
-  return r >>> 0;
-}
-exports.rotr64_lo = rotr64_lo;
-
-function shr64_hi(ah, al, num) {
-  return ah >>> num;
-}
-exports.shr64_hi = shr64_hi;
-
-function shr64_lo(ah, al, num) {
-  var r = (ah << (32 - num)) | (al >>> num);
-  return r >>> 0;
-}
-exports.shr64_lo = shr64_lo;
-
-
-/***/ }),
-/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4523,6 +4087,444 @@ if (false) {
 
 
 //# sourceMappingURL=react-router-dom.js.map
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AuthContextProvider = AuthContextProvider;
+exports["default"] = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(5));
+
+var _axios = _interopRequireDefault(__webpack_require__(35));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var AuthContext = /*#__PURE__*/(0, _react.createContext)();
+
+function AuthContextProvider(props) {
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
+  var _useState = (0, _react.useState)(undefined),
+      _useState2 = _slicedToArray(_useState, 2),
+      loggedIn = _useState2[0],
+      setLoggedIn = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      price_id = _useState4[0],
+      setPriceId = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      userId = _useState6[0],
+      setUserId = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      UserIDforUpgrade = _useState8[0],
+      setUserIDforUpgrade = _useState8[1];
+
+  var _useState9 = (0, _react.useState)("None"),
+      _useState10 = _slicedToArray(_useState9, 2),
+      userEmail = _useState10[0],
+      setUserEmail = _useState10[1];
+
+  var _useState11 = (0, _react.useState)(true),
+      _useState12 = _slicedToArray(_useState11, 2),
+      slider = _useState12[0],
+      setSlider = _useState12[1];
+
+  function getLoggedIn(_x) {
+    return _getLoggedIn.apply(this, arguments);
+  }
+
+  function _getLoggedIn() {
+    _getLoggedIn = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(params) {
+      var res;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return (0, _axios["default"])({
+                method: "GET",
+                url: API_CALL + "/api/v1/users/loggedIn"
+              });
+
+            case 3:
+              res = _context.sent;
+              //this wil return true or false
+              setLoggedIn(res.data);
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              console.log("error", _context.t0.message);
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+    return _getLoggedIn.apply(this, arguments);
+  }
+
+  (0, _react.useEffect)(function () {
+    getLoggedIn();
+  }, []);
+  return /*#__PURE__*/_react["default"].createElement(AuthContext.Provider, {
+    value: {
+      price_id: price_id,
+      setUserEmail: setUserEmail,
+      userEmail: userEmail,
+      setPriceId: setPriceId,
+      loggedIn: loggedIn,
+      getLoggedIn: getLoggedIn,
+      slider: slider,
+      setSlider: setSlider,
+      userId: userId,
+      setUserId: setUserId,
+      UserIDforUpgrade: UserIDforUpgrade,
+      setUserIDforUpgrade: setUserIDforUpgrade
+    }
+  }, props.children);
+}
+
+var _default = AuthContext;
+exports["default"] = _default;
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var IS_PURE = __webpack_require__(3);
+var getIterator = __webpack_require__(108);
+
+module.exports = IS_PURE ? getIterator : function (it) {
+  // eslint-disable-next-line es/no-map -- safe
+  return Map.prototype.entries.call(it);
+};
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var assert = __webpack_require__(41);
+var inherits = __webpack_require__(14);
+
+exports.inherits = inherits;
+
+function isSurrogatePair(msg, i) {
+  if ((msg.charCodeAt(i) & 0xFC00) !== 0xD800) {
+    return false;
+  }
+  if (i < 0 || i + 1 >= msg.length) {
+    return false;
+  }
+  return (msg.charCodeAt(i + 1) & 0xFC00) === 0xDC00;
+}
+
+function toArray(msg, enc) {
+  if (Array.isArray(msg))
+    return msg.slice();
+  if (!msg)
+    return [];
+  var res = [];
+  if (typeof msg === 'string') {
+    if (!enc) {
+      // Inspired by stringToUtf8ByteArray() in closure-library by Google
+      // https://github.com/google/closure-library/blob/8598d87242af59aac233270742c8984e2b2bdbe0/closure/goog/crypt/crypt.js#L117-L143
+      // Apache License 2.0
+      // https://github.com/google/closure-library/blob/master/LICENSE
+      var p = 0;
+      for (var i = 0; i < msg.length; i++) {
+        var c = msg.charCodeAt(i);
+        if (c < 128) {
+          res[p++] = c;
+        } else if (c < 2048) {
+          res[p++] = (c >> 6) | 192;
+          res[p++] = (c & 63) | 128;
+        } else if (isSurrogatePair(msg, i)) {
+          c = 0x10000 + ((c & 0x03FF) << 10) + (msg.charCodeAt(++i) & 0x03FF);
+          res[p++] = (c >> 18) | 240;
+          res[p++] = ((c >> 12) & 63) | 128;
+          res[p++] = ((c >> 6) & 63) | 128;
+          res[p++] = (c & 63) | 128;
+        } else {
+          res[p++] = (c >> 12) | 224;
+          res[p++] = ((c >> 6) & 63) | 128;
+          res[p++] = (c & 63) | 128;
+        }
+      }
+    } else if (enc === 'hex') {
+      msg = msg.replace(/[^a-z0-9]+/ig, '');
+      if (msg.length % 2 !== 0)
+        msg = '0' + msg;
+      for (i = 0; i < msg.length; i += 2)
+        res.push(parseInt(msg[i] + msg[i + 1], 16));
+    }
+  } else {
+    for (i = 0; i < msg.length; i++)
+      res[i] = msg[i] | 0;
+  }
+  return res;
+}
+exports.toArray = toArray;
+
+function toHex(msg) {
+  var res = '';
+  for (var i = 0; i < msg.length; i++)
+    res += zero2(msg[i].toString(16));
+  return res;
+}
+exports.toHex = toHex;
+
+function htonl(w) {
+  var res = (w >>> 24) |
+            ((w >>> 8) & 0xff00) |
+            ((w << 8) & 0xff0000) |
+            ((w & 0xff) << 24);
+  return res >>> 0;
+}
+exports.htonl = htonl;
+
+function toHex32(msg, endian) {
+  var res = '';
+  for (var i = 0; i < msg.length; i++) {
+    var w = msg[i];
+    if (endian === 'little')
+      w = htonl(w);
+    res += zero8(w.toString(16));
+  }
+  return res;
+}
+exports.toHex32 = toHex32;
+
+function zero2(word) {
+  if (word.length === 1)
+    return '0' + word;
+  else
+    return word;
+}
+exports.zero2 = zero2;
+
+function zero8(word) {
+  if (word.length === 7)
+    return '0' + word;
+  else if (word.length === 6)
+    return '00' + word;
+  else if (word.length === 5)
+    return '000' + word;
+  else if (word.length === 4)
+    return '0000' + word;
+  else if (word.length === 3)
+    return '00000' + word;
+  else if (word.length === 2)
+    return '000000' + word;
+  else if (word.length === 1)
+    return '0000000' + word;
+  else
+    return word;
+}
+exports.zero8 = zero8;
+
+function join32(msg, start, end, endian) {
+  var len = end - start;
+  assert(len % 4 === 0);
+  var res = new Array(len / 4);
+  for (var i = 0, k = start; i < res.length; i++, k += 4) {
+    var w;
+    if (endian === 'big')
+      w = (msg[k] << 24) | (msg[k + 1] << 16) | (msg[k + 2] << 8) | msg[k + 3];
+    else
+      w = (msg[k + 3] << 24) | (msg[k + 2] << 16) | (msg[k + 1] << 8) | msg[k];
+    res[i] = w >>> 0;
+  }
+  return res;
+}
+exports.join32 = join32;
+
+function split32(msg, endian) {
+  var res = new Array(msg.length * 4);
+  for (var i = 0, k = 0; i < msg.length; i++, k += 4) {
+    var m = msg[i];
+    if (endian === 'big') {
+      res[k] = m >>> 24;
+      res[k + 1] = (m >>> 16) & 0xff;
+      res[k + 2] = (m >>> 8) & 0xff;
+      res[k + 3] = m & 0xff;
+    } else {
+      res[k + 3] = m >>> 24;
+      res[k + 2] = (m >>> 16) & 0xff;
+      res[k + 1] = (m >>> 8) & 0xff;
+      res[k] = m & 0xff;
+    }
+  }
+  return res;
+}
+exports.split32 = split32;
+
+function rotr32(w, b) {
+  return (w >>> b) | (w << (32 - b));
+}
+exports.rotr32 = rotr32;
+
+function rotl32(w, b) {
+  return (w << b) | (w >>> (32 - b));
+}
+exports.rotl32 = rotl32;
+
+function sum32(a, b) {
+  return (a + b) >>> 0;
+}
+exports.sum32 = sum32;
+
+function sum32_3(a, b, c) {
+  return (a + b + c) >>> 0;
+}
+exports.sum32_3 = sum32_3;
+
+function sum32_4(a, b, c, d) {
+  return (a + b + c + d) >>> 0;
+}
+exports.sum32_4 = sum32_4;
+
+function sum32_5(a, b, c, d, e) {
+  return (a + b + c + d + e) >>> 0;
+}
+exports.sum32_5 = sum32_5;
+
+function sum64(buf, pos, ah, al) {
+  var bh = buf[pos];
+  var bl = buf[pos + 1];
+
+  var lo = (al + bl) >>> 0;
+  var hi = (lo < al ? 1 : 0) + ah + bh;
+  buf[pos] = hi >>> 0;
+  buf[pos + 1] = lo;
+}
+exports.sum64 = sum64;
+
+function sum64_hi(ah, al, bh, bl) {
+  var lo = (al + bl) >>> 0;
+  var hi = (lo < al ? 1 : 0) + ah + bh;
+  return hi >>> 0;
+}
+exports.sum64_hi = sum64_hi;
+
+function sum64_lo(ah, al, bh, bl) {
+  var lo = al + bl;
+  return lo >>> 0;
+}
+exports.sum64_lo = sum64_lo;
+
+function sum64_4_hi(ah, al, bh, bl, ch, cl, dh, dl) {
+  var carry = 0;
+  var lo = al;
+  lo = (lo + bl) >>> 0;
+  carry += lo < al ? 1 : 0;
+  lo = (lo + cl) >>> 0;
+  carry += lo < cl ? 1 : 0;
+  lo = (lo + dl) >>> 0;
+  carry += lo < dl ? 1 : 0;
+
+  var hi = ah + bh + ch + dh + carry;
+  return hi >>> 0;
+}
+exports.sum64_4_hi = sum64_4_hi;
+
+function sum64_4_lo(ah, al, bh, bl, ch, cl, dh, dl) {
+  var lo = al + bl + cl + dl;
+  return lo >>> 0;
+}
+exports.sum64_4_lo = sum64_4_lo;
+
+function sum64_5_hi(ah, al, bh, bl, ch, cl, dh, dl, eh, el) {
+  var carry = 0;
+  var lo = al;
+  lo = (lo + bl) >>> 0;
+  carry += lo < al ? 1 : 0;
+  lo = (lo + cl) >>> 0;
+  carry += lo < cl ? 1 : 0;
+  lo = (lo + dl) >>> 0;
+  carry += lo < dl ? 1 : 0;
+  lo = (lo + el) >>> 0;
+  carry += lo < el ? 1 : 0;
+
+  var hi = ah + bh + ch + dh + eh + carry;
+  return hi >>> 0;
+}
+exports.sum64_5_hi = sum64_5_hi;
+
+function sum64_5_lo(ah, al, bh, bl, ch, cl, dh, dl, eh, el) {
+  var lo = al + bl + cl + dl + el;
+
+  return lo >>> 0;
+}
+exports.sum64_5_lo = sum64_5_lo;
+
+function rotr64_hi(ah, al, num) {
+  var r = (al << (32 - num)) | (ah >>> num);
+  return r >>> 0;
+}
+exports.rotr64_hi = rotr64_hi;
+
+function rotr64_lo(ah, al, num) {
+  var r = (ah << (32 - num)) | (al >>> num);
+  return r >>> 0;
+}
+exports.rotr64_lo = rotr64_lo;
+
+function shr64_hi(ah, al, num) {
+  return ah >>> num;
+}
+exports.shr64_hi = shr64_hi;
+
+function shr64_lo(ah, al, num) {
+  var r = (ah << (32 - num)) | (al >>> num);
+  return r >>> 0;
+}
+exports.shr64_lo = shr64_lo;
 
 
 /***/ }),
@@ -12617,7 +12619,7 @@ var _react = _interopRequireDefault(__webpack_require__(5));
 
 __webpack_require__(18);
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -12869,7 +12871,7 @@ function objectToString(o) {
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var assert = __webpack_require__(41);
 
 function BlockHash() {
@@ -21738,7 +21740,7 @@ defineCurve('secp256k1', {
 
 var hash = exports;
 
-hash.utils = __webpack_require__(48);
+hash.utils = __webpack_require__(49);
 hash.common = __webpack_require__(114);
 hash.sha = __webpack_require__(797);
 hash.ripemd = __webpack_require__(801);
@@ -26151,7 +26153,7 @@ var _react = _interopRequireWildcard(__webpack_require__(5));
 
 __webpack_require__(18);
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -26165,8 +26167,10 @@ function Upgrade(props) {
   var _useContext = (0, _react.useContext)(_AuthContext["default"]),
       UserIDforUpgrade = _useContext.UserIDforUpgrade;
 
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
   var createCheckoutSessionForUpgrade = function async(priceId) {
-    return fetch("/api/v1/users/upgradeMe", {
+    return fetch(API_CALL + "/api/v1/users/upgradeMe", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -26285,9 +26289,7 @@ function Upgrade(props) {
 
   var showMaximumUpdated = /*#__PURE__*/_react["default"].createElement("h1", null, "This is the maximum program, please contact our support, if you want a program specified for you :D", " ");
 
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, props.standardProgram && !props.proProgram ? /*#__PURE__*/_react["default"].createElement("div", {
-    className: "upgradeTime"
-  }, showOnlyProProgram) : null, !props.standardProgram && !props.proProgram ? showAllPrograms : null, !props.standardProgram && props.proProgram ? showMaximumUpdated : null);
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, !props.standardProgram && !props.proProgram ? showAllPrograms : null, !props.standardProgram && props.proProgram ? showMaximumUpdated : null);
 }
 
 /***/ }),
@@ -40748,7 +40750,7 @@ curve.edwards = __webpack_require__(796);
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var rotr32 = utils.rotr32;
 
 function ft_1(s, x, y, z) {
@@ -40804,7 +40806,7 @@ exports.g1_256 = g1_256;
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var common = __webpack_require__(114);
 var shaCommon = __webpack_require__(313);
 var assert = __webpack_require__(41);
@@ -40916,7 +40918,7 @@ SHA256.prototype._digest = function digest(enc) {
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var common = __webpack_require__(114);
 var assert = __webpack_require__(41);
 
@@ -45487,7 +45489,7 @@ var _reactDom = _interopRequireDefault(__webpack_require__(329));
 
 var _App = _interopRequireDefault(__webpack_require__(333));
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -45933,7 +45935,7 @@ var _axios = _interopRequireDefault(__webpack_require__(35));
 
 __webpack_require__(18);
 
-var _AuthContext = __webpack_require__(46);
+var _AuthContext = __webpack_require__(47);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -45966,7 +45968,7 @@ exports["default"] = Router;
 
 var _react = _interopRequireWildcard(__webpack_require__(5));
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 var _LandingPage = _interopRequireDefault(__webpack_require__(345));
 
@@ -45982,7 +45984,7 @@ var _LoginPage = _interopRequireDefault(__webpack_require__(854));
 
 var _errorAuthPage = _interopRequireDefault(__webpack_require__(855));
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 var _Subscribe = _interopRequireDefault(__webpack_require__(856));
 
@@ -47949,11 +47951,11 @@ var _react = _interopRequireWildcard(__webpack_require__(5));
 
 __webpack_require__(18);
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 var _axios = _interopRequireDefault(__webpack_require__(35));
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -47961,19 +47963,20 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var stripe = Stripe('pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt');
+var stripe = Stripe("pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt");
 
 function Pricing(props) {
+  var API_CALL =  false ? "http://localhost:8000" : "";
   var history = (0, _reactRouterDom.useHistory)();
 
   var _useContext = (0, _react.useContext)(_AuthContext["default"]),
       setPriceId = _useContext.setPriceId;
 
   var createCheckoutSession = function createCheckoutSession(priceId) {
-    return fetch('/api/v1/payment/pay', {
-      method: 'POST',
+    return fetch(API_CALL + "/api/v1/payment/pay", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         priceId: priceId
@@ -48023,12 +48026,12 @@ function Pricing(props) {
     className: "pricing_features_item"
   }, "Online Support"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      history.push('/sign-up');
+      history.push("/sign-up");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_popular pricing_div"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("div", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
   }, "Popular"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_price_div"
@@ -48052,11 +48055,11 @@ function Pricing(props) {
     className: "pricing_features_item"
   }, "Email notifications"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      history.push('/sign-up');
-      clickMeToPay('price_1J081OJkVEDM03SsnZFRVUiO');
+      history.push("/sign-up");
+      clickMeToPay("price_1J081OJkVEDM03SsnZFRVUiO");
     },
     className: "pricing_button pricing_button_buy"
-  }, "Join now"), ' '), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "Join now"), " "), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_pro pricing_div"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_package"
@@ -48076,21 +48079,21 @@ function Pricing(props) {
     className: "pricing_features_item"
   }, "30 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "Daily destination prices"), ' ', /*#__PURE__*/_react["default"].createElement("li", {
+  }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Online Support"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      history.push('/sign-up');
-      clickMeToPay('price_1J084NJkVEDM03SsxUZmPVER');
+      history.push("/sign-up");
+      clickMeToPay("price_1J084NJkVEDM03SsxUZmPVER");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_refundable"
   }, /*#__PURE__*/_react["default"].createElement("h1", {
     className: "pricing_refundable_h1"
-  }, "All prices refundable"), ' '));
+  }, "All prices refundable"), " "));
 }
 
 /***/ }),
@@ -49044,11 +49047,11 @@ var _react = _interopRequireWildcard(__webpack_require__(5));
 
 __webpack_require__(18);
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 var _axios = _interopRequireDefault(__webpack_require__(35));
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -49361,11 +49364,11 @@ var _PasswordsAreNotTheSame = _interopRequireDefault(__webpack_require__(835));
 
 __webpack_require__(18);
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 var _LoginSuccess = _interopRequireDefault(__webpack_require__(144));
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 var _ProvideValidEmail = _interopRequireDefault(__webpack_require__(836));
 
@@ -49393,30 +49396,32 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var stripe = Stripe('pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt');
+var stripe = Stripe("pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt");
 
 var SignUp = function SignUp() {
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       singUpSuccessfull = _useState2[0],
       setSingUpSuccessfull = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       username = _useState4[0],
       setUsername = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(''),
+  var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
       emailSignUp = _useState6[0],
       setEmailSignUp = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(''),
+  var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
       passwordSignUp = _useState8[0],
       setPasswordSignUp = _useState8[1];
 
-  var _useState9 = (0, _react.useState)(''),
+  var _useState9 = (0, _react.useState)(""),
       _useState10 = _slicedToArray(_useState9, 2),
       passwordConfirmSignUp = _useState10[0],
       setPasswordConfirmSignUp = _useState10[1];
@@ -49453,10 +49458,10 @@ var SignUp = function SignUp() {
 
   var createCheckoutSession = function createCheckoutSession(priceId, paidToken) {
     console.log(priceId);
-    return fetch('/api/v1/payment/pay', {
-      method: 'POST',
+    return fetch(API_CALL + "/api/v1/payment/pay", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         priceId: priceId,
@@ -49490,22 +49495,22 @@ var SignUp = function SignUp() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              program = 'free'; //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
+              program = "free"; //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
 
               e.preventDefault();
 
-              if (price_id === 'price_1J084NJkVEDM03SsxUZmPVER') {
-                program = 'pro';
+              if (price_id === "price_1J084NJkVEDM03SsxUZmPVER") {
+                program = "pro";
               }
 
-              if (price_id === 'price_1J081OJkVEDM03SsnZFRVUiO') {
-                program = 'standard';
+              if (price_id === "price_1J081OJkVEDM03SsnZFRVUiO") {
+                program = "standard";
               }
 
               _context.next = 6;
               return (0, _axios["default"])({
-                method: 'POST',
-                url: '/api/v1/users/signup',
+                method: "POST",
+                url: API_CALL + "/api/v1/users/signup",
                 data: {
                   name: username,
                   email: emailSignUp,
@@ -49522,7 +49527,7 @@ var SignUp = function SignUp() {
             case 6:
               res = _context.sent;
 
-              if (res.data.status === 'success') {
+              if (res.data.status === "success") {
                 setSingUpSuccessfull(true);
                 setUserEmail(emailSignUp);
                 /* if (program === "free") {
@@ -49534,7 +49539,7 @@ var SignUp = function SignUp() {
                 }*/
                 //if the user selects the pro or standard program, then the checkout is applied
 
-                if (program !== 'free') {
+                if (program !== "free") {
                   createCheckoutSession(price_id, res.data.data.alreadyPaidToken).then(function (data) {
                     // Call Stripe.js method to redirect to the new Checkout page
                     stripe.redirectToCheckout({
@@ -49547,10 +49552,10 @@ var SignUp = function SignUp() {
                 setUserAlreadyExistError(false);
                 setShortPasswordError(false);
                 setPasswordsAreNotTheSame(false);
-              } else if (res.data.status === 'error') {
+              } else if (res.data.status === "error") {
                 console.log(res.data.error);
 
-                if (res.data.error.startsWith('E11000')) {
+                if (res.data.error.startsWith("E11000")) {
                   setUserAlreadyExistError(true);
                   setShortPasswordError(false);
                   setProvideValidEmail(false);
@@ -49558,7 +49563,7 @@ var SignUp = function SignUp() {
                   setPasswordsAreNotTheSame(false);
                 }
 
-                if (res.data.error.includes('shorter than the minimum allowed length')) {
+                if (res.data.error.includes("shorter than the minimum allowed length")) {
                   setShortPasswordError(true);
                   setUserAlreadyExistError(false);
                   setProvideValidEmail(false);
@@ -49566,7 +49571,7 @@ var SignUp = function SignUp() {
                   setPasswordsAreNotTheSame(false);
                 }
 
-                if (res.data.error.includes('Please provide  your email')) {
+                if (res.data.error.includes("Please provide  your email")) {
                   setProvideValidEmail(true);
                   setPasswordsAreNotTheSame(false);
                   setShortPasswordError(false);
@@ -49574,7 +49579,7 @@ var SignUp = function SignUp() {
                   setUserAlreadyExistError(false);
                 }
 
-                if (res.data.error.includes('Please provide a valid email')) {
+                if (res.data.error.includes("Please provide a valid email")) {
                   setProvideValidEmail(true);
                   setPasswordsAreNotTheSame(false);
                   setShortPasswordError(false);
@@ -49582,7 +49587,7 @@ var SignUp = function SignUp() {
                   setEnterNameError(false);
                 }
 
-                if (res.data.error.includes('Please tell us your name')) {
+                if (res.data.error.includes("Please tell us your name")) {
                   setProvideValidEmail(false);
                   setEnterNameError(true);
                   setPasswordsAreNotTheSame(false);
@@ -49649,7 +49654,7 @@ var SignUp = function SignUp() {
     id: "password",
     placeholder: "Password"
   })), /*#__PURE__*/_react["default"].createElement("div", {
-    className: shortPasswordError ? 'password_too_short_error' : 'unactive_error password_too_short_error'
+    className: shortPasswordError ? "password_too_short_error" : "unactive_error password_too_short_error"
   }, shortPasswordError ? /*#__PURE__*/_react["default"].createElement(_ShortPasswordError["default"], null) : null), /*#__PURE__*/_react["default"].createElement("div", {
     className: "input_div"
   }, /*#__PURE__*/_react["default"].createElement("label", {
@@ -49662,22 +49667,22 @@ var SignUp = function SignUp() {
     id: "passwordConfirm",
     placeholder: "Password confirm"
   })), /*#__PURE__*/_react["default"].createElement("div", {
-    className: passwordsAreNotTheSame ? 'password_too_short_error' : 'unactive_error password_too_short_error'
+    className: passwordsAreNotTheSame ? "password_too_short_error" : "unactive_error password_too_short_error"
   }, passwordsAreNotTheSame ? /*#__PURE__*/_react["default"].createElement(_PasswordsAreNotTheSame["default"], null) : null), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: signUpUser,
     className: "singup_button",
     type: "submit"
   }, "SIGN UP"), /*#__PURE__*/_react["default"].createElement("p", {
     className: "login_paragraph"
-  }, "Already have an account?", ' ', /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+  }, "Already have an account?", " ", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
     to: "/login",
     className: "login_button"
-  }, "Login here"), ' '), /*#__PURE__*/_react["default"].createElement("div", {
-    className: userAlreadyExistError ? 'user_already_exists_error' : 'unactive_error user_already_exists_error'
+  }, "Login here"), " "), /*#__PURE__*/_react["default"].createElement("div", {
+    className: userAlreadyExistError ? "user_already_exists_error" : "unactive_error user_already_exists_error"
   }, userAlreadyExistError ? /*#__PURE__*/_react["default"].createElement(_UserAlreadyExists["default"], null) : null), /*#__PURE__*/_react["default"].createElement("div", {
-    className: provideValidEmail ? 'user_already_exists_error' : 'unactive_error user_already_exists_error'
+    className: provideValidEmail ? "user_already_exists_error" : "unactive_error user_already_exists_error"
   }, provideValidEmail ? /*#__PURE__*/_react["default"].createElement(_ProvideValidEmail["default"], null) : null), /*#__PURE__*/_react["default"].createElement("div", {
-    className: enterNameError ? 'user_already_exists_error' : 'unactive_error user_already_exists_error'
+    className: enterNameError ? "user_already_exists_error" : "unactive_error user_already_exists_error"
   }, enterNameError ? /*#__PURE__*/_react["default"].createElement(_PleaseEnterName["default"], null) : null))));
 
   return /*#__PURE__*/_react["default"].createElement("div", {
@@ -57069,7 +57074,7 @@ var $ = __webpack_require__(0);
 var IS_PURE = __webpack_require__(3);
 var anObject = __webpack_require__(1);
 var bind = __webpack_require__(23);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.every` method
@@ -57099,7 +57104,7 @@ var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(4);
 var bind = __webpack_require__(23);
 var speciesConstructor = __webpack_require__(27);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.filter` method
@@ -57129,7 +57134,7 @@ var $ = __webpack_require__(0);
 var IS_PURE = __webpack_require__(3);
 var anObject = __webpack_require__(1);
 var bind = __webpack_require__(23);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.find` method
@@ -57156,7 +57161,7 @@ var $ = __webpack_require__(0);
 var IS_PURE = __webpack_require__(3);
 var anObject = __webpack_require__(1);
 var bind = __webpack_require__(23);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.findKey` method
@@ -57225,7 +57230,7 @@ $({ target: 'Map', stat: true }, {
 var $ = __webpack_require__(0);
 var IS_PURE = __webpack_require__(3);
 var anObject = __webpack_require__(1);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var sameValueZero = __webpack_require__(635);
 var iterate = __webpack_require__(7);
 
@@ -57286,7 +57291,7 @@ $({ target: 'Map', stat: true }, {
 var $ = __webpack_require__(0);
 var IS_PURE = __webpack_require__(3);
 var anObject = __webpack_require__(1);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.includes` method
@@ -57313,7 +57318,7 @@ var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(4);
 var bind = __webpack_require__(23);
 var speciesConstructor = __webpack_require__(27);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.mapKeys` method
@@ -57346,7 +57351,7 @@ var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(4);
 var bind = __webpack_require__(23);
 var speciesConstructor = __webpack_require__(27);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.mapValues` method
@@ -57418,7 +57423,7 @@ var $ = __webpack_require__(0);
 var IS_PURE = __webpack_require__(3);
 var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(4);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Map.prototype.reduce` method
@@ -57454,7 +57459,7 @@ var $ = __webpack_require__(0);
 var IS_PURE = __webpack_require__(3);
 var anObject = __webpack_require__(1);
 var bind = __webpack_require__(23);
-var getMapIterator = __webpack_require__(47);
+var getMapIterator = __webpack_require__(48);
 var iterate = __webpack_require__(7);
 
 // `Set.prototype.some` method
@@ -69652,7 +69657,7 @@ exports.sha512 = __webpack_require__(315);
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var common = __webpack_require__(114);
 var shaCommon = __webpack_require__(313);
 
@@ -69733,7 +69738,7 @@ SHA1.prototype._digest = function digest(enc) {
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var SHA256 = __webpack_require__(314);
 
 function SHA224() {
@@ -69770,7 +69775,7 @@ SHA224.prototype._digest = function digest(enc) {
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 
 var SHA512 = __webpack_require__(315);
 
@@ -69812,7 +69817,7 @@ SHA384.prototype._digest = function digest(enc) {
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var common = __webpack_require__(114);
 
 var rotl32 = utils.rotl32;
@@ -69965,7 +69970,7 @@ var sh = [
 "use strict";
 
 
-var utils = __webpack_require__(48);
+var utils = __webpack_require__(49);
 var assert = __webpack_require__(41);
 
 function Hmac(hash, key, enc) {
@@ -76568,7 +76573,7 @@ var _AddAFlight = _interopRequireDefault(__webpack_require__(842));
 
 var _DashboardLogo = _interopRequireDefault(__webpack_require__(845));
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 var _axios = _interopRequireDefault(__webpack_require__(35));
 
@@ -76615,6 +76620,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Dashboard() {
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
   var _useContext = (0, _react.useContext)(_AuthContext["default"]),
       slider = _useContext.slider,
       setSlider = _useContext.setSlider,
@@ -76665,7 +76672,7 @@ function Dashboard() {
       flightsResults = _useState18[0],
       setFlightsResults = _useState18[1];
 
-  var _useState19 = (0, _react.useState)(''),
+  var _useState19 = (0, _react.useState)(""),
       _useState20 = _slicedToArray(_useState19, 2),
       userId = _useState20[0],
       setUserId = _useState20[1];
@@ -76685,7 +76692,7 @@ function Dashboard() {
       fromToStart = _useState26[0],
       setFromToStart = _useState26[1];
 
-  var _useState27 = (0, _react.useState)(''),
+  var _useState27 = (0, _react.useState)(""),
       _useState28 = _slicedToArray(_useState27, 2),
       userName = _useState28[0],
       setUserName = _useState28[1];
@@ -76695,12 +76702,12 @@ function Dashboard() {
       updateProgramErrorDiv = _useState30[0],
       setUpdateProgramErrorDiv = _useState30[1];
 
-  var _useState31 = (0, _react.useState)('free'),
+  var _useState31 = (0, _react.useState)("free"),
       _useState32 = _slicedToArray(_useState31, 2),
       userProgram = _useState32[0],
       setUserProgram = _useState32[1];
 
-  var _useState33 = (0, _react.useState)(''),
+  var _useState33 = (0, _react.useState)(""),
       _useState34 = _slicedToArray(_useState33, 2),
       userEmail = _useState34[0],
       setUserEmail = _useState34[1];
@@ -76713,12 +76720,12 @@ function Dashboard() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].get('/api/v1/users/getMe');
+              return _axios["default"].get(API_CALL + "/api/v1/users/getMe");
 
             case 2:
               res = _context.sent;
               _context.next = 5;
-              return _axios["default"].get('/api/v1/users/airports');
+              return _axios["default"].get(API_CALL + "/api/v1/users/airports");
 
             case 5:
               fuckingAirports = _context.sent;
@@ -76732,15 +76739,15 @@ function Dashboard() {
                 return setLoading(false);
               }, 2000);
 
-              if (res.data.program === 'pro') {
+              if (res.data.program === "pro") {
                 setProProgram(true);
               }
 
-              if (res.data.program === 'standard') {
+              if (res.data.program === "standard") {
                 setStandardProgram(true);
               }
 
-              if (!(res.data.program === 'standard' || res.data.program === 'pro')) {
+              if (!(res.data.program === "standard" || res.data.program === "pro")) {
                 _context.next = 24;
                 break;
               }
@@ -76784,7 +76791,7 @@ function Dashboard() {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _axios["default"].get('/api/v1/users/getMe');
+              return _axios["default"].get(API_CALL + "/api/v1/users/getMe");
 
             case 2:
               res = _context2.sent;
@@ -76816,7 +76823,7 @@ function Dashboard() {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return _axios["default"].get('/api/v1/flights/getMyFlights');
+              return _axios["default"].get(API_CALL + "/api/v1/flights/getMyFlights");
 
             case 3:
               res = _context3.sent;
@@ -76861,8 +76868,8 @@ function Dashboard() {
                 _loop(index);
               }
 
-              console.log('flight results', flightResults);
-              console.log('No results', noResults);
+              console.log("flight results", flightResults);
+              console.log("No results", noResults);
 
               for (i = 0; i < noResults.length; i++) {
                 element = noResults[i];
@@ -76873,14 +76880,14 @@ function Dashboard() {
                     flightFromSTART: element.flightFrom,
                     flightID: element._id,
                     flightToSTART: element.flightTo,
-                    formDate: '2021-05-22T00:00:00.000',
-                    fromFlight: 'No Data',
-                    fromFlightCountry: 'No Data',
-                    link: 'No Data',
-                    price: 'No Data',
-                    toDate: '2021-05-22T00:00:00.000Z',
-                    toFlight: 'No Data',
-                    toFlightCountry: 'No Data',
+                    formDate: "2021-05-22T00:00:00.000",
+                    fromFlight: "No Data",
+                    fromFlightCountry: "No Data",
+                    link: "No Data",
+                    price: "No Data",
+                    toDate: "2021-05-22T00:00:00.000Z",
+                    toFlight: "No Data",
+                    toFlightCountry: "No Data",
                     updated: 1621616899340,
                     user: userID
                   }],
@@ -76899,7 +76906,7 @@ function Dashboard() {
               // }
 
 
-              console.log('from to start', fromToArray);
+              console.log("from to start", fromToArray);
               setFromToStart(fromToArray);
               setLoading(false);
               _context3.next = 29;
@@ -76940,16 +76947,16 @@ function Dashboard() {
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return _axios["default"].get('/api/v1/users/logout');
+              return _axios["default"].get(API_CALL + "/api/v1/users/logout");
 
             case 3:
               res = _context4.sent;
               console.log(res);
 
-              if (res.data.status === 'success') {
+              if (res.data.status === "success") {
                 setLoginSuccessfull(true);
                 setTimeout(function () {
-                  return location.assign('/');
+                  return location.assign("/");
                 }, 750);
               }
 
@@ -77016,27 +77023,27 @@ function Dashboard() {
     className: "slider_thin"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "dashboard_slider_header"
-  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null)), ' ', /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null)), " ", /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_mainComponents",
     style: {
-      display: 'none'
+      display: "none"
     }
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_hover"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Flights")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_hover"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Suggestions")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_hover"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Add Flight"))), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_settings",
     style: {
-      display: 'none'
+      display: "none"
     }
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_settings"
@@ -77044,40 +77051,40 @@ function Dashboard() {
     className: "slider_component_h1"
   }, "Settings")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component slider_component_settings"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, " Help")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component_settings"
-  }, ' ', "All rights reserved By @Toma\u017EOvsenjak")));
+  }, " ", "All rights reserved By @Toma\u017EOvsenjak")));
 
   var fatSlider = /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "dashboard_slider_header"
-  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null), /*#__PURE__*/_react["default"].createElement(_BurgerNav["default"], null)), ' ', /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement(_DashboardLogo["default"], null), /*#__PURE__*/_react["default"].createElement(_BurgerNav["default"], null)), " ", /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_mainComponents"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component_username"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1_username"
   }, "Hello ", userName)), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showMyFlights,
     className: "slider_component slider_component_hover"
-  }, ' ', /*#__PURE__*/_react["default"].createElement(_airplane["default"], {
+  }, " ", /*#__PURE__*/_react["default"].createElement(_airplane["default"], {
     className: "svg_dashboard"
   }), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Flights")), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showSuggestions,
     className: "slider_component slider_component_hover"
-  }, ' ', /*#__PURE__*/_react["default"].createElement(_newMessage["default"], {
+  }, " ", /*#__PURE__*/_react["default"].createElement(_newMessage["default"], {
     className: "svg_dashboard"
   }), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Suggestions")), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showAddAFlight,
     className: "slider_component slider_component_hover"
-  }, ' ', /*#__PURE__*/_react["default"].createElement(_circleWithPlus["default"], {
+  }, " ", /*#__PURE__*/_react["default"].createElement(_circleWithPlus["default"], {
     className: "svg_dashboard"
   }), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
@@ -77091,16 +77098,16 @@ function Dashboard() {
   }, "My Profile")), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: showHelpClick,
     className: "slider_component slider_component_settings"
-  }, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("h1", {
     className: "slider_component_h1"
   }, "Contact")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "logout_component "
-  }, ' ', /*#__PURE__*/_react["default"].createElement("button", {
+  }, " ", /*#__PURE__*/_react["default"].createElement("button", {
     onClick: logoutBtn,
     className: "singup_button singup_button_dashboard"
   }, "Log out")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "slider_component_settings rights_reserved"
-  }, ' ', "All rights reserved By @Toma\u017EOvsenjak")));
+  }, " ", "All rights reserved By @Toma\u017EOvsenjak")));
 
   var myFlightDivs = fromToStart.map(function (el) {
     return /*#__PURE__*/_react["default"].createElement(_MyFlights["default"], {
@@ -77118,11 +77125,11 @@ function Dashboard() {
     });
   });
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
-    className: slider ? 'dashboard' : 'dashboard_hide'
+    className: slider ? "dashboard" : "dashboard_hide"
   }, slider ? fatSlider : thinSlider, /*#__PURE__*/_react["default"].createElement("div", {
     className: "dashboard_mainInfo"
   }, loginSuccessfull ? /*#__PURE__*/_react["default"].createElement(_LoginSuccess["default"], {
-    message: 'Log out succesfull, redirecting you to the landing page 😀 '
+    message: "Log out succesfull, redirecting you to the landing page 😀 "
   }) : null, !loading ? myFlightsShow && myFlightDivs : /*#__PURE__*/_react["default"].createElement(_Spinner["default"], null), updateProgramErrorDiv ? /*#__PURE__*/_react["default"].createElement(_UpdateProgramError["default"], null) : null, suggestionsShow && /*#__PURE__*/_react["default"].createElement(_Suggestions["default"], null), addAFlightShow && /*#__PURE__*/_react["default"].createElement(_AddAFlight["default"], {
     proProgram: proProgram,
     standardProgram: standardProgram,
@@ -77157,7 +77164,7 @@ var _react = _interopRequireWildcard(__webpack_require__(5));
 
 __webpack_require__(18);
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -77264,7 +77271,7 @@ var _react = _interopRequireWildcard(__webpack_require__(5));
 
 var _axios = _interopRequireDefault(__webpack_require__(35));
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 var _Spinner = _interopRequireDefault(__webpack_require__(326));
 
@@ -77281,21 +77288,23 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function MyFlights(props) {
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
   var changeDate = function changeDate(date) {
-    var changed1Date = date.slice(0, 10).split('-');
-    return changed1Date[2] + '/' + changed1Date[1];
+    var changed1Date = date.slice(0, 10).split("-");
+    return changed1Date[2] + "/" + changed1Date[1];
   };
 
   var changeDateToDatesFromAndDatesTo = function changeDateToDatesFromAndDatesTo(date) {
     var dateMili = new Date(date);
 
     if (dateMili.getDate() == 1 && dateMili.getMonth() == 0) {
-      var _changeDate = date.slice(0, 10).split('-');
+      var _changeDate = date.slice(0, 10).split("-");
 
-      return 'Year of ' + _changeDate[0];
+      return "Year of " + _changeDate[0];
     } else {
-      var changed1Date = date.slice(0, 10).split('-');
-      return changed1Date[2] + '-' + changed1Date[1] + '-' + changed1Date[0];
+      var changed1Date = date.slice(0, 10).split("-");
+      return changed1Date[2] + "-" + changed1Date[1] + "-" + changed1Date[0];
     }
   };
 
@@ -77303,14 +77312,14 @@ function MyFlights(props) {
     var dateMili = new Date(date);
 
     if (dateMili.getDate() == 1 && dateMili.getMonth() == 0) {
-      var _changeDate2 = date.slice(0, 10).split('-');
+      var _changeDate2 = date.slice(0, 10).split("-");
 
-      return 'Year of ' + _changeDate2[0];
+      return "Year of " + _changeDate2[0];
     } else {
-      var changed1Date = date.slice(0, 10).split('-');
-      var month = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
+      var changed1Date = date.slice(0, 10).split("-");
+      var month = ["31", "28", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
       var StringMonth = month[dateMili.getMonth()];
-      return StringMonth + '-' + changed1Date[1] + '-' + changed1Date[0];
+      return StringMonth + "-" + changed1Date[1] + "-" + changed1Date[0];
     }
   };
 
@@ -77322,10 +77331,10 @@ function MyFlights(props) {
           switch (_context.prev = _context.next) {
             case 0:
               setTimeout(function () {
-                location.assign('/');
+                location.reload();
               }, 500);
               _context.next = 3;
-              return _axios["default"]["delete"]('/api/v1/flights/deleteFlight', {
+              return _axios["default"]["delete"](API_CALL + "/api/v1/flights/deleteFlight", {
                 data: {
                   user: String(props.userID),
                   flightID: String(deletedFlightID),
@@ -77437,7 +77446,7 @@ function MyFlights(props) {
     onClick: function onClick() {
       deleteFlight(props.flightId, props.flightResultsID);
     }
-  }, "DELETE FLIGHT")), ' '))), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "DELETE FLIGHT")), " "))), /*#__PURE__*/_react["default"].createElement("div", {
     className: "myFlights_flightResults_div"
   }, results)));
 }
@@ -77496,7 +77505,7 @@ __webpack_require__(18);
 
 var _axios = _interopRequireDefault(__webpack_require__(35));
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 var _AirportsSelected = _interopRequireDefault(__webpack_require__(843));
 
@@ -77527,22 +77536,24 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function AddAFlight(props) {
-  var _useState = (0, _react.useState)(''),
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
+  var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
       flightFrom = _useState2[0],
       setFlightFrom = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       flightTo = _useState4[0],
       setFlightTo = _useState4[1];
 
-  var _useState5 = (0, _react.useState)('2021'),
+  var _useState5 = (0, _react.useState)("2021"),
       _useState6 = _slicedToArray(_useState5, 2),
       outboundDate = _useState6[0],
       setOutboundDate = _useState6[1];
 
-  var _useState7 = (0, _react.useState)('2021'),
+  var _useState7 = (0, _react.useState)("2021"),
       _useState8 = _slicedToArray(_useState7, 2),
       inboundDate = _useState8[0],
       setInboundDate = _useState8[1];
@@ -77609,13 +77620,13 @@ function AddAFlight(props) {
                 user: props.userId
               };
               _context.next = 4;
-              return _axios["default"].post('/api/v1/flights/addFlight', data);
+              return _axios["default"].post(API_CALL + "/api/v1/flights/addFlight", data);
 
             case 4:
               response = _context.sent;
               console.log(response.data);
 
-              if (!(response.data.status === 'error')) {
+              if (!(response.data.status === "error")) {
                 _context.next = 9;
                 break;
               }
@@ -77624,7 +77635,7 @@ function AddAFlight(props) {
               return _context.abrupt("return");
 
             case 9:
-              if (response.data.status === 'success') {
+              if (response.data.status === "success") {
                 setTimeout(function () {
                   setAddAFlightCongrats(true);
                   setCantaddFlight(false);
@@ -77686,25 +77697,25 @@ function AddAFlight(props) {
   var changeoutboundDate = function changeoutboundDate(e) {
     setOutboundDate(e.target.value);
     var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    var year = Number(e.target.value.split('-')[0]);
-    var initMonth = Number(e.target.value.split('-')[1]);
+    var year = Number(e.target.value.split("-")[0]);
+    var initMonth = Number(e.target.value.split("-")[1]);
     var finalMonth = initMonth + 1;
 
     if (finalMonth > 9) {
       if (initMonth === 11) {
-        return setInboundDate(String(year + '-12'));
+        return setInboundDate(String(year + "-12"));
       }
 
       if (initMonth === 12) {
         console.log(initMonth);
         year = year + 1;
         console.log(year);
-        return setInboundDate(String(year + '-01'));
+        return setInboundDate(String(year + "-01"));
       }
 
-      setInboundDate(String(year + '-' + finalMonth));
+      setInboundDate(String(year + "-" + finalMonth));
     } else {
-      setInboundDate(String(year + '-0' + finalMonth));
+      setInboundDate(String(year + "-0" + finalMonth));
     }
   };
 
@@ -77729,7 +77740,7 @@ function AddAFlight(props) {
     className: "addAFlight_upgradeLink"
   }, "UPGRADE"));
 
-  var monthDiv = /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, ' ', /*#__PURE__*/_react["default"].createElement("h1", {
+  var monthDiv = /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, " ", /*#__PURE__*/_react["default"].createElement("h1", {
     className: "addAFlight_h1"
   }, "Two months"), /*#__PURE__*/_react["default"].createElement("input", {
     onChange: changeoutboundDate,
@@ -77751,16 +77762,16 @@ function AddAFlight(props) {
     className: "addAFlights_div"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     onClick: countrySelectedClickFrom,
-    className: countrySelectedFrom ? ['addAFlight_Country_div active_selected'] : ['addAFlight_Country_div']
+    className: countrySelectedFrom ? ["addAFlight_Country_div active_selected"] : ["addAFlight_Country_div"]
   }, "Country"), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: airportSelectedClickFrom,
-    className: !countrySelectedFrom ? ['addAFlight_Airport_div active_selected'] : ['addAFlight_Airport_div']
+    className: !countrySelectedFrom ? ["addAFlight_Airport_div active_selected"] : ["addAFlight_Airport_div"]
   }, "Top Cities"), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: countrySelectedClick,
-    className: countrySelected ? ['addAFlight_Country_div addAFlight_Country_div_to  active_selected'] : ['addAFlight_Country_div addAFlight_Country_div_to']
+    className: countrySelected ? ["addAFlight_Country_div addAFlight_Country_div_to  active_selected"] : ["addAFlight_Country_div addAFlight_Country_div_to"]
   }, "Country"), /*#__PURE__*/_react["default"].createElement("div", {
     onClick: airportSelectedClick,
-    className: !countrySelected ? ['addAFlight_Airport_div addAFlight_Airport_div_to active_selected'] : ['addAFlight_Airport_div addAFlight_Airport_div_to']
+    className: !countrySelected ? ["addAFlight_Airport_div addAFlight_Airport_div_to active_selected"] : ["addAFlight_Airport_div addAFlight_Airport_div_to"]
   }, "Top Cities"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "from_div"
   }, /*#__PURE__*/_react["default"].createElement("h1", {
@@ -77808,7 +77819,7 @@ function AddAFlight(props) {
     className: "addAFlight_toMonth"
   }, showMonth ? fromMonth : null, showMonth ? toMonth : null), /*#__PURE__*/_react["default"].createElement("h1", {
     className: "addAFlight_h1_error"
-  }, addAFlightError ? 'Please fill out all of the fields' : null, addAFlightCongrats ? "Congrats your flight from ".concat(flightFrom, " to ").concat(flightTo, " has been added. \uD83E\uDD73") : null, cantaddFlight ? /*#__PURE__*/_react["default"].createElement("div", null, "Can't add your flight, because you have exceeded the number of flights you can add \uD83D\uDE14,but you can still ", /*#__PURE__*/_react["default"].createElement("br", null), " ", /*#__PURE__*/_react["default"].createElement("br", null), Upgrade, ' ') : null));
+  }, addAFlightError ? "Please fill out all of the fields" : null, addAFlightCongrats ? "Congrats your flight from ".concat(flightFrom, " to ").concat(flightTo, " has been added. \uD83E\uDD73") : null, cantaddFlight ? /*#__PURE__*/_react["default"].createElement("div", null, "Can't add your flight, because you have exceeded the number of flights you can add \uD83D\uDE14,but you can still ", /*#__PURE__*/_react["default"].createElement("br", null), " ", /*#__PURE__*/_react["default"].createElement("br", null), Upgrade, " ") : null));
 
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "dasboard_addAflight"
@@ -78745,6 +78756,8 @@ function Settings(props) {
       updateEmail = _useState4[0],
       setUpdateEmail = _useState4[1];
 
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
   var updateMe = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var res;
@@ -78753,7 +78766,7 @@ function Settings(props) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].put('/api/v1/users/updateMe', {
+              return _axios["default"].put(API_CALL + "/api/v1/users/updateMe", {
                 name: updateName,
                 email: updateEmail
               });
@@ -79032,6 +79045,8 @@ var _reactRouter = __webpack_require__(92);
 
 var _react = _interopRequireWildcard(__webpack_require__(5));
 
+var _reactRouterDom = __webpack_require__(46);
+
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -79043,6 +79058,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function SuccessfullyUpgraded() {
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
   var _useParams = (0, _reactRouter.useParams)(),
       id = _useParams.id,
       priceId = _useParams.priceId;
@@ -79059,7 +79076,7 @@ function SuccessfullyUpgraded() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].post('/api/v1/users/successUpgrade', {
+              return _axios["default"].post(API_CALL + "/api/v1/users/successUpgrade", {
                 id: id,
                 priceId: priceId
               });
@@ -79081,7 +79098,9 @@ function SuccessfullyUpgraded() {
     };
   }();
 
-  return /*#__PURE__*/_react["default"].createElement("div", null, "You have succesuflly upgraded ");
+  return /*#__PURE__*/_react["default"].createElement("div", null, "You have succesuflly upgraded ", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    to: "/dashboard"
+  }, "Go to dashboard"));
 }
 
 /***/ }),
@@ -79110,11 +79129,11 @@ var _FooterSignUp = _interopRequireDefault(__webpack_require__(110));
 
 var _axios = _interopRequireDefault(__webpack_require__(35));
 
-var _reactRouterDom = __webpack_require__(49);
+var _reactRouterDom = __webpack_require__(46);
 
 __webpack_require__(18);
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 var _LoginSuccess = _interopRequireDefault(__webpack_require__(144));
 
@@ -79141,12 +79160,14 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var LoginPage = function LoginPage() {
+  var API_CALL =  false ? "http://localhost:8000" : "";
+
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       login = _useState2[0],
       setLogin = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       email = _useState4[0],
       setEmail = _useState4[1];
@@ -79156,7 +79177,7 @@ var LoginPage = function LoginPage() {
       loginSuccessfull = _useState6[0],
       setLoginSuccessfull = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(''),
+  var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
       password = _useState8[0],
       setPassword = _useState8[1];
@@ -79172,11 +79193,11 @@ var LoginPage = function LoginPage() {
       setNotVerified = _useState12[1];
 
   var createCheckoutSession = function createCheckoutSession(priceId) {
-    return fetch('/api/v1/payment/pay', {
-      method: 'POST',
-      credentials: 'same-origin',
+    return fetch(API_CALL + "/api/v1/payment/pay", {
+      method: "POST",
+      credentials: "same-origin",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         priceId: priceId
@@ -79204,8 +79225,8 @@ var LoginPage = function LoginPage() {
               e.preventDefault();
               _context.next = 3;
               return (0, _axios["default"])({
-                method: 'POST',
-                url: '/api/v1/users/login',
+                method: "POST",
+                url: API_CALL + "/api/v1/users/login",
                 data: {
                   email: email,
                   password: password
@@ -79217,14 +79238,14 @@ var LoginPage = function LoginPage() {
             case 3:
               res = _context.sent;
 
-              if (res.data.status === 'success') {
+              if (res.data.status === "success") {
                 setLoginSuccessfull(true);
                 window.setTimeout(function () {
-                  location.assign('/');
+                  location.assign("/dashboard");
                 }, 1500);
                 setLoginError(false);
                 setNotVerified(false);
-              } else if (res.data.status === 'error' && res.data.message.includes('verified')) {
+              } else if (res.data.status === "error" && res.data.message.includes("verified")) {
                 setNotVerified(true);
                 setLoginError(false);
               } else {
@@ -79249,7 +79270,7 @@ var LoginPage = function LoginPage() {
   var loginPage = /*#__PURE__*/_react["default"].createElement("div", {
     className: "sign_up-form_div"
   }, loginSuccessfull ? /*#__PURE__*/_react["default"].createElement(_LoginSuccess["default"], {
-    message: 'Logged in succesfully, redirecting to your dashboard 😀'
+    message: "Logged in succesfully, redirecting to your dashboard 😀"
   }) : null, /*#__PURE__*/_react["default"].createElement("form", {
     action: "",
     className: "sign_up-form"
@@ -79285,14 +79306,14 @@ var LoginPage = function LoginPage() {
     type: "submit"
   }, "Log in"), /*#__PURE__*/_react["default"].createElement("p", {
     className: "login_paragraph"
-  }, "Dont have an account ?", ' ', /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+  }, "Dont have an account ?", " ", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
     to: "/sign-up",
     className: "login_button"
-  }, "Sign up here"), ' ')), /*#__PURE__*/_react["default"].createElement("div", {
-    className: loginError ? 'password_too_short_error' : 'unactive_error password_too_short_error'
+  }, "Sign up here"), " ")), /*#__PURE__*/_react["default"].createElement("div", {
+    className: loginError ? "password_too_short_error" : "unactive_error password_too_short_error"
   }, loginError ? /*#__PURE__*/_react["default"].createElement("div", null, "Incorrect email or password! please try again") : null), /*#__PURE__*/_react["default"].createElement("div", {
-    className: notVerified ? 'password_too_short_error' : 'unactive_error password_too_short_error'
-  }, notVerified ? /*#__PURE__*/_react["default"].createElement("div", null, "Your account is not verified!, when registering you got an email for verification, please check your mailbox.", ' ') : null)));
+    className: notVerified ? "password_too_short_error" : "unactive_error password_too_short_error"
+  }, notVerified ? /*#__PURE__*/_react["default"].createElement("div", null, "Your account is not verified!, when registering you got an email for verification, please check your mailbox.", " ") : null)));
 
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "SignUp"
@@ -79346,7 +79367,7 @@ exports["default"] = Subscribe;
 
 var _react = _interopRequireWildcard(__webpack_require__(5));
 
-var _AuthContext = _interopRequireDefault(__webpack_require__(46));
+var _AuthContext = _interopRequireDefault(__webpack_require__(47));
 
 var _FooterSignUp = _interopRequireDefault(__webpack_require__(110));
 
@@ -79413,10 +79434,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var VerifyME = function VerifyME(_ref) {
   var match = _ref.match;
+  var API_CALL =  false ? "http://localhost:8000" : "";
 
   var verify = /*#__PURE__*/_react["default"].createElement("div", {
     className: "verified"
-  }, "You are now verified", ' ', /*#__PURE__*/_react["default"].createElement("a", {
+  }, "You are now verified", " ", /*#__PURE__*/_react["default"].createElement("a", {
     className: "verified_login",
     href: "/login"
   }, "Go to login page and login"));
@@ -79437,7 +79459,7 @@ var VerifyME = function VerifyME(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _axios["default"].put('/api/v1/users/verification', {
+              return _axios["default"].put(API_CALL + "/api/v1/users/verification", {
                 data: {
                   id: id,
                   token: token
@@ -79516,12 +79538,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var SuccessfullPayment = function SuccessfullPayment(_ref) {
   var match = _ref.match;
+  var API_CALL =  false ? "http://localhost:8000" : "";
 
   var verify = /*#__PURE__*/_react["default"].createElement("div", {
     className: "verified"
-  }, /*#__PURE__*/_react["default"].createElement("h1", null, "You have succefully paid for the App"), /*#__PURE__*/_react["default"].createElement("div", null, ' ', /*#__PURE__*/_react["default"].createElement("a", {
+  }, /*#__PURE__*/_react["default"].createElement("h1", null, "You have succefully paid for the App"), /*#__PURE__*/_react["default"].createElement("div", null, " ", /*#__PURE__*/_react["default"].createElement("a", {
     href: "/login"
-  }, "Login here"), ' '));
+  }, "Login here"), " "));
 
   var _useParams = (0, _reactRouter.useParams)(),
       token = _useParams.token;
@@ -79532,7 +79555,7 @@ var SuccessfullPayment = function SuccessfullPayment(_ref) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _axios["default"].post('/api/v1/payment/successPayment', {
+            return _axios["default"].post(API_CALL + "/api/v1/payment/successPayment", {
               token: token
             });
 

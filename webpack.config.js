@@ -40,12 +40,6 @@ const config = {
       template: "./app/client/public/index.html",
       favicon: "./app/client/public/favicon.ico",
     }),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development"),
-        WEBPACK: true,
-      },
-    }),
   ],
   devServer: {
     publicPath: "/",

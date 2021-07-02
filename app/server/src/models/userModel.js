@@ -52,6 +52,9 @@ const userSchema = mongoose.Schema({
   alreadyPaidToken: {
     type: String,
   },
+  stripeSubscriptionId: String,
+  clientSecret: String,
+  stripeCustomerId: String,
   createdAt: {
     type: Date,
     defualt: Date.now(),

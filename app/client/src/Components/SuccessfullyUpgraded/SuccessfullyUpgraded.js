@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useParams } from "react-router";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function SuccessfullyUpgraded() {
   const API_CALL =
@@ -19,5 +20,9 @@ export default function SuccessfullyUpgraded() {
     console.log(res);
   };
 
-  return <div>You have succesuflly upgraded </div>;
+  return (
+    <div>
+      You have succesuflly upgraded <Link to="/dashboard">Go to dashboard</Link>
+    </div>
+  );
 }
