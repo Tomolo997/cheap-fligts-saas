@@ -71,7 +71,7 @@ export default function Pricing(props) {
         <div className="pricing_package">Popular</div>
         <div className="pricing_price_div">
           <div className="pricing_perMonth_div">
-            <span className="pricing_currency">€</span>15
+            <span className="pricing_currency">€</span>20
           </div>
           <div className="pricing_perMonth">PER MONTH</div>
         </div>
@@ -97,14 +97,14 @@ export default function Pricing(props) {
         <div className="pricing_package">Pro</div>
         <div className="pricing_price_div">
           <div className="pricing_perMonth_div">
-            <span className="pricing_currency">€</span>25
+            <span className="pricing_currency">€</span>30
           </div>
           <div className="pricing_perMonth">PER MONTH</div>
         </div>
 
         <div className="pricing_features">
           <ul className="pricing_features_list">
-            <li className="pricing_features_item">30 Destinations</li>
+            <li className="pricing_features_item">25 Destinations</li>
             <li className="pricing_features_item">
               Daily destination prices
             </li>{" "}
