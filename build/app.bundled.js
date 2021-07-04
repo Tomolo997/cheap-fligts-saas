@@ -26222,7 +26222,7 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe("price_1J081OJkVEDM03SsnZFRVUiO");
+      upgradeMe("price_1J9WzpJkVEDM03SsxQG21dAP");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now"), " "), /*#__PURE__*/_react["default"].createElement("div", {
@@ -26251,7 +26251,7 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
+      upgradeMe("price_1J9X0iJkVEDM03Ssi5S9neE1");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")));
@@ -26282,7 +26282,7 @@ function Upgrade(props) {
     className: "pricing_features_item"
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
-      upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
+      upgradeMe("price_1J9WzpJkVEDM03SsxQG21dAP");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now"));
@@ -48056,7 +48056,7 @@ function Pricing(props) {
   }, "Email notifications"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
       history.push("/sign-up");
-      clickMeToPay("price_1J081OJkVEDM03SsnZFRVUiO");
+      clickMeToPay("price_1J9WzpJkVEDM03SsxQG21dAP");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now"), " "), /*#__PURE__*/_react["default"].createElement("div", {
@@ -48086,7 +48086,7 @@ function Pricing(props) {
   }, "Email notification"))), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
       history.push("/sign-up");
-      clickMeToPay("price_1J084NJkVEDM03SsxUZmPVER");
+      clickMeToPay("price_1J9X0iJkVEDM03Ssi5S9neE1");
     },
     className: "pricing_button pricing_button_buy"
   }, "Join now")), /*#__PURE__*/_react["default"].createElement("div", {
@@ -49499,11 +49499,11 @@ var SignUp = function SignUp() {
 
               e.preventDefault();
 
-              if (price_id === "price_1J084NJkVEDM03SsxUZmPVER") {
+              if (price_id === "price_1J9X0iJkVEDM03Ssi5S9neE1") {
                 program = "pro";
               }
 
-              if (price_id === "price_1J081OJkVEDM03SsnZFRVUiO") {
+              if (price_id === "price_1J9WzpJkVEDM03SsxQG21dAP") {
                 program = "standard";
               }
 

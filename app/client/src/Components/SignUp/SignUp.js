@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import ProvideValidEmail from "../Errors/ProvideValidEmail";
 import PleaseEnterName from "../Errors/PleaseEnterName";
 let stripe = Stripe(
-  "pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt"
+  "pk_live_51IxxvcJkVEDM03SsDJYRumbzNygxWpd4o70wxhPFxHEDD0o51ep9fAlgSRC0Dgp3gRf2Sm4OauTQE9sxzwub6VTC00sDqLfPMN"
 );
 const SignUp = () => {
   const API_CALL =
@@ -69,10 +69,10 @@ const SignUp = () => {
     //  console.log(username,emailSignUp,passwordConfirmSignUp,passwordSignUp);
     e.preventDefault();
 
-    if (price_id === "price_1J084NJkVEDM03SsxUZmPVER") {
+    if (price_id === "price_1J9X0iJkVEDM03Ssi5S9neE1") {
       program = "pro";
     }
-    if (price_id === "price_1J081OJkVEDM03SsnZFRVUiO") {
+    if (price_id === "price_1J9WzpJkVEDM03SsxQG21dAP") {
       program = "standard";
     }
 

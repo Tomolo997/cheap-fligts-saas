@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import "../../App/App.css";
 import AuthContextProvider from "../../context/AuthContext";
 let stripe = Stripe(
-  "pk_test_51IxxvcJkVEDM03SsyEouRlG0tukqWjdFC8KiBhTZnOVJcXIQOgEF0EKarkcJGz1CGvfgE8MRinNxx3kLzOZ5Qsrd00Zv1hZwMt"
+  "pk_live_51IxxvcJkVEDM03SsDJYRumbzNygxWpd4o70wxhPFxHEDD0o51ep9fAlgSRC0Dgp3gRf2Sm4OauTQE9sxzwub6VTC00sDqLfPMN"
 );
 export default function Upgrade(props) {
   const { UserIDforUpgrade } = useContext(AuthContextProvider);
@@ -58,7 +58,7 @@ export default function Upgrade(props) {
         </div>
         <button
           onClick={() => {
-            upgradeMe("price_1J081OJkVEDM03SsnZFRVUiO");
+            upgradeMe("price_1J9WzpJkVEDM03SsxQG21dAP");
           }}
           className="pricing_button pricing_button_buy"
         >
@@ -86,7 +86,7 @@ export default function Upgrade(props) {
         </div>
         <button
           onClick={() => {
-            upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
+            upgradeMe("price_1J9X0iJkVEDM03Ssi5S9neE1");
           }}
           className="pricing_button pricing_button_buy"
         >
@@ -118,7 +118,7 @@ export default function Upgrade(props) {
       </div>
       <button
         onClick={() => {
-          upgradeMe("price_1J084NJkVEDM03SsxUZmPVER");
+          upgradeMe("price_1J9WzpJkVEDM03SsxQG21dAP");
         }}
         className="pricing_button pricing_button_buy"
       >

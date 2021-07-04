@@ -6,7 +6,7 @@ const { promisify } = require("util");
 const appError = require("../utils/appError");
 const { async } = require("regenerator-runtime");
 const stripe = require("stripe")(
-  "sk_test_51IxxvcJkVEDM03SsoiqQXiipym6kENermQpnqeiqP7zonwOUY57JcRHwzUpZA3DZzNPMz89gkNtvnFdw7q5YOjV1005MutyTyd"
+  "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"
 );
 
 exports.getMe = (req, res, next) => {
@@ -81,10 +81,10 @@ exports.successUpgrade = async (req, res, next) => {
   console.log(priceId);
   let program = "free";
 
-  if (priceId === "price_1J084NJkVEDM03SsxUZmPVER") {
+  if (priceId === "price_1J9X0iJkVEDM03Ssi5S9neE1") {
     program = "pro";
   }
-  if (priceId === "price_1J081OJkVEDM03SsnZFRVUiO") {
+  if (priceId === "price_1J9WzpJkVEDM03SsxQG21dAP") {
     program = "standard";
   }
 

@@ -1,10 +1,10 @@
-const User = require('../models/userModel');
-const catchAsync = require('../utils/catchAsync');
-const jwt = require('jsonwebtoken');
-const { promisify } = require('util');
-const appError = require('../utils/appError');
-const stripe = require('stripe')(
-  'sk_test_51IxxvcJkVEDM03SsoiqQXiipym6kENermQpnqeiqP7zonwOUY57JcRHwzUpZA3DZzNPMz89gkNtvnFdw7q5YOjV1005MutyTyd'
+const User = require("../models/userModel");
+const catchAsync = require("../utils/catchAsync");
+const jwt = require("jsonwebtoken");
+const { promisify } = require("util");
+const appError = require("../utils/appError");
+const stripe = require("stripe")(
+  "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"
 );
 
 exports.succesfullPayment = async (req, res) => {
@@ -28,8 +28,8 @@ exports.payMe = async (req, res) => {
   // for additional parameters to pass.
   try {
     const session = await stripe.checkout.sessions.create({
-      mode: 'subscription',
-      payment_method_types: ['card'],
+      mode: "subscription",
+      payment_method_types: ["card"],
       line_items: [
         {
           price: priceId,
@@ -42,7 +42,7 @@ exports.payMe = async (req, res) => {
       // is redirected to the success page.
 
       success_url: `https://costfriendlyflights.com/paid/${paidToken}`,
-      cancel_url: 'https://costfriendlyflights.com/',
+      cancel_url: "https://costfriendlyflights.com/",
     });
     res.send({
       sessionId: session.id,
