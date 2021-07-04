@@ -43,7 +43,7 @@ exports.addFlight = async (req, res, next) => {
 
     const flight = await Flights.findOne({ user: userID._id });
 
-    if (userID.program === "free" && flight.flightsData.length > 2) {
+    if (userID.program === "free" && flight.flightsData.length > 1) {
       res.status(201).json({
         status: "error",
       });
@@ -57,7 +57,7 @@ exports.addFlight = async (req, res, next) => {
       return;
     }
 
-    if (userID.program === "standard" && flight.flightsData.length > 10) {
+    if (userID.program === "standard" && flight.flightsData.length > 14) {
       res.status(201).json({
         status: "error",
       });
