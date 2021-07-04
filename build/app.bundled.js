@@ -26206,7 +26206,7 @@ function Upgrade(props) {
     className: "pricing_perMonth_div"
   }, /*#__PURE__*/_react["default"].createElement("span", {
     className: "pricing_currency"
-  }, "\u20AC"), "15"), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "\u20AC"), "20"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_perMonth"
   }, "PER MONTH")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_features"
@@ -26235,7 +26235,7 @@ function Upgrade(props) {
     className: "pricing_perMonth_div"
   }, /*#__PURE__*/_react["default"].createElement("span", {
     className: "pricing_currency"
-  }, "\u20AC"), "25"), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "\u20AC"), "30"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_perMonth"
   }, "PER MONTH")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_features"
@@ -26243,7 +26243,7 @@ function Upgrade(props) {
     className: "pricing_features_list"
   }, /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
+  }, "25 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
@@ -26266,7 +26266,7 @@ function Upgrade(props) {
     className: "pricing_perMonth_div"
   }, /*#__PURE__*/_react["default"].createElement("span", {
     className: "pricing_currency"
-  }, "\u20AC"), "25"), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "\u20AC"), "30"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_perMonth"
   }, "PER MONTH")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_features"
@@ -26274,7 +26274,7 @@ function Upgrade(props) {
     className: "pricing_features_list"
   }, /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "10 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
+  }, "25 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
@@ -48039,7 +48039,7 @@ function Pricing(props) {
     className: "pricing_perMonth_div"
   }, /*#__PURE__*/_react["default"].createElement("span", {
     className: "pricing_currency"
-  }, "\u20AC"), "15"), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "\u20AC"), "20"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_perMonth"
   }, "PER MONTH")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_features"
@@ -48069,7 +48069,7 @@ function Pricing(props) {
     className: "pricing_perMonth_div"
   }, /*#__PURE__*/_react["default"].createElement("span", {
     className: "pricing_currency"
-  }, "\u20AC"), "25"), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "\u20AC"), "30"), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_perMonth"
   }, "PER MONTH")), /*#__PURE__*/_react["default"].createElement("div", {
     className: "pricing_features"
@@ -48077,7 +48077,7 @@ function Pricing(props) {
     className: "pricing_features_list"
   }, /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
-  }, "30 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
+  }, "25 Destinations"), /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
   }, "Daily destination prices"), " ", /*#__PURE__*/_react["default"].createElement("li", {
     className: "pricing_features_item"
