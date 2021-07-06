@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import '../../App/App.css';
-import emailjs from 'emailjs-com';
+import React, { useState } from "react";
+import "../../App/App.css";
+import emailjs from "emailjs-com";
 
 export default function Contact(props) {
   const [contacted, setContacted] = useState(false);
-  const [emailFromSend, setEmailFromSend] = useState('');
-  const [nameFromSend, setNameFromSend] = useState('');
-  const [messageFromSend, setMessageFromSend] = useState('');
+  const [emailFromSend, setEmailFromSend] = useState("");
+  const [nameFromSend, setNameFromSend] = useState("");
+  const [messageFromSend, setMessageFromSend] = useState("");
   const thankTheCustomer = (
     <h1 className="contact_h1">
       Thanks for contacting us! We will anwser your question shortly!
@@ -16,14 +16,14 @@ export default function Contact(props) {
   const sendContactEmail = (e) => {
     e.preventDefault();
     emailjs.send(
-      'service_rkak0nj',
-      'template_964551s',
+      "service_rkak0nj",
+      "template_964551s",
       {
         email: emailFromSend,
         name: nameFromSend,
         message: messageFromSend,
       },
-      'user_ltZGHajYjIaXtDOPlpHli'
+      "user_ltZGHajYjIaXtDOPlpHli"
     );
     e.target.reset();
   };
@@ -71,7 +71,7 @@ export default function Contact(props) {
       </label>
       <textarea
         onChange={messageFromSendChanger}
-        placeholder="Arsenal is the best club in the world"
+        placeholder="Type something to unsee me"
         className="contact_textArea"
         type="textarea"
       />
