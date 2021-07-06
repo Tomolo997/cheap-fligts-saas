@@ -49187,17 +49187,17 @@ function Contact(props) {
       contacted = _useState2[0],
       setContacted = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       emailFromSend = _useState4[0],
       setEmailFromSend = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(''),
+  var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
       nameFromSend = _useState6[0],
       setNameFromSend = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(''),
+  var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
       messageFromSend = _useState8[0],
       setMessageFromSend = _useState8[1];
@@ -49209,11 +49209,11 @@ function Contact(props) {
   var sendContactEmail = function sendContactEmail(e) {
     e.preventDefault();
 
-    _emailjsCom["default"].send('service_rkak0nj', 'template_964551s', {
+    _emailjsCom["default"].send("service_rkak0nj", "template_964551s", {
       email: emailFromSend,
       name: nameFromSend,
       message: messageFromSend
-    }, 'user_ltZGHajYjIaXtDOPlpHli');
+    }, "user_ltZGHajYjIaXtDOPlpHli");
 
     e.target.reset();
   };
@@ -49259,7 +49259,7 @@ function Contact(props) {
     htmlFor: "name"
   }, "Message"), /*#__PURE__*/_react["default"].createElement("textarea", {
     onChange: messageFromSendChanger,
-    placeholder: "Arsenal is the best club in the world",
+    placeholder: "Type something to unsee me",
     className: "contact_textArea",
     type: "textarea"
   }), /*#__PURE__*/_react["default"].createElement("button", {
