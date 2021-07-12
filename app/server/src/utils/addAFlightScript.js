@@ -151,6 +151,7 @@ exports.addAFlight = async (
       user: userID,
       flightID: flightId,
       results: flightsForFinal,
+      createdAt: Date.now(),
     });
   } catch (error) {
     console.log("ERRRORRR", error);
