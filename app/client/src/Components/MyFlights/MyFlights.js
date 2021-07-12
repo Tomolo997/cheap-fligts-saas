@@ -134,7 +134,11 @@ export default function MyFlights(props) {
             </div>
             <div className="flightsData_fromToDateCreatedAt_createdAt ">
               <h1 className="flightsData_formToDateCreatedAt_h1_createdAt">
-                Today found {props.results.length} flights
+                On {props.createdAt} found <br></br>{" "}
+                <span style={{ fontWeight: "bold" }}>
+                  {props.results.length}
+                </span>{" "}
+                flights
                 <button
                   className="button_delete"
                   onClick={() => {

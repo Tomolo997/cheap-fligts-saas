@@ -22,9 +22,8 @@ export default function Dashboard() {
   const API_CALL =
     process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
 
-  const { slider, setSlider, setUserIDforUpgrade } = useContext(
-    AuthContextProvider
-  );
+  const { slider, setSlider, setUserIDforUpgrade } =
+    useContext(AuthContextProvider);
   const [loginSuccessfull, setLoginSuccessfull] = useState(false);
   const [airportsFromDB, setAirportsFromDB] = useState([]);
   const [myFlightsShow, setMyFlightsShow] = useState(true);
@@ -81,6 +80,11 @@ export default function Dashboard() {
     setUserName(res.data.name);
     setUserEmail(res.data.email);
   };
+  const convertToReadableTime = (date) => {
+    const yearMonthDay = date.split("T")[0];
+    const timeOfTheDay = date.split("T")[1].slice(0, 5);
+    return yearMonthDay + " at " + timeOfTheDay;
+  };
   const getUserFlights = async () => {
     try {
       const res = await axios.get(API_CALL + "/api/v1/flights/getMyFlights");
@@ -102,6 +106,7 @@ export default function Dashboard() {
           results: element.results,
           flightResultsID: element.id,
           flightId: element.flightID,
+          createdAt: convertToReadableTime(element.createdAt),
           dateTo: findFlight.inboundDate,
           dateFrom: findFlight.outboundDate,
         });
@@ -113,6 +118,7 @@ export default function Dashboard() {
         fromToArray.push({
           fromStart: element.flightFrom,
           toStart: element.flightTo,
+          createdAt: convertToReadableTime(element.createdAt),
           results: [
             {
               flightFromSTART: element.flightFrom,
@@ -312,6 +318,7 @@ export default function Dashboard() {
     <MyFlights
       key={el.flightId}
       flightId={el.flightId}
+      createdAt={el.createdAt}
       flightResultsID={el.flightResultsID}
       userID={userId}
       id={el._id}

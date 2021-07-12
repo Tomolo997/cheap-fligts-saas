@@ -246,6 +246,7 @@ const fillTheFlights = async () => {
           flightID: element2._id,
           results: [],
           user: element.user,
+          createdAt: Date.now(),
         });
       }
     }
