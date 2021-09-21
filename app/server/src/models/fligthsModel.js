@@ -7,13 +7,17 @@ const flightSchema = mongoose.Schema(
     //sem da podatke user, katere vse kraje hoče iskat
     flightsData: [
       {
-        flightsResults: Array,
-        _id: String,
         flightFrom: String,
         flightTo: String,
-        outboundDate: String,
-        inboundDate: String,
-        createdAt: String,
+        outboundDate: Date,
+        inboundDate: Date,
+        fromFlightCountry: String,
+        toFlightCountry: String,
+        createdAt: {
+          type: Date,
+          default: Date.now,
+        },
+        flightsResults: [],
       },
     ],
     //dobi rezultate, item po item iz flightsData je vsak object
